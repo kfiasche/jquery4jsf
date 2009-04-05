@@ -34,6 +34,10 @@
   <component-type>org.jquery4jsf.HtmlAccordionSubPanel</component-type>
   <component-class>org.jquery4jsf.custom.accordion.AccordionSubPanel</component-class>
  </component>
+ <component>
+  <component-type>org.jquery4jsf.HtmlDatePicker</component-type>
+  <component-class>org.jquery4jsf.custom.datapiker.DatePicker</component-class>
+ </component>
  <render-kit>
   <render-kit-id>HTML_BASIC</render-kit-id>
   <renderer>
@@ -75,6 +79,11 @@
    <component-family>org.jquery4jsf.Output</component-family>
    <renderer-type>org.jquery4jsf.OutputScriptRenderer</renderer-type>
    <renderer-class>org.jquery4jsf.custom.outputscript.OutputScriptRenderer</renderer-class>
+  </renderer>
+  <renderer>
+   <component-family>org.jquery4jsf.DatePicker</component-family>
+   <renderer-type>org.jquery4jsf.DatePickerRenderer</renderer-type>
+   <renderer-class>org.jquery4jsf.custom.datapiker.DatePickerRenderer</renderer-class>
   </renderer>
  </render-kit>
  <lifecycle>

@@ -5,10 +5,12 @@ import java.util.Iterator;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
+import javax.faces.component.UINamingContainer;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import org.jquery4jsf.renderkit.html.HTML;
+import org.jquery4jsf.utilities.TextUtilities;
 
 public class RendererUtilities {
 	
@@ -104,6 +106,107 @@ public class RendererUtilities {
 		String actionURL = facesContext.getApplication().getViewHandler().getActionURL(facesContext, facesContext.getViewRoot().getViewId());
 		String url = facesContext.getExternalContext().encodeResourceURL(actionURL);
 		return url;
+	}
+	
+	public static void createOptionComponentByType(StringBuffer sb, boolean value, String nameParameter){
+		createOptionComponentByType(sb, new Boolean(value), nameParameter);
+	}
+	
+	public static void createOptionComponentByType(StringBuffer sb, int value, String nameParameter){
+		createOptionComponentByType(sb, new Integer(value), nameParameter);
+	}
+	
+	public static void createOptionComponentByType(StringBuffer sb, Object value, String nameParameter){
+		if (value != null){
+			if (value instanceof String){
+				String s = (String)value;
+				createOptionComponentStringByType(sb, s, nameParameter);
+			}
+			else if (value instanceof Integer){
+				String s = ((Integer)value).toString();
+				sb.append(nameParameter.concat(": ").concat(s).concat(", \n"));
+			}
+			else if (value instanceof Boolean){
+				if (((Boolean) value).booleanValue()){
+					String s = ((Boolean)value).toString();
+					sb.append(nameParameter.concat(": ").concat(s).concat(", \n"));
+				}
+			}
+		}
+	}
+	
+	//TODO da realizzare
+	public static void createOptionComponentOptionsByType(StringBuffer options, String value, String nameParameter) {
+		
+	}
+	
+	public static void createOptionComponentArrayByType(StringBuffer options, String value, String nameParameter) {
+		if (value != null){
+			options.append(nameParameter.concat(": ["));
+			String values[] = value.split(",");
+			for (int i = 0; i < values.length; i++) {
+				String arrayElement = values[i];
+				if (TextUtilities.isNumber(arrayElement)){
+					options.append("".concat(value).concat(""));
+				}
+				else
+				{
+					options.append("'".concat(value).concat("'"));
+				}
+				if (i != values.length-1){
+					options.append(", ");
+				}
+			}
+			options.append("], \n");
+		}
+	}
+	
+	private static void createOptionComponentStringByType(StringBuffer options, String value, String nameParameter){
+		if (value != null){
+			if (TextUtilities.isNumber(value)){
+				options.append(nameParameter.concat(": "));
+				options.append(value);
+				options.append(", \n");
+			}
+			else
+			{
+				options.append(nameParameter.concat(": '"));
+				options.append(value);
+				options.append("', \n");
+			}
+		}
+	}
+	
+	public static String getClientIdForComponent(String forAttr,FacesContext facesContext, UIComponent uiComponent) {
+		if (forAttr == null)
+			return null;
+		UIComponent forComponent = uiComponent.findComponent(forAttr);
+		if (forComponent == null) {
+			if (forAttr.length() > 0
+					&& forAttr.charAt(0) == UINamingContainer.SEPARATOR_CHAR) {
+				// absolute id path
+				return forAttr.substring(1);
+			} else {
+				// relative id path, we assume a component on the same level
+				// as the label component
+				String labelClientId = uiComponent.getClientId(facesContext);
+				int colon = labelClientId.lastIndexOf(UINamingContainer.SEPARATOR_CHAR);
+				if (colon == -1) {
+					return forAttr;
+				} else {
+					return labelClientId.substring(0, colon + 1) + forAttr;
+				}
+			}
+		} else {
+			return forComponent.getClientId(facesContext);
+		}
+	}
+	
+	public static String getJQueryIdComponent(String id, FacesContext facesContext, UIComponent component){
+		String idClient = getClientIdForComponent(id, facesContext, component);
+		if (idClient == null)
+			return null;
+		return "#" + idClient.replaceAll(":", "\\\\\\\\:");
 	}
 	
 }

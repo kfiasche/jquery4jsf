@@ -15,12 +15,12 @@ import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
+import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 
-import com.sun.faces.renderkit.html_basic.TextRenderer;
 import com.sun.faces.util.Util;
 
-public class AutoCompleteRenderer extends TextRenderer implements AjaxBaseRenderer {
+public class AutoCompleteRenderer extends JQueryInputBaseRenderer implements AjaxBaseRenderer {
 
     public static final String RENDERER_TYPE = "org.jquery4jsf.HtmlInputTextAutocompleteRenderer";
     
