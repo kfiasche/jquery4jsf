@@ -1,8 +1,7 @@
 package org.jquery4jsf.custom.outputcss;
 
 import javax.faces.component.UIComponentBase;
-
-import org.jquery4jsf.component.ComponentUtilities;
+import javax.faces.el.ValueBinding;
 
 public class OutputCss extends UIComponentBase {
 
@@ -60,7 +59,10 @@ public class OutputCss extends UIComponentBase {
 	}
 	
 	private Object getLocalOrValueBindingValue(Object localValue, String  valueBindingName){
-		return ComponentUtilities.getLocalOrValueBindingValue(localValue, valueBindingName);
+		if (localValue != null)
+			return localValue;
+		ValueBinding vb = getValueBinding(valueBindingName);
+		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
 	public String getType() {

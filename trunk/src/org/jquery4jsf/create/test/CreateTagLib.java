@@ -4,10 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.faces.component.html.HtmlInputText;
-
-import org.jquery4jsf.custom.accordion.AccordionSubPanel;
-import org.jquery4jsf.custom.datapiker.DatePicker;
+import org.jquery4jsf.custom.progressbar.ProgressBar;
 
 public class CreateTagLib {
 
@@ -16,14 +13,14 @@ public class CreateTagLib {
 		//Field[] fieldsa = AccordianSubPanel.class.getSuperclass().getSuperclass().getSuperclass().getDeclaredFields();
 		//Field[] fieldsb = DatePicker.class.getSuperclass().getSuperclass().getDeclaredFields();
 		//Field[] fieldsc = HtmlInputText.class.getSuperclass().getDeclaredFields();
-		Field[] fieldsd = DatePicker.class.getDeclaredFields();
+		Field[] fieldsd = ProgressBar.class.getDeclaredFields();
 		ArrayList lista = new ArrayList();
 		//lista.addAll(Arrays.asList(fieldsa));
 		//lista.addAll(Arrays.asList(fieldsb));
 		//lista.addAll(Arrays.asList(fieldsc));
 		lista.addAll(Arrays.asList(fieldsd));
 		sb.append("<tag>\n");
-		sb.append("<name>"+ "datePicker" +"</name>\n");
+		sb.append("<name>"+ "progressBar" +"</name>\n");
 		sb.append("<tag-class></tag-class>\n");
 		sb.append("<body-content>JSP</body-content>\n");
 		sb.append("<description></description>\n");

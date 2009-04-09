@@ -17,6 +17,9 @@ public class AccordionPanelTag extends HtmlJSBaseTag {
 	private String fillSpace;
 	private String icons;
 	private String navigation;
+	private String header;
+	private String navigationFilter;
+	private String onaccordionchange;
 	
 	public String getComponentType() {
 		return AccordionPanel.COMPONENT_TYPE;
@@ -37,6 +40,9 @@ public class AccordionPanelTag extends HtmlJSBaseTag {
 		fillSpace       = null;
 		icons           = null;
 		navigation      = null;
+		header = null;
+		navigationFilter = null;
+		onaccordionchange = null;
 	}
 	
 	
@@ -53,6 +59,9 @@ public class AccordionPanelTag extends HtmlJSBaseTag {
 		setBooleanProperty(getFacesContext(), component, "fillSpace", fillSpace);
 		setStringProperty(getFacesContext(), component, "icons", icons);
 		setBooleanProperty(getFacesContext(), component, "navigation", navigation);
+		setStringProperty(getFacesContext(), component, "header",header);
+		setStringProperty(getFacesContext(), component, "navigationFilter",navigationFilter);
+		setStringProperty(getFacesContext(), component, "onaccordionchange",onaccordionchange);
 	}
 	
 	public void setOncomplete(String oncomplete) {
@@ -84,6 +93,15 @@ public class AccordionPanelTag extends HtmlJSBaseTag {
 	}
 	public void setNavigation(String navigation) {
 		this.navigation = navigation;
+	}
+	public void setHeader(String header) {
+		this.header = header;
+	}
+	public void setNavigationFilter(String navigationFilter) {
+		this.navigationFilter = navigationFilter;
+	}
+	public void setOnaccordionchange(String onaccordionchange) {
+		this.onaccordionchange = onaccordionchange;
 	}
 	
 }

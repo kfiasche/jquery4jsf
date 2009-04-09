@@ -22,7 +22,7 @@ public class AccordionPanel extends HtmlBaseComponent implements AjaxComponent, 
 				"jquery/jquery.js",
 				"ui/ui.core.js",
 				"accordion/ui.accordion.js",
-				"theme/base/ui.all.css"
+				"themes/base/ui.all.css"
 		};
 	}
 	//Standard javascript event for tag <div>
@@ -47,6 +47,12 @@ public class AccordionPanel extends HtmlBaseComponent implements AjaxComponent, 
 	private Boolean	fillSpace;
 	private String 	icons;
 	private Boolean	navigation;
+	private String header;
+	private String navigationFilter;
+	/*
+	 * Eventi
+	 */
+	private String onaccordionchange;
 	
 	public static final String COMPONENT_FAMILY = "org.jquery4jsf.AccordionPanel";
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlAccordionPanel";
@@ -80,22 +86,24 @@ public class AccordionPanel extends HtmlBaseComponent implements AjaxComponent, 
         fillSpace       = (Boolean)values[18];
         icons           = (String)values[19];
         navigation      = (Boolean)values[20];
+        header			= (String)values[21];
+        navigationFilter = (String)values[22];
     }
     
     public Object saveState(FacesContext context)
     {
-        Object[] values = new Object[21];
+        Object[] values = new Object[23];
         values[0] = super.saveState(context);
-        values[1]=(String) onclick;
-        values[2]=(String) ondblclick;
-        values[3]=(String) onkeydown;
-        values[4]=(String) onkeypress;
-        values[5]=(String) onkeyup;
-        values[6]=(String) onmousedown;
-        values[7]=(String) onmousemove;
-        values[8]=(String) onmouseout;
-        values[9]=(String) onmouseover;
-        values[10]=(String) onmouseup;
+        values[1]= onclick;
+        values[2]= ondblclick;
+        values[3]= onkeydown;
+        values[4]= onkeypress;
+        values[5]= onkeyup;
+        values[6]= onmousedown;
+        values[7]= onmousemove;
+        values[8]= onmouseout;
+        values[9]= onmouseover;
+        values[10]= onmouseup;
         values[11] = oncomplete;
         values[12] = active;
         values[13] = animated;
@@ -106,6 +114,8 @@ public class AccordionPanel extends HtmlBaseComponent implements AjaxComponent, 
         values[18] = fillSpace;
         values[19] = icons;
         values[20] = navigation;
+        values[21] = header;
+        values[22] = navigationFilter;
         return values;
     }
 
@@ -280,7 +290,31 @@ public class AccordionPanel extends HtmlBaseComponent implements AjaxComponent, 
 		this.navigation = navigation ? Boolean.TRUE : Boolean.FALSE;
 	}
 	
+	public String getHeader() {
+		return (String) getLocalOrValueBindingValue(header, "header");
+	}
+
+	public void setHeader(String header) {
+		this.header = header;
+	}
+	
 	public String[] getResources() {
 		return resources;
+	}
+
+	public String getNavigationFilter() {
+		return (String) getLocalOrValueBindingValue(navigationFilter, "navigationFilter");
+	}
+
+	public void setNavigationFilter(String navigationFilter) {
+		this.navigationFilter = navigationFilter;
+	}
+
+	public String getOnaccordionchange() {
+		return (String) getLocalOrValueBindingValue(onaccordionchange, "onaccordionchange");
+	}
+
+	public void setOnaccordionchange(String onaccordionchange) {
+		this.onaccordionchange = onaccordionchange;
 	}
 }

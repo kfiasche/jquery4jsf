@@ -1,9 +1,3 @@
-/*
- * Creato il 19-mar-2009
- *
- * TODO Per modificare il modello associato a questo file generato, aprire
- * Finestra - Preferenze - Java - Stile codice - Modelli codice
- */
 package org.jquery4jsf.javascript.function;
 
 import java.util.ArrayList;
@@ -11,12 +5,7 @@ import java.util.ArrayList;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.JSInterface;
 
-/**
- * @author Administrator
- *
- * TODO Per modificare il modello associato al commento di questo tipo generato, aprire
- * Finestra - Preferenze - Java - Stile codice - Modelli codice
- */
+
 public class JSFunction implements JSInterface{
 	
 	private JSElement[] elements;

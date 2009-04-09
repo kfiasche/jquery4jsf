@@ -72,10 +72,10 @@ public class DatePicker extends HtmlInputText implements AjaxComponent, JQueryHt
 		super();
 		setRendererType(DEFAULT_RENDERER_TYPE);
 		resources = new String[]{
-				//"theme/base/ui.all.css",
 				"jquery/jquery.js",
 				"ui/ui.core.js",
 				"datepicker/ui.datepicker.js",
+				"themes/base/ui.all.css"
 		};
 	}
 

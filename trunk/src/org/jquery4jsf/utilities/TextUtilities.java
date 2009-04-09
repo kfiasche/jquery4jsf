@@ -9,11 +9,8 @@ public final class TextUtilities {
         {
             try
             {
-                int intVal = Integer.parseInt(str);
-                if (intVal >= 0)
-                {
-                    isNum = true;
-                }
+                Integer.parseInt(str);
+                isNum = true;
             }
             catch (Exception e)
             {

@@ -23,7 +23,6 @@ public class CSSResourceStreamer implements ResourceStreamer {
 	}
 
 	public void stream(HttpServletRequest request, HttpServletResponse response, InputStream inputStream) throws IOException {
-		System.out.println("request_css: "+request.getRequestURI());
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 		OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), response.getCharacterEncoding());
 		String line = null;

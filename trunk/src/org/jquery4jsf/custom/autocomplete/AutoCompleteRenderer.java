@@ -17,6 +17,7 @@ import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
+import org.jquery4jsf.resource.ResourceContext;
 
 import com.sun.faces.util.Util;
 
@@ -34,80 +35,16 @@ public class AutoCompleteRenderer extends JQueryInputBaseRenderer implements Aja
         if(component instanceof AutoComplete)
             autoComplete = (AutoComplete)component;
         ResponseWriter responseWriter = context.getResponseWriter();
-        responseWriter.startElement("input", component);
-        writeIdAttributeIfNecessary(context, responseWriter, component);
-        responseWriter.writeAttribute("type", "text", null);
-        responseWriter.writeAttribute("name", component.getClientId(context), "clientId");
-        
-        
-        Object object = autoComplete.getValue();
-        
-        if(autoComplete.getValue() != null)
-            responseWriter.writeAttribute("value", object.toString(), "value");
-        if(autoComplete.getStyleClass() != null)
-            responseWriter.writeAttribute("class", autoComplete.getStyleClass(), "styleClass");
-        if(autoComplete.getAccesskey() != null)
-            responseWriter.writeAttribute("accesskey", autoComplete.getAccesskey(), null);
-        if(autoComplete.getAlt() != null)
-            responseWriter.writeAttribute("alt", autoComplete.getAlt(), null);
-        if(autoComplete.getDir() != null)
-            responseWriter.writeAttribute("dir", autoComplete.getDir(), null);
-        if(autoComplete.isDisabled())
-            responseWriter.writeAttribute("disabled", "disabled", null);
-        if(autoComplete.getLang() != null)
-            responseWriter.writeAttribute("lang", autoComplete.getLang(), null);
-        if(autoComplete.getMaxlength() > 0)
-            responseWriter.writeAttribute("maxlength", new Integer(autoComplete.getMaxlength()), null);
-        if(autoComplete.getOnblur() != null)
-            responseWriter.writeAttribute("onblur", autoComplete.getOnblur(), null);
-        if(autoComplete.getOnchange() != null)
-            responseWriter.writeAttribute("onchange", autoComplete.getOnchange(), null);
-        if(autoComplete.getOnclick() != null)
-            responseWriter.writeAttribute("onclick", autoComplete.getOnclick(), null);
-        if(autoComplete.getOndblclick() != null)
-            responseWriter.writeAttribute("ondblclick", autoComplete.getOndblclick(), null);
-        if(autoComplete.getOnfocus() != null)
-            responseWriter.writeAttribute("onfocus", autoComplete.getOnfocus(), null);
-        if(autoComplete.getOnkeydown() != null)
-            responseWriter.writeAttribute("onkeydown", autoComplete.getOnkeydown(), null);
-        if(autoComplete.getOnkeypress() != null)
-            responseWriter.writeAttribute("onkeypress", autoComplete.getOnkeypress(), null);
-        if(autoComplete.getOnkeyup() != null)
-            responseWriter.writeAttribute("onkeyup", autoComplete.getOnkeyup(), null);
-        if(autoComplete.getOnmousedown() != null)
-            responseWriter.writeAttribute("onmousedown", autoComplete.getOnmousedown(), null);
-        if(autoComplete.getOnmousemove() != null)
-            responseWriter.writeAttribute("onmousemove", autoComplete.getOnmousemove(), null);
-        if(autoComplete.getOnmouseout() != null)
-            responseWriter.writeAttribute("onmouseout", autoComplete.getOnmouseout(), null);
-        if(autoComplete.getOnmouseover() != null)
-            responseWriter.writeAttribute("onmouseover", autoComplete.getOnmouseover(), null);
-        if(autoComplete.getOnmouseup() != null)
-            responseWriter.writeAttribute("onmouseup", autoComplete.getOnmouseup(), null);
-        if(autoComplete.getOnselect() != null)
-            responseWriter.writeAttribute("onselect", autoComplete.getOnselect(), null);
-        if(autoComplete.isReadonly())
-            responseWriter.writeAttribute("readonly", "readonly", null);
-        if(autoComplete.getSize() > 0)
-            responseWriter.writeAttribute("size", new Integer(autoComplete.getSize()), null);
-        if(autoComplete.getStyle() != null)
-            responseWriter.writeAttribute("style", autoComplete.getStyle(), null);
-        if(autoComplete.getTabindex() != null)
-            responseWriter.writeAttribute("tabindex", autoComplete.getTabindex(), null);
-        if(autoComplete.getTitle() != null)
-            responseWriter.writeAttribute("title", autoComplete.getTitle(), null);
-        
-        responseWriter.endElement("input");
         
         // TODO devo trovare il modo per scrivere i script nell'head
         String[] list = autoComplete.getResources();
         for (int i = 0; i < list.length; i++) {
 			String resource = list[i];
 			if (resource.endsWith(".css")){
-				RendererUtilities.addCssForJQueryPlugin(component, responseWriter, context, resource);
+				ResourceContext.getInstance().addResource(resource);
 			}
 			if (resource.endsWith(".js")){
-				RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, resource);
+				ResourceContext.getInstance().addResource(resource);
 			}
 		}
         
@@ -125,107 +62,67 @@ public class AutoCompleteRenderer extends JQueryInputBaseRenderer implements Aja
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
         RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        
+        rendererInputText(responseWriter, autoComplete, context);
 	}
 	
-    private String createOptionComponent(StringBuffer sbOption, AutoComplete autoComplete, FacesContext context) throws IOException {
-        if (autoComplete.getJsonValue() != null){
-            sbOption.append(autoComplete.getJsonValue());
-            sbOption.append(", {\n");
-            if (autoComplete.getMinChars() != -1){
-                sbOption.append("minChars: "+ autoComplete.getMinChars() +", \n");
-            }
-            if (autoComplete.getMax() != -1){
-                sbOption.append("max: "+ autoComplete.getMax() +", \n");
-            }
-            if (autoComplete.isAutoFill()){
-                sbOption.append("autoFill: "+ autoComplete.isAutoFill() +", \n");
-            }
-            if (autoComplete.isMustMatch()){
-                sbOption.append("mustMatch: "+ autoComplete.isMustMatch() +", \n");
-            }
-            if (autoComplete.isMatchContains()){
-                sbOption.append("matchContains: "+ autoComplete.isMatchContains() +", \n");
-            }
-            if (autoComplete.getScrollHeight() != -1){
-                sbOption.append("scrollHeight: "+ autoComplete.getScrollHeight() +", \n");
-            }
-            if (autoComplete.isSelectFirst()){
-                sbOption.append("selectFirst: "+ autoComplete.isSelectFirst() +", \n");
-            }
-            if (autoComplete.isHighlight()){
-                sbOption.append("highlight: "+ autoComplete.isHighlight() +", \n");
-            }
-            if (autoComplete.isScroll()){
-                sbOption.append("scroll: "+ autoComplete.isScroll() +", \n");
-            }
-            if (autoComplete.isMultiple()){
-                sbOption.append("multiple: "+ autoComplete.isMultiple() +", \n");
-            }
-            if (autoComplete.getMultipleSeparator() != null){
-                sbOption.append("multipleSeparator: "+ autoComplete.getMultipleSeparator() +", \n");
-            }
-            if (sbOption.toString().endsWith(", \n")){
-                String stringa = sbOption.substring(0, sbOption.length()-3);
-                sbOption = new StringBuffer(stringa);
-            }
-            sbOption.append("}");
-        }
-        else {
+    private String createOptionComponent(StringBuffer options, AutoComplete autoComplete, FacesContext context) throws IOException {
+    	if (autoComplete.getJsonValue() != null)
+    	{
+    		options.append(autoComplete.getJsonValue());
+    	}
+    	else
+    	{
     		String actionURL = getActionURL(context);
     		String clientId = autoComplete.getClientId(context);;
     		if(actionURL.indexOf("?") == -1)
+    		{
     			actionURL = actionURL + "?ajaxSourceJQuery=" + clientId;
+    		}
     		else
+    		{
     			actionURL = actionURL + "&ajaxSourceJQuery=" + clientId;
-    		
-    		sbOption.append("\"");
-    		sbOption.append(actionURL);
-    		sbOption.append("\"");
-            sbOption.append(", {\n");
-            if (autoComplete.getMinChars() != -1){
-                sbOption.append("minChars: "+ autoComplete.getMinChars() +", \n");
-            }
-            if (autoComplete.getMax() != -1){
-                sbOption.append("max: "+ autoComplete.getMax() +", \n");
-            }
-            if (autoComplete.isAutoFill()){
-                sbOption.append("autoFill: "+ autoComplete.isAutoFill() +", \n");
-            }
-            if (autoComplete.isMustMatch()){
-                sbOption.append("mustMatch: "+ autoComplete.isMustMatch() +", \n");
-            }
-            if (autoComplete.isMatchContains()){
-                sbOption.append("matchContains: "+ autoComplete.isMatchContains() +", \n");
-            }
-            if (autoComplete.getScrollHeight() != -1){
-                sbOption.append("scrollHeight: "+ autoComplete.getScrollHeight() +", \n");
-            }
-            if (autoComplete.isSelectFirst()){
-                sbOption.append("selectFirst: "+ autoComplete.isSelectFirst() +", \n");
-            }
-            if (autoComplete.isHighlight()){
-                sbOption.append("highlight: "+ autoComplete.isHighlight() +", \n");
-            }
-            if (autoComplete.isScroll()){
-                sbOption.append("scroll: "+ autoComplete.isScroll() +", \n");
-            }
-            if (autoComplete.isMultiple()){
-                sbOption.append("multiple: "+ autoComplete.isMultiple() +", \n");
-            }
-            if (autoComplete.getMultipleSeparator() != null){
-                sbOption.append("multipleSeparator: "+ autoComplete.getMultipleSeparator() +", \n");
-            }
-            if (sbOption.toString().endsWith(", \n")){
-                String stringa = sbOption.substring(0, sbOption.length()-3);
-                sbOption = new StringBuffer(stringa);
-            }
-            sbOption.append("}");
-            if (sbOption.toString().endsWith(", {\n}")){
-            	String stringa = sbOption.substring(0, sbOption.length()-5);
-            	sbOption = new StringBuffer(stringa);
-            }
-        }
-        return sbOption.toString();
+    		}
+    		options.append("\"");
+    		options.append(actionURL);
+    		options.append("\"");
+    	}
+    	options.append(", {\n");
+    	createOptionComponentByType(options, autoComplete.getMinChars(), "minChars");
+    	createOptionComponentByType(options, autoComplete.getDelay(), "delay");
+    	createOptionComponentByType(options, autoComplete.getCacheLength(), "cacheLength");
+    	createOptionComponentByType(options, autoComplete.isMatchSubset(), "matchSubset");
+    	createOptionComponentByType(options, autoComplete.isMatchCase(), "matchCase");
+    	createOptionComponentByType(options, autoComplete.isMustMatch(), "mustMatch");
+    	createOptionComponentByType(options, autoComplete.isSelectFirst(), "selectFirst");
+    	//TODO devo inserire questo parametro
+    	//createOptionComponentByType(options, autoComplete.getExtraParams(), "extraParams");
+    	//createOptionComponentByFunction(options, autoComplete.getFormatItem(), "formatItem");
+    	//createOptionComponentByFunction(options, autoComplete.getFormatMatch(), "formatMatch");
+    	//createOptionComponentByFunction(options, autoComplete.getFormatResult(), "formatResult");
+    	createOptionComponentByType(options, autoComplete.isMultiple(), "multiple");
+    	createOptionComponentByType(options, autoComplete.getMultipleSeparator(), "multipleSeparator");
+    	//createOptionComponentByType(options, autoComplete.get(), "width");
+    	createOptionComponentByType(options, autoComplete.isAutoFill(), "autoFill");
+    	createOptionComponentByType(options, autoComplete.getMax(), "max");
+    	createOptionComponentByType(options, autoComplete.isHighlight(), "highlight");
+    	createOptionComponentByType(options, autoComplete.isScroll(), "scroll");
+    	createOptionComponentByType(options, autoComplete.getScrollHeight(), "scrollHeight");
+		if (options.toString().endsWith(", \n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+		}
+		boolean noParams = false;
+		if (options.toString().endsWith(", {\n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+			noParams = true;
+		}
+		if (!noParams)
+		{
+			options.append(" }");
+		}
+    	return options.toString();
     }
 	
 	public void encodeChildren(FacesContext context, UIComponent component) {

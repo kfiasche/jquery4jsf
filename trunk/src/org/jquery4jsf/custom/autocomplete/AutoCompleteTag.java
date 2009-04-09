@@ -1,9 +1,3 @@
-/*
- * Creato il 30-mar-2009
- *
- * TODO Per modificare il modello associato a questo file generato, aprire
- * Finestra - Preferenze - Java - Stile codice - Modelli codice
- */
 package org.jquery4jsf.custom.autocomplete;
 
 import javax.faces.component.UIComponent;
@@ -12,12 +6,6 @@ import org.jquery4jsf.component.ComponentUtilities;
 
 import com.sun.faces.taglib.html_basic.InputTextTag;
 
-/**
- * @author Administrator
- *
- * TODO Per modificare il modello associato al commento di questo tipo generato, aprire
- * Finestra - Preferenze - Java - Stile codice - Modelli codice
- */
 public class AutoCompleteTag extends InputTextTag {
 
 	private String minChars;
@@ -36,8 +24,10 @@ public class AutoCompleteTag extends InputTextTag {
 	private String formatResult;
 	private String jsonValue;
 	private String oncomplete;
-    
-
+	private String delay;
+    private String cacheLength;
+	private String matchSubset;
+	private String matchCase;
 
 	public String getComponentType()
     {
@@ -68,6 +58,10 @@ public class AutoCompleteTag extends InputTextTag {
         formatResult            = null;
         jsonValue				= null;
         oncomplete 				= null;
+        delay					= null;
+        cacheLength				= null;
+    	matchSubset= null;
+    	matchCase= null;
     }
     
     protected void setProperties(UIComponent component)
@@ -89,6 +83,10 @@ public class AutoCompleteTag extends InputTextTag {
 		ComponentUtilities.setStringProperty(getFacesContext(),component, "formatResult",formatResult);
 		ComponentUtilities.setStringProperty(getFacesContext(),component, "jsonValue",jsonValue);
 		ComponentUtilities.setOncompleteProperty(getFacesContext(),component, oncomplete);
+		ComponentUtilities.setIntegerProperty(getFacesContext(),component, "delay", delay);
+		ComponentUtilities.setIntegerProperty(getFacesContext(),component, "cacheLength", cacheLength);
+		ComponentUtilities.setBooleanProperty(getFacesContext(),component, "matchSubset",matchSubset);
+		ComponentUtilities.setBooleanProperty(getFacesContext(),component, "matchCase",matchCase);
     }
     
     /**
@@ -184,6 +182,22 @@ public class AutoCompleteTag extends InputTextTag {
     
     public void setOncomplete(String oncomplete) {
 		this.oncomplete = oncomplete;
+	}
+
+	public void setDelay(String delay) {
+		this.delay = delay;
+	}
+
+	public void setCacheLength(String cacheLength) {
+		this.cacheLength = cacheLength;
+	}
+
+	public void setMatchSubset(String matchSubset) {
+		this.matchSubset = matchSubset;
+	}
+
+	public void setMatchCase(String matchCase) {
+		this.matchCase = matchCase;
 	}
 
 }

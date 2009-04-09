@@ -19,7 +19,6 @@ public class DefaultResourceStreamer implements ResourceStreamer {
 		byte mainArr[] = new byte[0];
 		byte byteArr[] = new byte[65535];
 		try {
-			System.out.println("request: "+request.getRequestURI());
 			ServletOutputStream outputStream = response.getOutputStream();
 			for(indice = 0; (indice = inputStream.read(byteArr)) > 0;)  {
 				tempIndice = mainArr.length + indice;

@@ -3,7 +3,7 @@ package org.jquery4jsf.resource;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResourceContextImpl implements ResourceContext{
+public class ResourceContextImpl extends ResourceContext {
 
 	private static List listResource;
 	
@@ -15,7 +15,6 @@ public class ResourceContextImpl implements ResourceContext{
 		if (resource == null || resource.equals(""))
 			return false;
 		if (!listResource.contains(resource)){
-			System.out.println("add Resource: "+ resource);
 			return listResource.add(resource);
 		}
 		return false;
@@ -23,5 +22,9 @@ public class ResourceContextImpl implements ResourceContext{
 	
 	public List getResources(){
 		return listResource;
+	}
+
+	public void release() {
+		listResource = new ArrayList();	
 	}
 }

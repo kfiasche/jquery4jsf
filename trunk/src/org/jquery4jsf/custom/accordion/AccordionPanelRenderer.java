@@ -15,6 +15,7 @@ import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
+import org.jquery4jsf.resource.ResourceContext;
 
 import com.sun.faces.util.Util;
 
@@ -45,10 +46,10 @@ public class AccordionPanelRenderer extends JQueryBaseRenderer implements AjaxBa
         for (int i = 0; i < list.length; i++) {
 			String resource = list[i];
 			if (resource.endsWith(".css")){
-				RendererUtilities.addCssForJQueryPlugin(component, responseWriter, context, resource);
+				ResourceContext.getInstance().addResource(resource);
 			}
 			if (resource.endsWith(".js")){
-				RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, resource);
+				ResourceContext.getInstance().addResource(resource);
 			}
 		}
         
@@ -74,50 +75,37 @@ public class AccordionPanelRenderer extends JQueryBaseRenderer implements AjaxBa
 	
 	}
 
-	private String createOptionComponent(StringBuffer sbOption, AccordionPanel accordionPanel, FacesContext context) {
-		sbOption.append(" {\n");
-		if (accordionPanel.getActive() != null){
-			sbOption.append("active: "+accordionPanel.getActive().toString()+", ");
-		}
-		if (accordionPanel.getAnimated() != null){
-			sbOption.append("animated: '"+accordionPanel.getAnimated()+"', ");
-		}
-		if (accordionPanel.getEvent() != null){
-			sbOption.append("event: '"+accordionPanel.getEvent()+"', ");
-		}
-		if (accordionPanel.isAutoHeight()){
-			sbOption.append("autoHeight: "+accordionPanel.isAutoHeight()+", ");
-		}
-		if (accordionPanel.isClearStyle()){
-			sbOption.append("clearStyle: "+accordionPanel.isClearStyle()+", ");
-		}
-		if (accordionPanel.isCollapsible()){
-			sbOption.append("collapsible: "+accordionPanel.isCollapsible()+", ");
-		}
-		if (accordionPanel.isFillSpace()){
-			sbOption.append("fillSpace: "+accordionPanel.isFillSpace()+", ");
-		}
-		if (accordionPanel.getIcons() != null){
-			sbOption.append("icons: "+accordionPanel.getIcons()+", ");
-		}
-		if (accordionPanel.isNavigation()){
-			sbOption.append("navigation: "+accordionPanel.isNavigation()+" ");
-		}
-		if (sbOption.toString().endsWith(", ")){
-			String stringa = sbOption.substring(0, sbOption.length()-2);
-			sbOption = new StringBuffer(stringa);
+	private String createOptionComponent(StringBuffer options, AccordionPanel accordionPanel, FacesContext context) {
+		options.append(" {\n");
+		createOptionComponentByType(options,accordionPanel.getActive(), "active");
+		createOptionComponentByType(options,accordionPanel.getAnimated(), "animated");
+		createOptionComponentByType(options,accordionPanel.isAutoHeight(), "autoHeight");
+		createOptionComponentByType(options,accordionPanel.isClearStyle(), "clearStyle");
+		createOptionComponentByType(options,accordionPanel.isCollapsible(), "collapsible");
+		createOptionComponentByType(options,accordionPanel.getEvent(), "event");
+		createOptionComponentByType(options,accordionPanel.isFillSpace(), "fillSpace");
+		createOptionComponentByType(options,accordionPanel.getHeader(), "header");
+		createOptionComponentByType(options,accordionPanel.getHeader(), "header");
+		createOptionComponentByType(options,accordionPanel.getIcons(), "icons");
+		createOptionComponentByType(options,accordionPanel.isNavigation(), "navigation");
+		createOptionComponentByType(options,accordionPanel.getNavigationFilter(), "navigationFilter");
+		//TODO implementare il bind delle funzioni
+		/*createOptionComponentByType(options,accordionPanel.getOnaccordionchange(), "accordionchange");*/
+		if (options.toString().endsWith(", \n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
 		}
 		boolean noParams = false;
-		if (sbOption.toString().endsWith(" {\n")){
-			String stringa = sbOption.substring(0, sbOption.length()-3);
-			sbOption = new StringBuffer(stringa);
+		if (options.toString().endsWith(" {\n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
 			noParams = true;
 		}
 		if (!noParams)
 		{
-			sbOption.append(" }");
+			options.append(" }");
 		}
-		return sbOption.toString();
+		return options.toString();
 	}
 
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {

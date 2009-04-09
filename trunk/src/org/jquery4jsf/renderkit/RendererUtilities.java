@@ -127,10 +127,8 @@ public class RendererUtilities {
 				sb.append(nameParameter.concat(": ").concat(s).concat(", \n"));
 			}
 			else if (value instanceof Boolean){
-				if (((Boolean) value).booleanValue()){
 					String s = ((Boolean)value).toString();
 					sb.append(nameParameter.concat(": ").concat(s).concat(", \n"));
-				}
 			}
 		}
 	}

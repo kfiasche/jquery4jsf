@@ -1,9 +1,3 @@
-/*
- * Creato il 30-mar-2009
- *
- * TODO Per modificare il modello associato a questo file generato, aprire
- * Finestra - Preferenze - Java - Stile codice - Modelli codice
- */
 package org.jquery4jsf.custom.autocomplete;
 
 import java.io.IOException;
@@ -17,12 +11,6 @@ import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 
-/**
- * @author Administrator
- *
- * TODO Per modificare il modello associato al commento di questo tipo generato, aprire
- * Finestra - Preferenze - Java - Stile codice - Modelli codice
- */
 public class AutoComplete extends javax.faces.component.html.HtmlInputText implements JQueryHtmlObject, AjaxComponent {
 
 	private Integer minChars;
@@ -45,10 +33,25 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
 	private String jsonValue;
 	
 	private MethodBinding oncomplete;
-
+	private Integer delay;
+	private Integer cacheLength;
+	private Boolean matchSubset;
+	private Boolean matchCase;
+	
 	public static final String DEFAULT_RENDERER_TYPE = AutoCompleteRenderer.RENDERER_TYPE;
 	public static final String COMPONENT_FAMILY = "org.jquery4jsf.HtmlInputText";
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlInputTextAutocomplete";
+	
+	private static int 		DEFAULT_MIN_CHARS = 1;
+	private static int 		DEFAULT_DELAY = 400;
+	private static int 		DEFAULT_CACHE_LENGTH = 10;
+	private static boolean 	DEFAULT_MATCH_SUBSET = true;
+	private static boolean 	DEFAULT_SELECT_FIRST = true;
+	private static String 	DEFAULT_MULTIPLE_SEPARATOR = ", ";
+	private static int 		DEFAULT_MAX = 10;
+	private static boolean 	DEFAULT_SCROLL = true;
+	private static int 		DEFAULT_SCROLL_HEIGHT = 180;
+	
 	private String[] resources = null;
 	
 	public AutoComplete() {
@@ -74,7 +77,7 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
 	
     public Object saveState(FacesContext context)
     {
-        Object values[] = new Object[17];
+        Object values[] = new Object[21];
         values[0] = super.saveState(context);
         values[1]=(Integer)minChars;
         values[2]=(Integer)max;
@@ -92,6 +95,10 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
         values[14]=(String)formatResult;
         values[15]=(String)jsonValue;
         values[16]=(MethodBinding)oncomplete;
+        values[17]=(Integer)delay;
+        values[18]=(Integer)cacheLength;
+        values[19]=(Boolean)matchSubset;
+        values[20]=(Boolean)matchCase;
         return values;
     }
     public void restoreState(FacesContext context, Object state)
@@ -114,6 +121,10 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
 	    formatResult			= (String)values[14];
 	    jsonValue				= (String)values[15];
 	    oncomplete				= (MethodBinding)values[16];
+	    delay					= (Integer)values[17];
+	    cacheLength				= (Integer)values[18];
+	    matchSubset =(Boolean)values[19];
+	    matchCase=(Boolean) values[20];
 	}
 
     /**
@@ -213,7 +224,7 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
         if (max != null) return max.intValue();
         ValueBinding vb = getValueBinding("max");
         Integer v = vb != null ? (Integer) vb.getValue(getFacesContext()) : null;
-        return v != null ? v.intValue() : -1;
+        return v != null ? v.intValue() : DEFAULT_MAX;
     }
     /**
      * @param max Il valore max da impostare.
@@ -228,7 +239,7 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
         if (minChars != null) return minChars.intValue();
         ValueBinding vb = getValueBinding("minChars");
         Integer v = vb != null ? (Integer) vb.getValue(getFacesContext()) : null;
-        return v != null ? v.intValue() : -1;
+        return v != null ? v.intValue() : DEFAULT_MIN_CHARS;
     }
     /**
      * @param minChars Il valore minChars da impostare.
@@ -257,7 +268,7 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
     public String getMultipleSeparator() {
         if (multipleSeparator != null) return multipleSeparator;
         ValueBinding vb = getValueBinding("multipleSeparator");
-        String v = vb != null ? (String) vb.getValue(getFacesContext()) : null;
+        String v = vb != null ? (String) vb.getValue(getFacesContext()) : DEFAULT_MULTIPLE_SEPARATOR;
         return v;
     }
     /**
@@ -287,7 +298,7 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
     public boolean isScroll() {
         if (scroll != null) return scroll.booleanValue();
         ValueBinding vb = getValueBinding("scroll");
-        Boolean v = vb != null ? (Boolean) vb.getValue(getFacesContext()) : null;
+        Boolean v = vb != null ? (Boolean) vb.getValue(getFacesContext()) : new Boolean(DEFAULT_SCROLL);
         return v != null ? v.booleanValue() : false;
     }
     /**
@@ -303,7 +314,7 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
         if (scrollHeight != null) return scrollHeight.intValue();
         ValueBinding vb = getValueBinding("scrollHeight");
         Integer v = vb != null ? (Integer) vb.getValue(getFacesContext()) : null;
-        return v != null ? v.intValue() : -1;
+        return v != null ? v.intValue() : DEFAULT_SCROLL_HEIGHT;
     }
     /**
      * @param scrollHeight Il valore scrollHeight da impostare.
@@ -317,7 +328,7 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
     public boolean isSelectFirst() {
         if (selectFirst != null) return selectFirst.booleanValue();
         ValueBinding vb = getValueBinding("selectFirst");
-        Boolean v = vb != null ? (Boolean) vb.getValue(getFacesContext()) : null;
+        Boolean v = vb != null ? (Boolean) vb.getValue(getFacesContext()) : new Boolean(DEFAULT_SELECT_FIRST);
         return v != null ? v.booleanValue() : false;
         
     }
@@ -356,5 +367,49 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
 		if(renderer instanceof AjaxBaseRenderer) {
 			((AjaxBaseRenderer)renderer).encodePartially(context, this);
 		}
+	}
+
+	public Integer getDelay() {
+        if (delay != null) return delay;
+        ValueBinding vb = getValueBinding("delay");
+        Integer v = vb != null ? (Integer) vb.getValue(getFacesContext()) : new Integer(DEFAULT_DELAY);
+        return v;
+	}
+
+	public void setDelay(Integer delay) {
+		this.delay = delay;
+	}
+
+	public Integer getCacheLength() {
+        if (cacheLength != null) return cacheLength;
+        ValueBinding vb = getValueBinding("cacheLength");
+        Integer v = vb != null ? (Integer) vb.getValue(getFacesContext()) : new Integer(DEFAULT_CACHE_LENGTH);
+        return v;
+	}
+	
+	public void setCacheLength(Integer cacheLength) {
+		this.cacheLength = cacheLength;
+	}
+
+	public boolean isMatchSubset() {
+        if (matchSubset != null) return matchSubset.booleanValue();
+        ValueBinding vb = getValueBinding("matchSubset");
+        Boolean v = vb != null ? (Boolean) vb.getValue(getFacesContext()) : new Boolean(DEFAULT_MATCH_SUBSET);
+		return v.booleanValue();
+	}
+
+	public void setMatchSubset(boolean matchSubset) {
+		this.matchSubset = matchSubset ? Boolean.TRUE : Boolean.FALSE;
+	}
+
+	public boolean isMatchCase() {
+        if (matchCase != null) return matchCase.booleanValue();
+        ValueBinding vb = getValueBinding("matchCase");
+        Boolean v = vb != null ? (Boolean) vb.getValue(getFacesContext()) : Boolean.FALSE;
+		return v.booleanValue();
+	}
+
+	public void setMatchCase(boolean matchCase) {
+		this.matchCase = matchCase ? Boolean.TRUE : Boolean.FALSE;
 	}
 }

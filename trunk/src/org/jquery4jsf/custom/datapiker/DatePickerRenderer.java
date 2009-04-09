@@ -14,6 +14,7 @@ import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
+import org.jquery4jsf.resource.ResourceContext;
 
 import com.sun.faces.util.Util;
 
@@ -43,10 +44,10 @@ public class DatePickerRenderer extends JQueryInputBaseRenderer implements AjaxB
         for (int i = 0; i < list.length; i++) {
 			String resource = list[i];
 			if (resource.endsWith(".css")){
-				RendererUtilities.addCssForJQueryPlugin(component, responseWriter, context, resource);
+				ResourceContext.getInstance().addResource(resource);
 			}
 			if (resource.endsWith(".js")){
-				RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, resource);
+				ResourceContext.getInstance().addResource(resource);
 			}
 		}
         HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -57,67 +58,8 @@ public class DatePickerRenderer extends JQueryInputBaseRenderer implements AjaxB
         	RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, src);
         }
         
-        responseWriter.startElement("input", component);
-        writeIdAttributeIfNecessary(context, responseWriter, component);
-        responseWriter.writeAttribute("type", "text", null);
-        responseWriter.writeAttribute("name", component.getClientId(context), "clientId");
-        Object object = datePicker.getValue();
-        if(datePicker.getValue() != null)
-            responseWriter.writeAttribute("value", object.toString(), "value");
-        if(datePicker.getStyleClass() != null)
-            responseWriter.writeAttribute("class", datePicker.getStyleClass(), "styleClass");
-        if(datePicker.getAccesskey() != null)
-            responseWriter.writeAttribute("accesskey", datePicker.getAccesskey(), null);
-        if(datePicker.getAlt() != null)
-            responseWriter.writeAttribute("alt", datePicker.getAlt(), null);
-        if(datePicker.getDir() != null)
-            responseWriter.writeAttribute("dir", datePicker.getDir(), null);
-        if(datePicker.isDisabled())
-            responseWriter.writeAttribute("disabled", "disabled", null);
-        if(datePicker.getLang() != null)
-            responseWriter.writeAttribute("lang", datePicker.getLang(), null);
-        if(datePicker.getMaxlength() > 0)
-            responseWriter.writeAttribute("maxlength", new Integer(datePicker.getMaxlength()), null);
-        if(datePicker.getOnblur() != null)
-            responseWriter.writeAttribute("onblur", datePicker.getOnblur(), null);
-        if(datePicker.getOnchange() != null)
-            responseWriter.writeAttribute("onchange", datePicker.getOnchange(), null);
-        if(datePicker.getOnclick() != null)
-            responseWriter.writeAttribute("onclick", datePicker.getOnclick(), null);
-        if(datePicker.getOndblclick() != null)
-            responseWriter.writeAttribute("ondblclick", datePicker.getOndblclick(), null);
-        if(datePicker.getOnfocus() != null)
-            responseWriter.writeAttribute("onfocus", datePicker.getOnfocus(), null);
-        if(datePicker.getOnkeydown() != null)
-            responseWriter.writeAttribute("onkeydown", datePicker.getOnkeydown(), null);
-        if(datePicker.getOnkeypress() != null)
-            responseWriter.writeAttribute("onkeypress", datePicker.getOnkeypress(), null);
-        if(datePicker.getOnkeyup() != null)
-            responseWriter.writeAttribute("onkeyup", datePicker.getOnkeyup(), null);
-        if(datePicker.getOnmousedown() != null)
-            responseWriter.writeAttribute("onmousedown", datePicker.getOnmousedown(), null);
-        if(datePicker.getOnmousemove() != null)
-            responseWriter.writeAttribute("onmousemove", datePicker.getOnmousemove(), null);
-        if(datePicker.getOnmouseout() != null)
-            responseWriter.writeAttribute("onmouseout", datePicker.getOnmouseout(), null);
-        if(datePicker.getOnmouseover() != null)
-            responseWriter.writeAttribute("onmouseover", datePicker.getOnmouseover(), null);
-        if(datePicker.getOnmouseup() != null)
-            responseWriter.writeAttribute("onmouseup", datePicker.getOnmouseup(), null);
-        if(datePicker.getOnselect() != null)
-            responseWriter.writeAttribute("onselect", datePicker.getOnselect(), null);
-        if(datePicker.isReadonly())
-            responseWriter.writeAttribute("readonly", "readonly", null);
-        if(datePicker.getSize() > 0)
-            responseWriter.writeAttribute("size", new Integer(datePicker.getSize()), null);
-        if(datePicker.getStyle() != null)
-            responseWriter.writeAttribute("style", datePicker.getStyle(), null);
-        if(datePicker.getTabindex() != null)
-            responseWriter.writeAttribute("tabindex", datePicker.getTabindex(), null);
-        if(datePicker.getTitle() != null)
-            responseWriter.writeAttribute("title", datePicker.getTitle(), null);
-        responseWriter.endElement("input");
-        
+
+        rendererInputText(responseWriter, datePicker, context);
         
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
@@ -136,7 +78,7 @@ public class DatePickerRenderer extends JQueryInputBaseRenderer implements AjaxB
         
 	}
 
-	private String createOptionComponent(StringBuffer options, DatePicker dp, FacesContext context) {
+	protected String createOptionComponent(StringBuffer options, DatePicker dp, FacesContext context) {
 		options.append(" {\n");
 		createOptionComponentByType(options, RendererUtilities.getJQueryIdComponent(dp.getAltField(), context, dp), "altField");
 		createOptionComponentByType(options, dp.getAltFormat(), "altFormat");
