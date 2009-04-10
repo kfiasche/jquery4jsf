@@ -80,6 +80,8 @@ public final class JQueryResourceFilter implements Filter {
 		}
 	}
 
+
+
 	private boolean isNotAjaxCall(HttpServletRequest request) {
 		if (request.getParameter("ajaxSourceJQuery") != null){
 			return false;

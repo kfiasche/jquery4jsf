@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.jquery4jsf.custom.progressbar.ProgressBar;
+import org.jquery4jsf.custom.tabbedpanel.TabPanel;
+import org.jquery4jsf.custom.tabbedpanel.TabPanelTag;
+import org.jquery4jsf.custom.tabbedpanel.TabbedPanel;
+import org.jquery4jsf.custom.tabbedpanel.TabbedPanelTag;
 
 public class CreateTagLib {
 
@@ -13,15 +17,15 @@ public class CreateTagLib {
 		//Field[] fieldsa = AccordianSubPanel.class.getSuperclass().getSuperclass().getSuperclass().getDeclaredFields();
 		//Field[] fieldsb = DatePicker.class.getSuperclass().getSuperclass().getDeclaredFields();
 		//Field[] fieldsc = HtmlInputText.class.getSuperclass().getDeclaredFields();
-		Field[] fieldsd = ProgressBar.class.getDeclaredFields();
+		Field[] fieldsd = TabPanel.class.getDeclaredFields();
 		ArrayList lista = new ArrayList();
 		//lista.addAll(Arrays.asList(fieldsa));
 		//lista.addAll(Arrays.asList(fieldsb));
 		//lista.addAll(Arrays.asList(fieldsc));
 		lista.addAll(Arrays.asList(fieldsd));
 		sb.append("<tag>\n");
-		sb.append("<name>"+ "progressBar" +"</name>\n");
-		sb.append("<tag-class></tag-class>\n");
+		sb.append("<name>"+ "tabPanel" +"</name>\n");
+		sb.append("<tag-class>"+ TabPanelTag.class + "</tag-class>\n");
 		sb.append("<body-content>JSP</body-content>\n");
 		sb.append("<description></description>\n");
 		for (int i = 0; i < lista.size(); i++) {

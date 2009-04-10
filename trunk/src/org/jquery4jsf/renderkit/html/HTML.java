@@ -11,8 +11,9 @@ public class HTML {
 	public static final String TAG_DIV = 		"div";
 	public static final String TAG_H3 = 		"h3";
 	public static final String TAG_LINK = 		"link";
+	public static final String TAG_LI = 		"li";
 	public static final String TAG_SCRIPT = 	"script";
-
+	public static final String TAG_UL = 		"ul";
 	
 	public static final String STYLE_CLASS	= "styleClass";	
 	public static final String STYLE	= "style";     
@@ -111,6 +112,8 @@ public class HTML {
 		HREF,
 		MEDIA
 	};
+	
+	
 	
 	
 	

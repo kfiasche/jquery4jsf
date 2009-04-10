@@ -1,10 +1,11 @@
 package org.jquery4jsf.custom.tabbedpanel;
 
 import javax.faces.component.UIComponent;
+import javax.faces.webapp.UIComponentBodyTag;
 
-import org.jquery4jsf.taglib.html.ext.UIComponentTagBase;
+import org.jquery4jsf.component.ComponentUtilities;
 
-public class TabbedPanelTag extends UIComponentTagBase {
+public class TabbedPanelTag extends UIComponentBodyTag {
 
 	private String 	ajaxOptions;
 	private String 	cache;
@@ -83,16 +84,15 @@ public class TabbedPanelTag extends UIComponentTagBase {
 
 	protected void setProperties(UIComponent component) {
 		super.setProperties(component);
-		setStringProperty(getFacesContext(), component, "ajaxOptions", ajaxOptions);
-		setBooleanProperty(getFacesContext(), component, "cache", cache);
-		setBooleanProperty(getFacesContext(), component, "collapsible", collapsible);
-		setStringProperty(getFacesContext(), component, "cookie", cookie);
-		setBooleanProperty(getFacesContext(), component, "deselectable", deselectable);
-		setStringProperty(getFacesContext(), component, "event", event);
-		setStringProperty(getFacesContext(), component, "fx", fx);
-		setStringProperty(getFacesContext(), component, "idPrefix", idPrefix);
-		setIntegerProperty(getFacesContext(), component, "selected", selected);
-		setStringProperty(getFacesContext(), component, "spinner", spinner);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "ajaxOptions", ajaxOptions);
+		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "cache", cache);
+		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "collapsible", collapsible);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "cookie", cookie);
+		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "deselectable", deselectable);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "event", event);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "fx", fx);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "idPrefix", idPrefix);
+		ComponentUtilities.setIntegerProperty(getFacesContext(), component, "selected", selected);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "spinner", spinner);
 	}
-
 }

@@ -83,6 +83,8 @@ public class RendererUtilities {
 	}
 
 	public static void renderChildren(FacesContext facesContext, UIComponent component) throws IOException {
+		if ( component.getChildren() == null ||  component.getChildren().isEmpty())
+			return;
 		for (Iterator iterator = component.getChildren().iterator(); iterator.hasNext();) {
 			UIComponent child = (UIComponent) iterator.next();
 			renderChild(facesContext, child);

@@ -4,6 +4,21 @@
 * Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
 */
 
+body {
+	font-size: 62.5%;
+}
+
+table {
+	font-size: 1em;
+}
+
+/* Site
+   -------------------------------- */
+
+body {
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+}
+
 /* Layout helpers
 ----------------------------------*/
 .ui-helper-hidden { display: none; }
