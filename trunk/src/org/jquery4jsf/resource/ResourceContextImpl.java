@@ -3,6 +3,8 @@ package org.jquery4jsf.resource;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 public class ResourceContextImpl extends ResourceContext {
 
 	private static List listResource;
@@ -15,6 +17,13 @@ public class ResourceContextImpl extends ResourceContext {
 		if (resource == null || resource.equals(""))
 			return false;
 		if (!listResource.contains(resource)){
+			if (resource.endsWith(".css")){
+				FacesContext facesContext = FacesContext.getCurrentInstance();
+				String theme   = facesContext.getExternalContext().getInitParameter("ThemeCSS");
+				if (theme != null){
+					resource = resource.replaceAll("base", theme);
+				}
+			}
 			return listResource.add(resource);
 		}
 		return false;

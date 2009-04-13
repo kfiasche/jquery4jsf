@@ -7,7 +7,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyContent;
 
 import org.jquery4jsf.component.ComponentUtilities;
-import org.jquery4jsf.custom.panel.HtmlDiv;
 
 public class TabPanelTag extends UIComponentBodyTag {
 

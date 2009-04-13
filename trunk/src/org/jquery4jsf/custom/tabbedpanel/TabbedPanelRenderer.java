@@ -85,7 +85,6 @@ public class TabbedPanelRenderer extends JQueryBaseRenderer {
 		responseWriter.write("\n");
 		for (Iterator iterator = children.iterator(); iterator.hasNext();) {
 			TabPanel tabPanel = (TabPanel) iterator.next();
-			//<li><a href="#tabs-1">Nunc tincidunt</a></li>
 			responseWriter.startElement(HTML.TAG_LI, null);
 			responseWriter.startElement(HTML.TAG_A, null);
 			if (tabPanel.isAjaxSupport()){
@@ -126,7 +125,16 @@ public class TabbedPanelRenderer extends JQueryBaseRenderer {
 		createOptionComponentByType(options,tabbedPanel.isCache(), "cache");
 		createOptionComponentByType(options,tabbedPanel.isCollapsible(), "collapsible");
 		createOptionComponentByType(options,tabbedPanel.getCookie(), "cookie");
-		createOptionComponentByType(options,tabbedPanel.getCookie(), "cookie");
+		createOptionComponentByType(options,tabbedPanel.isDeselectable(), "deselectable");
+		//TODO implementare la disabilitazione dei tabs
+		createOptionComponentByType(options,"", "disabled");
+		createOptionComponentByType(options,tabbedPanel.getEvent(), "event");
+		//TODO implementare option
+		createOptionComponentByType(options,tabbedPanel.getFx(), "fx");
+		createOptionComponentByType(options,tabbedPanel.getIdPrefix(), "idPrefix");
+		createOptionComponentByType(options,tabbedPanel.getSelected(), "selected");
+		createOptionComponentByType(options,tabbedPanel.getSpinner(), "spinner");
+		
 		//TODO implementare il bind delle funzioni
 		/*createOptionComponentByType(options,accordionPanel.getOnaccordionchange(), "accordionchange");*/
 		if (options.toString().endsWith(", \n")){

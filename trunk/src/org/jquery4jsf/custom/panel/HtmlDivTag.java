@@ -1,7 +1,6 @@
 package org.jquery4jsf.custom.panel;
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.webapp.UIComponentBodyTag;
 import javax.servlet.jsp.JspException;

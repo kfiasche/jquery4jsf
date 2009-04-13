@@ -55,6 +55,7 @@ public class ResourceServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println(req.getRequestURI());
 		String resourcePath = ResourceUtils.RESOURCE_FOLDER + getResourcePath(req.getRequestURI());
 		String mimeType = getResourceContentType(resourcePath);
 	    try {

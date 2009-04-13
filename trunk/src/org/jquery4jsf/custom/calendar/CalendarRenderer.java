@@ -44,12 +44,7 @@ public class CalendarRenderer extends DatePickerRenderer {
         String[] list = datePicker.getResources();
         for (int i = 0; i < list.length; i++) {
 			String resource = list[i];
-			if (resource.endsWith(".css")){
-				ResourceContext.getInstance().addResource(resource);
-			}
-			if (resource.endsWith(".js")){
-				ResourceContext.getInstance().addResource(resource);
-			}
+			ResourceContext.getInstance().addResource(resource);
 		}
         HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
         if (req.getLocale() != null){
