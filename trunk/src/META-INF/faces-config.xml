@@ -61,8 +61,11 @@
  <component>
   <component-type>org.jquery4jsf.Panel</component-type>
   <component-class>org.jquery4jsf.custom.panel.HtmlDiv</component-class>
-</component>
- 
+ </component>
+ <component>
+  <component-type>org.jquery4jsf.HtmlSlider</component-type>
+  <component-class>org.jquery4jsf.custom.slider.Slider</component-class>
+ </component>
  <render-kit>
   <renderer>
    <component-family>org.jquery4jsf.Link</component-family>
@@ -129,10 +132,15 @@
    <renderer-type>org.jquery4jsf.TabbedPanelRenderer</renderer-type>
    <renderer-class>org.jquery4jsf.custom.tabbedpanel.TabbedPanelRenderer</renderer-class>
   </renderer>
-   <renderer>
-    <component-family>javax.faces.Panel</component-family>
-    <renderer-type>org.jquery4jsf.Div</renderer-type>
-    <renderer-class>org.jquery4jsf.custom.panel.HtmlDivRenderer</renderer-class>
+  <renderer>
+   <component-family>javax.faces.Panel</component-family>
+   <renderer-type>org.jquery4jsf.Div</renderer-type>
+   <renderer-class>org.jquery4jsf.custom.panel.HtmlDivRenderer</renderer-class>
+  </renderer>
+  <renderer>
+   <component-family>org.jquery4jsf.Slider</component-family>
+   <renderer-type>org.jquery4jsf.SliderRenderer</renderer-type>
+   <renderer-class>org.jquery4jsf.custom.slider.SliderRenderer</renderer-class>
   </renderer>
  </render-kit>
  <lifecycle>

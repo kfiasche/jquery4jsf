@@ -31,7 +31,7 @@ public class SliderRenderer extends JQueryBaseRenderer implements AjaxBaseRender
 		return RendererUtilities.getActionURL(context);
 	}
 
-	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         if(context == null || component == null)
             throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
@@ -48,10 +48,6 @@ public class SliderRenderer extends JQueryBaseRenderer implements AjaxBaseRender
 			ResourceContext.getInstance().addResource(resource);
 		}
         
-        responseWriter.startElement(HTML.TAG_DIV, component);
-        responseWriter.writeAttribute("id", component.getClientId(context), "id");
-        responseWriter.endElement(HTML.TAG_DIV);
-        
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
@@ -66,6 +62,10 @@ public class SliderRenderer extends JQueryBaseRenderer implements AjaxBaseRender
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
         RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        
+        responseWriter.startElement(HTML.TAG_DIV, component);
+        responseWriter.writeAttribute("id", component.getClientId(context), "id");
+        responseWriter.endElement(HTML.TAG_DIV);
 	}
 
 	private String createOptionComponent(StringBuffer options, Slider slider, FacesContext context) {
@@ -95,6 +95,9 @@ public class SliderRenderer extends JQueryBaseRenderer implements AjaxBaseRender
 			options.append(" }");
 		}
 		return options.toString();
+	}
+
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 	}
 	
 	

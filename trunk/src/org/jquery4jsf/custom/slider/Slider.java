@@ -30,7 +30,6 @@ public class Slider extends HtmlBaseComponent implements JQueryHtmlObject, AjaxC
 		resources = new String[]{
 				"jquery/jquery.js",
 				"ui/ui.core.js",
-				"ui/ui.resizable.js",
 				"slider/ui.slider.js",
 				"themes/base/ui.all.css"	
 		};
