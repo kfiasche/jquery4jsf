@@ -4,10 +4,12 @@ import java.io.IOException;
 
 import javax.faces.context.FacesContext;
 import javax.faces.el.MethodBinding;
+import javax.faces.render.Renderer;
 
 import org.jquery4jsf.component.ext.HtmlBaseComponent;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.custom.JQueryHtmlObject;
+import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 
 public class ProgressBar extends HtmlBaseComponent implements AjaxComponent, JQueryHtmlObject {
 	
@@ -52,13 +54,11 @@ public class ProgressBar extends HtmlBaseComponent implements AjaxComponent, JQu
     }
     
 	public void encodePartially(FacesContext facesContext) throws IOException {
-	}
+		Renderer renderer = getRenderer(facesContext);
 
-	public MethodBinding getOncomplete() {
-		return null;
-	}
-
-	public void setOncomplete(MethodBinding methodBinding) {
+		if(renderer instanceof AjaxBaseRenderer) {
+			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		}
 	}
 
 	public String[] getResources() {

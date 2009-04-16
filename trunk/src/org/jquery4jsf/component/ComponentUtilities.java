@@ -9,7 +9,6 @@ import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import javax.faces.event.ActionEvent;
 
-import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.el.JQueryMethodBinding;
 import org.jquery4jsf.taglib.html.ext.UIComponentTagBase;
 
@@ -86,22 +85,18 @@ public class ComponentUtilities {
 		}
 	}
 	
-	public static void setOncompleteProperty(FacesContext context, UIComponent component, String action)
-	{
-		if (action != null)
-		{
-			MethodBinding mb;
-			if (isValueReference(action))
-			{
-				mb = context.getApplication().createMethodBinding(action, new Class[]{String.class});
-			}
-			else
-			{
-				mb = new JQueryMethodBinding(action);
-			}
-			((AjaxComponent)component).setOncomplete(mb);
-		}
-	}
+	
+    public static void setMethodBindingProperty(FacesContext context, UIComponent component, String attributeName, String mbValue) {
+        if(mbValue != null) {
+                if (isValueReference(mbValue)) {
+                        Class params [] = { String.class };
+                        MethodBinding mb = context.getApplication().createMethodBinding(mbValue, params);
+                        component.getAttributes().put(attributeName, mb);
+                } else {
+                        throw new IllegalArgumentException("Component with id:" + component.getId() + " has an invalid method binding");
+                }
+        }
+    }
 	
 	
 	public static void setActionListenerProperty(FacesContext context, UIComponent component, String actionListener)

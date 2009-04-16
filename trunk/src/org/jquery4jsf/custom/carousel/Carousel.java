@@ -14,17 +14,23 @@
  */
 package org.jquery4jsf.custom.carousel;
 
-import java.io.IOException;
-
-import javax.faces.context.FacesContext;
-import javax.faces.el.MethodBinding;
-import javax.faces.render.Renderer;
-
 import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
+import org.jquery4jsf.custom.JQueryHtmlObject;
+import javax.el.ValueExpression;
+import javax.el.MethodExpression;
+import javax.faces.render.Renderer;
+import java.io.IOException;
+import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
+import javax.faces.el.MethodBinding;
 
-public class Carousel extends HtmlBaseComponent implements AjaxComponent {
+import java.lang.Integer;
+
+public class Carousel extends HtmlBaseComponent implements AjaxComponent,JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlCarousel";
@@ -69,9 +75,9 @@ public class Carousel extends HtmlBaseComponent implements AjaxComponent {
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
-			"carousel/jquery.jcarousel.css",
 			"carousel/jquery.jcarousel.js",
-			"carousel/skin/"+getSkin()+"/skin.css"
+			"carousel/jquery.jcarousel.css",
+			"carousel/skins/"+getSkin()+"/skin.css"
 		};
 	}
 

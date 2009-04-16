@@ -4,12 +4,14 @@ import java.io.IOException;
 
 import javax.faces.context.FacesContext;
 import javax.faces.el.MethodBinding;
+import javax.faces.render.Renderer;
 
 import org.jquery4jsf.component.ext.HtmlBaseComponent;
 import org.jquery4jsf.component.ext.HtmlKeyEvent;
 import org.jquery4jsf.component.ext.HtmlMouseEvent;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.custom.JQueryHtmlObject;
+import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 
 public class AccordionPanel extends HtmlBaseComponent implements AjaxComponent, JQueryHtmlObject, HtmlKeyEvent, HtmlMouseEvent {
 	
@@ -200,19 +202,12 @@ public class AccordionPanel extends HtmlBaseComponent implements AjaxComponent, 
 	}
 
 	public void encodePartially(FacesContext facesContext) throws IOException {
-		// TODO Auto-generated method stub
-		
+		Renderer renderer = getRenderer(facesContext);
+		if(renderer instanceof AjaxBaseRenderer) {
+			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		}
 	}
 
-	public MethodBinding getOncomplete() {
-		return oncomplete;
-	}
-
-	public void setOncomplete(MethodBinding methodBinding) {
-		this.oncomplete = methodBinding;
-	}
-
-	
 	public Integer getActive() {
 		return (Integer) getLocalOrValueBindingValue(active, "active");
 	}

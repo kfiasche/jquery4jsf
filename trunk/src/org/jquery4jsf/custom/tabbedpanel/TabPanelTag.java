@@ -1,6 +1,7 @@
 package org.jquery4jsf.custom.tabbedpanel;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIOutput;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.webapp.UIComponentBodyTag;
 import javax.servlet.jsp.JspException;
@@ -62,12 +63,14 @@ public class TabPanelTag extends UIComponentBodyTag {
         {
         	String bodyContentString = bodyContent.getString().trim();
         	if (bodyContentString != null && !bodyContent.equals("")){
-        		HtmlOutputText outputText = new HtmlOutputText();
-        		outputText.setValue(bodyContentString);
-        		outputText.setEscape(false);
+        		UIOutput output = (UIOutput) getFacesContext().getApplication().createComponent(HtmlOutputText.COMPONENT_TYPE);
+        		output.setId(getFacesContext().getViewRoot().createUniqueId());
+        		output.setTransient(true);
+        		output.setRendered(true);
+        		output.setValue(bodyContentString);
         		TabPanel tabPanel = (TabPanel) getComponentInstance();
         		if (tabPanel != null){
-        			tabPanel.getChildren().add(outputText);
+        			tabPanel.getChildren().add(output);
         		}
         	}
         }

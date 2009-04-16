@@ -82,7 +82,7 @@ public class AutoCompleteTag extends InputTextTag {
 		ComponentUtilities.setStringProperty(getFacesContext(),component, "formatMatch",formatMatch);
 		ComponentUtilities.setStringProperty(getFacesContext(),component, "formatResult",formatResult);
 		ComponentUtilities.setStringProperty(getFacesContext(),component, "jsonValue",jsonValue);
-		ComponentUtilities.setOncompleteProperty(getFacesContext(),component, oncomplete);
+		ComponentUtilities.setMethodBindingProperty(getFacesContext(),component, "oncomplete", oncomplete);
 		ComponentUtilities.setIntegerProperty(getFacesContext(),component, "delay", delay);
 		ComponentUtilities.setIntegerProperty(getFacesContext(),component, "cacheLength", cacheLength);
 		ComponentUtilities.setBooleanProperty(getFacesContext(),component, "matchSubset",matchSubset);

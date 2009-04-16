@@ -1,6 +1,7 @@
 package org.jquery4jsf.custom.panel;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIOutput;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.webapp.UIComponentBodyTag;
 import javax.servlet.jsp.JspException;
@@ -44,12 +45,13 @@ public class HtmlDivTag extends UIComponentBodyTag
         {
         	String bodyContentString = bodyContent.getString().trim();
         	if (bodyContentString != null && !bodyContent.equals("")){
-        		HtmlOutputText outputText = new HtmlOutputText();
-        		outputText.setValue(bodyContentString);
-        		outputText.setEscape(false);
+        		UIOutput output = (UIOutput) getFacesContext().getApplication().createComponent(HtmlOutputText.COMPONENT_TYPE);
+        		output.setId(getFacesContext().getViewRoot().createUniqueId());
+        		output.setTransient(true);
+        		output.setRendered(true);
         		HtmlDiv htmlDiv = (HtmlDiv) getComponentInstance();
         		if (htmlDiv != null){
-        			htmlDiv.getChildren().add(outputText);
+        			htmlDiv.getChildren().add(output);
         		}
         	}
         }

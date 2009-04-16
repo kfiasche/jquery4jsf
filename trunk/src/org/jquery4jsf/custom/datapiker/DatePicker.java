@@ -6,9 +6,11 @@ import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
+import javax.faces.render.Renderer;
 
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.custom.JQueryHtmlObject;
+import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 
 public class DatePicker extends HtmlInputText implements AjaxComponent, JQueryHtmlObject{
 
@@ -181,13 +183,11 @@ public class DatePicker extends HtmlInputText implements AjaxComponent, JQueryHt
     }
 	
 	public void encodePartially(FacesContext facesContext) throws IOException {
-	}
+		Renderer renderer = getRenderer(facesContext);
 
-	public MethodBinding getOncomplete() {
-		return null;
-	}
-
-	public void setOncomplete(MethodBinding methodBinding) {
+		if(renderer instanceof AjaxBaseRenderer) {
+			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		}
 	}
 
 	

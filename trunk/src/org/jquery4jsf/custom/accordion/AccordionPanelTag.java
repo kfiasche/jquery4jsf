@@ -2,12 +2,10 @@ package org.jquery4jsf.custom.accordion;
 
 import javax.faces.component.UIComponent;
 
-import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.taglib.html.ext.HtmlJSBaseTag;
 
 public class AccordionPanelTag extends HtmlJSBaseTag {
 
-	private String oncomplete;
 	private String active;
 	private String animated;
 	private String autoHeight;
@@ -30,7 +28,6 @@ public class AccordionPanelTag extends HtmlJSBaseTag {
 	
 	public void release(){
 		super.release();
-		oncomplete 		= null;
 		active			= null;
 		animated        = null;
 		autoHeight      = null;
@@ -49,7 +46,6 @@ public class AccordionPanelTag extends HtmlJSBaseTag {
 	
 	protected void setProperties(UIComponent component) {
 		super.setProperties(component);
-		ComponentUtilities.setOncompleteProperty(getFacesContext(), component, oncomplete);
 		setIntegerProperty(getFacesContext(), component, "active", active);
 		setStringProperty(getFacesContext(), component, "animated", animated);
 		setBooleanProperty(getFacesContext(), component, "autoHeight", autoHeight);
@@ -64,9 +60,6 @@ public class AccordionPanelTag extends HtmlJSBaseTag {
 		setStringProperty(getFacesContext(), component, "onaccordionchange",onaccordionchange);
 	}
 	
-	public void setOncomplete(String oncomplete) {
-		this.oncomplete = oncomplete;
-	}
 	public void setActive(String active) {
 		this.active = active;
 	}
