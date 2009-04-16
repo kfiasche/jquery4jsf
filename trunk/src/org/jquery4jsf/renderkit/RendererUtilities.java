@@ -9,6 +9,7 @@ import javax.faces.component.UINamingContainer;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.utilities.TextUtilities;
 
@@ -73,6 +74,27 @@ public class RendererUtilities {
 		responseWriter.write("\n");
 	}
 
+	public static void encodeResourceForComponent(UIComponent component,FacesContext context, ResponseWriter responseWriter) throws IOException{
+		JQueryHtmlObject jQueryObject = (JQueryHtmlObject)component;
+		String[] resources = jQueryObject.getResources();
+		for (int i = 0; i < resources.length; i++) {
+			String resource = resources[i];
+			if (resource.endsWith(".css")){
+				String theme   = context.getExternalContext().getInitParameter("ThemeCSS");
+				if (theme != null){
+					System.out.println(theme);
+				}else{
+					theme = "base";
+				}
+				String resourceChange = resource.replaceFirst("base", theme);
+				addCssForJQueryPlugin(component, responseWriter, context, resourceChange);
+			}
+			else if (resource.endsWith(".js")){
+				addJsForJQueryPlugin(component, responseWriter, context, resource);
+			}
+		}
+	}
+	
 	public static void createTagScriptForJs(UIComponent component, ResponseWriter responseWriter, StringBuffer sb) throws IOException {
 		responseWriter.startElement(HTML.TAG_SCRIPT, component);
 		responseWriter.writeAttribute(HTML.TYPE, "text/javascript", null);
