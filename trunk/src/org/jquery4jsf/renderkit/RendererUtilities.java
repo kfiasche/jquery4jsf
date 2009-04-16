@@ -81,9 +81,7 @@ public class RendererUtilities {
 			String resource = resources[i];
 			if (resource.endsWith(".css")){
 				String theme   = context.getExternalContext().getInitParameter("ThemeCSS");
-				if (theme != null){
-					System.out.println(theme);
-				}else{
+				if (theme == null){
 					theme = "base";
 				}
 				String resourceChange = resource.replaceFirst("base", theme);
