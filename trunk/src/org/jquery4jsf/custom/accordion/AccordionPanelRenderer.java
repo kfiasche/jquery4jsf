@@ -52,10 +52,10 @@ public class AccordionPanelRenderer extends JQueryBaseRenderer implements AjaxBa
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
         JSElement element = new JSElement(accordionPanel.getClientId(context));
-        JSAttribute jsAutocomplete = new JSAttribute("accordion", false);
+        JSAttribute jsAccordion = new JSAttribute("accordion", false);
         StringBuffer sbOption = new StringBuffer();
-        jsAutocomplete.addValue(createOptionComponent(sbOption, accordionPanel, context));
-        element.addAttribute(jsAutocomplete);
+        jsAccordion.addValue(createOptionComponent(sbOption, accordionPanel, context));
+        element.addAttribute(jsAccordion);
 
         JSFunction function = new JSFunction();
         function.addJSElement(element);

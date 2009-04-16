@@ -2765,4 +2765,218 @@
 			<description></description>
 		</attribute>
 	</tag>
+		<tag>
+		<name>carousel</name>
+		<tag-class>org.jquery4jsf.custom.carousel.CarouselTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>vertical</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Specifies wether the carousel appears in horizontal or vertical orientation. Changes the carousel from a left/right style to a up/down style carousel.]]></description>
+		</attribute>
+		<attribute>
+			<name>skin</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Default Skin tango or ie7]]></description>
+		</attribute>
+		<attribute>
+			<name>skinCss</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[resource css for skin]]></description>
+		</attribute>
+		<attribute>
+			<name>skinStyleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[style class for skin]]></description>
+		</attribute>
+		<attribute>
+			<name>start</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[The index of the item to start with.]]></description>
+		</attribute>
+		<attribute>
+			<name>offset</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[The index of the first available item at initialisation.]]></description>
+		</attribute>
+		<attribute>
+			<name>size</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[The number of total items.]]></description>
+		</attribute>
+		<attribute>
+			<name>scroll</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[The number of items to scroll by.]]></description>
+		</attribute>
+		<attribute>
+			<name>visible</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[If passed, the width/height of the items will be calculated and set depending on the width/height of the clipping, so that exactly that number of items will be visible.]]></description>
+		</attribute>
+		<attribute>
+			<name>animation</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[The speed of the scroll animation as string in jQuery terms ("slow" or "fast") or milliseconds as integer (See jQuery Documentation). If set to 0, animation is turned off.]]></description>
+		</attribute>
+		<attribute>
+			<name>easing</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[The name of the easing effect that you want to use (See jQuery Documentation).]]></description>
+		</attribute>
+		<attribute>
+			<name>auto</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[Specifies how many seconds to periodically autoscroll the content. If set to 0 (default) then autoscrolling is turned off.]]></description>
+		</attribute>
+		<attribute>
+			<name>wrap</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Specifies whether to wrap at the first/last item (or both) and jump back to the start/end. Options are "first", "last" or "both" as string. If set to null, wrapping is turned off (default). You can also pass "circular" as option to enable support for circular carousels. See the example Circular carousel on how to implement it.]]></description>
+		</attribute>
+		<attribute>
+			<name>initCallback</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called right after initialisation of the carousel. Two parameters are passed: The instance of the requesting carousel and the state of the carousel initialisation (init, reset or reload)]]></description>
+		</attribute>
+		<attribute>
+			<name>itemLoadCallbackBefore</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called when the carousel requests a set of items to be loaded. Two parameters are passed: The instance of the requesting carousel and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemLoadCallbackAfter</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called when the carousel requests a set of items to be loaded. Two parameters are passed: The instance of the requesting carousel and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemFirstInCallbackBefore</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called (after the scroll animation) when an item becomes the first one in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemFirstInCallbackAfter</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called (after the scroll animation) when an item becomes the first one in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemFirstOutCallbackBefore</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called (after the scroll animation) when an item isn't longer the first one in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemFirstOutCallbackAfter</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called (after the scroll animation) when an item isn't longer the first one in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemLastInCallbackBefore</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called (after the scroll animation) when an item becomes the last one in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemLastInCallbackAfter</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called (after the scroll animation) when an item becomes the last one in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemLastOutCallbackBefore</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called when an item isn't longer the last one in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemLastOutCallbackAfter</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called when an item isn't longer the last one in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemVisibleInCallbackBefore</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called (after the scroll animation) when an item is in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemVisibleInCallbackAfter</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called (after the scroll animation) when an item is in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemVisibleOutCallbackBefore</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called (after the scroll animation) when an item isn't longer in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>itemVisibleOutCallbackAfter</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called (after the scroll animation) when an item isn't longer in the visible range of the carousel. Four parameters are passed: The instance of the requesting carousel and the <li> object itself, the index which indicates the position of the item in the list and the state of the carousel action (prev, next or init). Alternatively, you can pass a hash of one or two functions which are triggered before and/or after animation]]></description>
+		</attribute>
+		<attribute>
+			<name>buttonNextCallback</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called when the state of the 'next' control is changing. The responsibility of this method is to enable or disable the 'next' control. Three parameters are passed: The instance of the requesting carousel, the control element and a flag indicating whether the button should be enabled or disabled.]]></description>
+		</attribute>
+		<attribute>
+			<name>buttonPrevCallback</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[JavaScript function that is called when the state of the 'previous' control is changing. The responsibility of this method is to enable or disable the 'previous' control. Three parameters are passed: The instance of the requesting carousel, the control element and a flag indicating whether the button should be enabled or disabled.]]></description>
+		</attribute>
+		<attribute>
+			<name>buttonNextEvent</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Specifies the event which triggers the next scroll.]]></description>
+		</attribute>
+		<attribute>
+			<name>buttonPrevEvent</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Specifies the event which triggers the prev scroll.]]></description>
+		</attribute>
+	</tag>
 </taglib>
