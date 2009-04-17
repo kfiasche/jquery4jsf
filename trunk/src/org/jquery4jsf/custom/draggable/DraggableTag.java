@@ -1,9 +1,26 @@
+/*
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jquery4jsf.custom.draggable;
 
+import java.lang.String;
 import org.jquery4jsf.taglib.html.ext.UIComponentTagBase;
+import javax.faces.component.UIComponent;
 
 public class DraggableTag extends UIComponentTagBase {
 
+	private String _for;
 	private String addClasses;
 	private String appendTo;
 	private String axis;
@@ -30,153 +47,219 @@ public class DraggableTag extends UIComponentTagBase {
 	private String snapMode;
 	private String snapTolerance;
 	private String stack;
-	private String zindex;
-	
+	private String zIndex;
+	private String ondragstart;
+	private String ondrag;
+	private String ondragstop;
+
+	public void release(){
+		super.release();
+		this._for = null;
+		this.addClasses = null;
+		this.appendTo = null;
+		this.axis = null;
+		this.cancel = null;
+		this.connectToSortable = null;
+		this.containment = null;
+		this.cursor = null;
+		this.cursorAt = null;
+		this.delay = null;
+		this.distance = null;
+		this.grid = null;
+		this.handle = null;
+		this.helper = null;
+		this.iframeFix = null;
+		this.opacity = null;
+		this.refreshPositions = null;
+		this.revert = null;
+		this.revertDuration = null;
+		this.scope = null;
+		this.scroll = null;
+		this.scrollSensitivity = null;
+		this.scrollSpeed = null;
+		this.snap = null;
+		this.snapMode = null;
+		this.snapTolerance = null;
+		this.stack = null;
+		this.zIndex = null;
+		this.ondragstart = null;
+		this.ondrag = null;
+		this.ondragstop = null;
+	}
+
+	protected void setProperties(UIComponent comp){
+		super.setProperties(comp);
+
+		org.jquery4jsf.custom.draggable.Draggable component = null;
+		try {
+			component = (org.jquery4jsf.custom.draggable.Draggable) comp;
+		} catch(ClassCastException cce) {
+			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
+		}
+
+		setStringProperty(getFacesContext(), component, "for", _for);
+		setBooleanProperty(getFacesContext(), component, "addClasses", addClasses);
+		setStringProperty(getFacesContext(), component, "appendTo", appendTo);
+		setStringProperty(getFacesContext(), component, "axis", axis);
+		setStringProperty(getFacesContext(), component, "cancel", cancel);
+		setStringProperty(getFacesContext(), component, "connectToSortable", connectToSortable);
+		setStringProperty(getFacesContext(), component, "containment", containment);
+		setStringProperty(getFacesContext(), component, "cursor", cursor);
+		setStringProperty(getFacesContext(), component, "cursorAt", cursorAt);
+		setIntegerProperty(getFacesContext(), component, "delay", delay);
+		setIntegerProperty(getFacesContext(), component, "distance", distance);
+		setStringProperty(getFacesContext(), component, "grid", grid);
+		setStringProperty(getFacesContext(), component, "handle", handle);
+		setStringProperty(getFacesContext(), component, "helper", helper);
+		setStringProperty(getFacesContext(), component, "iframeFix", iframeFix);
+		setFloatProperty(getFacesContext(), component, "opacity", opacity);
+		setBooleanProperty(getFacesContext(), component, "refreshPositions", refreshPositions);
+		setStringProperty(getFacesContext(), component, "revert", revert);
+		setIntegerProperty(getFacesContext(), component, "revertDuration", revertDuration);
+		setStringProperty(getFacesContext(), component, "scope", scope);
+		setBooleanProperty(getFacesContext(), component, "scroll", scroll);
+		setIntegerProperty(getFacesContext(), component, "scrollSensitivity", scrollSensitivity);
+		setIntegerProperty(getFacesContext(), component, "scrollSpeed", scrollSpeed);
+		setStringProperty(getFacesContext(), component, "snap", snap);
+		setStringProperty(getFacesContext(), component, "snapMode", snapMode);
+		setIntegerProperty(getFacesContext(), component, "snapTolerance", snapTolerance);
+		setStringProperty(getFacesContext(), component, "stack", stack);
+		setIntegerProperty(getFacesContext(), component, "zIndex", zIndex);
+		setStringProperty(getFacesContext(), component, "ondragstart", ondragstart);
+		setStringProperty(getFacesContext(), component, "ondrag", ondrag);
+		setStringProperty(getFacesContext(), component, "ondragstop", ondragstop);
+	}
+
 	public String getComponentType() {
 		return Draggable.COMPONENT_TYPE;
 	}
 
 	public String getRendererType() {
-		return Draggable.DEFAULT_RENDERER_TYPE;
+		return "org.jquery4jsf.DraggableRenderer";
 	}
 
-	public void release(){
-		super.release();
-		addClasses = null;
-		appendTo = null;
-		axis = null;
-		cancel = null;
-		connectToSortable = null;
-		containment = null;
-		cursor = null;
-		cursorAt = null;
-		delay = null;
-		distance = null;
-		grid = null;
-		handle = null;
-		helper = null;
-		iframeFix = null;
-		opacity = null;
-		refreshPositions = null;
-		revert = null;
-		revertDuration = null;
-		scope = null;
-		scroll = null;
-		scrollSensitivity = null;
-		scrollSpeed = null;
-		snap = null;
-		snapMode = null;
-		snapTolerance = null;
-		stack = null;
-		zindex = null;
-	}
-	
-	public void setAddClasses(String addClasses) {
-		this.addClasses = addClasses;
+	public void setFor(String value){
+		this._for = value;
 	}
 
-	public void setAppendTo(String appendTo) {
-		this.appendTo = appendTo;
+	public void setAddClasses(String value){
+		this.addClasses = value;
 	}
 
-	public void setAxis(String axis) {
-		this.axis = axis;
+	public void setAppendTo(String value){
+		this.appendTo = value;
 	}
 
-	public void setCancel(String cancel) {
-		this.cancel = cancel;
+	public void setAxis(String value){
+		this.axis = value;
 	}
 
-	public void setConnectToSortable(String connectToSortable) {
-		this.connectToSortable = connectToSortable;
+	public void setCancel(String value){
+		this.cancel = value;
 	}
 
-	public void setContainment(String containment) {
-		this.containment = containment;
+	public void setConnectToSortable(String value){
+		this.connectToSortable = value;
 	}
 
-	public void setCursor(String cursor) {
-		this.cursor = cursor;
+	public void setContainment(String value){
+		this.containment = value;
 	}
 
-	public void setCursorAt(String cursorAt) {
-		this.cursorAt = cursorAt;
+	public void setCursor(String value){
+		this.cursor = value;
 	}
 
-	public void setDelay(String delay) {
-		this.delay = delay;
+	public void setCursorAt(String value){
+		this.cursorAt = value;
 	}
 
-	public void setDistance(String distance) {
-		this.distance = distance;
+	public void setDelay(String value){
+		this.delay = value;
 	}
 
-	public void setGrid(String grid) {
-		this.grid = grid;
+	public void setDistance(String value){
+		this.distance = value;
 	}
 
-	public void setHandle(String handle) {
-		this.handle = handle;
+	public void setGrid(String value){
+		this.grid = value;
 	}
 
-	public void setHelper(String helper) {
-		this.helper = helper;
+	public void setHandle(String value){
+		this.handle = value;
 	}
 
-	public void setIframeFix(String iframeFix) {
-		this.iframeFix = iframeFix;
+	public void setHelper(String value){
+		this.helper = value;
 	}
 
-	public void setOpacity(String opacity) {
-		this.opacity = opacity;
+	public void setIframeFix(String value){
+		this.iframeFix = value;
 	}
 
-	public void setRefreshPositions(String refreshPositions) {
-		this.refreshPositions = refreshPositions;
+	public void setOpacity(String value){
+		this.opacity = value;
 	}
 
-	public void setRevert(String revert) {
-		this.revert = revert;
+	public void setRefreshPositions(String value){
+		this.refreshPositions = value;
 	}
 
-	public void setRevertDuration(String revertDuration) {
-		this.revertDuration = revertDuration;
+	public void setRevert(String value){
+		this.revert = value;
 	}
 
-	public void setScope(String scope) {
-		this.scope = scope;
+	public void setRevertDuration(String value){
+		this.revertDuration = value;
 	}
 
-	public void setScroll(String scroll) {
-		this.scroll = scroll;
+	public void setScope(String value){
+		this.scope = value;
 	}
 
-	public void setScrollSensitivity(String scrollSensitivity) {
-		this.scrollSensitivity = scrollSensitivity;
+	public void setScroll(String value){
+		this.scroll = value;
 	}
 
-	public void setScrollSpeed(String scrollSpeed) {
-		this.scrollSpeed = scrollSpeed;
+	public void setScrollSensitivity(String value){
+		this.scrollSensitivity = value;
 	}
 
-	public void setSnap(String snap) {
-		this.snap = snap;
+	public void setScrollSpeed(String value){
+		this.scrollSpeed = value;
 	}
 
-	public void setSnapMode(String snapMode) {
-		this.snapMode = snapMode;
+	public void setSnap(String value){
+		this.snap = value;
 	}
 
-	public void setSnapTolerance(String snapTolerance) {
-		this.snapTolerance = snapTolerance;
+	public void setSnapMode(String value){
+		this.snapMode = value;
 	}
 
-	public void setStack(String stack) {
-		this.stack = stack;
+	public void setSnapTolerance(String value){
+		this.snapTolerance = value;
 	}
 
-	public void setZindex(String zindex) {
-		this.zindex = zindex;
+	public void setStack(String value){
+		this.stack = value;
+	}
+
+	public void setZIndex(String value){
+		this.zIndex = value;
+	}
+
+	public void setOndragstart(String value){
+		this.ondragstart = value;
+	}
+
+	public void setOndrag(String value){
+		this.ondrag = value;
+	}
+
+	public void setOndragstop(String value){
+		this.ondragstop = value;
 	}
 
 }

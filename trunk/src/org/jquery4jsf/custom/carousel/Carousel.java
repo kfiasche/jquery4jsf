@@ -26,11 +26,9 @@ import java.io.IOException;
 import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
-import javax.faces.el.MethodBinding;
-
 import java.lang.Integer;
 
-public class Carousel extends HtmlBaseComponent implements AjaxComponent,JQueryHtmlObject {
+public class Carousel extends HtmlBaseComponent implements JQueryHtmlObject,AjaxComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlCarousel";
@@ -521,12 +519,5 @@ public class Carousel extends HtmlBaseComponent implements AjaxComponent,JQueryH
 		if(renderer instanceof AjaxBaseRenderer) {
 			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
 		}
-	}
-
-	public MethodBinding getOncomplete() {
-		return null;
-	}
-
-	public void setOncomplete(MethodBinding methodBinding) {
 	}
 }

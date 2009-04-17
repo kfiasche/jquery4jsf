@@ -32,6 +32,55 @@ public class ComponentUtilities {
 		}
 	}
 	
+	public static void setDoubleProperty(FacesContext context, UIComponent component, String propertyName, String value)
+	{
+		if (value != null)
+		{
+			if (isValueReference(value))
+			{
+				ValueBinding vb = context.getApplication().createValueBinding(value);
+				component.setValueBinding(propertyName, vb);
+			}
+			else
+			{
+				component.getAttributes().put(propertyName, Double.valueOf(value));
+			}
+		}
+	}
+
+	public static void setLongProperty(FacesContext context, UIComponent component, String propertyName, String value)
+    {
+        if (value != null)
+        {
+            if (isValueReference(value))
+            {
+                ValueBinding vb = context.getApplication().createValueBinding(value);
+                component.setValueBinding(propertyName, vb);
+            }
+            else
+            {
+                component.getAttributes().put(propertyName, Long.valueOf(value));
+            }
+        }
+    }
+
+	public static void setFloatProperty(FacesContext context, UIComponent component, String propertyName, String value)
+    {
+        if (value != null)
+        {
+            if (isValueReference(value))
+            {
+                ValueBinding vb = context.getApplication().createValueBinding(value);
+                component.setValueBinding(propertyName, vb);
+            }
+            else
+            {
+                component.getAttributes().put(propertyName, Float.valueOf(value));
+            }
+        }
+    }
+
+	
 	public static void setStringProperty(FacesContext context, UIComponent component, String propertyName, String value)
 	{
 		if (value != null)

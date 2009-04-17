@@ -4,13 +4,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.jquery4jsf.custom.progressbar.ProgressBar;
 import org.jquery4jsf.custom.slider.Slider;
 import org.jquery4jsf.custom.slider.SliderTag;
-import org.jquery4jsf.custom.tabbedpanel.TabPanel;
-import org.jquery4jsf.custom.tabbedpanel.TabPanelTag;
-import org.jquery4jsf.custom.tabbedpanel.TabbedPanel;
-import org.jquery4jsf.custom.tabbedpanel.TabbedPanelTag;
 
 public class CreateTagLib {
 

@@ -45,7 +45,7 @@ public class ProgressBarRenderer extends JQueryBaseRenderer {
 		JSElement element = new JSElement(progressBar.getClientId(context));
 		JSAttribute jsProgressbar = new JSAttribute("progressbar", false);
 		StringBuffer sbOption = new StringBuffer();
-		jsProgressbar.addValue(createOptionComponent(sbOption, progressBar, context));
+		jsProgressbar.addValue(encodeOptionComponent(sbOption, progressBar, context));
 		element.addAttribute(jsProgressbar);
 
 		JSFunction function = new JSFunction();
@@ -79,9 +79,9 @@ public class ProgressBarRenderer extends JQueryBaseRenderer {
 
 	}
 
-	private String createOptionComponent(StringBuffer options, ProgressBar progressBar, FacesContext context) {
+	private String encodeOptionComponent(StringBuffer options, ProgressBar progressBar, FacesContext context) {
 		options.append(" {\n");
-		createOptionComponentByType(options, progressBar.getValue(), "value");
+		encodeOptionComponentByType(options, progressBar.getValue(), "value");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

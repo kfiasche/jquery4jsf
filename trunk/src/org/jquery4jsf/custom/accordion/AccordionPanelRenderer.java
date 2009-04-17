@@ -54,7 +54,7 @@ public class AccordionPanelRenderer extends JQueryBaseRenderer implements AjaxBa
         JSElement element = new JSElement(accordionPanel.getClientId(context));
         JSAttribute jsAccordion = new JSAttribute("accordion", false);
         StringBuffer sbOption = new StringBuffer();
-        jsAccordion.addValue(createOptionComponent(sbOption, accordionPanel, context));
+        jsAccordion.addValue(encodeOptionComponent(sbOption, accordionPanel, context));
         element.addAttribute(jsAccordion);
 
         JSFunction function = new JSFunction();
@@ -70,22 +70,22 @@ public class AccordionPanelRenderer extends JQueryBaseRenderer implements AjaxBa
 	
 	}
 
-	private String createOptionComponent(StringBuffer options, AccordionPanel accordionPanel, FacesContext context) {
+	private String encodeOptionComponent(StringBuffer options, AccordionPanel accordionPanel, FacesContext context) {
 		options.append(" {\n");
-		createOptionComponentByType(options,accordionPanel.getActive(), "active");
-		createOptionComponentByType(options,accordionPanel.getAnimated(), "animated");
-		createOptionComponentByType(options,accordionPanel.isAutoHeight(), "autoHeight");
-		createOptionComponentByType(options,accordionPanel.isClearStyle(), "clearStyle");
-		createOptionComponentByType(options,accordionPanel.isCollapsible(), "collapsible");
-		createOptionComponentByType(options,accordionPanel.getEvent(), "event");
-		createOptionComponentByType(options,accordionPanel.isFillSpace(), "fillSpace");
-		createOptionComponentByType(options,accordionPanel.getHeader(), "header");
-		createOptionComponentByType(options,accordionPanel.getHeader(), "header");
-		createOptionComponentByType(options,accordionPanel.getIcons(), "icons");
-		createOptionComponentByType(options,accordionPanel.isNavigation(), "navigation");
-		createOptionComponentByType(options,accordionPanel.getNavigationFilter(), "navigationFilter");
+		encodeOptionComponentByType(options,accordionPanel.getActive(), "active");
+		encodeOptionComponentByType(options,accordionPanel.getAnimated(), "animated");
+		encodeOptionComponentByType(options,accordionPanel.isAutoHeight(), "autoHeight");
+		encodeOptionComponentByType(options,accordionPanel.isClearStyle(), "clearStyle");
+		encodeOptionComponentByType(options,accordionPanel.isCollapsible(), "collapsible");
+		encodeOptionComponentByType(options,accordionPanel.getEvent(), "event");
+		encodeOptionComponentByType(options,accordionPanel.isFillSpace(), "fillSpace");
+		encodeOptionComponentByType(options,accordionPanel.getHeader(), "header");
+		encodeOptionComponentByType(options,accordionPanel.getHeader(), "header");
+		encodeOptionComponentByType(options,accordionPanel.getIcons(), "icons");
+		encodeOptionComponentByType(options,accordionPanel.isNavigation(), "navigation");
+		encodeOptionComponentByType(options,accordionPanel.getNavigationFilter(), "navigationFilter");
 		//TODO implementare il bind delle funzioni
-		/*createOptionComponentByType(options,accordionPanel.getOnaccordionchange(), "accordionchange");*/
+		/*encodeOptionComponentByType(options,accordionPanel.getOnaccordionchange(), "accordionchange");*/
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

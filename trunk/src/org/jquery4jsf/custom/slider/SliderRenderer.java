@@ -54,7 +54,7 @@ public class SliderRenderer extends JQueryBaseRenderer implements AjaxBaseRender
         JSElement element = new JSElement(slider.getClientId(context));
         JSAttribute jsAutocomplete = new JSAttribute("slider", false);
         StringBuffer sbOption = new StringBuffer();
-        jsAutocomplete.addValue(createOptionComponent(sbOption, slider, context));
+        jsAutocomplete.addValue(encodeOptionComponent(sbOption, slider, context));
         element.addAttribute(jsAutocomplete);
         JSFunction function = new JSFunction();
         function.addJSElement(element);
@@ -68,17 +68,17 @@ public class SliderRenderer extends JQueryBaseRenderer implements AjaxBaseRender
         responseWriter.endElement(HTML.TAG_DIV);
 	}
 
-	private String createOptionComponent(StringBuffer options, Slider slider, FacesContext context) {
+	private String encodeOptionComponent(StringBuffer options, Slider slider, FacesContext context) {
 		options.append(" {\n");
 		
-		createOptionComponentByType(options, slider.isAnimate(), "animate");
-		createOptionComponentByType(options, slider.getMax(), "max");
-		createOptionComponentByType(options, slider.getMin(), "min");
-		createOptionComponentByType(options, slider.getOrientation(), "orientation");
-		createOptionComponentByType(options, slider.getRange(), "range");
-		createOptionComponentByType(options, slider.getStep(), "step");
-		createOptionComponentByType(options, slider.getValue(), "value");
-		createOptionComponentArrayByType(options, slider.getValues(), "values");
+		encodeOptionComponentByType(options, slider.isAnimate(), "animate");
+		encodeOptionComponentByType(options, slider.getMax(), "max");
+		encodeOptionComponentByType(options, slider.getMin(), "min");
+		encodeOptionComponentByType(options, slider.getOrientation(), "orientation");
+		encodeOptionComponentByType(options, slider.getRange(), "range");
+		encodeOptionComponentByType(options, slider.getStep(), "step");
+		encodeOptionComponentByType(options, slider.getValue(), "value");
+		encodeOptionComponentArrayByType(options, slider.getValues(), "values");
 		
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);

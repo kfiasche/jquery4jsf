@@ -3,7 +3,6 @@ package org.jquery4jsf.custom.dialog;
 import java.io.IOException;
 
 import javax.faces.context.FacesContext;
-import javax.faces.el.MethodBinding;
 import javax.faces.render.Renderer;
 
 import org.jquery4jsf.component.ext.HtmlBaseComponent;

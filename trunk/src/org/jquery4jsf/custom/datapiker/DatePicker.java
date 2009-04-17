@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
-import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import javax.faces.render.Renderer;
 

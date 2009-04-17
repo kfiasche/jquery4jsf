@@ -45,10 +45,10 @@ public class TabbedPanelRenderer extends JQueryBaseRenderer {
 	        sb.append("\n");
 	        JSDocumentElement documentElement = new JSDocumentElement();
 	        JSElement element = new JSElement(tabbedPanel.getClientId(context));
-	        JSAttribute jsAutocomplete = new JSAttribute("tabs", false);
+	        JSAttribute jsTabs = new JSAttribute("tabs", false);
 	        StringBuffer sbOption = new StringBuffer();
-	        jsAutocomplete.addValue(createOptionComponent(sbOption, tabbedPanel, context));
-	        element.addAttribute(jsAutocomplete);
+	        jsTabs.addValue(encodeOptionComponent(sbOption, tabbedPanel, context));
+	        element.addAttribute(jsTabs);
 
 	        JSFunction function = new JSFunction();
 	        function.addJSElement(element);
@@ -116,27 +116,27 @@ public class TabbedPanelRenderer extends JQueryBaseRenderer {
 		return isChildTab;
 	}
 	
-	private String createOptionComponent(StringBuffer options,TabbedPanel tabbedPanel, FacesContext context) {
+	private String encodeOptionComponent(StringBuffer options,TabbedPanel tabbedPanel, FacesContext context) {
 		options.append(" {\n");
 		
 		//TODO implementare option
-		createOptionComponentByType(options,tabbedPanel.getAjaxOptions(), "ajaxOptions");
+		encodeOptionComponentByType(options,tabbedPanel.getAjaxOptions(), "ajaxOptions");
 		
-		createOptionComponentByType(options,tabbedPanel.isCache(), "cache");
-		createOptionComponentByType(options,tabbedPanel.isCollapsible(), "collapsible");
-		createOptionComponentByType(options,tabbedPanel.getCookie(), "cookie");
-		createOptionComponentByType(options,tabbedPanel.isDeselectable(), "deselectable");
+		encodeOptionComponentByType(options,tabbedPanel.isCache(), "cache");
+		encodeOptionComponentByType(options,tabbedPanel.isCollapsible(), "collapsible");
+		encodeOptionComponentByType(options,tabbedPanel.getCookie(), "cookie");
+		encodeOptionComponentByType(options,tabbedPanel.isDeselectable(), "deselectable");
 		//TODO implementare la disabilitazione dei tabs
-		createOptionComponentByType(options,"", "disabled");
-		createOptionComponentByType(options,tabbedPanel.getEvent(), "event");
+		encodeOptionComponentByType(options,"", "disabled");
+		encodeOptionComponentByType(options,tabbedPanel.getEvent(), "event");
 		//TODO implementare option
-		createOptionComponentByType(options,tabbedPanel.getFx(), "fx");
-		createOptionComponentByType(options,tabbedPanel.getIdPrefix(), "idPrefix");
-		createOptionComponentByType(options,tabbedPanel.getSelected(), "selected");
-		createOptionComponentByType(options,tabbedPanel.getSpinner(), "spinner");
+		encodeOptionComponentByType(options,tabbedPanel.getFx(), "fx");
+		encodeOptionComponentByType(options,tabbedPanel.getIdPrefix(), "idPrefix");
+		encodeOptionComponentByType(options,tabbedPanel.getSelected(), "selected");
+		encodeOptionComponentByType(options,tabbedPanel.getSpinner(), "spinner");
 		
 		//TODO implementare il bind delle funzioni
-		/*createOptionComponentByType(options,accordionPanel.getOnaccordionchange(), "accordionchange");*/
+		/*encodeOptionComponentByType(options,accordionPanel.getOnaccordionchange(), "accordionchange");*/
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

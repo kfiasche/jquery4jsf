@@ -23,4 +23,14 @@ public abstract class UIComponentTagBase extends UIComponentTag {
 		ComponentUtilities.setBooleanProperty(context, component, propertyName, value);
 	}
 	
+	public static void setFloatProperty(FacesContext context, UIComponent component, String propertyName, String value)
+	{
+		ComponentUtilities.setFloatProperty(context, component, propertyName, value);
+	}
+	
+	public static void setDoubleProperty(FacesContext context, UIComponent component, String propertyName, String value)
+	{
+		ComponentUtilities.setDoubleProperty(context, component, propertyName, value);
+	}
+	
 }

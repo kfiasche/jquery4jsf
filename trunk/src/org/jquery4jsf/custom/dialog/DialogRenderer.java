@@ -48,10 +48,10 @@ public class DialogRenderer extends JQueryBaseRenderer {
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
         JSElement element = new JSElement(dialog.getClientId(context));
-        JSAttribute jsAutocomplete = new JSAttribute("dialog", false);
+        JSAttribute jsDialog = new JSAttribute("dialog", false);
         StringBuffer sbOption = new StringBuffer();
-        jsAutocomplete.addValue(createOptionComponent(sbOption, dialog, context));
-        element.addAttribute(jsAutocomplete);
+        jsDialog.addValue(encodeOptionComponent(sbOption, dialog, context));
+        element.addAttribute(jsDialog);
         JSFunction function = new JSFunction();
         function.addJSElement(element);
         documentElement.addFunctionToReady(function);
@@ -63,28 +63,28 @@ public class DialogRenderer extends JQueryBaseRenderer {
         writeIdAttributeIfNecessary(context, responseWriter, component);
 	}
 
-	private String createOptionComponent(StringBuffer options, Dialog dialog, FacesContext context) {
+	private String encodeOptionComponent(StringBuffer options, Dialog dialog, FacesContext context) {
 		options.append(" {\n");
-		createOptionComponentByType(options, dialog.isAutoOpen(), "autoOpen");
-		createOptionComponentByType(options, dialog.isBgiframe(), "bgiframe");
-		createOptionComponentByType(options, dialog.getButtons(), "buttons");
-		createOptionComponentByType(options, dialog.isCloseOnEscape(), "closeOnEscape");
-		createOptionComponentByType(options, dialog.getDialogClass(), "dialogClass");
-		createOptionComponentByType(options, dialog.isDraggable(), "draggable");
-		createOptionComponentByType(options, dialog.getHeight(), "height");
-		createOptionComponentByType(options, dialog.getHide(), "hide");
-		createOptionComponentByType(options, dialog.getMaxHeight(), "maxHeight");
-		createOptionComponentByType(options, dialog.getMaxWidth(), "maxWidth");
-		createOptionComponentByType(options, dialog.getMinHeight(), "minHeight");
-		createOptionComponentByType(options, dialog.getMinWidth(), "minWidth");
-		createOptionComponentByType(options, dialog.isModal(), "modal");
-		createOptionComponentByType(options, dialog.getPosition(), "position");
-		createOptionComponentByType(options, dialog.isResizable(), "resizable");
-		createOptionComponentByType(options, dialog.getShow(), "show");
-		createOptionComponentByType(options, dialog.isStack(), "stack");
-		createOptionComponentByType(options, dialog.getTitle(), "title");
-		createOptionComponentByType(options, dialog.getWidth(), "width");
-		createOptionComponentByType(options, dialog.getZindex(), "zIndex");
+		encodeOptionComponentByType(options, dialog.isAutoOpen(), "autoOpen");
+		encodeOptionComponentByType(options, dialog.isBgiframe(), "bgiframe");
+		encodeOptionComponentByType(options, dialog.getButtons(), "buttons");
+		encodeOptionComponentByType(options, dialog.isCloseOnEscape(), "closeOnEscape");
+		encodeOptionComponentByType(options, dialog.getDialogClass(), "dialogClass");
+		encodeOptionComponentByType(options, dialog.isDraggable(), "draggable");
+		encodeOptionComponentByType(options, dialog.getHeight(), "height");
+		encodeOptionComponentByType(options, dialog.getHide(), "hide");
+		encodeOptionComponentByType(options, dialog.getMaxHeight(), "maxHeight");
+		encodeOptionComponentByType(options, dialog.getMaxWidth(), "maxWidth");
+		encodeOptionComponentByType(options, dialog.getMinHeight(), "minHeight");
+		encodeOptionComponentByType(options, dialog.getMinWidth(), "minWidth");
+		encodeOptionComponentByType(options, dialog.isModal(), "modal");
+		encodeOptionComponentByType(options, dialog.getPosition(), "position");
+		encodeOptionComponentByType(options, dialog.isResizable(), "resizable");
+		encodeOptionComponentByType(options, dialog.getShow(), "show");
+		encodeOptionComponentByType(options, dialog.isStack(), "stack");
+		encodeOptionComponentByType(options, dialog.getTitle(), "title");
+		encodeOptionComponentByType(options, dialog.getWidth(), "width");
+		encodeOptionComponentByType(options, dialog.getZindex(), "zIndex");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);
