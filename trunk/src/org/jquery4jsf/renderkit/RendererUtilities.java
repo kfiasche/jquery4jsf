@@ -160,6 +160,19 @@ public class RendererUtilities {
 		
 	}
 	
+	public static void createOptionComponentFunction(StringBuffer options, String value, String nameParameter) {
+		if (value != null){
+			options.append(cleanPrefixFunction(nameParameter).concat(": function (event, ui) {\n"));
+			options.append(value);
+			options.append("\n}");
+			options.append(", \n");
+		}
+	}
+	
+	private static String cleanPrefixFunction(String nomeParameter){
+		return nomeParameter.substring(2);
+	}
+	
 	public static void createOptionComponentArrayByType(StringBuffer options, String value, String nameParameter) {
 		if (value != null){
 			options.append(nameParameter.concat(": ["));

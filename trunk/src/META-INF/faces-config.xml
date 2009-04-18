@@ -74,6 +74,11 @@
 		<component-type>org.jquery4jsf.HtmlDraggable</component-type>
 		<component-class>org.jquery4jsf.custom.draggable.Draggable</component-class>
 	</component>
+	<component>
+		<component-type>org.jquery4jsf.HtmlDroppable</component-type>
+		<component-class>org.jquery4jsf.custom.droppable.Droppable</component-class>
+	</component>
+	
 	<render-kit>
 		<renderer>
 			<component-family>org.jquery4jsf.Link</component-family>
@@ -159,6 +164,11 @@
 			<component-family>org.jquery4jsf.Draggable</component-family>
 			<renderer-type>org.jquery4jsf.DraggableRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.draggable.DraggableRenderer</renderer-class>
+		</renderer>
+				<renderer>
+			<component-family>org.jquery4jsf.Droppable</component-family>
+			<renderer-type>org.jquery4jsf.DroppableRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.droppable.DroppableRenderer</renderer-class>
 		</renderer>
 	</render-kit>
 	<lifecycle>

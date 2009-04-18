@@ -385,7 +385,7 @@ public class Draggable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			return zIndex.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(zIndex, "zIndex");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 500;
 	}
 	public void setZIndex(int zIndex) {
 		this.zIndex = new Integer(zIndex);

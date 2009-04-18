@@ -1,4 +1,4 @@
-package org.jquery4jsf.custom.draggable;
+package org.jquery4jsf.custom.droppable;
 
 import java.io.IOException;
 
@@ -16,23 +16,21 @@ import org.jquery4jsf.resource.ResourceContext;
 
 import com.sun.faces.util.Util;
 
-public class DraggableRenderer extends DraggableBaseRenderer {
+public class DroppableRenderer extends DroppableBaseRenderer {
 
-	public static final String RENDERER_TYPE = Draggable.DEFAULT_RENDERER;
-	
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 	    if(context == null || component == null)
             throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
 
-        Draggable draggable = null;
-        if(component instanceof Draggable)
-            draggable = (Draggable)component;
+        Droppable droppable = null;
+        if(component instanceof Droppable)
+            droppable = (Droppable)component;
         ResponseWriter responseWriter = context.getResponseWriter();
         
         // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = draggable.getResources();
+        String[] list = droppable.getResources();
         for (int i = 0; i < list.length; i++) {
 			String resource = list[i];
 			ResourceContext.getInstance().addResource(resource);
@@ -41,25 +39,25 @@ public class DraggableRenderer extends DraggableBaseRenderer {
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
-        String clientId = draggable.getClientId(context);
-        if (draggable.getFor() != null){
-        	clientId = RendererUtilities.getJQueryIdComponent(draggable.getFor(), context, draggable);
+        String clientId = droppable.getClientId(context);
+        if (droppable.getFor() != null){
+        	clientId = RendererUtilities.getJQueryIdComponent(droppable.getFor(), context, droppable);
         }
         JSElement element = new JSElement(clientId);
-        JSAttribute jsDraggable = new JSAttribute("draggable", false);
+        JSAttribute jsDroppable = new JSAttribute("droppable", false);
         StringBuffer sbOption = new StringBuffer();
-        jsDraggable.addValue(encodeOptionComponent(sbOption, draggable, context));
-        element.addAttribute(jsDraggable);
+        jsDroppable.addValue(encodeOptionComponent(sbOption, droppable, context));
+        element.addAttribute(jsDroppable);
         JSFunction function = new JSFunction();
         function.addJSElement(element);
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
         RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
-        if (draggable.getFor() == null){
-        	responseWriter.startElement(HTML.TAG_DIV, draggable);
+        if (droppable.getFor() == null){
+        	responseWriter.startElement(HTML.TAG_DIV, droppable);
         	writeIdAttributeIfNecessary(context, responseWriter, component);
-        	responseWriter.writeAttribute("class", "ui-widget-content" , null);
+        	responseWriter.writeAttribute("class", "ui-widget-header" , null);
         }
 	}
 
@@ -69,11 +67,11 @@ public class DraggableRenderer extends DraggableBaseRenderer {
         if(!component.isRendered())
             return;
         
-        Draggable draggable = null;
-        if(component instanceof Draggable)
-            draggable = (Draggable)component;
+        Droppable droppable = null;
+        if(component instanceof Droppable)
+            droppable = (Droppable)component;
         
-        if (draggable.getFor() == null){
+        if (droppable.getFor() == null){
         	ResponseWriter responseWriter = context.getResponseWriter();
         	responseWriter.endElement(HTML.TAG_DIV);
         }

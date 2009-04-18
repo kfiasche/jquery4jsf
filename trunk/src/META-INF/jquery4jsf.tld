@@ -3181,4 +3181,104 @@
 			<description><![CDATA[This event is triggered when dragging stops.]]></description>
 		</attribute>
 	</tag>
+		<tag>
+		<name>droppable</name>
+		<tag-class>org.jquery4jsf.custom.droppable.DroppableTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>for</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If set add draggable property on component where id is igual]]></description>
+		</attribute>
+		<attribute>
+			<name>accept</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[All draggables that match the selector will be accepted. If a function is specified, the function will be called for each draggable on the page (passed as the first argument to the function), to provide a custom filter. The function should return true if the draggable should be accepted.]]></description>
+		</attribute>
+		<attribute>
+			<name>activeClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If specified, the class will be added to the droppable while an acceptable draggable is being dragged.]]></description>
+		</attribute>
+		<attribute>
+			<name>addClasses</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[If set to false, will prevent the ui-droppable class from being added. This may be desired as a performance optimization when calling .droppable() init on many hundreds of elements.]]></description>
+		</attribute>
+		<attribute>
+			<name>greedy</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[If true, will prevent event propagation on nested droppables.]]></description>
+		</attribute>
+		<attribute>
+			<name>hoverClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If specified, the class will be added to the droppable while an acceptable draggable is being hovered.]]></description>
+		</attribute>
+		<attribute>
+			<name>scope</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Used to group sets of draggable and droppable items, in addition to droppable's accept option. A draggable with the same scope value as a droppable will be accepted.]]></description>
+		</attribute>
+		<attribute>
+			<name>tolerance</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Specifies which mode to use for testing whether a draggable is 'over' a droppable. Possible values: 'fit', 'intersect', 'pointer', 'touch'. * fit: draggable overlaps the droppable entirely * intersect: draggable overlaps the droppable at least 50% * pointer: mouse pointer overlaps the droppable * touch: draggable overlaps the droppable any amount]]></description>
+		</attribute>
+		<attribute>
+			<name>ondropactivate</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered any time an accepted draggable starts dragging. This can be useful if you want to make the droppable 'light up' when it can be dropped on.]]></description>
+		</attribute>
+		<attribute>
+			<name>ondropdeactivate</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered any time an accepted draggable stops dragging.]]></description>
+		</attribute>
+		<attribute>
+			<name>ondropover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered as an accepted draggable is dragged 'over' (within the tolerance of) this droppable.]]></description>
+		</attribute>
+		<attribute>
+			<name>ondropout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered when an accepted draggable is dragged out (within the tolerance of) this droppable.]]></description>
+		</attribute>
+		<attribute>
+			<name>ondrop</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered when an accepted draggable is dropped 'over' (within the tolerance of) this droppable. In the callback, $(this) represents the droppable the draggable is dropped on. ui.draggable represents the draggable.]]></description>
+		</attribute>
+	</tag>
 </taglib>

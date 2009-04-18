@@ -16,14 +16,14 @@ public class ResourceContextImpl extends ResourceContext {
 	public boolean addResource(String resource){
 		if (resource == null || resource.equals(""))
 			return false;
-		if (!listResource.contains(resource)){
-			if (resource.endsWith(".css")){
-				FacesContext facesContext = FacesContext.getCurrentInstance();
-				String theme   = facesContext.getExternalContext().getInitParameter("ThemeCSS");
-				if (theme != null){
-					resource = resource.replaceAll("base", theme);
-				}
+		if (resource.endsWith(".css")){
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			String theme   = facesContext.getExternalContext().getInitParameter("ThemeCSS");
+			if (theme != null){
+				resource = resource.replaceAll("base", theme);
 			}
+		}
+		if (!listResource.contains(resource)){
 			return listResource.add(resource);
 		}
 		return false;

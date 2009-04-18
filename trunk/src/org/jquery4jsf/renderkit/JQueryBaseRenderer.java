@@ -25,4 +25,8 @@ public abstract class JQueryBaseRenderer extends HtmlBasicRenderer {
 		RendererUtilities.createOptionComponentArrayByType(options, value, nameParameter);
 	}
 	
+	protected void encodeOptionComponentFunction(StringBuffer options, String value, String nameParameter) {
+		RendererUtilities.createOptionComponentFunction(options, value, nameParameter);
+	}
+	
 }
