@@ -79,26 +79,26 @@ public class AutoComplete extends javax.faces.component.html.HtmlInputText imple
     {
         Object values[] = new Object[21];
         values[0] = super.saveState(context);
-        values[1]=(Integer)minChars;
-        values[2]=(Integer)max;
-        values[3]=(Boolean)highlight;
-        values[4]=(Boolean)scroll;
-        values[5]=(Boolean)selectFirst;
-        values[6]=(Boolean)autoFill;
-        values[7]=(Boolean)mustMatch;
-        values[8]=(Boolean)matchContains;
-        values[9]=(Boolean)multiple;
-        values[10]=(Integer)scrollHeight;
-        values[11]=(String)multipleSeparator;
-        values[12]=(String)formatItem;
-        values[13]=(String)formatMatch;
-        values[14]=(String)formatResult;
-        values[15]=(String)jsonValue;
-        values[16]=(MethodBinding)oncomplete;
-        values[17]=(Integer)delay;
-        values[18]=(Integer)cacheLength;
-        values[19]=(Boolean)matchSubset;
-        values[20]=(Boolean)matchCase;
+        values[1]=minChars;
+        values[2]=max;
+        values[3]=highlight;
+        values[4]=scroll;
+        values[5]=selectFirst;
+        values[6]=autoFill;
+        values[7]=mustMatch;
+        values[8]=matchContains;
+        values[9]=multiple;
+        values[10]=scrollHeight;
+        values[11]=multipleSeparator;
+        values[12]=formatItem;
+        values[13]=formatMatch;
+        values[14]=formatResult;
+        values[15]=jsonValue;
+        values[16]=oncomplete;
+        values[17]=delay;
+        values[18]=cacheLength;
+        values[19]=matchSubset;
+        values[20]=matchCase;
         return values;
     }
     public void restoreState(FacesContext context, Object state)

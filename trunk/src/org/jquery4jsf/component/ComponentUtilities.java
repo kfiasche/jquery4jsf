@@ -8,9 +8,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import javax.faces.event.ActionEvent;
+import javax.faces.webapp.UIComponentTag;
 
 import org.jquery4jsf.el.JQueryMethodBinding;
-import org.jquery4jsf.taglib.html.ext.UIComponentTagBase;
 
 public class ComponentUtilities {
 
@@ -165,7 +165,7 @@ public class ComponentUtilities {
 	}
 	
 	private static boolean isValueReference(String value) {
-		return UIComponentTagBase.isValueReference(value);
+		return UIComponentTag.isValueReference(value);
 	}
 	
 	public static boolean isValidMethodBinding(String mb) {

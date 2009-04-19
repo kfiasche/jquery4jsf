@@ -19,13 +19,10 @@ import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
-import javax.el.ValueExpression;
-import javax.el.MethodExpression;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Integer;
 import java.lang.Float;
 
@@ -75,7 +72,7 @@ public class Draggable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			"jquery/jquery.js",
 			"ui/ui.core.js",
 			"ui/ui.draggable.js",
-			"theme/base/all.css"
+			"themes/base/ui.all.css"
 		};
 	}
 
@@ -385,7 +382,7 @@ public class Draggable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			return zIndex.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(zIndex, "zIndex");
-		return oValue != null ? oValue.intValue()  : 500;
+		return oValue != null ? oValue.intValue()  : -1;
 	}
 	public void setZIndex(int zIndex) {
 		this.zIndex = new Integer(zIndex);
@@ -458,7 +455,7 @@ public class Draggable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 		values[29] = ondragstart;
 		values[30] = ondrag;
 		values[31] = ondragstop;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

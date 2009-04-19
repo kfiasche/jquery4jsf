@@ -49,16 +49,16 @@ public class HtmlAbbr extends HtmlBaseComponent implements HtmlKeyEvent, HtmlMou
     {
         Object[] values = new Object[23];
         values[0] = super.saveState(context);
-        values[1]=(String) onclick;
-        values[2]=(String) ondblclick;
-        values[3]=(String) onkeydown;
-        values[4]=(String) onkeypress;
-        values[5]=(String) onkeyup;
-        values[6]=(String) onmousedown;
-        values[7]=(String) onmousemove;
-        values[8]=(String) onmouseout;
-        values[9]=(String) onmouseover;
-        values[10]=(String) onmouseup;
+        values[1]=onclick;
+        values[2]=ondblclick;
+        values[3]=onkeydown;
+        values[4]=onkeypress;
+        values[5]=onkeyup;
+        values[6]=onmousedown;
+        values[7]=onmousemove;
+        values[8]=onmouseout;
+        values[9]=onmouseover;
+        values[10]=onmouseup;
         return values;
     }
 

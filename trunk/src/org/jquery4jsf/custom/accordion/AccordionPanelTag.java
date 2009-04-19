@@ -1,10 +1,24 @@
+/*
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jquery4jsf.custom.accordion;
 
+import java.lang.String;
+import org.jquery4jsf.taglib.html.ext.UIComponentTagBase;
 import javax.faces.component.UIComponent;
 
-import org.jquery4jsf.taglib.html.ext.HtmlJSBaseTag;
-
-public class AccordionPanelTag extends HtmlJSBaseTag {
+public class AccordionPanelTag extends UIComponentTagBase {
 
 	private String active;
 	private String animated;
@@ -18,34 +32,33 @@ public class AccordionPanelTag extends HtmlJSBaseTag {
 	private String header;
 	private String navigationFilter;
 	private String onaccordionchange;
-	
-	public String getComponentType() {
-		return AccordionPanel.COMPONENT_TYPE;
-	}
-	public String getRendererType() {
-		return AccordionPanel.DEFAULT_RENDERER_TYPE;
-	}
-	
+
 	public void release(){
 		super.release();
-		active			= null;
-		animated        = null;
-		autoHeight      = null;
-		clearStyle      = null;
-		collapsible     = null;
-		event           = null;
-		fillSpace       = null;
-		icons           = null;
-		navigation      = null;
-		header = null;
-		navigationFilter = null;
-		onaccordionchange = null;
+		this.active = null;
+		this.animated = null;
+		this.autoHeight = null;
+		this.clearStyle = null;
+		this.collapsible = null;
+		this.event = null;
+		this.fillSpace = null;
+		this.icons = null;
+		this.navigation = null;
+		this.header = null;
+		this.navigationFilter = null;
+		this.onaccordionchange = null;
 	}
-	
-	
-	
-	protected void setProperties(UIComponent component) {
-		super.setProperties(component);
+
+	protected void setProperties(UIComponent comp){
+		super.setProperties(comp);
+
+		org.jquery4jsf.custom.accordion.AccordionPanel component = null;
+		try {
+			component = (org.jquery4jsf.custom.accordion.AccordionPanel) comp;
+		} catch(ClassCastException cce) {
+			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
+		}
+
 		setIntegerProperty(getFacesContext(), component, "active", active);
 		setStringProperty(getFacesContext(), component, "animated", animated);
 		setBooleanProperty(getFacesContext(), component, "autoHeight", autoHeight);
@@ -55,46 +68,65 @@ public class AccordionPanelTag extends HtmlJSBaseTag {
 		setBooleanProperty(getFacesContext(), component, "fillSpace", fillSpace);
 		setStringProperty(getFacesContext(), component, "icons", icons);
 		setBooleanProperty(getFacesContext(), component, "navigation", navigation);
-		setStringProperty(getFacesContext(), component, "header",header);
-		setStringProperty(getFacesContext(), component, "navigationFilter",navigationFilter);
-		setStringProperty(getFacesContext(), component, "onaccordionchange",onaccordionchange);
+		setStringProperty(getFacesContext(), component, "header", header);
+		setStringProperty(getFacesContext(), component, "navigationFilter", navigationFilter);
+		setStringProperty(getFacesContext(), component, "onaccordionchange", onaccordionchange);
 	}
-	
-	public void setActive(String active) {
-		this.active = active;
+
+	public String getComponentType() {
+		return AccordionPanel.COMPONENT_TYPE;
 	}
-	public void setAnimated(String animated) {
-		this.animated = animated;
+
+	public String getRendererType() {
+		return "org.jquery4jsf.AccordionPanelRenderer";
 	}
-	public void setAutoHeight(String autoHeight) {
-		this.autoHeight = autoHeight;
+
+	public void setActive(String value){
+		this.active = value;
 	}
-	public void setClearStyle(String clearStyle) {
-		this.clearStyle = clearStyle;
+
+	public void setAnimated(String value){
+		this.animated = value;
 	}
-	public void setCollapsible(String collapsible) {
-		this.collapsible = collapsible;
+
+	public void setAutoHeight(String value){
+		this.autoHeight = value;
 	}
-	public void setEvent(String event) {
-		this.event = event;
+
+	public void setClearStyle(String value){
+		this.clearStyle = value;
 	}
-	public void setFillSpace(String fillSpace) {
-		this.fillSpace = fillSpace;
+
+	public void setCollapsible(String value){
+		this.collapsible = value;
 	}
-	public void setIcons(String icons) {
-		this.icons = icons;
+
+	public void setEvent(String value){
+		this.event = value;
 	}
-	public void setNavigation(String navigation) {
-		this.navigation = navigation;
+
+	public void setFillSpace(String value){
+		this.fillSpace = value;
 	}
-	public void setHeader(String header) {
-		this.header = header;
+
+	public void setIcons(String value){
+		this.icons = value;
 	}
-	public void setNavigationFilter(String navigationFilter) {
-		this.navigationFilter = navigationFilter;
+
+	public void setNavigation(String value){
+		this.navigation = value;
 	}
-	public void setOnaccordionchange(String onaccordionchange) {
-		this.onaccordionchange = onaccordionchange;
+
+	public void setHeader(String value){
+		this.header = value;
 	}
-	
+
+	public void setNavigationFilter(String value){
+		this.navigationFilter = value;
+	}
+
+	public void setOnaccordionchange(String value){
+		this.onaccordionchange = value;
+	}
+
 }

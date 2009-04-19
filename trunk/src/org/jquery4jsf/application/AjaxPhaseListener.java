@@ -39,7 +39,7 @@ public class AjaxPhaseListener implements PhaseListener {
 			String values[] = id.split(":");
 			int i = values.length -1;
 			id = values[i];
-			UIComponent component = (UIComponent) ComponentUtilities.findComponentInRoot(id);
+			UIComponent component = ComponentUtilities.findComponentInRoot(id);
 			if (component instanceof AjaxComponent){
 				((AjaxComponent) component).encodePartially(context);
 			}

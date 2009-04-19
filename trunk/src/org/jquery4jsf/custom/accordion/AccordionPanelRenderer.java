@@ -104,7 +104,6 @@ public class AccordionPanelRenderer extends JQueryBaseRenderer implements AjaxBa
 	}
 
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
-		super.encodeChildren(context, component);
 	}
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {

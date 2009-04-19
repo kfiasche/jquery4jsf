@@ -7,26 +7,50 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
+import org.jquery4jsf.renderkit.RendererUtilities;
+import org.jquery4jsf.renderkit.html.HTML;
+import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
+
+import com.sun.faces.util.Util;
+
 public class HtmlDivRenderer extends Renderer {
 
 
-    public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-        ResponseWriter writer = context.getResponseWriter();
-        writer.startElement("div", component);
-        writer.writeAttribute("id", component.getClientId(context), "clientId");
-        //writer.writeAttribute("class", component.getAttributes().get("styleclass"),"styleclass");
-        writer.flush();
-    }
+	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+		if(context == null || context == null)
+			throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+		if(!component.isRendered())
+			return;
+	}
 
-    public void encodeEnd(FacesContext context,UIComponent component) throws IOException {
-        ResponseWriter writer = context.getResponseWriter();
-        writer.endElement("div");
-        writer.flush();
-    }
+	public void encodeEnd(FacesContext context,UIComponent component) throws IOException {
+		if(context == null || context == null)
+			throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+		if(!component.isRendered())
+			return;
+		
+		HtmlDiv htmlDiv = null;
+		if(component instanceof HtmlDiv)
+			htmlDiv = (HtmlDiv)component;
 
-    public void decode(FacesContext context, UIComponent component) {
+		ResponseWriter responseWriter = context.getResponseWriter();
+		responseWriter.startElement(HTML.TAG_DIV, htmlDiv);
+		responseWriter.writeAttribute("id", htmlDiv.getClientId(context), "id");
+		HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_STD_ATTR);
+		RendererUtilities.renderChildren(context, component);
+		responseWriter.endElement(HTML.TAG_DIV);
+	}
+
+    public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
+	}
+
+	public void decode(FacesContext context, UIComponent component) {
         return;
     }
+
+	public boolean getRendersChildren() {
+		return true;
+	}
 
 
 }

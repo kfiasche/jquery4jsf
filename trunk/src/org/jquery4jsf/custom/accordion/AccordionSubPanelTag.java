@@ -1,15 +1,43 @@
+/*
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jquery4jsf.custom.accordion;
 
+import java.lang.String;
+import org.jquery4jsf.taglib.html.ext.UIComponentTagBase;
 import javax.faces.component.UIComponent;
 
-import org.jquery4jsf.taglib.html.ext.UIComponentTagBase;
-
 public class AccordionSubPanelTag extends UIComponentTagBase {
-	
+
 	private String panelName;
 
-	public void setPanelName(String panelName) {
-		this.panelName = panelName;
+	public void release(){
+		super.release();
+		this.panelName = null;
+	}
+
+	protected void setProperties(UIComponent comp){
+		super.setProperties(comp);
+
+		org.jquery4jsf.custom.accordion.AccordionSubPanel component = null;
+		try {
+			component = (org.jquery4jsf.custom.accordion.AccordionSubPanel) comp;
+		} catch(ClassCastException cce) {
+			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
+		}
+
+		setStringProperty(getFacesContext(), component, "panelName", panelName);
 	}
 
 	public String getComponentType() {
@@ -17,18 +45,11 @@ public class AccordionSubPanelTag extends UIComponentTagBase {
 	}
 
 	public String getRendererType() {
-		return AccordionSubPanel.DEFAULT_RENDERER_TYPE;
-	}
-	
-	public void release(){
-		super.release();
-		panelName = null;
+		return "org.jquery4jsf.AccordionSubPanelRenderer";
 	}
 
-	protected void setProperties(UIComponent component) {
-		super.setProperties(component);
-		setStringProperty(getFacesContext(), component, "panelName", panelName);
+	public void setPanelName(String value){
+		this.panelName = value;
 	}
-	
-	
+
 }

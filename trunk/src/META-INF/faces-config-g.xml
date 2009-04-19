@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE faces-config PUBLIC
+		"-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+		"http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+
+<faces-config xmlns="http://java.sun.com/JSF/Configuration">
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlAccordionPanel</component-type>
+		<component-class>org.jquery4jsf.custom.accordion.AccordionPanel</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlAccordionSubPanel</component-type>
+		<component-class>org.jquery4jsf.custom.accordion.AccordionSubPanel</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlCarousel</component-type>
+		<component-class>org.jquery4jsf.custom.carousel.Carousel</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlDatePicker</component-type>
+		<component-class>org.jquery4jsf.custom.datepicker.DatePicker</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlDraggable</component-type>
+		<component-class>org.jquery4jsf.custom.draggable.Draggable</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlDroppable</component-type>
+		<component-class>org.jquery4jsf.custom.droppable.Droppable</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlEffect</component-type>
+		<component-class>org.jquery4jsf.custom.effect.Effect</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlPanel</component-type>
+		<component-class>org.jquery4jsf.custom.panel.Panel</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlResizable</component-type>
+		<component-class>org.jquery4jsf.custom.resizable.Resizable</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlSelectable</component-type>
+		<component-class>org.jquery4jsf.custom.selectable.Selectable</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlTooltip</component-type>
+		<component-class>org.jquery4jsf.custom.tooltip.Tooltip</component-class>
+	</component>
+
+	<render-kit>
+		<renderer>
+			<component-family>org.jquery4jsf.AccordionPanel</component-family>
+			<renderer-type>org.jquery4jsf.AccordionPanelRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.accordion.AccordionPanelRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.AccordionSubPanel</component-family>
+			<renderer-type>org.jquery4jsf.AccordionSubPanelRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.accordion.AccordionSubPanelRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Carousel</component-family>
+			<renderer-type>org.jquery4jsf.CarouselRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.carousel.CarouselRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.DatePicker</component-family>
+			<renderer-type>org.jquery4jsf.DatePickerRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.datepicker.DatePickerRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Draggable</component-family>
+			<renderer-type>org.jquery4jsf.DraggableRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.draggable.DraggableRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Droppable</component-family>
+			<renderer-type>org.jquery4jsf.DroppableRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.droppable.DroppableRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Effect</component-family>
+			<renderer-type>org.jquery4jsf.EffectRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.effect.EffectRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Panel</component-family>
+			<renderer-type>org.jquery4jsf.PanelRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.panel.PanelRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Resizable</component-family>
+			<renderer-type>org.jquery4jsf.ResizableRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.resizable.ResizableRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Selectable</component-family>
+			<renderer-type>org.jquery4jsf.SelectableRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.selectable.SelectableRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Tooltip</component-family>
+			<renderer-type>org.jquery4jsf.TooltipRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.tooltip.TooltipRenderer</renderer-class>
+		</renderer>
+	</render-kit>
+
+</faces-config>

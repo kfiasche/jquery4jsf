@@ -68,14 +68,14 @@ public abstract class HtmlBaseComponent extends UIComponentBase{
     {
         Object[] values = new Object[9];
         values[0] = super.saveState(context);
-        values[1] = (String) styleClass;
-        values[2] = (String) style;
-        values[3] = (String) title;
-        values[4] = (String) dir;
-        values[5] = (String) lang;
-        values[6] = (String) xmlLang;
-        values[7] = (String) accesskey;
-        values[8] = (Integer) tabindex;
+        values[1] = styleClass;
+        values[2] = style;
+        values[3] = title;
+        values[4] = dir;
+        values[5] = lang;
+        values[6] = xmlLang;
+        values[7] = accesskey;
+        values[8] = tabindex;
         return values;
     }
 	

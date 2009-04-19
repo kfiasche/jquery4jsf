@@ -29,11 +29,11 @@ public class DroppableBaseRenderer extends JQueryBaseRenderer {
 		encodeOptionComponentByType(options, droppable.getHoverClass(), "hoverClass");
 		encodeOptionComponentByType(options, droppable.getScope(), "scope");
 		encodeOptionComponentByType(options, droppable.getTolerance(), "tolerance");
-		encodeOptionComponentFunction(options, droppable.getOndropactivate(), "ondropactivate");
-		encodeOptionComponentFunction(options, droppable.getOndropdeactivate(), "ondropdeactivate");
-		encodeOptionComponentFunction(options, droppable.getOndropover(), "ondropover");
-		encodeOptionComponentFunction(options, droppable.getOndropout(), "ondropout");
-		encodeOptionComponentFunction(options, droppable.getOndrop(), "ondrop");
+		encodeOptionComponentByType(options, droppable.getOndropactivate(), "ondropactivate");
+		encodeOptionComponentByType(options, droppable.getOndropdeactivate(), "ondropdeactivate");
+		encodeOptionComponentByType(options, droppable.getOndropover(), "ondropover");
+		encodeOptionComponentByType(options, droppable.getOndropout(), "ondropout");
+		encodeOptionComponentByType(options, droppable.getOndrop(), "ondrop");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

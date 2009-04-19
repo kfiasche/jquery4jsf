@@ -1,7 +1,6 @@
 package org.jquery4jsf.custom.panel;
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.webapp.UIComponentBodyTag;
 import javax.servlet.jsp.JspException;
@@ -12,8 +11,13 @@ import org.jquery4jsf.component.ComponentUtilities;
 public class HtmlDivTag extends UIComponentBodyTag
  {
     private String styleClass;
+    private String style;
 
-    public HtmlDivTag() {
+    public void setStyle(String style) {
+		this.style = style;
+	}
+
+	public HtmlDivTag() {
     }
 
     public String getComponentType() {
@@ -26,15 +30,12 @@ public class HtmlDivTag extends UIComponentBodyTag
 
     public void setProperties(UIComponent component) {
         super.setProperties(component);
-        ComponentUtilities.setStringProperty(getFacesContext(), component, "styleclass", styleClass);
+        ComponentUtilities.setStringProperty(getFacesContext(), component, "styleClass", styleClass);
+        ComponentUtilities.setStringProperty(getFacesContext(), component, "style", style);
     }
 
-    public void setStyleclass(String styleClass) {
+    public void setStyleClass(String styleClass) {
         this.styleClass = styleClass;
-    }
-
-    public String getStyleclass() {
-        return styleClass;
     }
     
 
@@ -45,10 +46,12 @@ public class HtmlDivTag extends UIComponentBodyTag
         {
         	String bodyContentString = bodyContent.getString().trim();
         	if (bodyContentString != null && !bodyContent.equals("")){
-        		UIOutput output = (UIOutput) getFacesContext().getApplication().createComponent(HtmlOutputText.COMPONENT_TYPE);
+        		HtmlOutputText output = (HtmlOutputText) getFacesContext().getApplication().createComponent(HtmlOutputText.COMPONENT_TYPE);
         		output.setId(getFacesContext().getViewRoot().createUniqueId());
         		output.setTransient(true);
         		output.setRendered(true);
+        		output.setEscape(false);
+        		output.setValue(bodyContentString);
         		HtmlDiv htmlDiv = (HtmlDiv) getComponentInstance();
         		if (htmlDiv != null){
         			htmlDiv.getChildren().add(output);

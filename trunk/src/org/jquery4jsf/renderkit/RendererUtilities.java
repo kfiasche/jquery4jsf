@@ -3,9 +3,9 @@ package org.jquery4jsf.renderkit;
 import java.io.IOException;
 import java.util.Iterator;
 
+import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
-import javax.faces.component.UINamingContainer;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -142,15 +142,24 @@ public class RendererUtilities {
 		if (value != null){
 			if (value instanceof String){
 				String s = (String)value;
-				createOptionComponentStringByType(sb, s, nameParameter);
+				if (nameParameter.substring(0,2).equalsIgnoreCase("on")){
+					createOptionComponentFunction(sb, s, nameParameter);
+				}
+				else{
+					createOptionComponentStringByType(sb, s, nameParameter);
+				}
 			}
 			else if (value instanceof Integer){
-				String s = ((Integer)value).toString();
-				sb.append(nameParameter.concat(": ").concat(s).concat(", \n"));
+				if (((Integer)value).intValue() > -1){
+					String s = ((Integer)value).toString();
+					sb.append(nameParameter.concat(": ").concat(s).concat(", \n"));
+				}
 			}
 			else if (value instanceof Boolean){
+				if(((Boolean)value).booleanValue()){
 					String s = ((Boolean)value).toString();
 					sb.append(nameParameter.concat(": ").concat(s).concat(", \n"));
+				}
 			}
 		}
 	}
@@ -162,7 +171,7 @@ public class RendererUtilities {
 	
 	public static void createOptionComponentFunction(StringBuffer options, String value, String nameParameter) {
 		if (value != null){
-			options.append(cleanPrefixFunction(nameParameter).concat(": function (event, ui) {\n"));
+			options.append(cleanPrefixFunction(nameParameter).concat(": function(event, ui) {\n"));
 			options.append(value);
 			options.append("\n}");
 			options.append(", \n");
@@ -216,14 +225,14 @@ public class RendererUtilities {
 		UIComponent forComponent = uiComponent.findComponent(forAttr);
 		if (forComponent == null) {
 			if (forAttr.length() > 0
-					&& forAttr.charAt(0) == UINamingContainer.SEPARATOR_CHAR) {
+					&& forAttr.charAt(0) == NamingContainer.SEPARATOR_CHAR) {
 				// absolute id path
 				return forAttr.substring(1);
 			} else {
 				// relative id path, we assume a component on the same level
 				// as the label component
 				String labelClientId = uiComponent.getClientId(facesContext);
-				int colon = labelClientId.lastIndexOf(UINamingContainer.SEPARATOR_CHAR);
+				int colon = labelClientId.lastIndexOf(NamingContainer.SEPARATOR_CHAR);
 				if (colon == -1) {
 					return forAttr;
 				} else {

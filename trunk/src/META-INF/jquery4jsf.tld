@@ -1277,66 +1277,6 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>resources</name>
-		<tag-class>org.jquery4jsf.custom.resources.ResourcesTag</tag-class>
-		<body-content>JSP</body-content>
-		<!-- UIComponent attributes -->
-		<attribute>
-			<name>id</name>
-			<rtexprvalue>false</rtexprvalue>
-			<type>java.lang.String</type>
-			<description>The developer-assigned ID of this component. The ID
-				must be unique within the scope of the tag's enclosing naming
-				container (e.g. h:form or f:subview). This value must be a static
-				value.</description>
-		</attribute>
-		<attribute>
-			<name>binding</name>
-			<rtexprvalue>false</rtexprvalue>
-			<type>java.lang.String</type>
-			<description>Identifies a backing bean property (of type
-				UIComponent or appropriate subclass) to bind to this component
-				instance. This value must be an EL expression.</description>
-		</attribute>
-		<attribute>
-			<name>rendered</name>
-			<rtexprvalue>false</rtexprvalue>
-			<type>java.lang.String</type>
-			<description>A boolean value that indicates whether this component
-				should be rendered. Default value: true.</description>
-		</attribute>
-	</tag>
-	<tag>
-		<name>jqueryDocument</name>
-		<tag-class>org.jquery4jsf.custom.resources.JQueryDocumentTag</tag-class>
-		<body-content>JSP</body-content>
-		<!-- UIComponent attributes -->
-		<attribute>
-			<name>id</name>
-			<rtexprvalue>false</rtexprvalue>
-			<type>java.lang.String</type>
-			<description>The developer-assigned ID of this component. The ID
-				must be unique within the scope of the tag's enclosing naming
-				container (e.g. h:form or f:subview). This value must be a static
-				value.</description>
-		</attribute>
-		<attribute>
-			<name>binding</name>
-			<rtexprvalue>false</rtexprvalue>
-			<type>java.lang.String</type>
-			<description>Identifies a backing bean property (of type
-				UIComponent or appropriate subclass) to bind to this component
-				instance. This value must be an EL expression.</description>
-		</attribute>
-		<attribute>
-			<name>rendered</name>
-			<rtexprvalue>false</rtexprvalue>
-			<type>java.lang.String</type>
-			<description>A boolean value that indicates whether this component
-				should be rendered. Default value: true.</description>
-		</attribute>
-	</tag>
-	<tag>
 		<name>outputScript</name>
 		<tag-class>org.jquery4jsf.custom.outputscript.OutputScriptTag</tag-class>
 		<body-content>JSP</body-content>
@@ -1389,7 +1329,7 @@
 	</tag>
 	<tag>
 		<name>datePicker</name>
-		<tag-class>org.jquery4jsf.custom.datapiker.DatePickerTag</tag-class>
+		<tag-class>org.jquery4jsf.custom.datepicker.DatePickerTag</tag-class>
 		<body-content>JSP</body-content>
 		<!-- UIComponent attributes -->
 		<attribute>
@@ -2658,11 +2598,75 @@
 	<tag>
 		<name>div</name>
 		<tag-class>org.jquery4jsf.custom.panel.HtmlDivTag</tag-class>
+				<!-- UIComponent attributes -->
 		<attribute>
 			<name>id</name>
+			<rtexprvalue>false</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>The developer-assigned ID of this component. The ID
+				must be unique within the scope of the tag's enclosing naming
+				container (e.g. h:form or f:subview). This value must be a static
+				value.</description>
 		</attribute>
 		<attribute>
-			<name>styleclass</name>
+			<name>binding</name>
+			<rtexprvalue>false</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>Identifies a backing bean property (of type
+				UIComponent or appropriate subclass) to bind to this component
+				instance. This value must be an EL expression.</description>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<rtexprvalue>false</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>A boolean value that indicates whether this component
+				should be rendered. Default value: true.</description>
+		</attribute>
+		<attribute>
+			<name>immediate</name>
+			<rtexprvalue>false</rtexprvalue>
+			<type>java.lang.String</type>
+			<description>A boolean value that identifies the phase during which
+				action events should fire. During normal event processing, action
+				methods and action listener methods are fired during the "invoke
+				application" phase of request processing. If this attribute is set
+				to "true", these methods are fired instead at the end of the "apply
+				request values" phase.</description>
+		</attribute>
+		<!-- HTML 4.0 universal attributes -->
+		<attribute>
+			<name>dir</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>HTML: The direction of text display, either 'ltr'
+				(left-to-right) or 'rtl' (right-to-left).</description>
+		</attribute>
+		<attribute>
+			<name>lang</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>HTML: The base language of this document.</description>
+		</attribute>
+		<attribute>
+			<name>xmlLang</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>HTML: The base language of this document.</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>HTML: CSS styling instructions.</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>HTML: An advisory title for this element. Often
+				used by the user agent as a tooltip.</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>The CSS class for this element. Corresponds to the
+				HTML 'class' attribute.</description>
 		</attribute>
 	</tag>
 	<tag>
@@ -3279,6 +3283,433 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 			<description><![CDATA[This event is triggered when an accepted draggable is dropped 'over' (within the tolerance of) this droppable. In the callback, $(this) represents the droppable the draggable is dropped on. ui.draggable represents the draggable.]]></description>
+		</attribute>
+	</tag>
+		<tag>
+		<name>effect</name>
+		<tag-class>org.jquery4jsf.custom.effect.EffectTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>for</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If set add draggable property on component where id is igual]]></description>
+		</attribute>
+		<attribute>
+			<name>effect</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>options</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[A object/hash including specific options for the effect.]]></description>
+		</attribute>
+		<attribute>
+			<name>speed</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[A string representing one of the three predefined speeds ("slow", "normal", or "fast") or the number of milliseconds to run the animation (e.g. 1000).]]></description>
+		</attribute>
+		<attribute>
+			<name>callback</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[A function that is called after the effect is completed.]]></description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>resizable</name>
+		<tag-class>org.jquery4jsf.custom.resizable.ResizableTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>for</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If set add draggable property on component where id is igual]]></description>
+		</attribute>
+		<attribute>
+			<name>alsoResize</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Resize these elements synchronous when resizing.]]></description>
+		</attribute>
+		<attribute>
+			<name>animateDuration</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Initialize a resizable with the animateDuration option specified.]]></description>
+		</attribute>
+		<attribute>
+			<name>animateEasing</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Easing effect for animating.]]></description>
+		</attribute>
+		<attribute>
+			<name>aspectRatio</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If set to true, resizing is constrained by the original aspect ratio. Otherwise a custom aspect ratio can be specified, such as 9 / 16, or 0.5.]]></description>
+		</attribute>
+		<attribute>
+			<name>autoHide</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[If set to true, automatically hides the handles except when the mouse hovers over the element.]]></description>
+		</attribute>
+		<attribute>
+			<name>cancel</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Prevents resizing if you start on elements matching the selector.]]></description>
+		</attribute>
+		<attribute>
+			<name>containment</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Constrains resizing to within the bounds of the specified element. Possible values: 'parent', 'document', a DOMElement, or a Selector.]]></description>
+		</attribute>
+		<attribute>
+			<name>delay</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[Tolerance, in milliseconds, for when resizing should start. If specified, resizing will not start until after mouse is moved beyond duration. This can help prevent unintended resizing when clicking on an element.]]></description>
+		</attribute>
+		<attribute>
+			<name>distance</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[Tolerance, in pixels, for when resizing should start. If specified, resizing will not start until after mouse is moved beyond distance. This can help prevent unintended resizing when clicking on an element.]]></description>
+		</attribute>
+		<attribute>
+			<name>ghost</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[If set to true, a semi-transparent helper element is shown for resizing.]]></description>
+		</attribute>
+		<attribute>
+			<name>grid</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Snaps the resizing element to a grid, every x and y pixels. Array values: [x, y]]]></description>
+		</attribute>
+		<attribute>
+			<name>handles</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[if specified as a string, should be a comma-split list of any of the following: 'n, e, s, w, ne, se, sw, nw, all'. The necessary handles will be auto-generated by the plugin.If specified as an object, the following keys are supported: { n, e, s, w, ne, se, sw, nw }. The value of any specified should be a jQuery selector matching the child element of the resizable to use as that handle. If the handle is not a child of the resizable, you can pass in the DOMElement or a valid jQuery object directly.]]></description>
+		</attribute>
+		<attribute>
+			<name>helper</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This is the css class that will be added to a proxy element to outline the resize during the drag of the resize handle. Once the resize is complete, the original element is sized.]]></description>
+		</attribute>
+		<attribute>
+			<name>maxHeight</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[This is the maximum height the resizable should be allowed to resize to.]]></description>
+		</attribute>
+		<attribute>
+			<name>maxWidth</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[This is the maximum width the resizable should be allowed to resize to.]]></description>
+		</attribute>
+		<attribute>
+			<name>minWidth</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[This is the minimum width the resizable should be allowed to resize to.]]></description>
+		</attribute>
+		<attribute>
+			<name>minHeight</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[This is the minimum height the resizable should be allowed to resize to.]]></description>
+		</attribute>
+		<attribute>
+			<name>onstart</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered at the start of a resize operation.]]></description>
+		</attribute>
+		<attribute>
+			<name>onresize</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered during the resize, on the drag of the resize handler.]]></description>
+		</attribute>
+		<attribute>
+			<name>onstop</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered at the end of a resize operation.]]></description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>selectable</name>
+		<tag-class>org.jquery4jsf.custom.selectable.SelectableTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>for</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If set add draggable property on component where id is igual]]></description>
+		</attribute>
+		<attribute>
+			<name>autoRefresh</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[This determines whether to refresh (recalculate) the position and size of each selectee at the beginning of each select operation. If you have many many items, you may want to set this to false and call the refresh method manually.]]></description>
+		</attribute>
+		<attribute>
+			<name>cancel</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Prevents selecting if you start on elements matching the selector.]]></description>
+		</attribute>
+		<attribute>
+			<name>delay</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>distance</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[Tolerance, in pixels, for when selecting should start. If specified, selecting will not start until after mouse is dragged beyond distance.]]></description>
+		</attribute>
+		<attribute>
+			<name>filter</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[The matching child elements will be made selectees (able to be selected).]]></description>
+		</attribute>
+		<attribute>
+			<name>tolerance</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Possible values: 'touch', 'fit'.]]></description>
+		</attribute>
+		<attribute>
+			<name>onselected</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered at the end of the select operation, on each element added to the selection.]]></description>
+		</attribute>
+		<attribute>
+			<name>onselecting</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered during the select operation, on each element added to the selection.]]></description>
+		</attribute>
+		<attribute>
+			<name>onstart</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered at the beginning of the select operation.]]></description>
+		</attribute>
+		<attribute>
+			<name>stop</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered at the end of the select operation.]]></description>
+		</attribute>
+		<attribute>
+			<name>onunselected</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered at the end of the select operation.]]></description>
+		</attribute>
+		<attribute>
+			<name>onunselecting</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered during the select operation, on each element removed from the selection.]]></description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>tooltip</name>
+		<tag-class>org.jquery4jsf.custom.tooltip.TooltipTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>delay</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[The number of milliseconds before a tooltip is display.]]></description>
+		</attribute>
+		<attribute>
+			<name>track</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If true, let the tooltip track the mousemovement.]]></description>
+		</attribute>
+		<attribute>
+			<name>showURL</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If true, shows the href or src attribute within div.url.]]></description>
+		</attribute>
+		<attribute>
+			<name>showBody</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If specified, uses the String to split the title, displaying the first part in the h3 tag, all following in the div.body tag, separated with s]]></description>
+		</attribute>
+		<attribute>
+			<name>onbodyHandler</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If specified its called to format the tooltip-body, hiding the title-part. The callback can return a HTML-String, a DOM element or a jQuery object.]]></description>
+		</attribute>
+		<attribute>
+			<name>extraClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If specified, adds the class to the tooltip helper.]]></description>
+		</attribute>
+		<attribute>
+			<name>top</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[The top-offset for the tooltip position. 0 is the mouse position.]]></description>
+		</attribute>
+		<attribute>
+			<name>fixPNG</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[If true, fixes transparent background-image PNGs in IE.]]></description>
+		</attribute>
+		<attribute>
+			<name>left</name>
+			<required>false</required>
+			<type>int</type>
+			<description><![CDATA[The left-offset for the tooltip position. 0 is the mouse position.]]></description>
+		</attribute></tag>
+		<tag>
+		<name>panel</name>
+		<tag-class>org.jquery4jsf.custom.panel.PanelTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[CSS style(s) to be applied when this component is rendered.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Space-separated list of CSS style class(es) to be applied when this element is rendered. This value must be passed through as the "class" property on generated markup.]]></description>
+		</attribute>
+		<attribute>
+			<name>header</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Header text of the panel]]></description>
+		</attribute>
+		<attribute>
+			<name>headerClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Style class of the panel header]]></description>
+		</attribute>
+		<attribute>
+			<name>contentClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Style class of the panel content]]></description>
 		</attribute>
 	</tag>
 </taglib>

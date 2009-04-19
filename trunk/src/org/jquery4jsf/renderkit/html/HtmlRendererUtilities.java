@@ -25,7 +25,7 @@ public class HtmlRendererUtilities {
 	
 	public static boolean writeHtmlAttribute(ResponseWriter writer, String propertyComponent, String attributeName, Object value) throws IOException {
         if (!isDefaultAttributeValue(value)) {
-            String htmlAttrName = attributeName.equals(JSFConstants.STYLE_CLASS) ? HTML.STYLE_CLASS : attributeName;
+            String htmlAttrName = attributeName.equals(JSFConstants.STYLE_CLASS) ? "class" : attributeName;
             writer.writeAttribute(htmlAttrName, value, propertyComponent);
             return true;
         }

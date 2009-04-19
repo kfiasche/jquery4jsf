@@ -88,26 +88,26 @@ public class AutoCompleteRenderer extends JQueryInputBaseRenderer implements Aja
     		options.append("\"");
     	}
     	options.append(", {\n");
-    	createOptionComponentByType(options, autoComplete.getMinChars(), "minChars");
-    	createOptionComponentByType(options, autoComplete.getDelay(), "delay");
-    	createOptionComponentByType(options, autoComplete.getCacheLength(), "cacheLength");
-    	createOptionComponentByType(options, autoComplete.isMatchSubset(), "matchSubset");
-    	createOptionComponentByType(options, autoComplete.isMatchCase(), "matchCase");
-    	createOptionComponentByType(options, autoComplete.isMustMatch(), "mustMatch");
-    	createOptionComponentByType(options, autoComplete.isSelectFirst(), "selectFirst");
+    	encodeOptionComponentByType(options, autoComplete.getMinChars(), "minChars");
+    	encodeOptionComponentByType(options, autoComplete.getDelay(), "delay");
+    	encodeOptionComponentByType(options, autoComplete.getCacheLength(), "cacheLength");
+    	encodeOptionComponentByType(options, autoComplete.isMatchSubset(), "matchSubset");
+    	encodeOptionComponentByType(options, autoComplete.isMatchCase(), "matchCase");
+    	encodeOptionComponentByType(options, autoComplete.isMustMatch(), "mustMatch");
+    	encodeOptionComponentByType(options, autoComplete.isSelectFirst(), "selectFirst");
     	//TODO devo inserire questo parametro
-    	//createOptionComponentByType(options, autoComplete.getExtraParams(), "extraParams");
-    	//createOptionComponentByFunction(options, autoComplete.getFormatItem(), "formatItem");
-    	//createOptionComponentByFunction(options, autoComplete.getFormatMatch(), "formatMatch");
-    	//createOptionComponentByFunction(options, autoComplete.getFormatResult(), "formatResult");
-    	createOptionComponentByType(options, autoComplete.isMultiple(), "multiple");
-    	createOptionComponentByType(options, autoComplete.getMultipleSeparator(), "multipleSeparator");
-    	//createOptionComponentByType(options, autoComplete.get(), "width");
-    	createOptionComponentByType(options, autoComplete.isAutoFill(), "autoFill");
-    	createOptionComponentByType(options, autoComplete.getMax(), "max");
-    	createOptionComponentByType(options, autoComplete.isHighlight(), "highlight");
-    	createOptionComponentByType(options, autoComplete.isScroll(), "scroll");
-    	createOptionComponentByType(options, autoComplete.getScrollHeight(), "scrollHeight");
+    	//encodeOptionComponentByType(options, autoComplete.getExtraParams(), "extraParams");
+    	//encodeOptionComponentByFunction(options, autoComplete.getFormatItem(), "formatItem");
+    	//encodeOptionComponentByFunction(options, autoComplete.getFormatMatch(), "formatMatch");
+    	//encodeOptionComponentByFunction(options, autoComplete.getFormatResult(), "formatResult");
+    	encodeOptionComponentByType(options, autoComplete.isMultiple(), "multiple");
+    	encodeOptionComponentByType(options, autoComplete.getMultipleSeparator(), "multipleSeparator");
+    	//encodeOptionComponentByType(options, autoComplete.get(), "width");
+    	encodeOptionComponentByType(options, autoComplete.isAutoFill(), "autoFill");
+    	encodeOptionComponentByType(options, autoComplete.getMax(), "max");
+    	encodeOptionComponentByType(options, autoComplete.isHighlight(), "highlight");
+    	encodeOptionComponentByType(options, autoComplete.isScroll(), "scroll");
+    	encodeOptionComponentByType(options, autoComplete.getScrollHeight(), "scrollHeight");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

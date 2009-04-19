@@ -1,6 +1,6 @@
 package org.jquery4jsf.custom.calendar;
 
-import org.jquery4jsf.custom.datapiker.DatePickerTag;
+import org.jquery4jsf.custom.datepicker.DatePickerTag;
 
 public class CalendarTag extends DatePickerTag {
 

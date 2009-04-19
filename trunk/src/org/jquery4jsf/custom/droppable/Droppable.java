@@ -19,13 +19,10 @@ import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
-import javax.el.ValueExpression;
-import javax.el.MethodExpression;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 
 public class Droppable extends HtmlBaseComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -55,7 +52,7 @@ public class Droppable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			"jquery/jquery.js",
 			"ui/ui.core.js",
 			"ui/ui.droppable.js",
-			"theme/base/all.css"
+			"themes/base/ui.all.css"
 		};
 	}
 
@@ -222,7 +219,7 @@ public class Droppable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 		values[11] = ondropover;
 		values[12] = ondropout;
 		values[13] = ondrop;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

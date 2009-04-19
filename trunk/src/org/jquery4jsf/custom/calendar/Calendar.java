@@ -1,6 +1,6 @@
 package org.jquery4jsf.custom.calendar;
 
-import org.jquery4jsf.custom.datapiker.DatePicker;
+import org.jquery4jsf.custom.datepicker.DatePicker;
 
 public class Calendar extends DatePicker {
 

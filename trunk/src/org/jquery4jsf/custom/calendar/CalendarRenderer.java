@@ -7,8 +7,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.servlet.http.HttpServletRequest;
 
-import org.jquery4jsf.custom.datapiker.DatePicker;
-import org.jquery4jsf.custom.datapiker.DatePickerRenderer;
+import org.jquery4jsf.custom.datepicker.DatePicker;
+import org.jquery4jsf.custom.datepicker.DatePickerRenderer;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -35,6 +35,7 @@ public class CalendarRenderer extends DatePickerRenderer {
             throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
+        
         DatePicker datePicker = null;
         if(component instanceof DatePicker)
         	datePicker = (DatePicker)component;
@@ -62,10 +63,10 @@ public class CalendarRenderer extends DatePickerRenderer {
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
         JSElement element = new JSElement(datePicker.getClientId(context));
-        JSAttribute jsAutocomplete = new JSAttribute("datepicker", false);
+        JSAttribute jsDatePicker = new JSAttribute("datepicker", false);
         StringBuffer sbOption = new StringBuffer();
-        jsAutocomplete.addValue(createOptionComponent(sbOption, datePicker, context));
-        element.addAttribute(jsAutocomplete);
+        jsDatePicker.addValue(encodeOptionComponent(sbOption, datePicker, context));
+        element.addAttribute(jsDatePicker);
         JSFunction function = new JSFunction();
         function.addJSElement(element);
         documentElement.addFunctionToReady(function);
