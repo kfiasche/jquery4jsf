@@ -25,7 +25,7 @@
 							<jq:calendar id="calendar"></jq:calendar>
 						</div>
 						<!-- End demo -->
-						<div class="demo-description">
+						<div class="ui-widget-content">
 							<p>
 								Display the datepicker embedded in the page instead of in an
 								overlay. Simply call .datepicker() on a div instead of an input.

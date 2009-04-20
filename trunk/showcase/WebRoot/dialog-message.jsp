@@ -18,12 +18,21 @@
 			<!--right side start -->
 			<div id="rightPan">
 				<f:view>
-					<jq:dialog id="dialog" title="Basic dialog" autoOpen="true">
-						<h:outputText
-							value="<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>"
-							escape="false" />
+					<jq:dialog id="dialog" title="Download complete" bgiframe="true"
+						autoOpen="true" modal="true"
+						buttons="{Ok: function() { $(this).dialog('close');}}">
+						<f:verbatim escape="false">
+							<p>
+								<span class="ui-icon ui-icon-circle-check"
+									style="float: left; margin: 0 7px 50px 0;"></span> Your files
+								have downloaded successfully into the My Downloads folder.
+							</p>
+							<p>
+								Currently using
+								<b>36% of your storage space</b>.
+							</p>
+						</f:verbatim>
 					</jq:dialog>
-
 					<h:form id="form1">
 						<div class="demo">
 
@@ -57,11 +66,16 @@
 							<!-- End sample page content -->
 							<div class="ui-widget-content">
 								<p>
-									The basic dialog window is an overlay positioned within the
-									viewport and is protected from page content (like select
-									elements) shining through with an iframe. It has a title bar
-									and a content area, and can be moved, resized and closed with
-									the 'x' icon by default.
+									Use a modal dialog to explicitly acknowledge information or an
+									action before continuing their work. Set the
+									<code>
+										modal
+									</code>
+									option to true, and specify a primary action (Ok) with the
+									<code>
+										buttons
+									</code>
+									option.
 								</p>
 							</div>
 							<!-- End demo-description -->

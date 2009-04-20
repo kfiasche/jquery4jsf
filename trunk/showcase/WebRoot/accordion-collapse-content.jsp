@@ -19,7 +19,7 @@
 			<div id="rightPan">
 				<f:view>
 				<div class="demo">
-					<jq:accordionPanel id="accordion">
+					<jq:accordionPanel id="accordion" collapsible="true">
 						<jq:accordionSubPanel panelName="Section 1">
 							<jq:div id="section1">
 							<p>
@@ -86,15 +86,7 @@
 				</div>
 				<!-- End demo -->
 				<div class="ui-widget-content">
-					<p>
-						Click headers to expand/collapse content that is broken into
-						logical sections, much like tabs. Optionally, toggle sections
-						open/closed on mouseover.
-					</p>
-					<p>
-						The underlying HTML markup is a series of headers (H3 tags) and
-						content divs so the content is usable without JavaScript.
-					</p>
+				<p>By default, accordions always keep one section open. To allow for all sections to be be collapsible, set the <code>collapsible</code> option to true. Click on the currently open section to collapse its content pane.</p>
 				</div>
 				</f:view>
 				<!-- End demo-description -->

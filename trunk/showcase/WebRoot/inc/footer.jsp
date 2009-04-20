@@ -1,7 +1,7 @@
 <!--footer start -->
 <div id="footerMain">
 <div id="footer">
-<ul>
+<!--  <ul>
 <li><a href="#">home</a>|</li>
 <li><a href="#">about&nbsp;us</a>|</li>
 <li><a href="#">network</a>|</li>
@@ -9,7 +9,7 @@
 <li><a href="#"> archive</a>|</li>
 <li><a href="#">finance</a>|</li>
 <li><a href="#">contact</a></li>
-</ul>
+</ul> -->
 <p>&copy; Copyright  Giuseppe Trisciuoglio. All rights reserved.</p>
 
 <ul class="css">

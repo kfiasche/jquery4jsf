@@ -18,15 +18,27 @@
 			<!--right side start -->
 			<div id="rightPan">
 				<f:view>
-					<jq:dialog id="dialog" title="Basic dialog" autoOpen="true">
-						<h:outputText
-							value="<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>"
-							escape="false" />
+					<jq:dialog id="dialog" title="Empty the recycle bin?"
+						autoOpen="true" bgiframe="true" resizable="false" height="140"
+						modal="true"
+						buttons="{'Delete all items in recycle bin': function() {
+										$(this).dialog('close');
+									},
+									Cancel: function() {
+										$(this).dialog('close');
+									}
+								}">
+						<f:verbatim escape="false">
+							<p>
+								<span class="ui-icon ui-icon-alert"
+									style="float: left; margin: 0 7px 20px 0;"></span>These items
+								will be permanently deleted and cannot be recovered. Are you
+								sure?
+							</p>
+						</f:verbatim>
 					</jq:dialog>
-
 					<h:form id="form1">
 						<div class="demo">
-
 							<!-- Sample page content to illustrate the layering of the dialog -->
 							<div class="hiddenInViewSource" style="padding: 20px;">
 								<p>
@@ -55,14 +67,8 @@
 								<br />
 							</div>
 							<!-- End sample page content -->
-							<div class="ui-widget-content">
-								<p>
-									The basic dialog window is an overlay positioned within the
-									viewport and is protected from page content (like select
-									elements) shining through with an iframe. It has a title bar
-									and a content area, and can be moved, resized and closed with
-									the 'x' icon by default.
-								</p>
+							<div class="ui-widget-content ui-corner-all">
+								<p>Confirm an action that may be destructive or important.  Set the <code>modal</code> option to true, and specify primary and secondary user actions with the <code>buttons</code> option.</p>
 							</div>
 							<!-- End demo-description -->
 						</div>

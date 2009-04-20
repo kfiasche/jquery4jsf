@@ -22,7 +22,7 @@
 					<jq:progressBar id="progressBar" value="30"></jq:progressBar>
 				</div>
 				<!-- End demo -->
-				<div class="demo-description">
+				<div class="ui-widget-content">
 					<p>
 						This progressbar has an animated fill by setting the
 						<code>

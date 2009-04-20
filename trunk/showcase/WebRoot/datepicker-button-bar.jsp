@@ -26,7 +26,7 @@
 							</p>
 						</div>
 						<!-- End demo -->
-						<div class="demo-description">
+						<div class="ui-widget-content">
 							<p>
 								Display a button for selecting Today's date and a Done button
 								for closing the calendar with the boolean

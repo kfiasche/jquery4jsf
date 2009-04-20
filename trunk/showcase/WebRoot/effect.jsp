@@ -45,7 +45,7 @@
 					</div>
 				</div>
 				<!-- End demo -->
-				<div class="demo-description">
+				<div class="ui-widget-content">
 					<p>
 						Click the button above to show the effect.
 						<a href="#" id="button">button</a>

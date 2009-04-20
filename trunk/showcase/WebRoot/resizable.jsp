@@ -34,7 +34,7 @@
 					</h:inputTextarea>
 				</jq:div>
 				<!-- End demo -->
-				<div class="demo-description">
+				<div class="ui-widget-content">
 					<p>
 						Enable any DOM element to be resizable. With the cursor grab the
 						right or bottom border and drag to the desired width or height.

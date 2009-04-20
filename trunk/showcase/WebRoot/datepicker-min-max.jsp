@@ -27,7 +27,7 @@
 							</p>
 						</div>
 						<!-- End demo -->
-						<div class="demo-description">
+						<div class="ui-widget-content">
 							<p>
 								Restrict the range of selectable dates with the
 								<code>

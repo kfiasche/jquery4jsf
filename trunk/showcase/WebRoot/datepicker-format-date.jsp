@@ -37,7 +37,7 @@
 					</p>
 				</div>
 				<!-- End demo -->
-				<div class="demo-description">
+				<div class="ui-widget-content">
 					<p>
 						Display date feedback in a variety of ways. Choose a date format
 						from the dropdown, then click on the input and select a date to

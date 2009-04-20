@@ -21,7 +21,7 @@
 						<jq:slider id="slider"></jq:slider>
 					</div>
 					<!-- End demo -->
-					<div class="demo-description">
+					<div class="ui-widget-content">
 						<p>
 							The basic slider is horizontal and has a single handle that can
 							be moved with the mouse or by using the arrow keys.

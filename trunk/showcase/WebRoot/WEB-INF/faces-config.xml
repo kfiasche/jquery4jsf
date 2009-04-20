@@ -17,4 +17,9 @@
   <managed-bean-class>org.jquery4jsf.test.autocomplete.DialogBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>user</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.test.model.User</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
 </faces-config>

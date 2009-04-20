@@ -26,7 +26,7 @@
 							</p>
 						</div>
 						<!-- End demo -->
-						<div class="demo-description">
+						<div class="ui-widget-content">
 							<p>
 								Set the
 								<code>

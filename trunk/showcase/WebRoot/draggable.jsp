@@ -35,7 +35,7 @@
 						</jq:draggable>
 					</div>
 					<!-- End demo -->
-					<div class="demo-description">
+					<div class="ui-widget-content">
 						<p>
 							Enable draggable functionality on any DOM element. Move the
 							draggable object by clicking on it with the mouse and dragging it

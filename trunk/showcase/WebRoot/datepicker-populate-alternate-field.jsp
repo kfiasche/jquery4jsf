@@ -30,7 +30,7 @@
 				</div>
 				<!-- End demo -->
 
-				<div class="demo-description">
+				<div class="ui-widget-content">
 
 					<p>
 						Populate an alternate field with its own date format whenever a

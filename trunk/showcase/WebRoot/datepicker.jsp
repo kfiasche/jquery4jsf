@@ -26,7 +26,7 @@
 							</p>
 						</div>
 						<!-- End demo -->
-						<div class="demo-description">
+						<div class="ui-widget-content">
 							<p>
 								The datepicker is tied to a standard form input field. Focus on
 								the input (click, or use the tab key) to open an interactive

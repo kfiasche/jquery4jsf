@@ -18,10 +18,8 @@
 			<!--right side start -->
 			<div id="rightPan">
 				<f:view>
-					<jq:dialog id="dialog" title="Basic dialog" autoOpen="true">
-						<h:outputText
-							value="<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>"
-							escape="false" />
+					<jq:dialog id="dialog" title="Basic modal dialog" autoOpen="true" bgiframe="true" maxHeight="140" modal="true">
+						<h:outputText  value="<p>Adding the modal overlay screen makes the dialog look more prominent because it dims out the page content.</p>" escape="false" />
 					</jq:dialog>
 
 					<h:form id="form1">
@@ -56,13 +54,7 @@
 							</div>
 							<!-- End sample page content -->
 							<div class="ui-widget-content">
-								<p>
-									The basic dialog window is an overlay positioned within the
-									viewport and is protected from page content (like select
-									elements) shining through with an iframe. It has a title bar
-									and a content area, and can be moved, resized and closed with
-									the 'x' icon by default.
-								</p>
+								<p>A modal dialog prevents the user from interacting with the rest of the page until it is closed.  To add a semi-transparent layer that dims out the page content behind the dialog, set the background color and opacity of the <code>overlay</code> option.</p>
 							</div>
 							<!-- End demo-description -->
 						</div>

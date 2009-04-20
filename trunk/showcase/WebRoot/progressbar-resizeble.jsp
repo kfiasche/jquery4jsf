@@ -22,7 +22,7 @@
 					<jq:progressBar id="progressBar" value="30" resizable="true"></jq:progressBar>
 				</div>
 				<!-- End demo -->
-				<div class="demo-description">
+				<div class="ui-widget-content">
 					<p>
 						The progress bar's widths are specified in percentages for
 						flexible sizing so it will resize to fit its container. Try

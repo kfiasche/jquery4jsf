@@ -8,10 +8,10 @@
 <ul>
 <li><a href="/simple/faces/accordion.jsp">Default functionality</a></li>
 <li><a href="/simple/faces/accordion-fill-space.jsp">Fill space</a></li>
-<li><a href="/simple/faces/accordion.jsp">No auto height</a></li>
-<li><a href="/simple/faces/accordion.jsp">Collapse content</a></li>
-<li><a href="/simple/faces/accordion.jsp">Open on mouseover</a></li>
-<li><a href="/simple/faces/accordion.jsp">Customize icons</a></li>
+<li><a href="/simple/faces/accordion-no-auto-height.jsp">No auto height</a></li>
+<li><a href="/simple/faces/accordion-collapse-content.jsp">Collapse content</a></li>
+<li><a href="/simple/faces/accordion-open-mouseover.jsp">Open on mouseover</a></li>
+<li><a href="/simple/faces/accordion-custom-icons.jsp">Customize icons</a></li>
 </ul>
 <p></p>
 </div>
