@@ -22,7 +22,7 @@ public class AccordionSubPanelBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, AccordionSubPanel accordionSubPanel , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, accordionSubPanel.getPanelName(), "panelName");
+		encodeOptionComponentByType(options, accordionSubPanel.getPanelName(), "panelName", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

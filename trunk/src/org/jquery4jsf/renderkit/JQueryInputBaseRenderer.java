@@ -10,20 +10,19 @@ import com.sun.faces.renderkit.html_basic.HtmlBasicInputRenderer;
 
 public class JQueryInputBaseRenderer extends HtmlBasicInputRenderer {
 
-	protected void encodeOptionComponentByType(StringBuffer sb, boolean value, String nameParameter){
-		RendererUtilities.createOptionComponentByType(sb, value, nameParameter);
+	protected void encodeOptionComponentByType(StringBuffer sb, boolean value, String nameParameter, Object defaultValue){
+		RendererUtilities.createOptionComponentByType(sb, value, nameParameter, defaultValue);
 	}
 	
-	protected void encodeOptionComponentByType(StringBuffer sb, int value, String nameParameter){
-		RendererUtilities.createOptionComponentByType(sb, value, nameParameter);
+	protected void encodeOptionComponentByType(StringBuffer sb, int value, String nameParameter, Object defaultValue){
+		RendererUtilities.createOptionComponentByType(sb, value, nameParameter, defaultValue);
 	}
 	
-	protected void encodeOptionComponentByType(StringBuffer sb, Object value, String nameParameter){
-		RendererUtilities.createOptionComponentByType(sb, value, nameParameter);
+	protected void encodeOptionComponentByType(StringBuffer sb, Object value, String nameParameter, Object defaultValue){
+		RendererUtilities.createOptionComponentByType(sb, value, nameParameter, defaultValue);
 	}
 	
-	//TODO da realizzare
-	protected void encodeOptionComponentOptionsByType(StringBuffer options, String value, String nameParameter) {
+	protected void encodeOptionComponentOptionsByType(StringBuffer options, String value, String nameParameter, Object defaultValue) {
 		RendererUtilities.createOptionComponentOptionsByType(options, value, nameParameter);
 	}
 	

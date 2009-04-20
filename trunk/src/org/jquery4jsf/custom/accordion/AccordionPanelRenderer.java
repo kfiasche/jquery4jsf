@@ -11,7 +11,6 @@ import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
@@ -19,7 +18,7 @@ import org.jquery4jsf.resource.ResourceContext;
 
 import com.sun.faces.util.Util;
 
-public class AccordionPanelRenderer extends JQueryBaseRenderer implements AjaxBaseRenderer {
+public class AccordionPanelRenderer extends AccordionPanelBaseRenderer implements AjaxBaseRenderer {
 
 	public static final String RENDERER_TYPE = "org.jquery4jsf.AccordionPanelRenderer";
 
@@ -70,7 +69,7 @@ public class AccordionPanelRenderer extends JQueryBaseRenderer implements AjaxBa
 	
 	}
 
-	private String encodeOptionComponent(StringBuffer options, AccordionPanel accordionPanel, FacesContext context) {
+	/*private String encodeOptionComponent(StringBuffer options, AccordionPanel accordionPanel, FacesContext context) {
 		options.append(" {\n");
 		encodeOptionComponentByType(options,accordionPanel.getActive(), "active");
 		encodeOptionComponentByType(options,accordionPanel.getAnimated(), "animated");
@@ -85,7 +84,7 @@ public class AccordionPanelRenderer extends JQueryBaseRenderer implements AjaxBa
 		encodeOptionComponentByType(options,accordionPanel.isNavigation(), "navigation");
 		encodeOptionComponentByType(options,accordionPanel.getNavigationFilter(), "navigationFilter");
 		//TODO implementare il bind delle funzioni
-		/*encodeOptionComponentByType(options,accordionPanel.getOnaccordionchange(), "accordionchange");*/
+		//encodeOptionComponentByType(options,accordionPanel.getOnaccordionchange(), "accordionchange");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);
@@ -101,7 +100,7 @@ public class AccordionPanelRenderer extends JQueryBaseRenderer implements AjaxBa
 			options.append(" }");
 		}
 		return options.toString();
-	}
+	}*/
 
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 	}

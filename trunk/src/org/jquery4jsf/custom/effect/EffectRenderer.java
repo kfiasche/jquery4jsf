@@ -80,7 +80,7 @@ public class EffectRenderer extends EffectBaseRenderer {
 	
 	protected String encodeOptionComponent(StringBuffer options, Effect effect , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, effect.getOptions(), "options");
+		encodeOptionComponentByType(options, effect.getOptions(), "options", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

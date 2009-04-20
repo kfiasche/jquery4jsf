@@ -187,7 +187,7 @@ public class Dialog extends HtmlBaseComponent implements AjaxComponent, JQueryHt
 
 	public boolean isResizable() {
 		Boolean bValue = (Boolean) getLocalOrValueBindingValue(resizable, "resizable");
-		return bValue != null ? bValue.booleanValue() : false;
+		return bValue != null ? bValue.booleanValue() : true;
 	}
 
 	public void setResizable(boolean resizable) {

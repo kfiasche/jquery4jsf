@@ -87,7 +87,7 @@ public class AccordionPanel extends HtmlBaseComponent implements JQueryHtmlObjec
 			return autoHeight.booleanValue();
 
 		Boolean oValue = (Boolean) getLocalOrValueBindingValue(autoHeight, "autoHeight");
-		return oValue != null ? oValue.booleanValue()  : false;
+		return oValue != null ? oValue.booleanValue()  : true;
 	}
 	public void setAutoHeight(boolean autoHeight) {
 		this.autoHeight = new Boolean(autoHeight);

@@ -120,20 +120,20 @@ public class TabbedPanelRenderer extends JQueryBaseRenderer {
 		options.append(" {\n");
 		
 		//TODO implementare option
-		encodeOptionComponentByType(options,tabbedPanel.getAjaxOptions(), "ajaxOptions");
+		encodeOptionComponentByType(options,tabbedPanel.getAjaxOptions(), "ajaxOptions", null);
 		
-		encodeOptionComponentByType(options,tabbedPanel.isCache(), "cache");
-		encodeOptionComponentByType(options,tabbedPanel.isCollapsible(), "collapsible");
-		encodeOptionComponentByType(options,tabbedPanel.getCookie(), "cookie");
-		encodeOptionComponentByType(options,tabbedPanel.isDeselectable(), "deselectable");
+		encodeOptionComponentByType(options,tabbedPanel.isCache(), "cache", null);
+		encodeOptionComponentByType(options,tabbedPanel.isCollapsible(), "collapsible", null);
+		encodeOptionComponentByType(options,tabbedPanel.getCookie(), "cookie", null);
+		encodeOptionComponentByType(options,tabbedPanel.isDeselectable(), "deselectable", null);
 		//TODO implementare la disabilitazione dei tabs
-		encodeOptionComponentByType(options,"", "disabled");
-		encodeOptionComponentByType(options,tabbedPanel.getEvent(), "event");
+		encodeOptionComponentByType(options,null, "disabled", null);
+		encodeOptionComponentByType(options,tabbedPanel.getEvent(), "event", null);
 		//TODO implementare option
-		encodeOptionComponentByType(options,tabbedPanel.getFx(), "fx");
-		encodeOptionComponentByType(options,tabbedPanel.getIdPrefix(), "idPrefix");
-		encodeOptionComponentByType(options,tabbedPanel.getSelected(), "selected");
-		encodeOptionComponentByType(options,tabbedPanel.getSpinner(), "spinner");
+		encodeOptionComponentByType(options,tabbedPanel.getFx(), "fx", null);
+		encodeOptionComponentByType(options,tabbedPanel.getIdPrefix(), "idPrefix", null);
+		encodeOptionComponentByType(options,tabbedPanel.getSelected(), "selected", null);
+		encodeOptionComponentByType(options,tabbedPanel.getSpinner(), "spinner", null);
 		
 		//TODO implementare il bind delle funzioni
 		/*encodeOptionComponentByType(options,accordionPanel.getOnaccordionchange(), "accordionchange");*/

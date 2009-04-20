@@ -22,26 +22,26 @@ public class ResizableBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Resizable resizable , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, resizable.getOnstart(), "onstart");
-		encodeOptionComponentByType(options, resizable.getOnresize(), "onresize");
-		encodeOptionComponentByType(options, resizable.getOnstop(), "onstop");
-		encodeOptionComponentByType(options, resizable.getAlsoResize(), "alsoResize");
-		encodeOptionComponentByType(options, resizable.getAnimateDuration(), "animateDuration");
-		encodeOptionComponentByType(options, resizable.getAnimateEasing(), "animateEasing");
-		encodeOptionComponentByType(options, resizable.getAspectRatio(), "aspectRatio");
-		encodeOptionComponentByType(options, resizable.isAutoHide(), "autoHide");
-		encodeOptionComponentByType(options, resizable.getCancel(), "cancel");
-		encodeOptionComponentByType(options, resizable.getContainment(), "containment");
-		encodeOptionComponentByType(options, resizable.getDelay(), "delay");
-		encodeOptionComponentByType(options, resizable.getDistance(), "distance");
-		encodeOptionComponentByType(options, resizable.isGhost(), "ghost");
-		encodeOptionComponentByType(options, resizable.getGrid(), "grid");
-		encodeOptionComponentByType(options, resizable.getHandles(), "handles");
-		encodeOptionComponentByType(options, resizable.getHelper(), "helper");
-		encodeOptionComponentByType(options, resizable.getMaxHeight(), "maxHeight");
-		encodeOptionComponentByType(options, resizable.getMaxWidth(), "maxWidth");
-		encodeOptionComponentByType(options, resizable.getMinWidth(), "minWidth");
-		encodeOptionComponentByType(options, resizable.getMinHeight(), "minHeight");
+		encodeOptionComponentByType(options, resizable.getAlsoResize(), "alsoResize", null);
+		encodeOptionComponentByType(options, resizable.getAnimateDuration(), "animateDuration", null);
+		encodeOptionComponentByType(options, resizable.getAnimateEasing(), "animateEasing", null);
+		encodeOptionComponentByType(options, resizable.getAspectRatio(), "aspectRatio", null);
+		encodeOptionComponentByType(options, resizable.isAutoHide(), "autoHide", null);
+		encodeOptionComponentByType(options, resizable.getCancel(), "cancel", null);
+		encodeOptionComponentByType(options, resizable.getContainment(), "containment", null);
+		encodeOptionComponentByType(options, resizable.getDelay(), "delay", null);
+		encodeOptionComponentByType(options, resizable.getDistance(), "distance", null);
+		encodeOptionComponentByType(options, resizable.isGhost(), "ghost", null);
+		encodeOptionComponentByType(options, resizable.getGrid(), "grid", null);
+		encodeOptionComponentByType(options, resizable.getHandles(), "handles", null);
+		encodeOptionComponentByType(options, resizable.getHelper(), "helper", null);
+		encodeOptionComponentByType(options, resizable.getMaxHeight(), "maxHeight", null);
+		encodeOptionComponentByType(options, resizable.getMaxWidth(), "maxWidth", null);
+		encodeOptionComponentByType(options, resizable.getMinWidth(), "minWidth", null);
+		encodeOptionComponentByType(options, resizable.getMinHeight(), "minHeight", null);
+		encodeOptionComponentByType(options, resizable.getOnstart(), "onstart", null);
+		encodeOptionComponentByType(options, resizable.getOnresize(), "onresize", null);
+		encodeOptionComponentByType(options, resizable.getOnstop(), "onstop", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

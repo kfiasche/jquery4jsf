@@ -130,20 +130,23 @@ public class RendererUtilities {
 		return url;
 	}
 	
-	public static void createOptionComponentByType(StringBuffer sb, boolean value, String nameParameter){
-		createOptionComponentByType(sb, new Boolean(value), nameParameter);
+	public static void createOptionComponentByType(StringBuffer sb, boolean value, String nameParameter, Object defaultValue){
+		createOptionComponentByType(sb, new Boolean(value), nameParameter, defaultValue);
 	}
 	
-	public static void createOptionComponentByType(StringBuffer sb, int value, String nameParameter){
-		createOptionComponentByType(sb, new Integer(value), nameParameter);
+	public static void createOptionComponentByType(StringBuffer sb, int value, String nameParameter, Object defaultValue){
+		createOptionComponentByType(sb, new Integer(value), nameParameter, defaultValue);
 	}
 	
-	public static void createOptionComponentByType(StringBuffer sb, Object value, String nameParameter){
+	public static void createOptionComponentByType(StringBuffer sb, Object value, String nameParameter, Object defaultValue){
 		if (value != null){
 			if (value instanceof String){
 				String s = (String)value;
 				if (nameParameter.substring(0,2).equalsIgnoreCase("on")){
 					createOptionComponentFunction(sb, s, nameParameter);
+				}
+				else if (s.startsWith("{") && s.endsWith("}")){
+					createOptionComponentOptionsByType(sb, s, nameParameter);
 				}
 				else{
 					createOptionComponentStringByType(sb, s, nameParameter);
@@ -156,17 +159,32 @@ public class RendererUtilities {
 				}
 			}
 			else if (value instanceof Boolean){
-				if(((Boolean)value).booleanValue()){
-					String s = ((Boolean)value).toString();
+				Boolean bDefaultValue = null;
+				Boolean bValue = ((Boolean)value);
+				if (defaultValue != null)
+				{
+					bDefaultValue = Boolean.valueOf((String)defaultValue);
+				}
+				else{
+					bDefaultValue = Boolean.FALSE;
+				}
+				if (bValue.booleanValue() && bDefaultValue.booleanValue()){
+					
+				}else if (bValue.booleanValue() || bDefaultValue.booleanValue()){
+					String s = bValue.toString();
 					sb.append(nameParameter.concat(": ").concat(s).concat(", \n"));
 				}
+				
 			}
 		}
 	}
 	
-	//TODO da realizzare
 	public static void createOptionComponentOptionsByType(StringBuffer options, String value, String nameParameter) {
-		
+		if (value != null){
+			options.append(nameParameter.concat(": "));
+			options.append(value);
+			options.append(", \n");
+		}
 	}
 	
 	public static void createOptionComponentFunction(StringBuffer options, String value, String nameParameter) {

@@ -22,18 +22,18 @@ public class SelectableBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Selectable selectable , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, selectable.isAutoRefresh(), "autoRefresh");
-		encodeOptionComponentByType(options, selectable.getCancel(), "cancel");
-		encodeOptionComponentByType(options, selectable.getDelay(), "delay");
-		encodeOptionComponentByType(options, selectable.getDistance(), "distance");
-		encodeOptionComponentByType(options, selectable.getFilter(), "filter");
-		encodeOptionComponentByType(options, selectable.getTolerance(), "tolerance");
-		encodeOptionComponentByType(options, selectable.getOnselected(), "onselected");
-		encodeOptionComponentByType(options, selectable.getOnselecting(), "onselecting");
-		encodeOptionComponentByType(options, selectable.getOnstart(), "onstart");
-		encodeOptionComponentByType(options, selectable.getStop(), "stop");
-		encodeOptionComponentByType(options, selectable.getOnunselected(), "onunselected");
-		encodeOptionComponentByType(options, selectable.getOnunselecting(), "onunselecting");
+		encodeOptionComponentByType(options, selectable.isAutoRefresh(), "autoRefresh", "true");
+		encodeOptionComponentByType(options, selectable.getCancel(), "cancel", null);
+		encodeOptionComponentByType(options, selectable.getDelay(), "delay", null);
+		encodeOptionComponentByType(options, selectable.getDistance(), "distance", null);
+		encodeOptionComponentByType(options, selectable.getFilter(), "filter", null);
+		encodeOptionComponentByType(options, selectable.getTolerance(), "tolerance", null);
+		encodeOptionComponentByType(options, selectable.getOnselected(), "onselected", null);
+		encodeOptionComponentByType(options, selectable.getOnselecting(), "onselecting", null);
+		encodeOptionComponentByType(options, selectable.getOnstart(), "onstart", null);
+		encodeOptionComponentByType(options, selectable.getStop(), "stop", null);
+		encodeOptionComponentByType(options, selectable.getOnunselected(), "onunselected", null);
+		encodeOptionComponentByType(options, selectable.getOnunselecting(), "onunselecting", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

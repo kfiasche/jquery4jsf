@@ -71,13 +71,13 @@ public class SliderRenderer extends JQueryBaseRenderer implements AjaxBaseRender
 	private String encodeOptionComponent(StringBuffer options, Slider slider, FacesContext context) {
 		options.append(" {\n");
 		
-		encodeOptionComponentByType(options, slider.isAnimate(), "animate");
-		encodeOptionComponentByType(options, slider.getMax(), "max");
-		encodeOptionComponentByType(options, slider.getMin(), "min");
-		encodeOptionComponentByType(options, slider.getOrientation(), "orientation");
-		encodeOptionComponentByType(options, slider.getRange(), "range");
-		encodeOptionComponentByType(options, slider.getStep(), "step");
-		encodeOptionComponentByType(options, slider.getValue(), "value");
+		encodeOptionComponentByType(options, slider.isAnimate(), "animate", null);
+		encodeOptionComponentByType(options, slider.getMax(), "max", null);
+		encodeOptionComponentByType(options, slider.getMin(), "min", null);
+		encodeOptionComponentByType(options, slider.getOrientation(), "orientation", null);
+		encodeOptionComponentByType(options, slider.getRange(), "range", null);
+		encodeOptionComponentByType(options, slider.getStep(), "step", null);
+		encodeOptionComponentByType(options, slider.getValue(), "value", null);
 		encodeOptionComponentArrayByType(options, slider.getValues(), "values");
 		
 		if (options.toString().endsWith(", \n")){

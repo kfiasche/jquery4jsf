@@ -22,11 +22,11 @@ public class PanelBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Panel panel , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, panel.getStyle(), "style");
-		encodeOptionComponentByType(options, panel.getStyleClass(), "styleClass");
-		encodeOptionComponentByType(options, panel.getHeader(), "header");
-		encodeOptionComponentByType(options, panel.getHeaderClass(), "headerClass");
-		encodeOptionComponentByType(options, panel.getContentClass(), "contentClass");
+		encodeOptionComponentByType(options, panel.getStyle(), "style", null);
+		encodeOptionComponentByType(options, panel.getStyleClass(), "styleClass", null);
+		encodeOptionComponentByType(options, panel.getHeader(), "header", null);
+		encodeOptionComponentByType(options, panel.getHeaderClass(), "headerClass", null);
+		encodeOptionComponentByType(options, panel.getContentClass(), "contentClass", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

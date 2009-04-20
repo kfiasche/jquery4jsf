@@ -22,18 +22,18 @@ public class DroppableBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Droppable droppable , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, droppable.getAccept(), "accept");
-		encodeOptionComponentByType(options, droppable.getActiveClass(), "activeClass");
-		encodeOptionComponentByType(options, droppable.isAddClasses(), "addClasses");
-		encodeOptionComponentByType(options, droppable.isGreedy(), "greedy");
-		encodeOptionComponentByType(options, droppable.getHoverClass(), "hoverClass");
-		encodeOptionComponentByType(options, droppable.getScope(), "scope");
-		encodeOptionComponentByType(options, droppable.getTolerance(), "tolerance");
-		encodeOptionComponentByType(options, droppable.getOndropactivate(), "ondropactivate");
-		encodeOptionComponentByType(options, droppable.getOndropdeactivate(), "ondropdeactivate");
-		encodeOptionComponentByType(options, droppable.getOndropover(), "ondropover");
-		encodeOptionComponentByType(options, droppable.getOndropout(), "ondropout");
-		encodeOptionComponentByType(options, droppable.getOndrop(), "ondrop");
+		encodeOptionComponentByType(options, droppable.getAccept(), "accept", null);
+		encodeOptionComponentByType(options, droppable.getActiveClass(), "activeClass", null);
+		encodeOptionComponentByType(options, droppable.isAddClasses(), "addClasses", "true");
+		encodeOptionComponentByType(options, droppable.isGreedy(), "greedy", "false");
+		encodeOptionComponentByType(options, droppable.getHoverClass(), "hoverClass", null);
+		encodeOptionComponentByType(options, droppable.getScope(), "scope", null);
+		encodeOptionComponentByType(options, droppable.getTolerance(), "tolerance", null);
+		encodeOptionComponentByType(options, droppable.getOndropactivate(), "ondropactivate", null);
+		encodeOptionComponentByType(options, droppable.getOndropdeactivate(), "ondropdeactivate", null);
+		encodeOptionComponentByType(options, droppable.getOndropover(), "ondropover", null);
+		encodeOptionComponentByType(options, droppable.getOndropout(), "ondropout", null);
+		encodeOptionComponentByType(options, droppable.getOndrop(), "ondrop", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

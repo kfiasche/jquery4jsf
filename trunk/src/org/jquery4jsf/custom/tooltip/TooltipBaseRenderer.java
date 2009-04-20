@@ -22,15 +22,15 @@ public class TooltipBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Tooltip tooltip , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, tooltip.getDelay(), "delay");
-		encodeOptionComponentByType(options, tooltip.getTrack(), "track");
-		encodeOptionComponentByType(options, tooltip.getShowURL(), "showURL");
-		encodeOptionComponentByType(options, tooltip.getShowBody(), "showBody");
-		encodeOptionComponentByType(options, tooltip.getOnbodyHandler(), "onbodyHandler");
-		encodeOptionComponentByType(options, tooltip.getExtraClass(), "extraClass");
-		encodeOptionComponentByType(options, tooltip.getTop(), "top");
-		encodeOptionComponentByType(options, tooltip.getFixPNG(), "fixPNG");
-		encodeOptionComponentByType(options, tooltip.getLeft(), "left");
+		encodeOptionComponentByType(options, tooltip.getDelay(), "delay", null);
+		encodeOptionComponentByType(options, tooltip.getTrack(), "track", null);
+		encodeOptionComponentByType(options, tooltip.getShowURL(), "showURL", null);
+		encodeOptionComponentByType(options, tooltip.getShowBody(), "showBody", null);
+		encodeOptionComponentByType(options, tooltip.getOnbodyHandler(), "onbodyHandler", null);
+		encodeOptionComponentByType(options, tooltip.getExtraClass(), "extraClass", null);
+		encodeOptionComponentByType(options, tooltip.getTop(), "top", null);
+		encodeOptionComponentByType(options, tooltip.getFixPNG(), "fixPNG", null);
+		encodeOptionComponentByType(options, tooltip.getLeft(), "left", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

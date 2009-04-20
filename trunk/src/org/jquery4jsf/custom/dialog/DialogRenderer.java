@@ -65,26 +65,26 @@ public class DialogRenderer extends JQueryBaseRenderer {
 
 	private String encodeOptionComponent(StringBuffer options, Dialog dialog, FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, dialog.isAutoOpen(), "autoOpen");
-		encodeOptionComponentByType(options, dialog.isBgiframe(), "bgiframe");
-		encodeOptionComponentByType(options, dialog.getButtons(), "buttons");
-		encodeOptionComponentByType(options, dialog.isCloseOnEscape(), "closeOnEscape");
-		encodeOptionComponentByType(options, dialog.getDialogClass(), "dialogClass");
-		encodeOptionComponentByType(options, dialog.isDraggable(), "draggable");
-		encodeOptionComponentByType(options, dialog.getHeight(), "height");
-		encodeOptionComponentByType(options, dialog.getHide(), "hide");
-		encodeOptionComponentByType(options, dialog.getMaxHeight(), "maxHeight");
-		encodeOptionComponentByType(options, dialog.getMaxWidth(), "maxWidth");
-		encodeOptionComponentByType(options, dialog.getMinHeight(), "minHeight");
-		encodeOptionComponentByType(options, dialog.getMinWidth(), "minWidth");
-		encodeOptionComponentByType(options, dialog.isModal(), "modal");
-		encodeOptionComponentByType(options, dialog.getPosition(), "position");
-		encodeOptionComponentByType(options, dialog.isResizable(), "resizable");
-		encodeOptionComponentByType(options, dialog.getShow(), "show");
-		encodeOptionComponentByType(options, dialog.isStack(), "stack");
-		encodeOptionComponentByType(options, dialog.getTitle(), "title");
-		encodeOptionComponentByType(options, dialog.getWidth(), "width");
-		encodeOptionComponentByType(options, dialog.getZindex(), "zIndex");
+		encodeOptionComponentByType(options, dialog.isAutoOpen(), "autoOpen", "true");
+		encodeOptionComponentByType(options, dialog.isBgiframe(), "bgiframe", null);
+		encodeOptionComponentByType(options, dialog.getButtons(), "buttons", null);
+		encodeOptionComponentByType(options, dialog.isCloseOnEscape(), "closeOnEscape", null);
+		encodeOptionComponentByType(options, dialog.getDialogClass(), "dialogClass", null);
+		encodeOptionComponentByType(options, dialog.isDraggable(), "draggable", null);
+		encodeOptionComponentByType(options, dialog.getHeight(), "height", null);
+		encodeOptionComponentByType(options, dialog.getHide(), "hide", null);
+		encodeOptionComponentByType(options, dialog.getMaxHeight(), "maxHeight", null);
+		encodeOptionComponentByType(options, dialog.getMaxWidth(), "maxWidth", null);
+		encodeOptionComponentByType(options, dialog.getMinHeight(), "minHeight", null);
+		encodeOptionComponentByType(options, dialog.getMinWidth(), "minWidth", null);
+		encodeOptionComponentByType(options, dialog.isModal(), "modal", null);
+		encodeOptionComponentByType(options, dialog.getPosition(), "position", null);
+		encodeOptionComponentByType(options, dialog.isResizable(), "resizable", "true");
+		encodeOptionComponentByType(options, dialog.getShow(), "show", null);
+		encodeOptionComponentByType(options, dialog.isStack(), "stack", null);
+		encodeOptionComponentByType(options, dialog.getTitle(), "title", null);
+		encodeOptionComponentByType(options, dialog.getWidth(), "width", null);
+		encodeOptionComponentByType(options, dialog.getZindex(), "zIndex", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

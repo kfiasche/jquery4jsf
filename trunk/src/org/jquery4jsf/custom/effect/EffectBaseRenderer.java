@@ -22,10 +22,10 @@ public class EffectBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Effect effect , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, effect.getEffect(), "effect");
-		encodeOptionComponentByType(options, effect.getOptions(), "options");
-		encodeOptionComponentByType(options, effect.getSpeed(), "speed");
-		encodeOptionComponentByType(options, effect.getCallback(), "callback");
+		encodeOptionComponentByType(options, effect.getEffect(), "effect", null);
+		encodeOptionComponentByType(options, effect.getOptions(), "options", null);
+		encodeOptionComponentByType(options, effect.getSpeed(), "speed", null);
+		encodeOptionComponentByType(options, effect.getCallback(), "callback", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);
