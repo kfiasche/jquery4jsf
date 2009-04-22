@@ -12,21 +12,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.effect;
+package org.jquery4jsf.custom.slider;
 
 import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class EffectBaseRenderer extends JQueryBaseRenderer {
+public class SliderBaseRenderer extends JQueryBaseRenderer {
 
-	protected String encodeOptionComponent(StringBuffer options, Effect effect , FacesContext context) {
+	protected String encodeOptionComponent(StringBuffer options, Slider slider , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, effect.getEffect(), "effect", null);
-		encodeOptionComponentByType(options, effect.getEvent(), "event", null);
-		encodeOptionComponentByType(options, effect.getOptions(), "options", null);
-		encodeOptionComponentByType(options, effect.getSpeed(), "speed", null);
-		encodeOptionComponentByType(options, effect.getCallback(), "callback", null);
+		encodeOptionComponentByType(options, slider.isAnimate(), "animate", "false");
+		encodeOptionComponentByType(options, slider.getMax(), "max", "100");
+		encodeOptionComponentByType(options, slider.getMin(), "min", "0");
+		encodeOptionComponentByType(options, slider.getOrientation(), "orientation", "auto");
+		encodeOptionComponentByType(options, slider.getRange(), "range", null);
+		encodeOptionComponentByType(options, slider.getStep(), "step", "1");
+		encodeOptionComponentByType(options, slider.getSliderValue(), "sliderValue", "0");
+		encodeOptionComponentByType(options, slider.getValues(), "values", null);
+		encodeOptionComponentByType(options, slider.getOnstart(), "onstart", null);
+		encodeOptionComponentByType(options, slider.getOnslide(), "onslide", null);
+		encodeOptionComponentByType(options, slider.getOnchange(), "onchange", null);
+		encodeOptionComponentByType(options, slider.getOnstop(), "onstop", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

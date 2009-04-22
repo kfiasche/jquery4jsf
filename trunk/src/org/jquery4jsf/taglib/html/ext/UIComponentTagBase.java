@@ -33,4 +33,19 @@ public abstract class UIComponentTagBase extends UIComponentTag {
 		ComponentUtilities.setDoubleProperty(context, component, propertyName, value);
 	}
 	
+	public static void setConverterProperty(FacesContext context,UIComponent component, String propertyName, String value){
+		ComponentUtilities.setConverterProperty(context, component, value);
+	}
+	
+	public static void setValueProperty(FacesContext context,UIComponent component, String propertyName, String value){
+		ComponentUtilities.setConverterProperty(context, component, value);
+	}
+	
+	public static void setActionListenerProperty(FacesContext context,UIComponent component, String propertyName, String value){
+		ComponentUtilities.setActionListenerProperty(context, component, value);
+	}
+	
+	public static void setActionProperty(FacesContext context,UIComponent component, String propertyName, String value){
+		ComponentUtilities.setActionProperty(context, component, value);
+	}
 }

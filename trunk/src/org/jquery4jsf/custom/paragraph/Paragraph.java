@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.accordion;
+package org.jquery4jsf.custom.paragraph;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
@@ -22,21 +22,22 @@ import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
+import java.lang.Object;
+import javax.faces.convert.Converter;
 import java.lang.String;
-import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 
-public class AccordionSubPanel extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class Paragraph extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
 
-	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlAccordionSubPanel";
-	public static final String COMPONENT_FAMILY = "org.jquery4jsf.AccordionSubPanel";
-	public static final String DEFAULT_RENDERER = "org.jquery4jsf.AccordionSubPanelRenderer";
+	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlParagraph";
+	public static final String COMPONENT_FAMILY = "org.jquery4jsf.Paragraph";
+	public static final String DEFAULT_RENDERER = "org.jquery4jsf.ParagraphRenderer";
 
 	private String[] resources;
-	private String panelName;
+	private String style;
+	private String styleClass;
 
-	public AccordionSubPanel() {
+	public Paragraph() {
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 		};
@@ -46,27 +47,40 @@ public class AccordionSubPanel extends HtmlBaseOutputComponent implements JQuery
 		return COMPONENT_FAMILY;
 	}
 
-	public String getPanelName() {
-		if(panelName != null )
-			return panelName;
+	public String getStyle() {
+		if(style != null )
+			return style;
 
-		String oValue = (String) getLocalOrValueBindingValue(panelName, "panelName");
+		String oValue = (String) getLocalOrValueBindingValue(style, "style");
 		return oValue != null ? oValue : null;
 	}
-	public void setPanelName(String panelName) {
-		this.panelName = panelName;
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
+	public String getStyleClass() {
+		if(styleClass != null )
+			return styleClass;
+
+		String oValue = (String) getLocalOrValueBindingValue(styleClass, "styleClass");
+		return oValue != null ? oValue : null;
+	}
+	public void setStyleClass(String styleClass) {
+		this.styleClass = styleClass;
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[2];
+		Object values[] = new Object[3];
 		values[0] = super.saveState(context);
-		values[1] = panelName;
+		values[1] = style;
+		values[2] = styleClass;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.panelName = (String) values[1];
+		this.style = (String) values[1];
+		this.styleClass = (String) values[2];
 	}
 
 	public String[] getResources() {

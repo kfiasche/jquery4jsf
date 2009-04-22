@@ -21,8 +21,10 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
 public class DatePicker extends HtmlInputText implements JQueryHtmlObject,AjaxComponent {
@@ -283,7 +285,7 @@ public class DatePicker extends HtmlInputText implements JQueryHtmlObject,AjaxCo
 			return firstDay.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(firstDay, "firstDay");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setFirstDay(int firstDay) {
 		this.firstDay = new Integer(firstDay);
@@ -437,7 +439,7 @@ public class DatePicker extends HtmlInputText implements JQueryHtmlObject,AjaxCo
 			return showCurrentAtPos.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(showCurrentAtPos, "showCurrentAtPos");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setShowCurrentAtPos(int showCurrentAtPos) {
 		this.showCurrentAtPos = new Integer(showCurrentAtPos);
@@ -492,7 +494,7 @@ public class DatePicker extends HtmlInputText implements JQueryHtmlObject,AjaxCo
 			return stepMonths.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(stepMonths, "stepMonths");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setStepMonths(int stepMonths) {
 		this.stepMonths = new Integer(stepMonths);
@@ -610,7 +612,7 @@ public class DatePicker extends HtmlInputText implements JQueryHtmlObject,AjaxCo
 		values[41] = onchangeMonthYear;
 		values[42] = onclose;
 		values[43] = onselect;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
@@ -662,6 +664,14 @@ public class DatePicker extends HtmlInputText implements JQueryHtmlObject,AjaxCo
 
 	public String[] getResources() {
 		return resources;
+	}
+
+	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
+	{
+		if (localValue != null)
+			return localValue;
+		ValueBinding vb = getValueBinding(valueBindingName);
+		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
 	public void encodePartially(FacesContext facesContext) throws IOException {

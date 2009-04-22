@@ -14,16 +14,19 @@
  */
 package org.jquery4jsf.custom.panel;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
-public class Panel extends HtmlBaseComponent implements JQueryHtmlObject,AjaxComponent {
+public class Panel extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlPanel";
@@ -111,7 +114,7 @@ public class Panel extends HtmlBaseComponent implements JQueryHtmlObject,AjaxCom
 		values[3] = header;
 		values[4] = headerClass;
 		values[5] = contentClass;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
@@ -125,6 +128,14 @@ public class Panel extends HtmlBaseComponent implements JQueryHtmlObject,AjaxCom
 
 	public String[] getResources() {
 		return resources;
+	}
+
+	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
+	{
+		if (localValue != null)
+			return localValue;
+		ValueBinding vb = getValueBinding(valueBindingName);
+		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
 	public void encodePartially(FacesContext facesContext) throws IOException {

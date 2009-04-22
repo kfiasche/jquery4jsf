@@ -21,6 +21,7 @@ public class AjaxPhaseListener implements PhaseListener {
 
 	private static final long serialVersionUID = -4178354510294658599L;
 	private static final String AJAX_VIEW_ID = "ajaxSourceJQuery";
+	private static final String AJAX_PS_ID = "ajaxUpdate";
 
 	public void afterPhase(PhaseEvent event) {
 	}
@@ -33,16 +34,43 @@ public class AjaxPhaseListener implements PhaseListener {
 			//Only handle HttpServletRequests
 			return;
 		}
+		
 		HttpServletRequest request = (HttpServletRequest) object;
-		String id = request.getParameter(AJAX_VIEW_ID);
-		if (id != null && !id.equalsIgnoreCase("")){
-			String values[] = id.split(":");
-			int i = values.length -1;
-			id = values[i];
-			UIComponent component = ComponentUtilities.findComponentInRoot(id);
-			if (component instanceof AjaxComponent){
-				((AjaxComponent) component).encodePartially(context);
+		boolean isAjaxRequest = request.getParameterMap().containsKey(AJAX_VIEW_ID);
+		if (isAjaxRequest){
+			boolean isPartialSubmit = request.getParameterMap().containsKey(AJAX_PS_ID);
+			if (isPartialSubmit){
+				String[] updateIds = (String[]) request.getParameterMap().get(AJAX_PS_ID);
+				ServletResponse response = (ServletResponse) context.getExternalContext().getResponse();
+				response.setContentType("text/html");
+				try {
+					for (int i = 0; i < updateIds.length; i++) {
+						String id = updateIds[i];
+						if (id != null && id.trim().length() > 0){
+							String values[] = id.split(":");
+							int y = values.length -1;
+							id = values[y];
+							UIComponent component = ComponentUtilities.findComponentInRoot(id);
+							ComponentUtilities.encodeAll(context, component);
+						}
+					}
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
 			}
+			else{
+				String id = request.getParameter(AJAX_VIEW_ID);
+				if (id != null && !id.equalsIgnoreCase("")){
+					String values[] = id.split(":");
+					int i = values.length -1;
+					id = values[i];
+					UIComponent component = ComponentUtilities.findComponentInRoot(id);
+					if (component instanceof AjaxComponent){
+						((AjaxComponent) component).encodePartially(context);
+					}
+				}
+			}
+			context.getApplication().getStateManager().saveSerializedView(context);
 		}
 	}
 
@@ -69,15 +97,14 @@ public class AjaxPhaseListener implements PhaseListener {
 	public void initPartialResponseWriter(FacesContext facesContext) {
 		if(facesContext.getResponseWriter() != null)
 			return;
-		
 		try {
 			ServletResponse response = (ServletResponse) facesContext.getExternalContext().getResponse();
 			ServletRequest request = (ServletRequest) facesContext.getExternalContext().getRequest();
 			RenderKit renderKit = facesContext.getRenderKit();
 			ResponseWriter responseWriter = renderKit.createResponseWriter(response.getWriter(), null, request.getCharacterEncoding());
 			facesContext.setResponseWriter(responseWriter);
-		}catch(IOException exception) {
-			exception.printStackTrace();
+		}catch(IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

@@ -2,12 +2,12 @@ package org.jquery4jsf.custom;
 
 import javax.faces.context.FacesContext;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import org.jquery4jsf.component.ext.HtmlKeyEvent;
 import org.jquery4jsf.component.ext.HtmlMouseEvent;
 import org.jquery4jsf.renderkit.html.ext.HtmlAddressRenderer;
 
-public class HtmlAddress extends HtmlBaseComponent implements HtmlMouseEvent, HtmlKeyEvent{
+public class HtmlAddress extends HtmlBaseOutputComponent implements HtmlMouseEvent, HtmlKeyEvent{
 
 	//Standard javascript event for tag <address>
 	private String onclick;

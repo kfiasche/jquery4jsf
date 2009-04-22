@@ -2,12 +2,12 @@ package org.jquery4jsf.custom;
 
 import javax.faces.context.FacesContext;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import org.jquery4jsf.component.ext.HtmlKeyEvent;
 import org.jquery4jsf.component.ext.HtmlMouseEvent;
 import org.jquery4jsf.renderkit.html.ext.HtmlAbbrRenderer;
 
-public class HtmlAbbr extends HtmlBaseComponent implements HtmlKeyEvent, HtmlMouseEvent {
+public class HtmlAbbr extends HtmlBaseOutputComponent implements HtmlKeyEvent, HtmlMouseEvent {
 
 	//Standard javascript event for tag <abbr>
 	private String onclick;

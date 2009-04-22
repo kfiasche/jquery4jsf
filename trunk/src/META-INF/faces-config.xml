@@ -105,7 +105,14 @@
 		<component-type>org.jquery4jsf.HtmlTooltip</component-type>
 		<component-class>org.jquery4jsf.custom.tooltip.Tooltip</component-class>
 	</component>
-	
+	<component>
+		<component-type>org.jquery4jsf.HtmlParagraph</component-type>
+		<component-class>org.jquery4jsf.custom.paragraph.Paragraph</component-class>
+	</component>
+	<component>
+		<component-type>org.jquery4jsf.HtmlAjaxEvent</component-type>
+		<component-class>org.jquery4jsf.custom.ajax.AjaxEvent</component-class>
+	</component>
 	<render-kit>
 		<renderer>
 			<component-family>org.jquery4jsf.Link</component-family>
@@ -221,6 +228,16 @@
 			<component-family>org.jquery4jsf.Tooltip</component-family>
 			<renderer-type>org.jquery4jsf.TooltipRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.tooltip.TooltipRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.AjaxEvent</component-family>
+			<renderer-type>org.jquery4jsf.AjaxEventRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.ajax.AjaxEventRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Paragraph</component-family>
+			<renderer-type>org.jquery4jsf.ParagraphRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.paragraph.ParagraphRenderer</renderer-class>
 		</renderer>
 	</render-kit>
 	<lifecycle>

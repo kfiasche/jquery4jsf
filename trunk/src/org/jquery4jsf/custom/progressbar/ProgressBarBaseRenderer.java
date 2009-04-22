@@ -12,21 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.effect;
+package org.jquery4jsf.custom.progressbar;
 
 import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class EffectBaseRenderer extends JQueryBaseRenderer {
+public class ProgressBarBaseRenderer extends JQueryBaseRenderer {
 
-	protected String encodeOptionComponent(StringBuffer options, Effect effect , FacesContext context) {
+	protected String encodeOptionComponent(StringBuffer options, ProgressBar progressBar , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, effect.getEffect(), "effect", null);
-		encodeOptionComponentByType(options, effect.getEvent(), "event", null);
-		encodeOptionComponentByType(options, effect.getOptions(), "options", null);
-		encodeOptionComponentByType(options, effect.getSpeed(), "speed", null);
-		encodeOptionComponentByType(options, effect.getCallback(), "callback", null);
+		encodeOptionComponentByType(options, progressBar.getProgressBarValue(), "progressBarValue", "0");
+		encodeOptionComponentByType(options, progressBar.isResizable(), "resizable", "false");
+		encodeOptionComponentByType(options, progressBar.getOnchange(), "onchange", "false");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

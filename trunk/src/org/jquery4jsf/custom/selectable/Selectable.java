@@ -14,18 +14,20 @@
  */
 package org.jquery4jsf.custom.selectable;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class Selectable extends HtmlBaseComponent implements JQueryHtmlObject,AjaxComponent {
+public class Selectable extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlSelectable";
@@ -99,7 +101,7 @@ public class Selectable extends HtmlBaseComponent implements JQueryHtmlObject,Aj
 			return delay.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(delay, "delay");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setDelay(int delay) {
 		this.delay = new Integer(delay);
@@ -110,7 +112,7 @@ public class Selectable extends HtmlBaseComponent implements JQueryHtmlObject,Aj
 			return distance.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(distance, "distance");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setDistance(int distance) {
 		this.distance = new Integer(distance);
@@ -220,7 +222,7 @@ public class Selectable extends HtmlBaseComponent implements JQueryHtmlObject,Aj
 		values[11] = stop;
 		values[12] = onunselected;
 		values[13] = onunselecting;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
@@ -242,6 +244,14 @@ public class Selectable extends HtmlBaseComponent implements JQueryHtmlObject,Aj
 
 	public String[] getResources() {
 		return resources;
+	}
+
+	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
+	{
+		if (localValue != null)
+			return localValue;
+		ValueBinding vb = getValueBinding(valueBindingName);
+		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
 	public void encodePartially(FacesContext facesContext) throws IOException {

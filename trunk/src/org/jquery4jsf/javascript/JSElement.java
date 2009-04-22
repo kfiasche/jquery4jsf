@@ -71,7 +71,11 @@ public class JSElement implements JSInterface {
 	private void generaCodice(){
 		if (id != null && !id.equalsIgnoreCase("")){
 			javascriptCode.append(JSElementConstants.JS_JQUERY_OPEN);
-			javascriptCode.append(generaIdForJquery(id));
+			if("this".equalsIgnoreCase(id)){
+				javascriptCode.append(id);
+			}
+			else
+				javascriptCode.append(generaIdForJquery(id));
 			javascriptCode.append(JSElementConstants.JS_JQUERY_CLOSE);
 		}
 		else{

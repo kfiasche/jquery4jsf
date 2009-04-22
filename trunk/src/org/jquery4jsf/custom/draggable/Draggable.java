@@ -14,19 +14,21 @@
  */
 package org.jquery4jsf.custom.draggable;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Integer;
 import java.lang.Float;
 
-public class Draggable extends HtmlBaseComponent implements JQueryHtmlObject,AjaxComponent {
+public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlDraggable";
@@ -360,7 +362,7 @@ public class Draggable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			return snapTolerance.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(snapTolerance, "snapTolerance");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setSnapTolerance(int snapTolerance) {
 		this.snapTolerance = new Integer(snapTolerance);
@@ -382,7 +384,7 @@ public class Draggable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			return zIndex.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(zIndex, "zIndex");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setZIndex(int zIndex) {
 		this.zIndex = new Integer(zIndex);
@@ -455,7 +457,7 @@ public class Draggable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 		values[29] = ondragstart;
 		values[30] = ondrag;
 		values[31] = ondragstop;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
@@ -495,6 +497,14 @@ public class Draggable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 
 	public String[] getResources() {
 		return resources;
+	}
+
+	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
+	{
+		if (localValue != null)
+			return localValue;
+		ValueBinding vb = getValueBinding(valueBindingName);
+		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
 	public void encodePartially(FacesContext facesContext) throws IOException {

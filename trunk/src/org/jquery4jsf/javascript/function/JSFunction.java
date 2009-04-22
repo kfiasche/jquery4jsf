@@ -87,6 +87,9 @@ public class JSFunction implements JSInterface{
                 if (i != params.length -1){
                     javascriptCode.append(", ");
                 }
+                else{
+                	javascriptCode.append("){ \n");
+                }
             }
 	        for (int i = 0; i < elements.length; i++) {
                 JSElement element = elements[i];

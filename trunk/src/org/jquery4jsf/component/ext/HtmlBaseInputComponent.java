@@ -1,10 +1,10 @@
 package org.jquery4jsf.component.ext;
 
-import javax.faces.component.UIComponentBase;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.el.ValueBinding;
 
-public abstract class HtmlBaseComponent extends UIComponentBase{
+public abstract class HtmlBaseInputComponent extends UIInput {
 
 	//Core Attributes
 	/**
@@ -32,6 +32,7 @@ public abstract class HtmlBaseComponent extends UIComponentBase{
 	 * 	Specifies a language code for the content in an element, in XHTML documents. Language code reference
 	 */
 	private String xmlLang;
+	
 	//Keyboard Attributes
 	/**
 	 * Specifies a keyboard shortcut to access an element
@@ -41,7 +42,7 @@ public abstract class HtmlBaseComponent extends UIComponentBase{
 	 * Specifies the tab order of an element
 	 */
 	private Integer tabindex;
-	
+
 	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
 	{
 		if (localValue != null)
@@ -61,7 +62,7 @@ public abstract class HtmlBaseComponent extends UIComponentBase{
         lang        = (String)values[5];
         xmlLang     = (String)values[6];
         accesskey   = (String)values[7];
-        tabindex    = (Integer)values[8];
+        tabindex   = (Integer)values[8];
     }
     
     public Object saveState(FacesContext context)
@@ -130,15 +131,15 @@ public abstract class HtmlBaseComponent extends UIComponentBase{
 	public String getAccesskey() {
 		return (String) getLocalOrValueBindingValue(accesskey, "accesskey");
 	}
-	
+
 	public void setAccesskey(String accesskey) {
 		this.accesskey = accesskey;
 	}
-	
+
 	public Integer getTabindex() {
 		return (Integer) getLocalOrValueBindingValue(tabindex, "tabindex");
 	}
-	
+
 	public void setTabindex(Integer tabindex) {
 		this.tabindex = tabindex;
 	}

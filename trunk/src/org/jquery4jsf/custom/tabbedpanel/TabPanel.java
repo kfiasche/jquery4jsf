@@ -2,10 +2,10 @@ package org.jquery4jsf.custom.tabbedpanel;
 
 import javax.faces.context.FacesContext;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 
-public class TabPanel extends HtmlBaseComponent implements JQueryHtmlObject{
+public class TabPanel extends HtmlBaseOutputComponent implements JQueryHtmlObject{
 
 	public TabPanel() {
 		super();

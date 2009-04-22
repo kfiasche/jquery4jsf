@@ -14,16 +14,19 @@
  */
 package org.jquery4jsf.custom.effect;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
-public class Effect extends HtmlBaseComponent implements JQueryHtmlObject,AjaxComponent {
+public class Effect extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlEffect";
@@ -33,6 +36,7 @@ public class Effect extends HtmlBaseComponent implements JQueryHtmlObject,AjaxCo
 	private String[] resources;
 	private String _for;
 	private String effect;
+	private String event;
 	private String options;
 	private String speed;
 	private String callback;
@@ -85,6 +89,17 @@ public class Effect extends HtmlBaseComponent implements JQueryHtmlObject,AjaxCo
 		this.effect = effect;
 	}
 
+	public String getEvent() {
+		if(event != null )
+			return event;
+
+		String oValue = (String) getLocalOrValueBindingValue(event, "event");
+		return oValue != null ? oValue : null;
+	}
+	public void setEvent(String event) {
+		this.event = event;
+	}
+
 	public String getOptions() {
 		if(options != null )
 			return options;
@@ -119,27 +134,37 @@ public class Effect extends HtmlBaseComponent implements JQueryHtmlObject,AjaxCo
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[6];
+		Object values[] = new Object[7];
 		values[0] = super.saveState(context);
 		values[1] = _for;
 		values[2] = effect;
-		values[3] = options;
-		values[4] = speed;
-		values[5] = callback;
-		return (values);
+		values[3] = event;
+		values[4] = options;
+		values[5] = speed;
+		values[6] = callback;
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
 		this._for = (String) values[1];
 		this.effect = (String) values[2];
-		this.options = (String) values[3];
-		this.speed = (String) values[4];
-		this.callback = (String) values[5];
+		this.event = (String) values[3];
+		this.options = (String) values[4];
+		this.speed = (String) values[5];
+		this.callback = (String) values[6];
 	}
 
 	public String[] getResources() {
 		return resources;
+	}
+
+	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
+	{
+		if (localValue != null)
+			return localValue;
+		ValueBinding vb = getValueBinding(valueBindingName);
+		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
 	public void encodePartially(FacesContext facesContext) throws IOException {

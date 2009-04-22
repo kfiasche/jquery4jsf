@@ -5,12 +5,12 @@ import java.io.IOException;
 import javax.faces.context.FacesContext;
 import javax.faces.render.Renderer;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 
-public class Dialog extends HtmlBaseComponent implements AjaxComponent, JQueryHtmlObject {
+public class Dialog extends HtmlBaseOutputComponent implements AjaxComponent, JQueryHtmlObject {
 	
 	private String[] resources = null;
 	public static final String DEFAULT_RENDERER_TYPE = DialogRenderer.RENDERER_TYPE;

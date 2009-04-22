@@ -12,21 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.effect;
+package org.jquery4jsf.custom.ajax;
 
 import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class EffectBaseRenderer extends JQueryBaseRenderer {
+public class AjaxEventBaseRenderer extends JQueryBaseRenderer {
 
-	protected String encodeOptionComponent(StringBuffer options, Effect effect , FacesContext context) {
+	protected String encodeOptionComponent(StringBuffer options, AjaxEvent ajaxEvent , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, effect.getEffect(), "effect", null);
-		encodeOptionComponentByType(options, effect.getEvent(), "event", null);
-		encodeOptionComponentByType(options, effect.getOptions(), "options", null);
-		encodeOptionComponentByType(options, effect.getSpeed(), "speed", null);
-		encodeOptionComponentByType(options, effect.getCallback(), "callback", null);
+		encodeOptionComponentByType(options, ajaxEvent.getReRender(), "reRender", null);
+		encodeOptionComponentByType(options, ajaxEvent.getEvent(), "event", "click");
+		encodeOptionComponentByType(options, ajaxEvent.isPartialSubmit(), "partialSubmit", "true");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

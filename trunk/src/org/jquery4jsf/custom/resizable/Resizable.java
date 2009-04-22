@@ -14,18 +14,20 @@
  */
 package org.jquery4jsf.custom.resizable;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class Resizable extends HtmlBaseComponent implements JQueryHtmlObject,AjaxComponent {
+public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlResizable";
@@ -162,7 +164,7 @@ public class Resizable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			return delay.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(delay, "delay");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setDelay(int delay) {
 		this.delay = new Integer(delay);
@@ -173,7 +175,7 @@ public class Resizable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			return distance.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(distance, "distance");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setDistance(int distance) {
 		this.distance = new Integer(distance);
@@ -228,7 +230,7 @@ public class Resizable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			return maxHeight.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(maxHeight, "maxHeight");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setMaxHeight(int maxHeight) {
 		this.maxHeight = new Integer(maxHeight);
@@ -239,7 +241,7 @@ public class Resizable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			return maxWidth.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(maxWidth, "maxWidth");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setMaxWidth(int maxWidth) {
 		this.maxWidth = new Integer(maxWidth);
@@ -250,7 +252,7 @@ public class Resizable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			return minWidth.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(minWidth, "minWidth");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setMinWidth(int minWidth) {
 		this.minWidth = new Integer(minWidth);
@@ -261,7 +263,7 @@ public class Resizable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 			return minHeight.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(minHeight, "minHeight");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setMinHeight(int minHeight) {
 		this.minHeight = new Integer(minHeight);
@@ -324,7 +326,7 @@ public class Resizable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 		values[19] = onstart;
 		values[20] = onresize;
 		values[21] = onstop;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
@@ -354,6 +356,14 @@ public class Resizable extends HtmlBaseComponent implements JQueryHtmlObject,Aja
 
 	public String[] getResources() {
 		return resources;
+	}
+
+	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
+	{
+		if (localValue != null)
+			return localValue;
+		ValueBinding vb = getValueBinding(valueBindingName);
+		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
 	public void encodePartially(FacesContext facesContext) throws IOException {

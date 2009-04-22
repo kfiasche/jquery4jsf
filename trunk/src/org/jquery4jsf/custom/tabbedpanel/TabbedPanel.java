@@ -5,12 +5,12 @@ import java.io.IOException;
 import javax.faces.context.FacesContext;
 import javax.faces.render.Renderer;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 
-public class TabbedPanel extends HtmlBaseComponent implements AjaxComponent, JQueryHtmlObject{
+public class TabbedPanel extends HtmlBaseOutputComponent implements AjaxComponent, JQueryHtmlObject{
 
 	public static final String COMPONENT_FAMILY = "org.jquery4jsf.TabbedPanel";
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlTabbedPanel";

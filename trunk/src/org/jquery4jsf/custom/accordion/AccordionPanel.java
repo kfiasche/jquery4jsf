@@ -14,18 +14,20 @@
  */
 package org.jquery4jsf.custom.accordion;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class AccordionPanel extends HtmlBaseComponent implements JQueryHtmlObject,AjaxComponent {
+public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlAccordionPanel";
@@ -65,7 +67,7 @@ public class AccordionPanel extends HtmlBaseComponent implements JQueryHtmlObjec
 			return active.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(active, "active");
-		return oValue != null ? oValue.intValue()  : -1;
+		return oValue != null ? oValue.intValue()  : 0;
 	}
 	public void setActive(int active) {
 		this.active = new Integer(active);
@@ -207,7 +209,7 @@ public class AccordionPanel extends HtmlBaseComponent implements JQueryHtmlObjec
 		values[10] = header;
 		values[11] = navigationFilter;
 		values[12] = onaccordionchange;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
@@ -228,6 +230,14 @@ public class AccordionPanel extends HtmlBaseComponent implements JQueryHtmlObjec
 
 	public String[] getResources() {
 		return resources;
+	}
+
+	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
+	{
+		if (localValue != null)
+			return localValue;
+		ValueBinding vb = getValueBinding(valueBindingName);
+		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
 	public void encodePartially(FacesContext facesContext) throws IOException {

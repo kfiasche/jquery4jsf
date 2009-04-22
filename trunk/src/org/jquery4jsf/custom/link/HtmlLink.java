@@ -2,13 +2,13 @@ package org.jquery4jsf.custom.link;
 
 import javax.faces.context.FacesContext;
 
-import org.jquery4jsf.component.ext.HtmlBaseComponent;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import org.jquery4jsf.component.ext.HtmlElementEvent;
 import org.jquery4jsf.component.ext.HtmlKeyEvent;
 import org.jquery4jsf.component.ext.HtmlMouseEvent;
 import org.jquery4jsf.renderkit.html.ext.HtmlLinkRenderer;
 
-public class HtmlLink extends HtmlBaseComponent implements HtmlKeyEvent, HtmlMouseEvent, HtmlElementEvent {
+public class HtmlLink extends HtmlBaseOutputComponent implements HtmlKeyEvent, HtmlMouseEvent, HtmlElementEvent {
 
 	//Standard javascript event for tag <a>
 	private String onclick;

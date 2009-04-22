@@ -48,11 +48,16 @@ public class EffectRenderer extends EffectBaseRenderer {
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
+        
+        
+        JSElement thisElement = new JSElement("this");
+        JSAttribute jsEvent = new JSAttribute(effect.getEvent(), false);
+        
         JSElement element = new JSElement(effectedComponentClientId);
         JSAttribute jsEffect = new JSAttribute("effect", false);
+        
         StringBuffer sbOption = new StringBuffer();
-        StringBuffer options = new StringBuffer();
-        String optionsString = encodeOptionComponent(options, effect, context);
+        String optionsString = effect.getOptions() != null ? "{"+ effect.getOptions() +"}" : "{}";
         sbOption.append("'");
         sbOption.append(effect.getEffect());
         sbOption.append("', ");
@@ -62,9 +67,15 @@ public class EffectRenderer extends EffectBaseRenderer {
         sbOption.append(", ");
         sbOption.append(effect.getCallback());
         jsEffect.addValue(sbOption.toString());
-        element.addAttribute(jsEffect);
+        thisElement.addAttribute(jsEffect);
         JSFunction function = new JSFunction();
+        
+        JSFunction functionEvent = new JSFunction();
+        functionEvent.addJSElement(thisElement);
+        jsEvent.addValue(functionEvent.toJavaScriptCode());
+        element.addAttribute(jsEvent);
         function.addJSElement(element);
+        
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");

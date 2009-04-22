@@ -269,4 +269,8 @@ public class RendererUtilities {
 		return "#" + idClient.replaceAll(":", "\\\\\\\\:");
 	}
 	
+	
+	public static String getJQueryIdComponent(FacesContext facesContext, UIComponent component){
+		return "#" + component.getClientId(facesContext).replaceAll(":", "\\\\\\\\:");
+	}
 }
