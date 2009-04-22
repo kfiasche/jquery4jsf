@@ -3,6 +3,7 @@
 <h2 style="font-size: 15px;">Componenti</h2>
 <ul>
 <li><a href="/simple/faces/accordion.jsp">Accordion</a></li>
+<li><a href="/simple/faces/ajax.jsp">Ajax</a></li>
 <li><a href="/simple/faces/autocomplete.jsp">Autocomplete</a></li>
 <li><a href="/simple/faces/calendar.jsp">Calendar</a></li>
 <li><a href="/simple/faces/carousel.jsp">Carousel</a></li>

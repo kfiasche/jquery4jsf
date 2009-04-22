@@ -20,28 +20,106 @@
 				<f:view>
 				<div class="demo">
 					<div class="toggler">
-						<jq:div id="effect" styleClass="ui-widget-content ui-corner-all">
-							<h3 class="ui-widget-header ui-corner-all">
-								Effect
-							</h3>
-
-							<p>
-								Etiam libero neque, luctus a, eleifend nec, semper at, lorem.
-								Sed pede. Nulla lorem metus, adipiscing ut, luctus sed,
-								hendrerit vitae, mi.
-							</p>
-						</jq:div>
-						<jq:effect effect="blind" speed="1000" for="effect" callback="callback"></jq:effect>
-						<jq:outputScript charset="utf-8" type="text/javascript">
-		
-		//callback function to bring a hidden box back
-		function callback(){
-			setTimeout(function(){
-				$("#effect:hidden").removeAttr('style').hide().fadeIn();
-			}, 1000);
-		}
-		
-		</jq:outputScript>
+							<h:panelGrid columns="3">
+								<jq:div id="Blind" styleClass="ui-widget-content ui-corner-all"
+									style="width: 100px;">
+									<h3 class="ui-widget-header ui-corner-all">
+										Effect Blind
+									</h3>
+									<h:outputText value="click" />
+									<jq:effect event="click" effect="blind" speed="1000"
+										for="Blind" callback="callback"></jq:effect>
+								</jq:div>
+								<jq:div id="Bounce" styleClass="ui-widget-content ui-corner-all"
+									style="width: 100px;">
+									<h3 class="ui-widget-header ui-corner-all">
+										Effect Bounce
+									</h3>
+									<h:outputText value="click" />
+									<jq:effect event="click" effect="bounce" speed="1000"
+										for="Bounce" callback="callback"></jq:effect>
+								</jq:div>
+								<jq:div id="Clip" styleClass="ui-widget-content ui-corner-all"
+									style="width: 100px;">
+									<h3 class="ui-widget-header ui-corner-all">
+										Effect Clip
+									</h3>
+									<h:outputText value="click" />
+									<jq:effect event="click" effect="clip" speed="1000"
+										for="Clip" callback="callback"></jq:effect>
+								</jq:div>
+								<jq:div id="Drop" styleClass="ui-widget-content ui-corner-all"
+									style="width: 100px;">
+									<h3 class="ui-widget-header ui-corner-all">
+										Effect Drop
+									</h3>
+									<h:outputText value="click" />
+									<jq:effect event="click" effect="drop" speed="1000"
+										for="Drop" callback="callback"></jq:effect>
+								</jq:div>
+								<jq:div id="Explode" styleClass="ui-widget-content ui-corner-all"
+									style="width: 100px;">
+									<h3 class="ui-widget-header ui-corner-all">
+										Effect Explode
+									</h3>
+									<h:outputText value="click" />
+									<jq:effect event="click" effect="explode" speed="1000"
+										for="Explode" callback="callback"></jq:effect>
+								</jq:div>
+								<jq:div id="Fold" styleClass="ui-widget-content ui-corner-all"
+									style="width: 100px;">
+									<h3 class="ui-widget-header ui-corner-all">
+										Effect Fold
+									</h3>
+									<h:outputText value="click" />
+									<jq:effect event="click" effect="fold" speed="1000"
+										for="Fold" callback="callback"></jq:effect>
+								</jq:div>
+								<jq:div id="Highlight" styleClass="ui-widget-content ui-corner-all"
+									style="width: 100px;">
+									<h3 class="ui-widget-header ui-corner-all">
+										Effect Highlight
+									</h3>
+									<h:outputText value="click" />
+									<jq:effect event="click" effect="highlight" speed="1000"
+										for="Highlight" callback="callback"></jq:effect>
+								</jq:div>
+								<jq:div id="Puff" styleClass="ui-widget-content ui-corner-all"
+									style="width: 100px;">
+									<h3 class="ui-widget-header ui-corner-all">
+										Effect Puff
+									</h3>
+									<h:outputText value="click" />
+									<jq:effect event="click" effect="puff" speed="1000"
+										for="Puff" callback="callback"></jq:effect>
+								</jq:div>
+								<jq:div id="Scale" styleClass="ui-widget-content ui-corner-all"
+									style="width: 100px;">
+									<h3 class="ui-widget-header ui-corner-all">
+										Effect Scale
+									</h3>
+									<h:outputText value="click" />
+									<jq:effect event="click" effect="scale" speed="1000"
+										for="Scale" options="percent: 0" callback="callback"></jq:effect>
+								</jq:div>
+								<jq:div id="Shake" styleClass="ui-widget-content ui-corner-all"
+									style="width: 100px;">
+									<h3 class="ui-widget-header ui-corner-all">
+										Effect Shake
+									</h3>
+									<h:outputText value="click" />
+									<jq:effect event="click" effect="shake" speed="1000"
+										for="Shake" callback="callback"></jq:effect>
+								</jq:div>
+							</h:panelGrid>
+							<jq:outputScript charset="utf-8" type="text/javascript">
+						//callback function to bring a hidden box back
+						function callback(){
+							setTimeout(function(){
+								$(".ui-widget-content:hidden").removeAttr('style').hide().fadeIn();
+							}, 1000);
+						}
+						</jq:outputScript>
 					</div>
 				</div>
 				<!-- End demo -->
