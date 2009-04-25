@@ -5,6 +5,7 @@
 <li><a href="/simple/faces/accordion.jsp">Accordion</a></li>
 <li><a href="/simple/faces/ajax.jsp">Ajax</a></li>
 <li><a href="/simple/faces/autocomplete.jsp">Autocomplete</a></li>
+<li><a href="/simple/faces/button.jsp">Button</a></li>
 <li><a href="/simple/faces/calendar.jsp">Calendar</a></li>
 <li><a href="/simple/faces/carousel.jsp">Carousel</a></li>
 <li><a href="/simple/faces/datepicker.jsp">Datepicker</a></li>
@@ -12,6 +13,7 @@
 <li><a href="/simple/faces/draggable.jsp">Draggable</a></li>
 <li><a href="/simple/faces/droppable.jsp">Droppable</a></li>
 <li><a href="/simple/faces/effect.jsp">Effects</a></li>
+<li><a href="/simple/faces/icons.jsp">Icons</a></li>
 <li><a href="/simple/faces/panel.jsp">Panel</a></li>
 <li><a href="/simple/faces/progressbar.jsp">Progress bar</a></li>
 <li><a href="/simple/faces/resizable.jsp">Resizable</a></li>

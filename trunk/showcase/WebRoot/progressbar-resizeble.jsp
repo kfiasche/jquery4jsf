@@ -19,7 +19,7 @@
 		<f:view>
 			
 				<div class="demo">
-					<jq:progressBar id="progressBar" value="30" resizable="true"></jq:progressBar>
+					<jq:progressBar id="progressBar" progressBarValue="30" resizable="true"></jq:progressBar>
 				</div>
 				<!-- End demo -->
 				<div class="ui-widget-content">

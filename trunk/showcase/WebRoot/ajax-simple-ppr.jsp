@@ -26,10 +26,6 @@
 								<h:inputText id="firstname" value="#{ajaxBean.nome}" />
 								<h:outputLabel for="surname" value="Surname" />
 								<h:inputText id="surname" value="#{ajaxBean.cognome}" />
-								<h:commandButton value="Reset" type="reset" />
-								<h:commandButton value="Ajax Submit">
-									<jq:ajaxEvent  reRender="display" event="click" />
-								</h:commandButton>
 							</h:panelGrid>
 							<h:panelGrid id="display" columns="2">
 								<h:outputText value="Firstname:" />

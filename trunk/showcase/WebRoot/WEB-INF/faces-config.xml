@@ -27,4 +27,9 @@
   <managed-bean-class>org.jquery4jsf.test.ajax.AjaxBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>buttonBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.test.ButtonBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
 </faces-config>

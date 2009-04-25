@@ -3,9 +3,14 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
  <context-param>
   <description>Theme of style css for jquery ui component</description>
-  <param-name>ThemeCSS</param-name>
+  <param-name>org.jquery4jsf.THEME_CSS</param-name>
   <param-value>dark</param-value>
  </context-param>
+ 	<!-- for jboss -->
+	 <context-param>
+    	 <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+    	 <param-value>true</param-value>
+	</context-param> 
  <filter>
   <filter-name>JQueryResourceFilter</filter-name>
   <filter-class>org.jquery4jsf.application.filter.JQueryResourceFilter</filter-class>
