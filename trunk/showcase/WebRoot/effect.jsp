@@ -8,7 +8,8 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
-		<link href="/simple/style.css" rel="stylesheet" type="text/css" />
+		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
+			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<jsp:include page="inc/header.jsp"></jsp:include>
@@ -18,8 +19,8 @@
 			<!--right side start -->
 			<div id="rightPan">
 				<f:view>
-				<div class="demo">
-					<div class="toggler">
+					<div class="demo">
+						<div class="toggler">
 							<h:panelGrid columns="3">
 								<jq:div id="Blind" styleClass="ui-widget-content ui-corner-all"
 									style="width: 100px;">
@@ -45,8 +46,8 @@
 										Effect Clip
 									</h3>
 									<h:outputText value="click" />
-									<jq:effect event="click" effect="clip" speed="1000"
-										for="Clip" callback="callback"></jq:effect>
+									<jq:effect event="click" effect="clip" speed="1000" for="Clip"
+										callback="callback"></jq:effect>
 								</jq:div>
 								<jq:div id="Drop" styleClass="ui-widget-content ui-corner-all"
 									style="width: 100px;">
@@ -54,10 +55,11 @@
 										Effect Drop
 									</h3>
 									<h:outputText value="click" />
-									<jq:effect event="click" effect="drop" speed="1000"
-										for="Drop" callback="callback"></jq:effect>
+									<jq:effect event="click" effect="drop" speed="1000" for="Drop"
+										callback="callback"></jq:effect>
 								</jq:div>
-								<jq:div id="Explode" styleClass="ui-widget-content ui-corner-all"
+								<jq:div id="Explode"
+									styleClass="ui-widget-content ui-corner-all"
 									style="width: 100px;">
 									<h3 class="ui-widget-header ui-corner-all">
 										Effect Explode
@@ -72,10 +74,11 @@
 										Effect Fold
 									</h3>
 									<h:outputText value="click" />
-									<jq:effect event="click" effect="fold" speed="1000"
-										for="Fold" callback="callback"></jq:effect>
+									<jq:effect event="click" effect="fold" speed="1000" for="Fold"
+										callback="callback"></jq:effect>
 								</jq:div>
-								<jq:div id="Highlight" styleClass="ui-widget-content ui-corner-all"
+								<jq:div id="Highlight"
+									styleClass="ui-widget-content ui-corner-all"
 									style="width: 100px;">
 									<h3 class="ui-widget-header ui-corner-all">
 										Effect Highlight
@@ -90,8 +93,8 @@
 										Effect Puff
 									</h3>
 									<h:outputText value="click" />
-									<jq:effect event="click" effect="puff" speed="1000"
-										for="Puff" callback="callback"></jq:effect>
+									<jq:effect event="click" effect="puff" speed="1000" for="Puff"
+										callback="callback"></jq:effect>
 								</jq:div>
 								<jq:div id="Scale" styleClass="ui-widget-content ui-corner-all"
 									style="width: 100px;">
@@ -120,15 +123,15 @@
 							}, 1000);
 						}
 						</jq:outputScript>
+						</div>
 					</div>
-				</div>
-				<!-- End demo -->
-				<div class="ui-widget-content">
-					<p>
-						Click the button above to show the effect.
-						<a href="#" id="button">button</a>
-					</p>
-				</div>
+					<!-- End demo -->
+					<div class="ui-widget-content">
+						<p>
+							Click the button above to show the effect.
+							<a href="#" id="button">button</a>
+						</p>
+					</div>
 				</f:view>
 				<!-- End demo-description -->
 			</div>

@@ -8,8 +8,9 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
-		<link href="/simple/style.css" rel="stylesheet" type="text/css" />
-		<link href="/simple/demos.css" rel="stylesheet" type="text/css" />
+		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
+			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
+		<link href="/demos.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<jsp:include page="inc/header.jsp"></jsp:include>

@@ -8,7 +8,8 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
-		<link href="/simple/style.css" rel="stylesheet" type="text/css" />
+		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
+			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<jsp:include page="inc/header.jsp"></jsp:include>
@@ -68,7 +69,18 @@
 							</div>
 							<!-- End sample page content -->
 							<div class="ui-widget-content ui-corner-all">
-								<p>Confirm an action that may be destructive or important.  Set the <code>modal</code> option to true, and specify primary and secondary user actions with the <code>buttons</code> option.</p>
+								<p>
+									Confirm an action that may be destructive or important. Set the
+									<code>
+										modal
+									</code>
+									option to true, and specify primary and secondary user actions
+									with the
+									<code>
+										buttons
+									</code>
+									option.
+								</p>
 							</div>
 							<!-- End demo-description -->
 						</div>

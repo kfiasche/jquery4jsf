@@ -8,7 +8,8 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
-		<link href="/simple/style.css" rel="stylesheet" type="text/css" />
+		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
+			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<jsp:include page="inc/header.jsp"></jsp:include>
@@ -18,76 +19,84 @@
 			<!--right side start -->
 			<div id="rightPan">
 				<f:view>
-				<div class="demo">
-					<jq:accordionPanel id="accordion" collapsible="true">
-						<jq:accordionSubPanel panelName="Section 1">
-							<jq:div id="section1">
-							<p>
+					<div class="demo">
+						<jq:accordionPanel id="accordion" collapsible="true">
+							<jq:accordionSubPanel panelName="Section 1">
+								<jq:div id="section1">
+									<p>
 
-								Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam.
-								Integer ut neque. Vivamus nisi metus, molestie vel, gravida in,
-								condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam
-								mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a
-								velit eu ante scelerisque vulputate.
-							</p>
-							</jq:div>
-						</jq:accordionSubPanel>
-						<jq:accordionSubPanel panelName="Section 2">
-						<jq:div id="section2">
-							<p>
-								Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit
-								amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
-								turpis porttitor velit, faucibus interdum tellus libero ac
-								justo. Vivamus non quam. In suscipit faucibus urna.
-							</p>
-							</jq:div>
-						</jq:accordionSubPanel>
-						<jq:accordionSubPanel panelName="Section 3">
-						<jq:div id="section3">
-							<p>
-								Nam enim risus, molestie et, porta ac, aliquam ac, risus.
-								Quisque lobortis. Phasellus pellentesque purus in massa. Aenean
-								in pede. Phasellus ac libero ac tellus pellentesque semper. Sed
-								ac felis. Sed commodo, magna quis lacinia ornare, quam ante
-								aliquam nisi, eu iaculis leo purus venenatis dui.
-							</p>
-							<ul>
-								<li>
-									List item one
-								</li>
-								<li>
-									List item two
-								</li>
+										Mauris mauris ante, blandit et, ultrices a, suscipit eget,
+										quam. Integer ut neque. Vivamus nisi metus, molestie vel,
+										gravida in, condimentum sit amet, nunc. Nam a nibh. Donec
+										suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur
+										malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+									</p>
+								</jq:div>
+							</jq:accordionSubPanel>
+							<jq:accordionSubPanel panelName="Section 2">
+								<jq:div id="section2">
+									<p>
+										Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
+										sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet,
+										mauris turpis porttitor velit, faucibus interdum tellus libero
+										ac justo. Vivamus non quam. In suscipit faucibus urna.
+									</p>
+								</jq:div>
+							</jq:accordionSubPanel>
+							<jq:accordionSubPanel panelName="Section 3">
+								<jq:div id="section3">
+									<p>
+										Nam enim risus, molestie et, porta ac, aliquam ac, risus.
+										Quisque lobortis. Phasellus pellentesque purus in massa.
+										Aenean in pede. Phasellus ac libero ac tellus pellentesque
+										semper. Sed ac felis. Sed commodo, magna quis lacinia ornare,
+										quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+									</p>
+									<ul>
+										<li>
+											List item one
+										</li>
+										<li>
+											List item two
+										</li>
 
-								<li>
-									List item three
-								</li>
-							</ul>
-							</jq:div>
-						</jq:accordionSubPanel>
-						<jq:accordionSubPanel panelName="Section 4">
-						<jq:div id="section4">
-							<p>
-								Cras dictum. Pellentesque habitant morbi tristique senectus et
-								netus et malesuada fames ac turpis egestas. Vestibulum ante
-								ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-								Curae; Aenean lacinia mauris vel est.
-							</p>
+										<li>
+											List item three
+										</li>
+									</ul>
+								</jq:div>
+							</jq:accordionSubPanel>
+							<jq:accordionSubPanel panelName="Section 4">
+								<jq:div id="section4">
+									<p>
+										Cras dictum. Pellentesque habitant morbi tristique senectus et
+										netus et malesuada fames ac turpis egestas. Vestibulum ante
+										ipsum primis in faucibus orci luctus et ultrices posuere
+										cubilia Curae; Aenean lacinia mauris vel est.
+									</p>
 
-							<p>
-								Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-								consequat lectus. Class aptent taciti sociosqu ad litora
-								torquent per conubia nostra, per inceptos himenaeos.
-							</p>
-						</jq:div>
-						</jq:accordionSubPanel>
-					</jq:accordionPanel>
-					
-				</div>
-				<!-- End demo -->
-				<div class="ui-widget-content">
-				<p>By default, accordions always keep one section open. To allow for all sections to be be collapsible, set the <code>collapsible</code> option to true. Click on the currently open section to collapse its content pane.</p>
-				</div>
+									<p>
+										Suspendisse eu nisl. Nullam ut libero. Integer dignissim
+										consequat lectus. Class aptent taciti sociosqu ad litora
+										torquent per conubia nostra, per inceptos himenaeos.
+									</p>
+								</jq:div>
+							</jq:accordionSubPanel>
+						</jq:accordionPanel>
+
+					</div>
+					<!-- End demo -->
+					<div class="ui-widget-content">
+						<p>
+							By default, accordions always keep one section open. To allow for
+							all sections to be be collapsible, set the
+							<code>
+								collapsible
+							</code>
+							option to true. Click on the currently open section to collapse
+							its content pane.
+						</p>
+					</div>
 				</f:view>
 				<!-- End demo-description -->
 			</div>

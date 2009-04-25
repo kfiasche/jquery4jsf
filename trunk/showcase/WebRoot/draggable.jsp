@@ -17,7 +17,8 @@
 }
 </style>
 
-		<link href="/simple/style.css" rel="stylesheet" type="text/css" />
+		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
+			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<jsp:include page="inc/header.jsp"></jsp:include>

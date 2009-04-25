@@ -8,7 +8,8 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
-		<link href="/simple/style.css" rel="stylesheet" type="text/css" />
+		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
+			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<jsp:include page="inc/header.jsp"></jsp:include>
@@ -18,8 +19,11 @@
 			<!--right side start -->
 			<div id="rightPan">
 				<f:view>
-					<jq:dialog id="dialog" title="Basic modal dialog" autoOpen="true" bgiframe="true" maxHeight="140" modal="true">
-						<h:outputText  value="<p>Adding the modal overlay screen makes the dialog look more prominent because it dims out the page content.</p>" escape="false" />
+					<jq:dialog id="dialog" title="Basic modal dialog" autoOpen="true"
+						bgiframe="true" maxHeight="140" modal="true">
+						<h:outputText
+							value="<p>Adding the modal overlay screen makes the dialog look more prominent because it dims out the page content.</p>"
+							escape="false" />
 					</jq:dialog>
 
 					<h:form id="form1">
@@ -54,7 +58,16 @@
 							</div>
 							<!-- End sample page content -->
 							<div class="ui-widget-content">
-								<p>A modal dialog prevents the user from interacting with the rest of the page until it is closed.  To add a semi-transparent layer that dims out the page content behind the dialog, set the background color and opacity of the <code>overlay</code> option.</p>
+								<p>
+									A modal dialog prevents the user from interacting with the rest
+									of the page until it is closed. To add a semi-transparent layer
+									that dims out the page content behind the dialog, set the
+									background color and opacity of the
+									<code>
+										overlay
+									</code>
+									option.
+								</p>
 							</div>
 							<!-- End demo-description -->
 						</div>

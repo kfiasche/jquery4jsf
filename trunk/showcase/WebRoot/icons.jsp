@@ -9,12 +9,27 @@
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
 		<style>
-			ul#icons {margin: 0; padding: 0;}
-ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
-ul#icons span.ui-icon {float: left; margin: 0 4px;}
-			
-		</style>
-		<link href="/simple/style.css" rel="stylesheet" type="text/css" />
+ul#icons {
+	margin: 0;
+	padding: 0;
+}
+
+ul#icons li {
+	margin: 2px;
+	position: relative;
+	padding: 4px 0;
+	cursor: pointer;
+	float: left;
+	list-style: none;
+}
+
+ul#icons span.ui-icon {
+	float: left;
+	margin: 0 4px;
+}
+</style>
+		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
+			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<jsp:include page="inc/header.jsp"></jsp:include>

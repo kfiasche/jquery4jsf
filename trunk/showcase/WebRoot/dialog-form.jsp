@@ -8,8 +8,9 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
-		<link href="/simple/style.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
+		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
+			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
 body {
 	font-size: 62.5%;
 }
@@ -105,51 +106,52 @@ div#users-contain table td,div#users-contain table th {
 								<h:outputLabel for="password" value="Password" />
 								<h:inputSecret id="password" value="#{user.password}"
 									styleClass="text ui-widget-content ui-corner-all" />
-							<h:commandButton id="create-user"
-								styleClass="ui-button ui-state-default ui-corner-all"
-								actionListener="#{dialogBean.doButtonDialog}"
-								value="Create an account">
-							</h:commandButton>
-							<h:commandButton id="close-user"
-								styleClass="ui-button ui-state-default ui-corner-all"
-								value="close">
-							</h:commandButton>
+								<h:commandButton id="create-user"
+									styleClass="ui-button ui-state-default ui-corner-all"
+									actionListener="#{dialogBean.doButtonDialog}"
+									value="Create an account">
+								</h:commandButton>
+								<h:commandButton id="close-user"
+									styleClass="ui-button ui-state-default ui-corner-all"
+									value="close">
+								</h:commandButton>
 							</fieldset>
 						</h:form>
 					</jq:dialog>
 					<h:form id="formUser">
-					<div class="demo">
-						<div id="users-contain" class="ui-widget">
-							<h1>
-								Existing Users:
-							</h1>
-							<h:dataTable id="users" styleClass="ui-widget ui-widget-content" headerClass="ui-widget-header "
-								var="users" value="#{dialogBean.users}">
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Name"/>
-									</f:facet>
-									<h:outputText value="#{users.name}"/>
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Email"/>
-									</f:facet>
-									<h:outputText value="#{users.email}"/>
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Password"/>
-									</f:facet>
-									<h:outputText value="#{users.password}"/>
-								</h:column>
-							</h:dataTable>
+						<div class="demo">
+							<div id="users-contain" class="ui-widget">
+								<h1>
+									Existing Users:
+								</h1>
+								<h:dataTable id="users" styleClass="ui-widget ui-widget-content"
+									headerClass="ui-widget-header " var="users"
+									value="#{dialogBean.users}">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Name" />
+										</f:facet>
+										<h:outputText value="#{users.name}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Email" />
+										</f:facet>
+										<h:outputText value="#{users.email}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Password" />
+										</f:facet>
+										<h:outputText value="#{users.password}" />
+									</h:column>
+								</h:dataTable>
+							</div>
+							<h:commandButton id="create-user"
+								styleClass="ui-button ui-state-default ui-corner-all"
+								value="Create new user">
+							</h:commandButton>
 						</div>
-						<h:commandButton id="create-user"
-							styleClass="ui-button ui-state-default ui-corner-all"
-							value="Create new user">
-						</h:commandButton>
-					</div>
 					</h:form>
 					<!-- End demo -->
 					<div class="ui-widget ui-widget-content ui-corner-all">

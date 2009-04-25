@@ -9,7 +9,8 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
-		<link href="/simple/style.css" rel="stylesheet" type="text/css" />
+		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
+			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<jsp:include page="inc/header.jsp"></jsp:include>
@@ -26,7 +27,9 @@
 								<h:inputText id="nome" value="#{buttonBean.nome}"></h:inputText>
 								<h:outputLabel id="label2" for="cognome" value="Cognome"></h:outputLabel>
 								<h:inputText id="cognome" value="#{buttonBean.cognome}"></h:inputText>
-								<jq:button id="button1" target="panelUpdate" value="Ok" actionListener="#{buttonBean.provaActionListener}" onsuccess="var queryString = $('#form1').formSerialize(); alert(queryString); alert('Thanks for your comment!');"></jq:button>
+								<jq:button id="button1" target="panelUpdate" value="Ok"
+									actionListener="#{buttonBean.provaActionListener}"
+									onsuccess="var queryString = $('#form1').formSerialize(); alert(queryString); alert('Thanks for your comment!');"></jq:button>
 								<jq:button id="button2" value="Reset" type="reset"></jq:button>
 							</h:panelGrid>
 						</jq:panel>
