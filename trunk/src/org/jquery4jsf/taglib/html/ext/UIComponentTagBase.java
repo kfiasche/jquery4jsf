@@ -38,7 +38,7 @@ public abstract class UIComponentTagBase extends UIComponentTag {
 	}
 	
 	public static void setValueProperty(FacesContext context,UIComponent component, String propertyName, String value){
-		ComponentUtilities.setConverterProperty(context, component, value);
+		ComponentUtilities.setValueProperty(context, component, value);
 	}
 	
 	public static void setActionListenerProperty(FacesContext context,UIComponent component, String propertyName, String value){

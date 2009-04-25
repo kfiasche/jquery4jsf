@@ -12,34 +12,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.panel;
+package org.jquery4jsf.custom.icon;
 
-import java.io.IOException;
-
-import javax.faces.component.html.HtmlOutputText;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.el.ValueBinding;
-import javax.faces.render.Renderer;
-
 import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
+import org.jquery4jsf.custom.JQueryHtmlObject;
+import javax.faces.render.Renderer;
+import java.io.IOException;
+import javax.faces.el.ValueBinding;
+import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
-public class HtmlDiv extends HtmlOutputText implements JQueryHtmlObject,AjaxComponent {
+public class Icon extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
 
-	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlDiv";
-	public static final String COMPONENT_FAMILY = "org.jquery4jsf.Div";
-	public static final String DEFAULT_RENDERER = "org.jquery4jsf.DivRenderer";
+	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlIcon";
+	public static final String COMPONENT_FAMILY = "org.jquery4jsf.Icon";
+	public static final String DEFAULT_RENDERER = "org.jquery4jsf.IconRenderer";
 
 	private String[] resources;
 	private String style;
 	private String styleClass;
-	private Boolean escape;
+	private String type;
 
-	public HtmlDiv() {
+	public Icon() {
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
+			"themes/base/ui.all.css"
 		};
 	}
 
@@ -69,15 +71,15 @@ public class HtmlDiv extends HtmlOutputText implements JQueryHtmlObject,AjaxComp
 		this.styleClass = styleClass;
 	}
 
-	public boolean isEscape() {
-		if(escape != null )
-			return escape.booleanValue();
+	public String getType() {
+		if(type != null )
+			return type;
 
-		Boolean oValue = (Boolean) getLocalOrValueBindingValue(escape, "escape");
-		return oValue != null ? oValue.booleanValue()  : false;
+		String oValue = (String) getLocalOrValueBindingValue(type, "type");
+		return oValue != null ? oValue : null;
 	}
-	public void setEscape(boolean escape) {
-		this.escape = new Boolean(escape);
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public Object saveState(FacesContext context) {
@@ -85,7 +87,7 @@ public class HtmlDiv extends HtmlOutputText implements JQueryHtmlObject,AjaxComp
 		values[0] = super.saveState(context);
 		values[1] = style;
 		values[2] = styleClass;
-		values[3] = escape;
+		values[3] = type;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -93,7 +95,7 @@ public class HtmlDiv extends HtmlOutputText implements JQueryHtmlObject,AjaxComp
 		super.restoreState(context, values[0]);
 		this.style = (String) values[1];
 		this.styleClass = (String) values[2];
-		this.escape = (Boolean) values[3];
+		this.type = (String) values[3];
 	}
 
 	public String[] getResources() {

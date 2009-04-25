@@ -81,7 +81,7 @@ public class ProgressBarRenderer extends JQueryBaseRenderer {
 
 	private String encodeOptionComponent(StringBuffer options, ProgressBar progressBar, FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, progressBar.getValue(), "value", null);
+		encodeOptionComponentByType(options, progressBar.getProgressBarValue(), "value", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

@@ -1,8 +1,11 @@
 package org.jquery4jsf.application;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
+import javax.faces.component.UICommand;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -43,6 +46,7 @@ public class AjaxPhaseListener implements PhaseListener {
 				String[] updateIds = (String[]) request.getParameterMap().get(AJAX_PS_ID);
 				ServletResponse response = (ServletResponse) context.getExternalContext().getResponse();
 				response.setContentType("text/html");
+				printRequestValue(request);
 				try {
 					for (int i = 0; i < updateIds.length; i++) {
 						String id = updateIds[i];
@@ -105,6 +109,29 @@ public class AjaxPhaseListener implements PhaseListener {
 			facesContext.setResponseWriter(responseWriter);
 		}catch(IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private void printRequestValue(HttpServletRequest request){
+		Map params = request.getParameterMap();
+		Set keySet = params.keySet();
+		for (Iterator iterator = keySet.iterator(); iterator.hasNext();) {
+			String key = (String) iterator.next();
+			Object value = params.get(key);
+			if (value instanceof String[]){
+				String[] args = (String[])value;
+				for (int i = 0; i < args.length; i++) {
+					String valore = args[i];
+					System.out.println("Nome parametro: "+key+" valore: "+valore);
+				}
+			}
+			else if (value instanceof String){
+				String valore = (String)value;
+				System.out.println("Nome parametro: "+key+" valore: "+valore);
+			}
+			else{
+				System.out.println("Nome parametro: "+key+" valore: "+value.toString());
+			}
 		}
 	}
 	

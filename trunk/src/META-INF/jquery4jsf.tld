@@ -2378,51 +2378,42 @@
   </attribute>
  </tag>
  <tag>
-  <name>progressBar</name>
-  <tag-class>org.jquery4jsf.custom.progressbar.ProgressBarTag</tag-class>
-  <body-content>JSP</body-content>
-  <!-- UIComponent attributes -->
-  <attribute>
-   <name>id</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>java.lang.String</type>
-   <description>The developer-assigned ID of this component. The ID
-				must be unique
-				within the scope of the tag's enclosing naming
-				container (e.g.
-				h:form or f:subview). This value must be a static
-				value.</description>
-  </attribute>
-  <attribute>
-   <name>binding</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>java.lang.String</type>
-   <description>Identifies a backing bean property (of type
-				UIComponent or appropriate
-				subclass) to bind to this component
-				instance. This value must be an
-				EL expression.</description>
-  </attribute>
-  <attribute>
-   <name>rendered</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>java.lang.String</type>
-   <description>A boolean value that indicates whether this component
-				should be rendered.
-				Default value: true.</description>
-  </attribute>
-  <!-- JQuery -->
-  <attribute>
-   <name>value</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>java.lang.String</type>
-  </attribute>
-  <attribute>
-   <name>resizable</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>java.lang.String</type>
-  </attribute>
- </tag>
+		<name>progressBar</name>
+		<tag-class>org.jquery4jsf.custom.progressbar.ProgressBarTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>progressBarValue</name>
+			<required>false</required>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<name>resizable</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
  <tag>
   <name>tabbedPanel</name>
   <tag-class>org.jquery4jsf.custom.tabbedpanel.TabbedPanelTag</tag-class>
@@ -2637,6 +2628,11 @@
    <rtexprvalue>false</rtexprvalue>
    <description>The CSS class for this element. Corresponds to the
 				HTML 'class' attribute.</description>
+  </attribute>
+    <attribute>
+   <name>escape</name>
+   <rtexprvalue>false</rtexprvalue>
+   <description>write html type default true</description>
   </attribute>
  </tag>
  <tag>
@@ -3660,50 +3656,6 @@
   </attribute>
  </tag>
  <tag>
-  <name>ajaxEvent</name>
-  <tag-class>org.jquery4jsf.custom.ajax.AjaxEventTag</tag-class>
-  <body-content>JSP</body-content>
-  <attribute>
-   <name>value</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>java.lang.Object</type>
-   <description>Value of the component that can be either an EL expression or a literal text</description>
-  </attribute>
-  <attribute>
-   <name>actionListener</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>javax.faces.event.ActionListener</type>
-  </attribute>
-  <attribute>
-   <name>action</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>javax.faces.el.MethodBinding</type>
-  </attribute>
-  <attribute>
-   <name>immediate</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>boolean</type>
-  </attribute>
-  <attribute>
-   <name>reRender</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>java.lang.String</type>
-   <description>Update the component by id</description>
-  </attribute>
-  <attribute>
-   <name>event</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>java.lang.String</type>
-   <description>add event to ajax event</description>
-  </attribute>
-  <attribute>
-   <name>partialSubmit</name>
-   <rtexprvalue>false</rtexprvalue>
-   <type>boolean</type>
-   <description>add event to ajax event</description>
-  </attribute>
- </tag>
- <tag>
   <name>paragraph</name>
   <tag-class>org.jquery4jsf.custom.paragraph.ParagraphTag</tag-class>
   <body-content>JSP</body-content>
@@ -3756,4 +3708,370 @@
    <description>Space-separated list of CSS style class(es) to be applied when this element is rendered. This value must be passed through as the "class" property on generated markup.</description>
   </attribute>
  </tag>
+ <tag>
+		<name>icon</name>
+		<tag-class>org.jquery4jsf.custom.icon.IconTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[CSS style(s) to be applied when this component is rendered.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Space-separated list of CSS style class(es) to be applied when this element is rendered. This value must be passed through as the "class" property on generated markup.]]></description>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Update the component by id]]></description>
+		</attribute>
+	</tag>
+		<tag>
+		<name>ajaxEvent</name>
+		<tag-class>org.jquery4jsf.custom.ajax.AjaxEventTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<type>java.lang.Object</type>
+			<description><![CDATA[Value of the component that can be either an EL expression or a literal text]]></description>
+		</attribute>
+		<attribute>
+			<name>actionListener</name>
+			<required>false</required>
+			<type>javax.faces.event.ActionListener</type>
+		</attribute>
+		<attribute>
+			<name>action</name>
+			<required>false</required>
+			<type>javax.faces.el.MethodBinding</type>
+		</attribute>
+		<attribute>
+			<name>immediate</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>reRender</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Update the component by id]]></description>
+		</attribute>
+		<attribute>
+			<name>event</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[add event to ajax event]]></description>
+		</attribute>
+		<attribute>
+			<name>partialSubmit</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[add event to ajax event]]></description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>button</name>
+		<tag-class>org.jquery4jsf.custom.button.ButtonTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<type>java.lang.Object</type>
+			<description><![CDATA[Value of the component that can be either an EL expression or a literal text]]></description>
+		</attribute>
+		<attribute>
+			<name>actionListener</name>
+			<required>false</required>
+			<type>javax.faces.event.ActionListener</type>
+		</attribute>
+		<attribute>
+			<name>action</name>
+			<required>false</required>
+			<type>javax.faces.el.MethodBinding</type>
+		</attribute>
+		<attribute>
+			<name>immediate</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html accesskey attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>alt</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html alt attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html dir attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Html disabled attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>image</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Image of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>lang</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html lang attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onblur attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onchange attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onclick attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html ondblclick attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onfocus attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onkeydown attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onkeypress attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onkeyup attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onmousedown attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onmousemove attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onmouseout attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onmouseover attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onmouseup attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>onselect</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html onselect attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>readonly</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Html readonly attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html style attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html class attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html tabindex attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html title attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Html title attribute of the command button]]></description>
+		</attribute>
+		<attribute>
+			<name>partialSubmit</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>target</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Identifies the element(s) in the page to be updated with the server response. This value may be specified as a jQuery selection string, a jQuery object, or a DOM element. Default value: null]]></description>
+		</attribute>
+		<attribute>
+			<name>url</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[URL to which the form data will be submitted. Default value: value of form's action attribute]]></description>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[The method in which the form data should be submitted, 'GET' or 'POST'. Default value: value of form's method attribute (or 'GET' if none found)]]></description>
+		</attribute>
+		<attribute>
+			<name>onbeforeSubmit</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Callback function to be invoked before the form is submitted. The 'beforeSubmit' callback can be provided as a hook for running pre-submit logic or for validating the form data. If the 'beforeSubmit' callback returns false then the form will not be submitted. The 'beforeSubmit' callback is invoked with three arguments: the form data in array format, the jQuery object for the form, and the Options Object passed into ajaxForm/ajaxSubmit.]]></description>
+		</attribute>
+		<attribute>
+			<name>onsuccess</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Callback function to be invoked after the form has been submitted. If a 'success' callback function is provided it is invoked after the response has been returned from the server. It is passed the responseText or responseXML value (depending on the value of the dataType option).]]></description>
+		</attribute>
+		<attribute>
+			<name>dataType</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Expected data type of the response. One of: null, 'xml', 'script', or 'json'. The dataType option provides a means for specifying how the server response should be handled. This maps directly to the jQuery.httpData method. The following values are supported: 'xml': if dataType == 'xml' the server response is treated as XML and the 'success' callback method, if specified, will be passed the responseXML value 'json': if dataType == 'json' the server response will be evaluted and passed to the 'success' callback, if specified 'script': if dataType == 'script' the server response is evaluated in the global context]]></description>
+		</attribute>
+		<attribute>
+			<name>semantic</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean flag indicating whether data must be submitted in strict semantic order (slower). Note that the normal form serialization is done in semantic order with the exception of input elements of type="image". You should only set the semantic option to true if your server has strict semantic requirements and your form contains an input element of type="image".]]></description>
+		</attribute>
+		<attribute>
+			<name>resetForm</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean flag indicating whether the form should be reset if the submit is successful Default value: null]]></description>
+		</attribute>
+		<attribute>
+			<name>clearForm</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean flag indicating whether the form should be cleared if the submit is successful Default value: null]]></description>
+		</attribute>
+		<attribute>
+			<name>iframe</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean flag indicating whether the form should always target the server response to an iframe. This is useful in conjuction with file uploads. See the File Uploads documentation on the Code Samples page for more info. Default value: false]]></description>
+		</attribute>
+	</tag>
 </taglib>

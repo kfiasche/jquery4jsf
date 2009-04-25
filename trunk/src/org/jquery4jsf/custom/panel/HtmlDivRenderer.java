@@ -17,13 +17,14 @@ public class HtmlDivRenderer extends Renderer {
 
 
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+	}
+
+	public void encodeEnd(FacesContext context,UIComponent component) throws IOException {
 		if(context == null || context == null)
 			throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
 		if(!component.isRendered())
 			return;
-	}
-
-	public void encodeEnd(FacesContext context,UIComponent component) throws IOException {
+		
 		if(context == null || context == null)
 			throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
 		if(!component.isRendered())
@@ -37,8 +38,11 @@ public class HtmlDivRenderer extends Renderer {
 		responseWriter.startElement(HTML.TAG_DIV, htmlDiv);
 		responseWriter.writeAttribute("id", htmlDiv.getClientId(context), "id");
 		HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_STD_ATTR);
+		responseWriter.write("\n");
+		
 		RendererUtilities.renderChildren(context, component);
 		responseWriter.endElement(HTML.TAG_DIV);
+		responseWriter.write("\n");
 	}
 
     public void encodeChildren(FacesContext context, UIComponent component) throws IOException {

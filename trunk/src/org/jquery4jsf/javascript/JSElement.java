@@ -70,6 +70,7 @@ public class JSElement implements JSInterface {
 	
 	private void generaCodice(){
 		if (id != null && !id.equalsIgnoreCase("")){
+			javascriptCode.append("\t");
 			javascriptCode.append(JSElementConstants.JS_JQUERY_OPEN);
 			if("this".equalsIgnoreCase(id)){
 				javascriptCode.append(id);

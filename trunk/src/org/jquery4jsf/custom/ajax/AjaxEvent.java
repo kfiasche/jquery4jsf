@@ -23,11 +23,12 @@ import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
+import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Object;
 import javax.faces.event.ActionListener;
 import javax.faces.el.MethodBinding;
-import java.lang.Boolean;
-import java.lang.String;
 
 public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxComponent {
 

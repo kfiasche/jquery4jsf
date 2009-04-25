@@ -13,7 +13,9 @@ public class HTML {
 	public static final String TAG_LINK = 		"link";
 	public static final String TAG_LI = 		"li";
 	public static final String TAG_SCRIPT = 	"script";
+	public static final String TAG_SPAN =	 	"span";
 	public static final String TAG_UL = 		"ul";
+	public static final String TAG_INPUT = "input";
 	
 	public static final String STYLE_CLASS	= "styleClass";	
 	public static final String STYLE	= "style";     
@@ -113,7 +115,17 @@ public class HTML {
 		MEDIA
 	};
 	
+	public static final String ALT = "alt";
+	public static final String DISABLED = "disabled";	
+	public static final String VALUE = "value";
 	
+	public static final String[] HTML_INPUT_COMMAND_TAG_ATTR = new String[]{
+		TYPE,	
+		ALT,
+		DISABLED,
+		VALUE,
+		SRC
+	};
 	
 	
 	

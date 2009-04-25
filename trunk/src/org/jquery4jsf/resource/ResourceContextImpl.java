@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 public class ResourceContextImpl extends ResourceContext {
 
 	private static List listResource;
+	private static String PARAM_THEME_CSS = "org.jquery4jsf.THEME_CSS";
 	
 	public ResourceContextImpl(){
 		listResource = new ArrayList();
@@ -18,7 +19,7 @@ public class ResourceContextImpl extends ResourceContext {
 			return false;
 		if (resource.endsWith(".css")){
 			FacesContext facesContext = FacesContext.getCurrentInstance();
-			String theme   = facesContext.getExternalContext().getInitParameter("ThemeCSS");
+			String theme   = facesContext.getExternalContext().getInitParameter(PARAM_THEME_CSS);
 			if (theme != null){
 				resource = resource.replaceAll("base", theme);
 			}

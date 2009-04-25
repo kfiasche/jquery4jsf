@@ -22,7 +22,7 @@ public class ProgressBarBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, ProgressBar progressBar , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, progressBar.getProgressBarValue(), "progressBarValue", "0");
+		encodeOptionComponentByType(options, progressBar.getProgressBarValue(), "value", "0");
 		encodeOptionComponentByType(options, progressBar.isResizable(), "resizable", "false");
 		encodeOptionComponentByType(options, progressBar.getOnchange(), "onchange", "false");
 		if (options.toString().endsWith(", \n")){

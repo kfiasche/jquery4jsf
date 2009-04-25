@@ -12,28 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.slider;
+package org.jquery4jsf.custom.icon;
 
 import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class SliderBaseRenderer extends JQueryBaseRenderer {
+public class IconBaseRenderer extends JQueryBaseRenderer {
 
-	protected String encodeOptionComponent(StringBuffer options, Slider slider , FacesContext context) {
+	protected String encodeOptionComponent(StringBuffer options, Icon icon , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, slider.isAnimate(), "animate", "false");
-		encodeOptionComponentByType(options, slider.getMax(), "max", "100");
-		encodeOptionComponentByType(options, slider.getMin(), "min", "0");
-		encodeOptionComponentByType(options, slider.getOrientation(), "orientation", "auto");
-		encodeOptionComponentByType(options, slider.getRange(), "range", null);
-		encodeOptionComponentByType(options, slider.getStep(), "step", "1");
-		encodeOptionComponentByType(options, slider.getSliderValue(), "value", "0");
-		encodeOptionComponentByType(options, slider.getValues(), "values", null);
-		encodeOptionComponentByType(options, slider.getOnstart(), "onstart", null);
-		encodeOptionComponentByType(options, slider.getOnslide(), "onslide", null);
-		encodeOptionComponentByType(options, slider.getOnchange(), "onchange", null);
-		encodeOptionComponentByType(options, slider.getOnstop(), "onstop", null);
+		encodeOptionComponentByType(options, icon.getStyle(), "style", null);
+		encodeOptionComponentByType(options, icon.getStyleClass(), "styleClass", null);
+		encodeOptionComponentByType(options, icon.getType(), "type", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

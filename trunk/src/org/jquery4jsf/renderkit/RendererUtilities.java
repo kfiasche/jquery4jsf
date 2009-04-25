@@ -153,8 +153,16 @@ public class RendererUtilities {
 				}
 			}
 			else if (value instanceof Integer){
-				if (((Integer)value).intValue() > -1){
-					String s = ((Integer)value).toString();
+				Integer iValue = ((Integer)value);
+				Integer iDefaultValue = null;
+				if (defaultValue != null){
+					iDefaultValue = Integer.valueOf((String) defaultValue);
+				}
+				else{
+					iDefaultValue = new Integer(0);
+				}
+				if (!iValue.equals(iDefaultValue)){
+					String s = iValue.toString();
 					sb.append(nameParameter.concat(": ").concat(s).concat(", \n"));
 				}
 			}
@@ -189,7 +197,7 @@ public class RendererUtilities {
 	
 	public static void createOptionComponentFunction(StringBuffer options, String value, String nameParameter) {
 		if (value != null){
-			options.append(cleanPrefixFunction(nameParameter).concat(": function(event, ui) {\n"));
+			options.append(cleanPrefixFunction(nameParameter).concat(": function() {\n"));
 			options.append(value);
 			options.append("\n}");
 			options.append(", \n");
@@ -272,5 +280,9 @@ public class RendererUtilities {
 	
 	public static String getJQueryIdComponent(FacesContext facesContext, UIComponent component){
 		return "#" + component.getClientId(facesContext).replaceAll(":", "\\\\\\\\:");
+	}
+	
+	public static String getJQueryId(String id){
+		return "#" + id.replaceAll(":", "\\\\\\\\:");
 	}
 }
