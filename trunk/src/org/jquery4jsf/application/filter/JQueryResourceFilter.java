@@ -91,14 +91,23 @@ public final class JQueryResourceFilter implements Filter {
 
 	private String constructResourceToScriptTags(Collection resources, String[] requestURI) {
 		StringBuffer scriptElements = new StringBuffer();
-		String webProjectName = (requestURI.length < 2) ? requestURI[0] : requestURI[1];
+		String webProjectName = null;
+		if (requestURI.length == 2){
+			webProjectName = requestURI[0];
+		}
+		else 
+		{
+			webProjectName = (requestURI.length < 2) ? requestURI[0] : requestURI[1];
+		}
 		scriptElements.append("\n");
 		for (Iterator iterate = resources.iterator(); iterate.hasNext();) {
 			String resource = (String) iterate.next();
 			if (resource.endsWith(".js")){
 				scriptElements.append("<script type=\"text/javascript\" src=\"/");
-				scriptElements.append(webProjectName);
-				scriptElements.append("/");
+				if (!(webProjectName == null || webProjectName.trim().length() ==0)){
+					scriptElements.append(webProjectName);
+					scriptElements.append("/");
+				}
 				scriptElements.append("jquery4jsf_resource");
 				scriptElements.append("/");
 				scriptElements.append(resource);
@@ -106,8 +115,10 @@ public final class JQueryResourceFilter implements Filter {
 			}
 			else if (resource.endsWith(".css")){
 				scriptElements.append("<link  type=\"text/css\" href=\"/");
-				scriptElements.append(webProjectName);
-				scriptElements.append("/");
+				if (!(webProjectName == null || webProjectName.trim().length() ==0)){
+					scriptElements.append(webProjectName);
+					scriptElements.append("/");
+				}
 				scriptElements.append("jquery4jsf_resource");
 				scriptElements.append("/");
 				scriptElements.append(resource);

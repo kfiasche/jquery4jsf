@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import javax.faces.component.UICommand;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -46,7 +45,7 @@ public class AjaxPhaseListener implements PhaseListener {
 				String[] updateIds = (String[]) request.getParameterMap().get(AJAX_PS_ID);
 				ServletResponse response = (ServletResponse) context.getExternalContext().getResponse();
 				response.setContentType("text/html");
-				printRequestValue(request);
+				//printRequestValue(request);
 				try {
 					for (int i = 0; i < updateIds.length; i++) {
 						String id = updateIds[i];
