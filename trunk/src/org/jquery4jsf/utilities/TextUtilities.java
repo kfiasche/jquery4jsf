@@ -56,4 +56,14 @@ public final class TextUtilities {
     		return str;
     	}
     }
+    
+    private static final char[] REPLACEMENT_CHARS = new char[] {'\t', '\f', '\r', '\n'};
+    public static String cleanString(String statement) {
+        String newString = statement.trim();
+        for (int i = 0; i < REPLACEMENT_CHARS.length; i++) {
+        	newString = newString.replace(REPLACEMENT_CHARS[i], ' ');
+        }
+        return newString;
+    }
+
 }

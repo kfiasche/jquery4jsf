@@ -32,6 +32,7 @@ import javax.faces.convert.Converter;
 import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.webapp.UIComponentTag;
 
 import org.jquery4jsf.el.JQueryMethodBinding;
@@ -243,7 +244,7 @@ public class ComponentUtilities {
 		return FacesContext.getCurrentInstance();
 	}
 
-	public static void setValueProperty(FacesContext context, UIComponent component, String value) {
+	public static void setValueProperty(FacesContext context, UIComponent component,String property, String value) {
 		if (value != null) {
 			if (UIComponentTag.isValueReference(value)) {
 				ValueBinding binding = context.getApplication().createValueBinding(value);
@@ -262,7 +263,42 @@ public class ComponentUtilities {
 		}
 	}
 
-	public static void setConverterProperty(FacesContext context,UIComponent component, String value) {
+	public static void setValueChangeListenerProperty(FacesContext context, UIComponent component,String property, String valueChangeListener) {
+		if(valueChangeListener != null) {
+			if (isValueReference(valueChangeListener)) {
+				Class params [] = { ValueChangeEvent.class };
+				MethodBinding mb = context.getApplication().createMethodBinding(valueChangeListener, params);
+				((EditableValueHolder)component).setValueChangeListener(mb);
+			} else {
+				throw new IllegalArgumentException("Component with id:" + component.getId() + " has an invalid validator");
+			}
+		}
+	}
+
+	public static void setRequiredProperty(FacesContext context, UIComponent component,String property, String required) {
+		if(required != null) {
+			if (isValueReference(required)) {
+				ValueBinding vb = context.getApplication().createValueBinding(required);
+				component.setValueBinding("required", vb);
+			} else {
+				((EditableValueHolder)component).setRequired(Boolean.valueOf(required).booleanValue());
+			}
+		}
+	}
+
+	public static void setImmediateProperty(FacesContext context, UIComponent component,String property, String immediate) {
+		if(immediate != null) {
+			if (isValueReference(immediate)) {
+				ValueBinding vb = context.getApplication().createValueBinding(immediate);
+				component.setValueBinding("immediate", vb);
+			} else {
+				((EditableValueHolder)component).setImmediate(Boolean.valueOf(immediate).booleanValue());
+			}
+		}
+	}
+
+	
+	public static void setConverterProperty(FacesContext context,UIComponent component,String property, String value) {
 		if (value != null) {
 			if (component instanceof ValueHolder) {
 				if (isValueReference(value)) {
@@ -276,7 +312,7 @@ public class ComponentUtilities {
 		}
 	}
 
-	public static void setValidatorProperty(FacesContext context,UIComponent component, String validator) {
+	public static void setValidatorProperty(FacesContext context,UIComponent component,String property, String validator) {
 		if (validator != null) {
 			if (!(component instanceof EditableValueHolder)) {
 				throw new IllegalArgumentException("Component "

@@ -14,7 +14,7 @@
  *  limitations under the License.
  *
  */
-package org.jquery4jsf.renderkit.html.ext;
+package org.jquery4jsf.custom.html;
 
 import java.io.IOException;
 
@@ -22,15 +22,14 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import org.jquery4jsf.custom.HtmlAddress;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 
 import com.sun.faces.renderkit.html_basic.HtmlBasicRenderer;
 
-public class HtmlAddressRenderer extends HtmlBasicRenderer {
+public class HtmlAcronymRenderer extends HtmlBasicRenderer {
 
-	public static final String RENDERER_TYPE = "org.jquery4jsf.HtmlAddressRenderer";
+	public static final String RENDERER_TYPE = "org.jquery4jsf.HtmlAcronymRenderer";
 
 	
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
@@ -38,15 +37,15 @@ public class HtmlAddressRenderer extends HtmlBasicRenderer {
         {
             throw new NullPointerException();
         }
-        HtmlAddress htmlAddress = null;
-        if (component instanceof HtmlAddress){
-        	htmlAddress = (HtmlAddress)component;
+        HtmlAcronym htmlAcronym = null;
+        if (component instanceof HtmlAcronym){
+        	htmlAcronym = (HtmlAcronym)component;
         }
-        if (!htmlAddress.isRendered())
+        if (!htmlAcronym.isRendered())
         	return;
         
         ResponseWriter writer = context.getResponseWriter();
-        writer.startElement(HTML.TAG_ADDRESS, htmlAddress);
+        writer.startElement(HTML.TAG_ACRONYM, htmlAcronym);
         HtmlRendererUtilities.writeHtmlAttributes(writer, component, HTML.HTML_STD_ATTR);
         HtmlRendererUtilities.writeHtmlAttributes(writer, component, HTML.HTML_JS_STD_ATTR);
 
@@ -61,16 +60,15 @@ public class HtmlAddressRenderer extends HtmlBasicRenderer {
         {
             throw new NullPointerException();
         }
-        HtmlAddress htmlAddress = null;
-        if (component instanceof HtmlAddress){
-        	htmlAddress = (HtmlAddress)component;
+        HtmlAcronym htmlAcronym = null;
+        if (component instanceof HtmlAcronym){
+        	htmlAcronym = (HtmlAcronym)component;
         }
-        if (!htmlAddress.isRendered())
+        if (!htmlAcronym.isRendered())
         	return;
         ResponseWriter writer = context.getResponseWriter();
-        writer.endElement(HTML.TAG_ADDRESS);
+        writer.endElement(HTML.TAG_ACRONYM);
 	}
-	
 
 	public boolean getRendersChildren() {
 		return false;

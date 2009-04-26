@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.jquery4jsf.custom.accordion.AccordionPanel;
+import org.jquery4jsf.custom.tabbedpanel.TabPanel;
+import org.jquery4jsf.custom.tabbedpanel.TabbedPanel;
 
 public class CreateTagLib {
 
@@ -29,7 +31,7 @@ public class CreateTagLib {
 		//Field[] fieldsa = AccordianSubPanel.class.getSuperclass().getSuperclass().getSuperclass().getDeclaredFields();
 		//Field[] fieldsb = DatePicker.class.getSuperclass().getSuperclass().getDeclaredFields();
 		//Field[] fieldsc = HtmlInputText.class.getSuperclass().getDeclaredFields();
-		Field[] fieldsd = AccordionPanel.class.getDeclaredFields();
+		Field[] fieldsd = TabPanel.class.getDeclaredFields();
 		ArrayList lista = new ArrayList();
 		//lista.addAll(Arrays.asList(fieldsa));
 		//lista.addAll(Arrays.asList(fieldsb));

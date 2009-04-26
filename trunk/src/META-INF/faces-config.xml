@@ -1,78 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
-                              "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
-<faces-config>
-	<component>
-		<component-type>org.jquery4jsf.HtmlLink</component-type>
-		<component-class>org.jquery4jsf.custom.link.HtmlLink</component-class>
-	</component>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE faces-config PUBLIC
+		"-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+		"http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+
+<faces-config xmlns="http://java.sun.com/JSF/Configuration">
+
+<lifecycle>
+
+	<phase-listener>org.jquery4jsf.application.AjaxPhaseListener</phase-listener>
+
+</lifecycle>
+
 	<component>
 		<component-type>org.jquery4jsf.HtmlAbbr</component-type>
-		<component-class>org.jquery4jsf.custom.HtmlAbbr</component-class>
+		<component-class>org.jquery4jsf.custom.html.HtmlAbbr</component-class>
 	</component>
-	<component>
-		<component-type>org.jquery4jsf.HtmlAcronym</component-type>
-		<component-class>org.jquery4jsf.custom.HtmlAcronym</component-class>
-	</component>
-	<component>
-		<component-type>org.jquery4jsf.HtmlAddress</component-type>
-		<component-class>org.jquery4jsf.custom.HtmlAddress</component-class>
-	</component>
-		<component>
-		<component-type>org.jquery4jsf.HtmlButton</component-type>
-		<component-class>org.jquery4jsf.custom.button.Button</component-class>
-	</component>
-	<component>
-		<component-type>org.jquery4jsf.HtmlInputTextAutocomplete</component-type>
-		<component-class>org.jquery4jsf.custom.autocomplete.AutoComplete</component-class>
-	</component>
+
 	<component>
 		<component-type>org.jquery4jsf.HtmlAccordionPanel</component-type>
 		<component-class>org.jquery4jsf.custom.accordion.AccordionPanel</component-class>
 	</component>
-	<component>
-		<component-type>org.jquery4jsf.OutputScript</component-type>
-		<component-class>org.jquery4jsf.custom.outputscript.OutputScript</component-class>
-	</component>
+
 	<component>
 		<component-type>org.jquery4jsf.HtmlAccordionSubPanel</component-type>
 		<component-class>org.jquery4jsf.custom.accordion.AccordionSubPanel</component-class>
 	</component>
+
 	<component>
-		<component-type>org.jquery4jsf.HtmlDatePicker</component-type>
-		<component-class>org.jquery4jsf.custom.datepicker.DatePicker</component-class>
+		<component-type>org.jquery4jsf.HtmlAcronym</component-type>
+		<component-class>org.jquery4jsf.custom.html.HtmlAcronym</component-class>
 	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlAddress</component-type>
+		<component-class>org.jquery4jsf.custom.html.HtmlAddress</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlAjaxEvent</component-type>
+		<component-class>org.jquery4jsf.custom.ajax.AjaxEvent</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlAutoComplete</component-type>
+		<component-class>org.jquery4jsf.custom.autocomplete.AutoComplete</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlButton</component-type>
+		<component-class>org.jquery4jsf.custom.button.Button</component-class>
+	</component>
+
 	<component>
 		<component-type>org.jquery4jsf.HtmlCalendar</component-type>
 		<component-class>org.jquery4jsf.custom.calendar.Calendar</component-class>
 	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlCarousel</component-type>
+		<component-class>org.jquery4jsf.custom.carousel.Carousel</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlDatePicker</component-type>
+		<component-class>org.jquery4jsf.custom.datepicker.DatePicker</component-class>
+	</component>
+
 	<component>
 		<component-type>org.jquery4jsf.HtmlDialog</component-type>
 		<component-class>org.jquery4jsf.custom.dialog.Dialog</component-class>
 	</component>
-	<component>
-		<component-type>org.jquery4jsf.HtmlProgressBar</component-type>
-		<component-class>org.jquery4jsf.custom.progressbar.ProgressBar</component-class>
-	</component>
-	<component>
-		<component-type>org.jquery4jsf.HtmlTabbedPanel</component-type>
-		<component-class>org.jquery4jsf.custom.tabbedpanel.TabbedPanel</component-class>
-	</component>
-	<component>
-		<component-type>org.jquery4jsf.HtmlTabPanel</component-type>
-		<component-class>org.jquery4jsf.custom.tabbedpanel.TabPanel</component-class>
-	</component>
+
 	<component>
 		<component-type>org.jquery4jsf.HtmlDiv</component-type>
 		<component-class>org.jquery4jsf.custom.panel.HtmlDiv</component-class>
-	</component>
-	<component>
-		<component-type>org.jquery4jsf.HtmlSlider</component-type>
-		<component-class>org.jquery4jsf.custom.slider.Slider</component-class>
-	</component>
-		<component>
-		<component-type>org.jquery4jsf.HtmlCarousel</component-type>
-		<component-class>org.jquery4jsf.custom.carousel.Carousel</component-class>
 	</component>
 
 	<component>
@@ -91,8 +93,38 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlIcon</component-type>
+		<component-class>org.jquery4jsf.custom.icon.Icon</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.OutputCss</component-type>
+		<component-class>org.jquery4jsf.custom.outputcss.OutputCss</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlOutputLink</component-type>
+		<component-class>org.jquery4jsf.custom.html.HtmlOutputLink</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.OutputScript</component-type>
+		<component-class>org.jquery4jsf.custom.outputscript.OutputScript</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlPanel</component-type>
 		<component-class>org.jquery4jsf.custom.panel.Panel</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlParagraph</component-type>
+		<component-class>org.jquery4jsf.custom.paragraph.Paragraph</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlProgressBar</component-type>
+		<component-class>org.jquery4jsf.custom.progressbar.ProgressBar</component-class>
 	</component>
 
 	<component>
@@ -106,51 +138,30 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlSlider</component-type>
+		<component-class>org.jquery4jsf.custom.slider.Slider</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlTabbedPanel</component-type>
+		<component-class>org.jquery4jsf.custom.tabbedpanel.TabbedPanel</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlTabPanel</component-type>
+		<component-class>org.jquery4jsf.custom.tabbedpanel.TabPanel</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlTooltip</component-type>
 		<component-class>org.jquery4jsf.custom.tooltip.Tooltip</component-class>
 	</component>
-	<component>
-		<component-type>org.jquery4jsf.HtmlParagraph</component-type>
-		<component-class>org.jquery4jsf.custom.paragraph.Paragraph</component-class>
-	</component>
-	<component>
-		<component-type>org.jquery4jsf.HtmlAjaxEvent</component-type>
-		<component-class>org.jquery4jsf.custom.ajax.AjaxEvent</component-class>
-	</component>
-	<component>
-		<component-type>org.jquery4jsf.HtmlIcon</component-type>
-		<component-class>org.jquery4jsf.custom.icon.Icon</component-class>
-	</component>
+
 	<render-kit>
 		<renderer>
-			<component-family>org.jquery4jsf.Link</component-family>
-			<renderer-type>org.jquery4jsf.HtmlLinkRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.renderkit.html.ext.HtmlLinkRenderer</renderer-class>
-		</renderer>
-		<renderer>
-			<component-family>org.jquery4jsf.Abbr</component-family>
+			<component-family>org.jquery4jsf.HtmlAbbr</component-family>
 			<renderer-type>org.jquery4jsf.HtmlAbbrRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.renderkit.html.ext.HtmlAbbrRenderer</renderer-class>
-		</renderer>
-		<renderer>
-			<component-family>org.jquery4jsf.Acronym</component-family>
-			<renderer-type>org.jquery4jsf.HtmlAcronymRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.renderkit.html.ext.HtmlAcronymRenderer</renderer-class>
-		</renderer>
-		<renderer>
-			<component-family>org.jquery4jsf.Address</component-family>
-			<renderer-type>org.jquery4jsf.HtmlAddressRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.renderkit.html.ext.HtmlAddressRenderer</renderer-class>
-		</renderer>
-		<renderer>
-			<component-family>org.jquery4jsf.Button</component-family>
-			<renderer-type>org.jquery4jsf.ButtonRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.button.ButtonRenderer</renderer-class>
-		</renderer>
-		<renderer>
-			<component-family>org.jquery4jsf.HtmlInputText</component-family>
-			<renderer-type>org.jquery4jsf.HtmlInputTextAutocompleteRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.autocomplete.AutoCompleteRenderer</renderer-class>
+			<renderer-class>org.jquery4jsf.custom.html.HtmlAbbrRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.AccordionPanel</component-family>
@@ -163,14 +174,29 @@
 			<renderer-class>org.jquery4jsf.custom.accordion.AccordionSubPanelRenderer</renderer-class>
 		</renderer>
 		<renderer>
-			<component-family>org.jquery4jsf.Output</component-family>
-			<renderer-type>org.jquery4jsf.OutputScriptRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.outputscript.OutputScriptRenderer</renderer-class>
+			<component-family>org.jquery4jsf.HtmlAcronym</component-family>
+			<renderer-type>org.jquery4jsf.HtmlAcronymRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.html.HtmlAcronymRenderer</renderer-class>
 		</renderer>
 		<renderer>
-			<component-family>org.jquery4jsf.DatePicker</component-family>
-			<renderer-type>org.jquery4jsf.DatePickerRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.datepicker.DatePickerRenderer</renderer-class>
+			<component-family>org.jquery4jsf.HtmlAddress</component-family>
+			<renderer-type>org.jquery4jsf.HtmlAddressRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.html.HtmlAddressRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.AjaxEvent</component-family>
+			<renderer-type>org.jquery4jsf.AjaxEventRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.ajax.AjaxEventRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.AutoComplete</component-family>
+			<renderer-type>org.jquery4jsf.AutoCompleteRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.autocomplete.AutoCompleteRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Button</component-family>
+			<renderer-type>org.jquery4jsf.ButtonRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.button.ButtonRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.Calendar</component-family>
@@ -178,34 +204,24 @@
 			<renderer-class>org.jquery4jsf.custom.calendar.CalendarRenderer</renderer-class>
 		</renderer>
 		<renderer>
+			<component-family>org.jquery4jsf.Carousel</component-family>
+			<renderer-type>org.jquery4jsf.CarouselRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.carousel.CarouselRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.DatePicker</component-family>
+			<renderer-type>org.jquery4jsf.DatePickerRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.datepicker.DatePickerRenderer</renderer-class>
+		</renderer>
+		<renderer>
 			<component-family>org.jquery4jsf.Dialog</component-family>
 			<renderer-type>org.jquery4jsf.DialogRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.dialog.DialogRenderer</renderer-class>
 		</renderer>
 		<renderer>
-			<component-family>org.jquery4jsf.ProgressBar</component-family>
-			<renderer-type>org.jquery4jsf.ProgressBarRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.progressbar.ProgressBarRenderer</renderer-class>
-		</renderer>
-		<renderer>
-			<component-family>org.jquery4jsf.TabbedPanel</component-family>
-			<renderer-type>org.jquery4jsf.TabbedPanelRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.tabbedpanel.TabbedPanelRenderer</renderer-class>
-		</renderer>
-		<renderer>
 			<component-family>org.jquery4jsf.Div</component-family>
 			<renderer-type>org.jquery4jsf.DivRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.panel.HtmlDivRenderer</renderer-class>
-		</renderer>
-		<renderer>
-			<component-family>org.jquery4jsf.Slider</component-family>
-			<renderer-type>org.jquery4jsf.SliderRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.slider.SliderRenderer</renderer-class>
-		</renderer>
-		<renderer>
-			<component-family>org.jquery4jsf.Carousel</component-family>
-			<renderer-type>org.jquery4jsf.CarouselRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.carousel.CarouselRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.Draggable</component-family>
@@ -223,9 +239,39 @@
 			<renderer-class>org.jquery4jsf.custom.effect.EffectRenderer</renderer-class>
 		</renderer>
 		<renderer>
+			<component-family>org.jquery4jsf.Icon</component-family>
+			<renderer-type>org.jquery4jsf.IconRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.icon.IconRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.OutputCss</component-family>
+			<renderer-type>org.jquery4jsf.OutputCssRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.outputcss.OutputCssRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.HtmlOutputLink</component-family>
+			<renderer-type>org.jquery4jsf.HtmlOutputLinkRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.html.HtmlOutputLinkRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.OutputScript</component-family>
+			<renderer-type>org.jquery4jsf.OutputScriptRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.outputscript.OutputScriptRenderer</renderer-class>
+		</renderer>
+		<renderer>
 			<component-family>org.jquery4jsf.Panel</component-family>
 			<renderer-type>org.jquery4jsf.PanelRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.panel.PanelRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Paragraph</component-family>
+			<renderer-type>org.jquery4jsf.ParagraphRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.paragraph.ParagraphRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.ProgressBar</component-family>
+			<renderer-type>org.jquery4jsf.ProgressBarRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.progressbar.ProgressBarRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.Resizable</component-family>
@@ -238,27 +284,20 @@
 			<renderer-class>org.jquery4jsf.custom.selectable.SelectableRenderer</renderer-class>
 		</renderer>
 		<renderer>
-			<component-family>org.jquery4jsf.Icon</component-family>
-			<renderer-type>org.jquery4jsf.IconRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.icon.IconRenderer</renderer-class>
+			<component-family>org.jquery4jsf.Slider</component-family>
+			<renderer-type>org.jquery4jsf.SliderRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.slider.SliderRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.TabbedPanel</component-family>
+			<renderer-type>org.jquery4jsf.TabbedPanelRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.tabbedpanel.TabbedPanelRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.Tooltip</component-family>
 			<renderer-type>org.jquery4jsf.TooltipRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.tooltip.TooltipRenderer</renderer-class>
 		</renderer>
-		<renderer>
-			<component-family>org.jquery4jsf.AjaxEvent</component-family>
-			<renderer-type>org.jquery4jsf.AjaxEventRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.ajax.AjaxEventRenderer</renderer-class>
-		</renderer>
-		<renderer>
-			<component-family>org.jquery4jsf.Paragraph</component-family>
-			<renderer-type>org.jquery4jsf.ParagraphRenderer</renderer-type>
-			<renderer-class>org.jquery4jsf.custom.paragraph.ParagraphRenderer</renderer-class>
-		</renderer>
 	</render-kit>
-	<lifecycle>
-		<phase-listener>org.jquery4jsf.application.AjaxPhaseListener</phase-listener>
-	</lifecycle>
+
 </faces-config>

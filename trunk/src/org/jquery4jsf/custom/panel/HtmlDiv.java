@@ -1,22 +1,7 @@
 /*
- *  Copyright (c) 2009 Giuseppe Trisciuoglio
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- */
-/*
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ 
+*  Copyright (c) 2009 Giuseppe Trisciuoglio 
+* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -30,18 +15,19 @@
  */
 package org.jquery4jsf.custom.panel;
 
-import java.io.IOException;
-
-import javax.faces.component.html.HtmlOutputText;
+import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.el.ValueBinding;
-import javax.faces.render.Renderer;
-
 import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
+import org.jquery4jsf.custom.JQueryHtmlObject;
+import javax.faces.render.Renderer;
+import java.io.IOException;
+import javax.faces.el.ValueBinding;
+import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
-public class HtmlDiv extends HtmlOutputText implements JQueryHtmlObject,AjaxComponent {
+public class HtmlDiv extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlDiv";
@@ -51,7 +37,6 @@ public class HtmlDiv extends HtmlOutputText implements JQueryHtmlObject,AjaxComp
 	private String[] resources;
 	private String style;
 	private String styleClass;
-	private Boolean escape;
 
 	public HtmlDiv() {
 		setRendererType(DEFAULT_RENDERER);
@@ -85,23 +70,11 @@ public class HtmlDiv extends HtmlOutputText implements JQueryHtmlObject,AjaxComp
 		this.styleClass = styleClass;
 	}
 
-	public boolean isEscape() {
-		if(escape != null )
-			return escape.booleanValue();
-
-		Boolean oValue = (Boolean) getLocalOrValueBindingValue(escape, "escape");
-		return oValue != null ? oValue.booleanValue()  : false;
-	}
-	public void setEscape(boolean escape) {
-		this.escape = new Boolean(escape);
-	}
-
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[4];
+		Object values[] = new Object[3];
 		values[0] = super.saveState(context);
 		values[1] = style;
 		values[2] = styleClass;
-		values[3] = escape;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -109,7 +82,6 @@ public class HtmlDiv extends HtmlOutputText implements JQueryHtmlObject,AjaxComp
 		super.restoreState(context, values[0]);
 		this.style = (String) values[1];
 		this.styleClass = (String) values[2];
-		this.escape = (Boolean) values[3];
 	}
 
 	public String[] getResources() {

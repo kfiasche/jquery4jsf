@@ -50,11 +50,11 @@ public abstract class UIComponentTagBase extends UIComponentTag {
 	}
 	
 	public static void setConverterProperty(FacesContext context,UIComponent component, String propertyName, String value){
-		ComponentUtilities.setConverterProperty(context, component, value);
+		ComponentUtilities.setConverterProperty(context, component, propertyName, value);
 	}
 	
 	public static void setValueProperty(FacesContext context,UIComponent component, String propertyName, String value){
-		ComponentUtilities.setValueProperty(context, component, value);
+		ComponentUtilities.setValueProperty(context, component, propertyName, value);
 	}
 	
 	public static void setActionListenerProperty(FacesContext context,UIComponent component, String propertyName, String value){
@@ -63,5 +63,17 @@ public abstract class UIComponentTagBase extends UIComponentTag {
 	
 	public static void setActionProperty(FacesContext context,UIComponent component, String propertyName, String value){
 		ComponentUtilities.setActionProperty(context, component, value);
+	}
+	
+	public static void setMethodBindingProperty(FacesContext context,UIComponent component, String propertyName, String value){
+		ComponentUtilities.setMethodBindingProperty(context, component, propertyName, value);
+	}
+	
+	public static void setValidatorProperty(FacesContext context,UIComponent component, String propertyName, String value){
+		ComponentUtilities.setValidatorProperty(context, component,propertyName, value);
+	}
+	
+	public static void setValueChangeListenerProperty(FacesContext context,UIComponent component, String propertyName, String value){
+		ComponentUtilities.setValueChangeListenerProperty(context, component,propertyName, value);
 	}
 }

@@ -14,7 +14,7 @@
  *  limitations under the License.
  *
  */
-package org.jquery4jsf.renderkit.html.ext;
+package org.jquery4jsf.custom.html;
 
 import java.io.IOException;
 
@@ -22,7 +22,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import org.jquery4jsf.custom.HtmlAbbr;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 

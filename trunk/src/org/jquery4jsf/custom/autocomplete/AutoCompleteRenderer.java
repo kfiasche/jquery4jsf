@@ -37,7 +37,7 @@ import org.jquery4jsf.resource.ResourceContext;
 
 import com.sun.faces.util.Util;
 
-public class AutoCompleteRenderer extends JQueryInputBaseRenderer implements AjaxBaseRenderer {
+public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements AjaxBaseRenderer {
 
     public static final String RENDERER_TYPE = "org.jquery4jsf.HtmlInputTextAutocompleteRenderer";
     
@@ -70,7 +70,7 @@ public class AutoCompleteRenderer extends JQueryInputBaseRenderer implements Aja
         JSElement element = new JSElement(autoComplete.getClientId(context));
         JSAttribute jsAutocomplete = new JSAttribute("autocomplete", false);
         StringBuffer sbOption = new StringBuffer();
-        jsAutocomplete.addValue(createOptionComponent(sbOption, autoComplete, context));
+        jsAutocomplete.addValue(encodeOptionComponent(sbOption, autoComplete, context));
         element.addAttribute(jsAutocomplete);
         JSFunction function = new JSFunction();
         function.addJSElement(element);
@@ -81,65 +81,6 @@ public class AutoCompleteRenderer extends JQueryInputBaseRenderer implements Aja
         
         rendererInputText(responseWriter, autoComplete, context);
 	}
-	
-    private String createOptionComponent(StringBuffer options, AutoComplete autoComplete, FacesContext context) throws IOException {
-    	if (autoComplete.getJsonValue() != null)
-    	{
-    		options.append(autoComplete.getJsonValue());
-    	}
-    	else
-    	{
-    		String actionURL = getActionURL(context);
-    		String clientId = autoComplete.getClientId(context);;
-    		if(actionURL.indexOf("?") == -1)
-    		{
-    			actionURL = actionURL + "?ajaxSourceJQuery=" + clientId;
-    		}
-    		else
-    		{
-    			actionURL = actionURL + "&ajaxSourceJQuery=" + clientId;
-    		}
-    		options.append("\"");
-    		options.append(actionURL);
-    		options.append("\"");
-    	}
-    	options.append(", {\n");
-    	encodeOptionComponentByType(options, autoComplete.getMinChars(), "minChars", null);
-    	encodeOptionComponentByType(options, autoComplete.getDelay(), "delay", null);
-    	encodeOptionComponentByType(options, autoComplete.getCacheLength(), "cacheLength", null);
-    	encodeOptionComponentByType(options, autoComplete.isMatchSubset(), "matchSubset", null);
-    	encodeOptionComponentByType(options, autoComplete.isMatchCase(), "matchCase", null);
-    	encodeOptionComponentByType(options, autoComplete.isMustMatch(), "mustMatch", null);
-    	encodeOptionComponentByType(options, autoComplete.isSelectFirst(), "selectFirst", null);
-    	//TODO devo inserire questo parametro
-    	//encodeOptionComponentByType(options, autoComplete.getExtraParams(), "extraParams");
-    	//encodeOptionComponentByFunction(options, autoComplete.getFormatItem(), "formatItem");
-    	//encodeOptionComponentByFunction(options, autoComplete.getFormatMatch(), "formatMatch");
-    	//encodeOptionComponentByFunction(options, autoComplete.getFormatResult(), "formatResult");
-    	encodeOptionComponentByType(options, autoComplete.isMultiple(), "multiple", null);
-    	encodeOptionComponentByType(options, autoComplete.getMultipleSeparator(), "multipleSeparator", null);
-    	//encodeOptionComponentByType(options, autoComplete.get(), "width");
-    	encodeOptionComponentByType(options, autoComplete.isAutoFill(), "autoFill", null);
-    	encodeOptionComponentByType(options, autoComplete.getMax(), "max", null);
-    	encodeOptionComponentByType(options, autoComplete.isHighlight(), "highlight", null);
-    	encodeOptionComponentByType(options, autoComplete.isScroll(), "scroll", null);
-    	encodeOptionComponentByType(options, autoComplete.getScrollHeight(), "scrollHeight", null);
-		if (options.toString().endsWith(", \n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-		}
-		boolean noParams = false;
-		if (options.toString().endsWith(", {\n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-			noParams = true;
-		}
-		if (!noParams)
-		{
-			options.append(" }");
-		}
-    	return options.toString();
-    }
 	
 	public void encodeChildren(FacesContext context, UIComponent component) {
 	}
@@ -164,6 +105,64 @@ public class AutoCompleteRenderer extends JQueryInputBaseRenderer implements Aja
 		}
 	}
     
+	protected String encodeOptionComponent(StringBuffer options, AutoComplete autoComplete , FacesContext context) {
+    	if (autoComplete.getJsonValue() != null)
+    	{
+    		options.append(autoComplete.getJsonValue());
+    	}
+    	else
+    	{
+    		String actionURL = getActionURL(context);
+    		String clientId = autoComplete.getClientId(context);;
+    		if(actionURL.indexOf("?") == -1)
+    		{
+    			actionURL = actionURL + "?ajaxSourceJQuery=" + clientId;
+    		}
+    		else
+    		{
+    			actionURL = actionURL + "&ajaxSourceJQuery=" + clientId;
+    		}
+    		options.append("\"");
+    		options.append(actionURL);
+    		options.append("\"");
+    	}
+    	options.append(", {\n");
+		encodeOptionComponentByType(options, autoComplete.getMinChars(), "minChars", "1");
+		encodeOptionComponentByType(options, autoComplete.getDelay(), "delay", "400");
+		encodeOptionComponentByType(options, autoComplete.getCacheLength(), "cacheLength", null);
+		encodeOptionComponentByType(options, autoComplete.isMatchSubset(), "matchSubset", "true");
+		encodeOptionComponentByType(options, autoComplete.isMatchCase(), "matchCase", "false");
+		encodeOptionComponentByType(options, autoComplete.isMatchContains(), "matchContains", "false");
+		encodeOptionComponentByType(options, autoComplete.isMustMatch(), "mustMatch", "false");
+		encodeOptionComponentByType(options, autoComplete.isSelectFirst(), "selectFirst", "true");
+		encodeOptionComponentByType(options, autoComplete.getExtraParams(), "extraParams", null);
+		encodeOptionComponentByType(options, autoComplete.getOnformatItem(), "formatItem", null);
+		encodeOptionComponentByType(options, autoComplete.getOnformatMatch(), "formatMatch", null);
+		encodeOptionComponentByType(options, autoComplete.getOnformatResult(), "formatResult", null);
+		encodeOptionComponentByType(options, autoComplete.isMultiple(), "multiple", "false");
+		encodeOptionComponentByType(options, autoComplete.getMultipleSeparator(), "multipleSeparator", null);
+		encodeOptionComponentByType(options, autoComplete.getWidth(), "width", "0");
+		encodeOptionComponentByType(options, autoComplete.isAutoFill(), "autoFill", "false");
+		encodeOptionComponentByType(options, autoComplete.getMax(), "max", "10");
+		encodeOptionComponentByType(options, autoComplete.getHighlight(), "highlight", null);
+		encodeOptionComponentByType(options, autoComplete.isScroll(), "scroll", "true");
+		encodeOptionComponentByType(options, autoComplete.getScrollHeight(), "scrollHeight", "180");
+		if (options.toString().endsWith(", \n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+		}
+		boolean noParams = false;
+		if (options.toString().endsWith(" {\n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+			noParams = true;
+		}
+		if (!noParams)
+		{
+			options.append(" }");
+		}
+		return options.toString();
+	}
 	
 	public void decode(FacesContext context, UIComponent component) {
 		AutoComplete autoComplete = (AutoComplete) component;
@@ -172,7 +171,7 @@ public class AutoCompleteRenderer extends JQueryInputBaseRenderer implements Aja
 		autoComplete.setSubmittedValue(submittedValue);
 	}
 
-	public String getActionURL(FacesContext context) throws IOException {
+	public String getActionURL(FacesContext context){
 		return RendererUtilities.getActionURL(context);
 	}
 }
