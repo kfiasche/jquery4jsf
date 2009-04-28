@@ -11,10 +11,10 @@ public class DialogBean
     {
     }
 
-    public String doButtonDialog(ActionEvent actionEvent)
+    public void doButtonDialog(ActionEvent actionEvent)
     {
         System.out.println("sono qui");
-        return "";
+        //return "";
     }
     
     private ArrayList users;
