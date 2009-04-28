@@ -27,12 +27,14 @@
 								<h:inputText id="firstname" value="#{ajaxBean.nome}" />
 								<h:outputLabel for="surname" value="Surname" />
 								<h:inputText id="surname" value="#{ajaxBean.cognome}" />
+								<jq:button id="button1"  onsuccess="alert('Thanks for your comment!');" target="displayOl" value="Ok"></jq:button>
+								<jq:button id="button2" value="Reset" type="reset"></jq:button>
 							</h:panelGrid>
-							<h:panelGrid id="display" columns="2">
-								<h:outputText value="Firstname:" />
-								<h:outputText value="#{ajaxBean.nome}" />
-								<h:outputText value="Surname:" />
-								<h:outputText value="#{ajaxBean.cognome}" />
+							<h:panelGrid id="displayOl" columns="2">
+								<h:outputLabel value="Firstname:" for="nome"/>
+								<h:outputText id="nome" value="#{ajaxBean.nome}" />
+								<h:outputLabel value="Surname:" for="cognome"/>
+								<h:outputText id="cognome" value="#{ajaxBean.cognome}" />
 							</h:panelGrid>
 						</jq:panel>
 					</h:form>

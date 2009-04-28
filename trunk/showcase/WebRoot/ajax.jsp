@@ -23,14 +23,12 @@
 					<h:form id="form1">
 						<jq:panel header="Ajax Request bind Component Event">
 							<h:panelGrid columns="3">
-								<h:outputText value="KeyUp" />
+								<h:outputLabel for="firstname" value="KeyUp" id="label1"/>
 								<h:inputText id="firstname" value="#{ajaxBean.nome}">
 									<jq:ajaxEvent event="keyup" reRender="out1" />
 								</h:inputText>
 								<h:outputText id="out1" value="#{ajaxBean.nome}" />
-							</h:panelGrid>
-							<h:panelGrid columns="3">
-								<h:outputText value="Blur" />
+								<h:outputLabel value="Blur" for="surname" id="label2" />
 								<h:inputText id="surname" value="#{ajaxBean.cognome}">
 									<jq:ajaxEvent event="blur" reRender="out2" />
 								</h:inputText>

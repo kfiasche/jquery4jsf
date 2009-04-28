@@ -1,11 +1,8 @@
-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   DialogBean.java
-
 package org.jquery4jsf.test.autocomplete;
 
-import java.io.PrintStream;
+import java.util.ArrayList;
+
+import javax.faces.event.ActionEvent;
 
 public class DialogBean
 {
@@ -14,9 +11,19 @@ public class DialogBean
     {
     }
 
-    public String doButtonSalva()
+    public String doButtonDialog(ActionEvent actionEvent)
     {
         System.out.println("sono qui");
         return "";
     }
+    
+    private ArrayList users;
+
+	public ArrayList getUsers() {
+		return users;
+	}
+
+	public void setUsers(ArrayList users) {
+		this.users = users;
+	}
 }

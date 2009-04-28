@@ -21,7 +21,7 @@
 				<div class="demo">
 					<f:view>
 						<jq:tabbedPanel id="tabs" event="click">
-							<jq:tabPanel id="tabs-1" tabName="Nunc tincidunt">
+						<jq:tabPanel id="tabs-1" tabName="Nunc tincidunt">
 								ciao 3
 							</jq:tabPanel>
 							<jq:tabPanel id="tabs-2" tabName="Proin dolor">
@@ -30,7 +30,7 @@
 							<jq:tabPanel id="tabs-3" tabName="Aenean lacinia">
 								ciao
 							</jq:tabPanel>
-						</jq:tabbedPanel>
+							</jq:tabbedPanel>
 					</f:view>
 				</div>
 				<!-- End demo -->

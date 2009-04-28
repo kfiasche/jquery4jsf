@@ -26,13 +26,19 @@ public class ButtonBean {
 		return cognome;
 	}
 	public void setCognome(String cognome) {
-		System.out.println(cognome);
 		this.cognome = cognome;
 	}
 	
 	public void provaActionListener(ActionEvent event){
 		if (getNome() != null){
 			String nome = getNome().concat("_ProvaListener");
+			setNome(nome);
+		}
+	}
+	
+	public void provaActionListener2(ActionEvent event){
+		if (getNome() != null){
+			String nome = getNome().concat("****Secondo listener");
 			setNome(nome);
 		}
 	}

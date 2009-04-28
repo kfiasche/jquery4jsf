@@ -1,59 +1,60 @@
 <!--left side start -->
+<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%>
 <div id="leftPan">
 	<h2 style="font-size: 15px;">
 		Componenti
 	</h2>
 	<ul>
 		<li>
-			<a href="/accordion.faces">Accordion</a>
+			<a href="<%=basePath%>accordion.faces">Accordion</a>
 		</li>
 		<li>
-			<a href="/ajax.faces">Ajax</a>
+			<a href="<%=basePath%>ajax.faces">Ajax</a>
 		</li>
 		<li>
-			<a href="/autocomplete.faces">Autocomplete</a>
+			<a href="<%=basePath%>autocomplete.faces">Autocomplete</a>
 		</li>
 		<li>
-			<a href="/button.faces">Button</a>
+			<a href="<%=basePath%>button.faces">Button</a>
 		</li>
 		<li>
-			<a href="/calendar.faces">Calendar</a>
+			<a href="<%=basePath%>calendar.faces">Calendar</a>
 		</li>
 		<li>
-			<a href="/carousel.faces">Carousel</a>
+			<a href="<%=basePath%>carousel.faces">Carousel</a>
 		</li>
 		<li>
-			<a href="/datepicker.faces">Datepicker</a>
+			<a href="<%=basePath%>datepicker.faces">Datepicker</a>
 		</li>
 		<li>
-			<a href="/dialog.faces">Dialog</a>
+			<a href="<%=basePath%>dialog.faces">Dialog</a>
 		</li>
 		<li>
-			<a href="/draggable.faces">Draggable</a>
+			<a href="<%=basePath%>draggable.faces">Draggable</a>
 		</li>
 		<li>
-			<a href="/droppable.faces">Droppable</a>
+			<a href="<%=basePath%>droppable.faces">Droppable</a>
 		</li>
 		<li>
-			<a href="/effect.faces">Effects</a>
+			<a href="<%=basePath%>effect.faces">Effects</a>
 		</li>
 		<li>
-			<a href="/icons.faces">Icons</a>
+			<a href="<%=basePath%>icons.faces">Icons</a>
 		</li>
 		<li>
-			<a href="/panel.faces">Panel</a>
+			<a href="<%=basePath%>panel.faces">Panel</a>
 		</li>
 		<li>
-			<a href="/progressbar.faces">Progress bar</a>
+			<a href="<%=basePath%>progressbar.faces">Progress bar</a>
 		</li>
 		<li>
-			<a href="/resizable.faces">Resizable</a>
+			<a href="<%=basePath%>resizable.faces">Resizable</a>
 		</li>
 		<li>
-			<a href="/slider.faces">Slider</a>
+			<a href="<%=basePath%>slider.faces">Slider</a>
 		</li>
 		<li>
-			<a href="/tabbedpanel.faces">Tabbed panel</a>
+			<a href="<%=basePath%>tabbedpanel.faces">Tabbed panel</a>
 		</li>
 	</ul>
 	<p></p>

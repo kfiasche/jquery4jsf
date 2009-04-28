@@ -1,11 +1,12 @@
 <!--left side start -->
+<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%>
 <div id="leftPan">
 	<h2 style="font-size: 15px;">
 		Menu
 	</h2>
 	<ul>
 		<li>
-			<a href="/index.faces">Home</a>
+			<a href="<%=basePath%>index.faces">Home</a>
 		</li>
 	</ul>
 	<h2 style="font-size: 15px;">
@@ -13,10 +14,10 @@
 	</h2>
 	<ul>
 		<li>
-			<a href="/ajax.faces">Ajax content update</a>
+			<a href="<%=basePath%>ajax.faces">Ajax content update</a>
 		</li>
 		<li>
-			<a href="/ajax-simple-ppr.faces">Ajax simple partial page render</a>
+			<a href="<%=basePath%>ajax-simple-ppr.faces">Ajax simple partial page render</a>
 		</li>
 	</ul>
 	<p></p>

@@ -3,7 +3,7 @@
   type="WEB"
   name="ROOT"
   id="myeclipse.1238233282000"
-  context-root="/"
+  context-root="/show-case"
   j2ee-spec="1.4"
   archive="ROOT.war">
   <attributes>

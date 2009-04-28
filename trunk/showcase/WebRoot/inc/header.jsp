@@ -1,8 +1,9 @@
 <!--header paer start -->
+<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%>
 <div id="headerPan">
 	<ul>
 		<li>
-			<a href="/index.faces">home</a>
+			<a href="<%=basePath%>index.faces">home</a>
 		</li>
 	</ul>
 	<h1>

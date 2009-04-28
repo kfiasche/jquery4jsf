@@ -13,7 +13,10 @@
 		<p>
 			&copy; Copyright Giuseppe Trisciuoglio. All rights reserved.
 		</p>
-
+		<p>
+			<a href="http://www.jquery4jsf.org/" target="_blank"
+					title="jQuery 4 javaserver faces">jQuery For JavaServer Faces</a>
+		</p>
 		<ul class="css">
 			<li>
 				<a href="http://validator.w3.org/check?uri=referer" target="_blank"

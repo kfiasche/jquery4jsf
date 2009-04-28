@@ -29,8 +29,8 @@
 								<h:inputText id="cognome" value="#{buttonBean.cognome}"></h:inputText>
 								<jq:button id="button1" target="panelUpdate" value="Ok"
 									actionListener="#{buttonBean.provaActionListener}"
-									onsuccess="var queryString = $('#form1').formSerialize(); alert(queryString); alert('Thanks for your comment!');"></jq:button>
-								<jq:button id="button2" value="Reset" type="reset"></jq:button>
+									onsuccess="alert('Thanks for your comment!');"></jq:button>
+								<jq:button id="button2" value="Reset" type="submit" actionListener="#{buttonBean.provaActionListener2}"></jq:button>
 							</h:panelGrid>
 						</jq:panel>
 						<jq:panel id="panelUpdate" header="Button">
