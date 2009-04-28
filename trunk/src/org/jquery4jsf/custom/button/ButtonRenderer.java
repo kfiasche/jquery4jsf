@@ -66,7 +66,7 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 		}
         
         String idClient = button.getClientId(context);
-        if (!button.isResetForm()){
+        if (!button.getType().equalsIgnoreCase("reset") && button.getTarget()!=null){
         	encodeJQueryScript(idClient, button, responseWriter, context);
         }
 
@@ -74,6 +74,14 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         writeIdAttributeIfNecessary(context, responseWriter, component);
         if (!button.isResetForm() || !button.isClearForm())
         	responseWriter.writeAttribute("name", idClient, null);
+        String styleClass = "ui-button ui-state-default ui-priority-primary ui-corner-all ";
+        if (button.isDisabled()){
+        	styleClass = "ui-state-default ui-state-disabled ui-corner-all ";
+        }
+        if (button.getStyleClass() != null){
+        	styleClass = styleClass.concat(button.getStyleClass());
+        }
+        button.getAttributes().put("styleClass", styleClass);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_STD_ATTR);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_INPUT_COMMAND_TAG_ATTR);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_JS_STD_ATTR);
@@ -93,12 +101,8 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         JSFunction jsFnOnClick = new JSFunction();
         
         JSAttribute jsForm = null;
-        if (button.isPartialSubmit()){
-        	jsForm = new JSAttribute("ajaxForm", false);
-        }
-        else{
-        	jsForm = new JSAttribute("ajaxSubmit", false);
-        }
+       	jsForm = new JSAttribute("ajaxSubmit", false);
+       
         StringBuffer sbOption = new StringBuffer();
         jsForm.addValue(encodeOptionComponent(sbOption, button, context));
         formElement.addAttribute(jsForm);
@@ -128,7 +132,7 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 			return;
 		String clientId = component.getClientId(context);
 		Map map = context.getExternalContext().getRequestParameterMap();
-		String s1 = (String)map.get(clientId);
+		String s1 = (String)map.get(clientId.concat(":button"));
 		if(s1 == null)
 			return;
 		
@@ -149,8 +153,10 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 		//encodeOptionComponentByType(options, button.isPartialSubmit(), "partialSubmit", null);
 		
 		String target = button.getTarget();
+		String clientId = button.getClientId(context);;
 		if (target == null || target.trim().length() == 0){
-			target = RendererUtilities.getFormId(context, button);
+			target = null;
+			//target = RendererUtilities.getFormId(context, button);
 		}else{
 			target = RendererUtilities.getClientIdForComponent(target, context, button);
 		}
@@ -159,25 +165,27 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 			encodeOptionComponentByType(options, button.getUrl(), "url", null);
 		else{
 			String actionURL = RendererUtilities.getActionURL(context);
-			String clientId = button.getClientId(context);;
-			String reRenderedId = RendererUtilities.getClientIdForComponent(target, context, button);
 			if(actionURL.indexOf("?") == -1)
 			{
-				actionURL = actionURL + "?ajaxSourceJQuery=" + clientId +"&ajaxUpdate=" + reRenderedId;
+				actionURL = actionURL + "?ajaxSourceJQuery=" + clientId +"&ajaxUpdate=" + target;
 			}
 			else
 			{
-				actionURL = actionURL + "&ajaxSourceJQuery=" + clientId +"&ajaxUpdate=" + reRenderedId ;
+				actionURL = actionURL + "&ajaxSourceJQuery=" + clientId +"&ajaxUpdate=" + target ;
 			}
 			encodeOptionComponentByType(options, actionURL, "url", null);
 		}
-		String targetJQ = RendererUtilities.getJQueryId(target);
+		String targetJQ = null;
+		if(target != null){
+			targetJQ = RendererUtilities.getJQueryId(target);
+		}
 		encodeOptionComponentByType(options,targetJQ, "target", null);
 		encodeOptionComponentByType(options, button.getTypeSubmit(), "type", "post");
+		encodeOptionComponentByType(options, clientId.concat(":button") , "buttonSubmit", "");
 		encodeOptionComponentFunction(options, button.getOnbeforeSubmit(), "onbeforeSubmit");
 		encodeOptionComponentFunction(options, button.getOnsuccess(), "onsuccess");
 		encodeOptionComponentByType(options, button.getDataType(), "dataType", "");
-		encodeOptionComponentByType(options, button.isSemantic(), "semantic", null);
+		encodeOptionComponentByType(options, button.isSemantic(), "semantic", "false");
 		encodeOptionComponentByType(options, button.isResetForm(), "resetForm", null);
 		encodeOptionComponentByType(options, button.isClearForm(), "clearForm", null);
 		encodeOptionComponentByType(options, button.isIframe(), "iframe", null);

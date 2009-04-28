@@ -61,7 +61,7 @@ public class AjaxPhaseListener implements PhaseListener {
 				String[] updateIds = (String[]) request.getParameterMap().get(AJAX_PS_ID);
 				ServletResponse response = (ServletResponse) context.getExternalContext().getResponse();
 				response.setContentType("text/html");
-				//printRequestValue(request);
+				printRequestValue(request);
 				try {
 					for (int i = 0; i < updateIds.length; i++) {
 						String id = updateIds[i];
@@ -70,7 +70,8 @@ public class AjaxPhaseListener implements PhaseListener {
 							int y = values.length -1;
 							id = values[y];
 							UIComponent component = ComponentUtilities.findComponentInRoot(id);
-							ComponentUtilities.encodeAll(context, component);
+							if (component != null)
+								ComponentUtilities.encodeAll(context, component);
 						}
 					}
 				}catch(IOException e) {
@@ -89,7 +90,6 @@ public class AjaxPhaseListener implements PhaseListener {
 					}
 				}
 			}
-			context.getApplication().getStateManager().saveSerializedView(context);
 		}
 	}
 

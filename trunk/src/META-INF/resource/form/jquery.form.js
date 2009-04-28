@@ -90,7 +90,11 @@ $.fn.ajaxSubmit = function(options) {
              a.push( { name: n, value: options.data[n] } );
         }
     }
-
+    //jsf handler
+    var buttonSubmit = options.buttonSubmit;
+    if (options.buttonSubmit){
+    	 a.push( { name: buttonSubmit, value: buttonSubmit } );
+    }
     // give pre-submit callback an opportunity to abort the submit
     if (options.beforeSubmit && options.beforeSubmit(a, this, options) === false) {
         log('ajaxSubmit: submit aborted via beforeSubmit callback');
@@ -121,6 +125,7 @@ $.fn.ajaxSubmit = function(options) {
     if (!options.dataType && options.target) {
         var oldSuccess = options.success || function(){};
         callbacks.push(function(data) {
+        	alert(data);
             $(options.target).html(data).each(oldSuccess, arguments);
         });
     }
