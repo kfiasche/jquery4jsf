@@ -348,6 +348,58 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>ajaxStatus</name>
+		<tag-class>org.jquery4jsf.custom.ajax.AjaxStatusTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>onajaxStart</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is broadcast if an Ajax request is started and no other Ajax requests are currently running.]]></description>
+		</attribute>
+		<attribute>
+			<name>onajaxSuccess</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event is also only called if the request was successful.]]></description>
+		</attribute>
+		<attribute>
+			<name>onajaxError</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This global event behaves the same as the local error event.]]></description>
+		</attribute>
+		<attribute>
+			<name>onajaxComplete</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This event behaves the same as the complete event and will be triggered every time an Ajax request finishes.]]></description>
+		</attribute>
+		<attribute>
+			<name>onajaxStop</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[This global event is triggered if there are no more Ajax requests being processed.]]></description>
+		</attribute>
+	</tag>
+	<tag>
 		<name>autoComplete</name>
 		<tag-class>org.jquery4jsf.custom.autocomplete.AutoCompleteTag</tag-class>
 		<body-content>JSP</body-content>
@@ -3427,6 +3479,34 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 			<description><![CDATA[This event is triggered when the user stops sliding.]]></description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>syntaxHighlighting</name>
+		<tag-class>org.jquery4jsf.custom.syntaxhighlighting.SyntaxHighlightingTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<description><![CDATA[Language type]]></description>
 		</attribute>
 	</tag>
 	<tag>

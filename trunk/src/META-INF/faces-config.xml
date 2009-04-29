@@ -43,6 +43,11 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlAjaxStatus</component-type>
+		<component-class>org.jquery4jsf.custom.ajax.AjaxStatus</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlAutoComplete</component-type>
 		<component-class>org.jquery4jsf.custom.autocomplete.AutoComplete</component-class>
 	</component>
@@ -143,6 +148,11 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlSyntaxHighlighting</component-type>
+		<component-class>org.jquery4jsf.custom.syntaxhighlighting.SyntaxHighlighting</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlTabbedPanel</component-type>
 		<component-class>org.jquery4jsf.custom.tabbedpanel.TabbedPanel</component-class>
 	</component>
@@ -187,6 +197,11 @@
 			<component-family>org.jquery4jsf.AjaxEvent</component-family>
 			<renderer-type>org.jquery4jsf.AjaxEventRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.ajax.AjaxEventRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.AjaxStatus</component-family>
+			<renderer-type>org.jquery4jsf.AjaxStatusRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.ajax.AjaxStatusRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.AutoComplete</component-family>
@@ -287,6 +302,11 @@
 			<component-family>org.jquery4jsf.Slider</component-family>
 			<renderer-type>org.jquery4jsf.SliderRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.slider.SliderRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.SyntaxHighlighting</component-family>
+			<renderer-type>org.jquery4jsf.SyntaxHighlightingRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.syntaxhighlighting.SyntaxHighlightingRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.TabbedPanel</component-family>

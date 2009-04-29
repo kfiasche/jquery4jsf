@@ -123,4 +123,14 @@ public class DialogRenderer extends JQueryBaseRenderer {
         responseWriter.endElement(HTML.TAG_DIV);
 	}
 
+	public boolean getRendersChildren() {
+		return true;
+	}
+
+	public void encodeChildren(FacesContext context, UIComponent component)throws IOException {
+		RendererUtilities.renderChildren(context, component);
+	}
+
+	
+	
 }

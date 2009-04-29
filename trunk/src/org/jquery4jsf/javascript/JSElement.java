@@ -70,7 +70,12 @@ public class JSElement implements JSInterface {
 	    if (attribute != null 
 	            && javascriptCode.toString() != null 
 	            && !javascriptCode.toString().equalsIgnoreCase("")){
-			javascriptCode.append(attribute.toJavaScriptCode());
+	    	String jsCode = javascriptCode.toString();
+	    	String attCode = attribute.toJavaScriptCode();
+	    	if (jsCode.endsWith(";") && attCode.startsWith(".")){
+	    		javascriptCode = javascriptCode.deleteCharAt(javascriptCode.length()-1);
+	    	}
+	    	javascriptCode.append(attribute.toJavaScriptCode());
 	    }else if (attribute != null){
 	        generaCodice();
 	        javascriptCode.append(attribute.toJavaScriptCode());
