@@ -18,6 +18,8 @@ package org.jquery4jsf.test.autocomplete;
 
 import java.util.ArrayList;
 
+import javax.faces.context.FacesContext;
+import javax.faces.el.ValueBinding;
 import javax.faces.event.ActionEvent;
 
 public class DialogBean
@@ -41,5 +43,27 @@ public class DialogBean
 
 	public void setUsers(ArrayList users) {
 		this.users = users;
+	}
+	
+	public void addUser(ActionEvent actionEvent){
+		if (users == null){
+			users = new ArrayList();
+		}
+		users.add(getManagedBean("user"));
+	}
+	
+    public static Object getManagedBean(String beanName) {
+    	String cleanKey = ((String)beanName).replaceAll("[#\\{\\}]*","").trim();
+        Object o = getValueBinding(getJsfEl(cleanKey)).getValue(FacesContext.getCurrentInstance());
+        return o;
+    }
+
+	private static ValueBinding getValueBinding(String jsfEl) {
+		ValueBinding valueBinding = FacesContext.getCurrentInstance().getApplication().createValueBinding(jsfEl);
+		return valueBinding;
+	}
+
+	private static String getJsfEl(String cleanKey) {
+		return "#{" + cleanKey + "}";
 	}
 }

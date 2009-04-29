@@ -26,6 +26,9 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
+		<style type="text/css">
+			.ui-progressbar-value { background-image: url(images/pbar-ani.gif); }
+		</style>
 		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
 			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
 	</head>

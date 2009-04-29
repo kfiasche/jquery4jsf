@@ -19,6 +19,7 @@ package org.jquery4jsf.test.model;
 public class User {
 
 	private String name;
+	private String lastname;
 	private String email;
 	private String password;
 	
@@ -39,6 +40,12 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 	
 	

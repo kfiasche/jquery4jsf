@@ -30,6 +30,9 @@
 			<a href="<%=basePath%>ajax.faces">Ajax</a>
 		</li>
 		<li>
+			<a href="<%=basePath%>ajax-status.faces">Ajax status</a>
+		</li>
+		<li>
 			<a href="<%=basePath%>autocomplete.faces">Autocomplete</a>
 		</li>
 		<li>

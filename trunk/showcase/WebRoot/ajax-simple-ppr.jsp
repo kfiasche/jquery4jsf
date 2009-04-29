@@ -26,7 +26,12 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
-		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
+		<%
+			String path = request.getContextPath();
+			String basePath = request.getScheme() + "://"
+					+ request.getServerName() + ":" + request.getServerPort()
+					+ path + "/";
+		%><link
 			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
@@ -44,16 +49,20 @@
 								<h:inputText id="firstname" value="#{ajaxBean.nome}" />
 								<h:outputLabel for="surname" value="Surname" />
 								<h:inputText id="surname" value="#{ajaxBean.cognome}" />
-								<jq:button id="button1"  onsuccess="alert('Thanks for your comment!');" target="displayOl" value="Ok"></jq:button>
+								<jq:button id="button1"
+									onsuccess="alert('Thanks for your comment!');"
+									target="panelUpdate" value="Ok"></jq:button>
 								<jq:button id="button2" value="Reset" type="reset"></jq:button>
 							</h:panelGrid>
+						</jq:panel>
+						<h:panelGroup id="panelUpdate">
 							<h:panelGrid id="displayOl" columns="2">
-								<h:outputLabel value="Firstname:" for="nome"/>
+								<h:outputLabel value="Firstname:" for="nome" />
 								<h:outputText id="nome" value="#{ajaxBean.nome}" />
-								<h:outputLabel value="Surname:" for="cognome"/>
+								<h:outputLabel value="Surname:" for="cognome" />
 								<h:outputText id="cognome" value="#{ajaxBean.cognome}" />
 							</h:panelGrid>
-						</jq:panel>
+						</h:panelGroup>
 					</h:form>
 				</f:view>
 			</div>
