@@ -77,6 +77,9 @@
 		<li>
 			<a href="<%=basePath%>tabbedpanel.faces">Tabbed panel</a>
 		</li>
+		<li>
+			<a href="<%=basePath%>tooltip.faces">Tooltip</a>
+		</li>
 	</ul>
 	<p></p>
 </div>
