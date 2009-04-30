@@ -54,7 +54,6 @@ public class Tooltip extends HtmlBaseOutputComponent implements JQueryHtmlObject
 			"external/jquery.dimensions.js",
 			"tooltip/jquery.tooltip.js",
 			"tooltip/jquery.tooltip.css",
-			"external/chili-1.7.pack.js",
 			"themes/base/ui.all.css"
 		};
 	}
