@@ -24,6 +24,7 @@ package org.jquery4jsf.test.ajax;
  *
  */
 public class AjaxBean {
+	
 	private String nome;
 	private String cognome;
 	
