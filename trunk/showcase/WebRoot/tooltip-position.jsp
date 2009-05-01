@@ -49,6 +49,23 @@
 							</h:outputLink>
 						</h:panelGrid>
 					</jq:panel>
+					<jq:paragraph />
+					<jq:panel id="panelSource" header="Tooltip source">
+						<jq:syntaxHighlighting type="xml">
+&lt;jq:panel id=&quot;panel&quot; header=&quot;Tooltip default&quot;&gt;
+	&lt;h:panelGrid columns=&quot;2&quot;&gt;
+		&lt;h:outputLabel for=&quot;dataPicker&quot; value=&quot;Datepicker: &quot; /&gt;
+		&lt;jq:datePicker id=&quot;dataPicker&quot; title=&quot;This is a datepicker component&quot;&gt;
+			&lt;jq:tooltip id=&quot;tooltip1&quot; &gt;&lt;/jq:tooltip&gt;
+		&lt;/jq:datePicker&gt;
+		&lt;h:outputLabel for=&quot;link&quot; value=&quot;Datepicker: &quot; /&gt;
+		&lt;h:outputLink title=&quot;This a link of google ltd&quot; id=&quot;link&quot; value=&quot;http://www.google.com&quot;&gt;&lt;h:outputText value=&quot;Google&quot; /&gt;
+			&lt;jq:tooltip id=&quot;tooltip2&quot; &gt;&lt;/jq:tooltip&gt;
+		&lt;/h:outputLink&gt;
+	&lt;/h:panelGrid&gt;
+&lt;/jq:panel&gt;
+						</jq:syntaxHighlighting>
+					</jq:panel>
 				</f:view>
 			</div>
 			<br class="blank" />
