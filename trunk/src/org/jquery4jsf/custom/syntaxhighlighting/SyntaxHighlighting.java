@@ -41,7 +41,26 @@ public class SyntaxHighlighting extends UIComponentBase implements JQueryHtmlObj
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
-			"chili/jquery.chili-2.2.js"
+			"syntaxhighlighter/shCore.js",
+			"syntaxhighlighter/shBrushBash.js",
+			"syntaxhighlighter/shBrushCpp.js",
+			"syntaxhighlighter/shBrushCSharp.js",
+			"syntaxhighlighter/shBrushCss.js",
+			"syntaxhighlighter/shBrushDelphi.js",
+			"syntaxhighlighter/shBrushDiff.js",
+			"syntaxhighlighter/shBrushGroovy.js",
+			"syntaxhighlighter/shBrushJava.js",
+			"syntaxhighlighter/shBrushJScript.js",
+			"syntaxhighlighter/shBrushPhp.js",
+			"syntaxhighlighter/shBrushPlain.js",
+			"syntaxhighlighter/shBrushPython.js",
+			"syntaxhighlighter/shBrushRuby.js",
+			"syntaxhighlighter/shBrushScala.js",
+			"syntaxhighlighter/shBrushSql.js",
+			"syntaxhighlighter/shBrushVb.js",
+			"syntaxhighlighter/shBrushXml.js",
+			"syntaxhighlighter/shCore.css",
+			"syntaxhighlighter/shThemeDefault.css"
 		};
 	}
 

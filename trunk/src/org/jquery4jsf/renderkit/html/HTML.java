@@ -24,15 +24,17 @@ public class HTML {
 	public static final String TAG_ADDRESS = 	"address";
 	public static final String TAG_CDATA_OPEN = 		"<![CDATA[";
 	public static final String TAG_CDATA_CLOSE = 		"//]]>";
+	public static final String TAG_CODE = 		"code";
 	public static final String TAG_DIV = 		"div";
 	public static final String TAG_H3 = 		"h3";
 	public static final String TAG_LINK = 		"link";
 	public static final String TAG_LI = 		"li";
-	public static final String TAG_P = "p";
+	public static final String TAG_P = 			"p";
+	public static final String TAG_PRE = 		"pre";
 	public static final String TAG_SCRIPT = 	"script";
 	public static final String TAG_SPAN =	 	"span";
 	public static final String TAG_UL = 		"ul";
-	public static final String TAG_INPUT = "input";
+	public static final String TAG_INPUT = 		"input";
 	
 	public static final String STYLE_CLASS	= "styleClass";	
 	public static final String STYLE	= "style";     
@@ -143,6 +145,7 @@ public class HTML {
 		VALUE,
 		SRC
 	};
+	
 	
 	
 	
