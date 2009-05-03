@@ -33,7 +33,7 @@
 		<jsp:include page="inc/header.jsp"></jsp:include>
 		<!--body part start -->
 		<div id="mainBody">
-			<jsp:include page="inc/menu-left.jsp"></jsp:include>
+			<jsp:include page="inc/menu-panel.jsp"></jsp:include>
 			<!--right side start -->
 			<div id="rightPan">
 				<f:view>
