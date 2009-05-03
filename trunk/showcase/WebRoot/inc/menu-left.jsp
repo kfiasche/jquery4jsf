@@ -45,6 +45,9 @@
 			<a href="<%=basePath%>carousel.faces">Carousel</a>
 		</li>
 		<li>
+			<a href="<%=basePath%>colorpicker.faces">Colorpicker</a>
+		</li>
+		<li>
 			<a href="<%=basePath%>datepicker.faces">Datepicker</a>
 		</li>
 		<li>

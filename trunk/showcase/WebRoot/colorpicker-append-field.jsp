@@ -33,28 +33,33 @@
 		<jsp:include page="inc/header.jsp"></jsp:include>
 		<!--body part start -->
 		<div id="mainBody">
-			<jsp:include page="inc/menu-tooltip.jsp"></jsp:include>
+			<jsp:include page="inc/menu-colopicker.jsp"></jsp:include>
 			<!--right side start -->
 			<div id="rightPan">
 				<f:view>
-					<jq:panel id="panel" header="Tooltip default">
-						<h:panelGrid columns="2">
-							<h:outputLabel for="dataPicker" value="Datepicker: " />
-							<h:inputText id="dataPicker">
-								<jq:tooltip id="tooltip1" 
-								titleText="This a first tooltip"
-								text="This a datepicker" 
-								showWhenEvent="click"
-								hideWhenEvent="blur"
-								cornerTarget="topRight"
-								styleName="themeroller"
-								cornerTooltip="bottomLeft"></jq:tooltip>
-							</h:inputText>
-							<h:outputLabel for="link" value="Datepicker: " />
-							<h:outputLink title="This a link of google ltd" id="link" value="http://www.google.com"><h:outputText value="Google" />
-								
-							</h:outputLink>
-						</h:panelGrid>
+					<h:form id="form1">
+						<jq:panel header="Color picker">
+							<jq:paragraph>
+								Append color picker an field
+							</jq:paragraph>
+							<h:outputLabel value="Color picker:" for="colopicker" id="lbColorpicker"/>
+							<h:inputText id="inputColorPicker" maxlength="6">
+								<jq:colorPicker id="colorpicker" />
+							</h:inputText>	
+						</jq:panel>
+					</h:form>
+					<jq:panel header="Color picker - Source">
+						<jq:syntaxHighlighting type="xml">
+							&lt;jq:panel header=&quot;Color picker&quot;&gt;
+							&lt;jq:paragraph&gt;
+							Append color picker an field.
+							&lt;/jq:paragraph&gt;
+							&lt;h:outputLabel value=&quot;Color picker:&quot; for=&quot;colopicker&quot; id=&quot;lbColorpicker&quot;/&gt;
+							&lt;h:inputText id=&quot;inputColorPicker&quot; maxlength=&quot;6&quot;&gt;
+							&lt;jq:colorPicker id=&quot;colorpicker&quot; /&gt;
+							&lt;/h:inputText&gt;	
+							&lt;/jq:panel&gt;
+						</jq:syntaxHighlighting>
 					</jq:panel>
 				</f:view>
 			</div>
