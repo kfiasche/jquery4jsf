@@ -1722,6 +1722,238 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>colorPicker</name>
+		<tag-class>org.jquery4jsf.custom.colorpicker.ColorPickerTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+				<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html accesskey attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>alt</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html alt attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html dir attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Html disabled attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>lang</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html lang attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>maxlength</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Html maxlength attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onblur attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onchange attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onclick attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html ondblclick attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onfocus attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onkeydown attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onkeypress attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onkeyup attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onmousedown attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onmousemove attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onmouseout attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onmouseover attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onmouseup attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>readonly</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Html readonly attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>size</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Html size attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html style attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html class attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html tabindex attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html title attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>eventName</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The desired event to trigger the colorpicker. Default: 'click']]></description>
+		</attribute>
+		<attribute>
+			<name>target</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The input field for append the color picker default is parent if parent don't a input]]></description>
+		</attribute>
+		<attribute>
+			<name>color</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The default color. String for hex color or hash for RGB and HSB ({r:255, r:0, b:0}) . Default: 'ff0000']]></description>
+		</attribute>
+		<attribute>
+			<name>flat</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Whatever if the color picker is appended to the element or triggered by an event. Default false]]></description>
+		</attribute>
+		<attribute>
+			<name>livePreview</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Whatever if the color values are filled in the fields while changing values on selector or a field. If false it may improve speed. Default true]]></description>
+		</attribute>
+		<attribute>
+			<name>onShow</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Callback function triggered when the color picker is shown]]></description>
+		</attribute>
+		<attribute>
+			<name>onBeforeShow</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Callback function triggered before the color picker is shown]]></description>
+		</attribute>
+		<attribute>
+			<name>onHide</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Callback function triggered when the color picker is hidden]]></description>
+		</attribute>
+		<attribute>
+			<name>onChange</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Callback function triggered when the color is changed]]></description>
+		</attribute>
+		<attribute>
+			<name>onSubmit</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Callback function triggered when the color it is chosen]]></description>
+		</attribute>
+	</tag>
+	<tag>
 		<name>datePicker</name>
 		<tag-class>org.jquery4jsf.custom.datepicker.DatePickerTag</tag-class>
 		<body-content>JSP</body-content>
@@ -3660,58 +3892,268 @@
 			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
 		</attribute>
 		<attribute>
-			<name>delay</name>
+			<name>prerender</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[If set to true, the tooltip will be created on document load]]></description>
+		</attribute>
+		<attribute>
+			<name>text</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Text/HTML which will appear inside the tooltip initially. If set to false the title attribute of the target element will be used. You can also pass a jQuery DOM array as the argument, which will clone the referenced elements and append them to the tooltip content. Note: Any content set using this property will be overwritten upon retrieval of remote data e.g. using the url attribute or API updateContent or loadContent methods.]]></description>
+		</attribute>
+		<attribute>
+			<name>titleText</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Text/HTML which will appear inside the title element of the content. If set to false, no title element will be created.]]></description>
+		</attribute>
+		<attribute>
+			<name>titleButton</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Text/HTML which will appear inside the title's button element (e.g. close link) located to the right of the title content. Button only appears if title element is created e.g. above title attributes is not false. If set to false, no button will appear.]]></description>
+		</attribute>
+		<attribute>
+			<name>positionTarget</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[HTML element to position the tooltip in relation to.]]></description>
+		</attribute>
+		<attribute>
+			<name>positionType</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Positioning type of the tooltip e.g. absolute. In most cases absolute positioning is sufficient.]]></description>
+		</attribute>
+		<attribute>
+			<name>positionContainer</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>cornerTarget</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The corner of the target element by which to position the tooltip by. See the positioning tutorial for all possible corner values.]]></description>
+		</attribute>
+		<attribute>
+			<name>cornerTooltip</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The corner of the tooltip to position in relation to the above targets corner. See the positioning tutorial for all possible corner values.]]></description>
+		</attribute>
+		<attribute>
+			<name>adjustX</name>
 			<required>false</required>
 				<type>int</type>
-			<description><![CDATA[The number of milliseconds before a tooltip is display.]]></description>
+			<description><![CDATA[Increment by which to increase the x value of the tooltip coordinate. To decrease, use a minus number.]]></description>
 		</attribute>
 		<attribute>
-			<name>track</name>
-			<required>false</required>
-				<type>java.lang.String</type>
-			<description><![CDATA[If true, let the tooltip track the mousemovement.]]></description>
-		</attribute>
-		<attribute>
-			<name>showURL</name>
-			<required>false</required>
-				<type>java.lang.String</type>
-			<description><![CDATA[If true, shows the href or src attribute within div.url.]]></description>
-		</attribute>
-		<attribute>
-			<name>showBody</name>
-			<required>false</required>
-				<type>java.lang.String</type>
-			<description><![CDATA[If specified, uses the String to split the title, displaying the first part in the h3 tag, all following in the div.body tag, separated with s]]></description>
-		</attribute>
-		<attribute>
-			<name>onbodyHandler</name>
-			<required>false</required>
-				<type>java.lang.String</type>
-			<description><![CDATA[If specified its called to format the tooltip-body, hiding the title-part. The callback can return a HTML-String, a DOM element or a jQuery object.]]></description>
-		</attribute>
-		<attribute>
-			<name>extraClass</name>
-			<required>false</required>
-				<type>java.lang.String</type>
-			<description><![CDATA[If specified, adds the class to the tooltip helper.]]></description>
-		</attribute>
-		<attribute>
-			<name>top</name>
+			<name>adjustY</name>
 			<required>false</required>
 				<type>int</type>
-			<description><![CDATA[The top-offset for the tooltip position. 0 is the mouse position.]]></description>
+			<description><![CDATA[Increment by which to increase the y value of the tooltip coordinate. To decrease, use a minus number.]]></description>
 		</attribute>
 		<attribute>
-			<name>fixPNG</name>
+			<name>adjustMouse</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Determines if the tooltips position is adjusted to the mouse position when the position.target is set to 'mouse'.]]></description>
+		</attribute>
+		<attribute>
+			<name>adjustScreen</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[etermines if the tooltips positioning takes into account screen width and height, preventing it from rendering off screen if possible. Note: Your tip and target corner options may be ignored when adjusting the position.]]></description>
+		</attribute>
+		<attribute>
+			<name>adjustScroll</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Determines if the tooltips position is adjusted when the document is scrolled.]]></description>
+		</attribute>
+		<attribute>
+			<name>adjustResize</name>
 			<required>false</required>
 				<type>java.lang.String</type>
-			<description><![CDATA[If true, fixes transparent background-image PNGs in IE.]]></description>
+			<description><![CDATA[Determines if the tooltips position is adjusted when the window is resized.]]></description>
 		</attribute>
 		<attribute>
-			<name>left</name>
+			<name>showDelay</name>
 			<required>false</required>
 				<type>int</type>
-			<description><![CDATA[The left-offset for the tooltip position. 0 is the mouse position.]]></description>
+			<description><![CDATA[Time in milliseconds by which to delay the showing of the tooltip.]]></description>
+		</attribute>
+		<attribute>
+			<name>showSolo</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Determines whether or not the tooltip will be shown in conjunction with other tooltips or on its own]]></description>
+		</attribute>
+		<attribute>
+			<name>showReady</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Determines whether or not the tooltip is initially hidden or shown when ready]]></description>
+		</attribute>
+		<attribute>
+			<name>showWhenTarget</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Defines the HTML element which will assigned the show event handler.]]></description>
+		</attribute>
+		<attribute>
+			<name>showWhenEvent</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Event type which will trigger the show event of the tooltip. All possible values are documented under jQuery's Event: bind() documentation.]]></description>
+		</attribute>
+		<attribute>
+			<name>showEffectLength</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Length of time in milliseconds the above effect will last for.]]></description>
+		</attribute>
+		<attribute>
+			<name>showEffectType</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Effect type to use upon showing the tooltip e.g. fade, slide or grow. Can also be a callback method which will be called when the tooltip is shown.]]></description>
+		</attribute>
+		<attribute>
+			<name>hideDelay</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Time in milliseconds by which to delay the hiding of the tooltip. When used in conjunction with the fixed hide event, it determines the amount of time the user has to mouseover the tooltip when exiting the target element before the tooltip is hidden. When used in conjunction with the inactive hide event, it determines how long the tooltip stays visible for before being hidden, when to events are triggered on the tooltip.]]></description>
+		</attribute>
+		<attribute>
+			<name>hideFixed</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[When set to true, the tooltip will not hide if moused over, allowing the contents to be clicked and interacted with.]]></description>
+		</attribute>
+		<attribute>
+			<name>hideWhenTarget</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Defines the HTML element which will assigned the hide event handler.]]></description>
+		</attribute>
+		<attribute>
+			<name>hideWhenEvent</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Event type which will trigger the hide event of the tooltip. There are two custom events available: 'inactive' and 'unfocus'. The 'unfocus' event hides the tooltip when anywhere else on the document, except the tooltip itself, is clicked. The 'inactive' event hies the tooltip after a set period of inactivity, which is determined by the hide.delay option. All other possible values are documented under jQuery's Event: bind() documentation.]]></description>
+		</attribute>
+		<attribute>
+			<name>hideEffectLength</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Length of time in milliseconds the above effect will last for.]]></description>
+		</attribute>
+		<attribute>
+			<name>hideEffectType</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Effect type to use upon hiding the tooltip e.g. fade, slide or grow. Can also be a callback method which will be called when the tooltip is hidden.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleName</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Name of the tooltip style to apply to the generated tooltip]]></description>
+		</attribute>
+		<attribute>
+			<name>styleWidthMin</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Determines the minimum width of the tooltip.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleWidthMax</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Determines the maximum width of the tooltip.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleBorderWidth</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Determines the border width of the tooltip.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleBorderRadius</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Determines the border radius, or roundness, of the tooltip border.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleBorderColor</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Determines the colour of the tooltip border]]></description>
+		</attribute>
+		<attribute>
+			<name>styleTipColor</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>styleTipCorner</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>styleTipSizeX</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>styleTipSizeY</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>styleTargetClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>styleTooltipClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>styleTipClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>styleTitleClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>styleContentClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>styleActiveClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
 		</attribute>
 	</tag>
 </taglib>

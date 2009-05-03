@@ -68,6 +68,11 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlColorPicker</component-type>
+		<component-class>org.jquery4jsf.custom.colorpicker.ColorPicker</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlDatePicker</component-type>
 		<component-class>org.jquery4jsf.custom.datepicker.DatePicker</component-class>
 	</component>
@@ -222,6 +227,11 @@
 			<component-family>org.jquery4jsf.Carousel</component-family>
 			<renderer-type>org.jquery4jsf.CarouselRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.carousel.CarouselRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.ColorPicker</component-family>
+			<renderer-type>org.jquery4jsf.ColorPickerRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.colorpicker.ColorPickerRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.DatePicker</component-family>

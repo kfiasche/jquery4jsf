@@ -83,6 +83,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>colorPicker</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlColorPicker</component-type>
+			<renderer-type>org.jquery4jsf.ColorPickerRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>datePicker</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlDatePicker</component-type>
