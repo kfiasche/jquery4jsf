@@ -67,7 +67,7 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         
         String idClient = button.getClientId(context);
         if (!button.getType().equalsIgnoreCase("reset") && button.getTarget()!=null){
-        	encodeJQueryScript(idClient, button, responseWriter, context);
+        	encodeJQueryButtonScript(idClient, button, responseWriter, context);
         }
 
         responseWriter.startElement(HTML.TAG_INPUT, button);
@@ -90,7 +90,7 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
        
 	}
 	
-	private void encodeJQueryScript(String id, Button button, ResponseWriter responseWriter, FacesContext context) throws IOException{
+	private void encodeJQueryButtonScript(String id, Button button, ResponseWriter responseWriter, FacesContext context) throws IOException{
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();

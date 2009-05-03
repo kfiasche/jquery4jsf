@@ -56,6 +56,7 @@ public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject
 		 resources = new String[]{
 			"jquery/jquery.js",
 			"form/jquery.form.js",
+			"button/ui.button.js",
 			"themes/base/ui.all.css",
 			"button/ui.button.css"
 		};

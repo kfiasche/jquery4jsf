@@ -204,10 +204,14 @@ public class RendererUtilities {
 	}
 	
 	public static void createOptionComponentOptionsByType(StringBuffer options, String value, String nameParameter) {
-		if (value != null){
-			options.append(nameParameter.concat(": "));
-			options.append(value);
-			options.append(", \n");
+		if (value != null && !TextUtilities.isStringVuota(value)){
+			options.append(nameParameter.concat(": {\n"));
+			options.append("\t");
+			if (value.endsWith(", \n")){
+				String stringa = value.substring(0, value.length()-3);
+				options.append(stringa);
+			}
+			options.append("}, \n");
 		}
 	}
 	

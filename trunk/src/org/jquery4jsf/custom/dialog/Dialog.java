@@ -488,14 +488,6 @@ public class Dialog extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 		return resources;
 	}
 
-	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
-	{
-		if (localValue != null)
-			return localValue;
-		ValueBinding vb = getValueBinding(valueBindingName);
-		return vb != null ? vb.getValue(getFacesContext()) : null;
-	}
-
 	public void encodePartially(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 

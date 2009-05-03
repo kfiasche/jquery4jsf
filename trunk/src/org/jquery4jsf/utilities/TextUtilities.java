@@ -66,4 +66,12 @@ public final class TextUtilities {
         return newString;
     }
 
+	public static boolean isStringVuota(String value) {
+		if (value == null || value.trim().length() == 0)
+			return true;
+		else{
+			return false;
+		}
+	}
+
 }
