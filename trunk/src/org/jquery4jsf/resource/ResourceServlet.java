@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jquery4jsf.resource.stream.CSSResourceStreamer;
 import org.jquery4jsf.resource.stream.DefaultResourceStreamer;
+import org.jquery4jsf.resource.stream.JavaScriptResourceStreamer;
 import org.jquery4jsf.resource.stream.ResourceStreamer;
 
 
@@ -63,6 +64,7 @@ public class ResourceServlet extends HttpServlet {
 		resourceStreamers = new ArrayList();
 		resourceStreamers.add(new DefaultResourceStreamer());
 		resourceStreamers.add(new CSSResourceStreamer());
+		resourceStreamers.add(new JavaScriptResourceStreamer());
 	}
 
 	
@@ -93,7 +95,7 @@ public class ResourceServlet extends HttpServlet {
 		for (Iterator iterator = resourceStreamers.iterator(); iterator.hasNext();) {
 			ResourceStreamer resourceStreamer = (ResourceStreamer) iterator.next();
 			if(resourceStreamer.isAppropriateStreamer(mimeType))
-				resourceStreamer.stream(req, resp, inputStream);
+				resourceStreamer.stream(getServletContext(), req, resp, inputStream);
 		}
 	}
 	

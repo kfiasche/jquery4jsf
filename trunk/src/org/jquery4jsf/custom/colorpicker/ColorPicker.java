@@ -204,21 +204,21 @@ public class ColorPicker extends HtmlInputText implements JQueryHtmlObject,AjaxC
 	public String[] getResources() {
 		return resources;
 	}
-public void processUpdates(FacesContext context) {
-	if (!isRendered())
-	{
-		return;
-	}
-	try {
-		ValueBinding vb = getValueBinding("color");
-		if (vb != null) {
-			vb.setValue(context, this.color);
+	public void processUpdates(FacesContext context) {
+		if (!isRendered())
+		{
+			return;
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
+		try {
+			ValueBinding vb = getValueBinding("color");
+			if (vb != null) {
+				vb.setValue(context, this.color);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		super.processUpdates(context);
 	}
-	super.processUpdates(context);
-}
 
 	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
 	{

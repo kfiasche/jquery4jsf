@@ -24,6 +24,7 @@ import java.io.OutputStreamWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,7 +39,7 @@ public class CSSResourceStreamer implements ResourceStreamer {
 		return (mimeType != null && mimeType.equals("text/css"));
 	}
 
-	public void stream(HttpServletRequest request, HttpServletResponse response, InputStream inputStream) throws IOException {
+	public void stream(ServletContext sc, HttpServletRequest request, HttpServletResponse response, InputStream inputStream) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 		OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), response.getCharacterEncoding());
 		String line = null;

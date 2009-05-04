@@ -211,6 +211,17 @@ public class RendererUtilities {
 				String stringa = value.substring(0, value.length()-3);
 				options.append(stringa);
 			}
+			else{
+				String cln = TextUtilities.cleanString(value);
+				if (cln.startsWith("{") && cln.endsWith("}")){
+					String stringa = value.substring(1).substring(0, value.length()-2);
+					options.append(stringa);
+				}
+				else
+				{
+					options.append(value);
+				}
+			}
 			options.append("}, \n");
 		}
 	}

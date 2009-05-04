@@ -19,6 +19,7 @@ package org.jquery4jsf.resource.stream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,10 +27,10 @@ import javax.servlet.http.HttpServletResponse;
 public class DefaultResourceStreamer implements ResourceStreamer {
 
 	public boolean isAppropriateStreamer(String mimeType) {
-		return (mimeType != null && !mimeType.equals("text/css"));
+		return (mimeType != null && !mimeType.equals("text/css") && !mimeType.equals("text/js"));
 	}
 
-	public void stream(HttpServletRequest request, HttpServletResponse response, InputStream inputStream) throws IOException {
+	public void stream(ServletContext sc, HttpServletRequest request, HttpServletResponse response, InputStream inputStream) throws IOException {
 		int indice, tempIndice;
 		byte tempArr[];
 		byte mainArr[] = new byte[0];

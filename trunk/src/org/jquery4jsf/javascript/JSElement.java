@@ -107,6 +107,9 @@ public class JSElement implements JSInterface {
 	
 	private String generaIdForJquery(String id){
 	    String idNew = id.replaceAll(":", "\\\\\\\\:");
+	    if (idNew.startsWith("#")){
+	    	return "'" + idNew + "'";
+	    }
 	    return "'#".concat(idNew).concat("'");
 	}
 }
