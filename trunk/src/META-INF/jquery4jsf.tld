@@ -1954,6 +1954,85 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>column</name>
+		<tag-class>org.jquery4jsf.custom.datatable.HtmlColumnTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+				<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>dataTableEx</name>
+		<tag-class>org.jquery4jsf.custom.datatable.HtmlDataTableExTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+				<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+				<type>java.lang.Object</type>
+			<description><![CDATA[Value of the component that can be either an EL expression or a literal text]]></description>
+		</attribute>
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rows</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Number of rows to display per page]]></description>
+		</attribute>
+		<attribute>
+			<name>first</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Index of the first row to be displayed]]></description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[CSS style(s) to be applied when this component is rendered.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Space-separated list of CSS style class(es) to be applied when this element is rendered. This value must be passed through as the "class" property on generated markup.]]></description>
+		</attribute>
+	</tag>
+	<tag>
 		<name>datePicker</name>
 		<tag-class>org.jquery4jsf.custom.datepicker.DatePickerTag</tag-class>
 		<body-content>JSP</body-content>
@@ -3280,6 +3359,190 @@
 			<required>false</required>
 				<type>java.lang.String</type>
 			<description><![CDATA[Style class of the panel content]]></description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>panelEx</name>
+		<tag-class>org.jquery4jsf.custom.panel.PanelExTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+				<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[CSS style(s) to be applied when this component is rendered.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Space-separated list of CSS style class(es) to be applied when this element is rendered. This value must be passed through as the "class" property on generated markup.]]></description>
+		</attribute>
+		<attribute>
+			<name>header</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Header text of the panel]]></description>
+		</attribute>
+		<attribute>
+			<name>event</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>collapsible</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>collapseType</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>collapsed</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>collapseSpeed</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>controls</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>widgetClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>headerClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>contentClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>rightboxClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>controlsClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>titleClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>titleTextClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>iconClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>hoverClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>collapsePnlClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>headerIconClpsd</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>headerIcon</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>slideRIconClpsd</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>slideRIcon</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>slideLIconClpsd</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>slideLIcon</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>onunfold</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>onfold</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
 		</attribute>
 	</tag>
 	<tag>

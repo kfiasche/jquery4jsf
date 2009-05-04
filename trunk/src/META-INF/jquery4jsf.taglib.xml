@@ -90,6 +90,19 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>column</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlColumn</component-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>dataTableEx</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlDataTableEx</component-type>
+			<renderer-type>org.jquery4jsf.HtmlDataTableExRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>datePicker</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlDatePicker</component-type>
@@ -164,6 +177,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlPanel</component-type>
 			<renderer-type>org.jquery4jsf.PanelRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>panelEx</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlPanelEx</component-type>
+			<renderer-type>org.jquery4jsf.PanelExRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>

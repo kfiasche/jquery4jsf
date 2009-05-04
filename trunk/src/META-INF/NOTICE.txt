@@ -9,3 +9,5 @@ This product includes software developed by Craig Thompson (http://craigsworks.c
 This product includes software developed by Jan Sorgalla (http://sorgalla.com/projects/jcarousel/)
 This product includes software developed by jQuery form plugin (http://malsup.com/jquery/form)
 This product includes software developed by Alex Gorbatchev (http://alexgorbatchev.com/)
+This product includes software developed by Igor Starikov  (http://idlesign.ya.ru)
+This product includes software developed by Stefan Petre (http://www.eyecon.ro)
