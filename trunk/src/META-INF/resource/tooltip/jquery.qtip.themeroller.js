@@ -1,23 +1,22 @@
-$.fn.qtip.styles.themeroller = {
-	'background': null,
-    'color': null,
-    tip: {
-        corner: true,
-        'background': null
-    },
-	border : {
-    	width: 5,
-    	radius: 3
-	},
-	width: {
-        min: 0,
-        max: 250
-     },
-	classes : {
-		tooltip :'ui-widget ui-corner-all',
-		tip :'ui-widget',
-		title :'ui-widget-header ui-corner-all',
-		content :'ui-widget-content'
-	}
-};
+$.fn.qtip.styles['defaults'].background=undefined;
+$.fn.qtip.styles['defaults'].color=undefined;
+$.fn.qtip.styles['defaults'].tip.background=undefined;
+$.fn.qtip.styles['defaults'].title.background=undefined;
+$.fn.qtip.styles['defaults'].title.fontWeight = undefined;
 
+$.fn.qtip.styles.themeroller = {
+   border: {
+       width: 5,
+       radius: 3
+   },
+   classes: {
+       tooltip: 'ui-widget ui-corner-all',
+       tip: 'ui-widget',
+       title: 'ui-widget-header ui-corner-all',
+       content: 'ui-widget-content'
+   },
+   width: {
+       min:"300",
+       max:"1000"
+   }
+};

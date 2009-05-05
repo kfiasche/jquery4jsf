@@ -50,7 +50,6 @@
 				if (o.collapsible){					
 					switch (o.collapseType) {
 						case 'slide-right':
-							alert(o.collapseType);
 							if(!o.controls)
 								this.rightBox.append('<span></span>');
 							this.rightBox.append('<span><span/></span>');
@@ -95,7 +94,6 @@
 					}
 				}
 
-				alert(this.titleBox.html());
 				this.panelBox.show();
 			}
 
