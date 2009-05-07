@@ -113,6 +113,11 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlFileUploader</component-type>
+		<component-class>org.jquery4jsf.custom.fileuploader.FileUploader</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlIcon</component-type>
 		<component-class>org.jquery4jsf.custom.icon.Icon</component-class>
 	</component>
@@ -175,6 +180,11 @@
 	<component>
 		<component-type>org.jquery4jsf.HtmlTabbedPanel</component-type>
 		<component-class>org.jquery4jsf.custom.tabbedpanel.TabbedPanel</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlTableSorter</component-type>
+		<component-class>org.jquery4jsf.custom.tablesorter.TableSorter</component-class>
 	</component>
 
 	<component>
@@ -284,6 +294,11 @@
 			<renderer-class>org.jquery4jsf.custom.effect.EffectRenderer</renderer-class>
 		</renderer>
 		<renderer>
+			<component-family>org.jquery4jsf.FileUploader</component-family>
+			<renderer-type>org.jquery4jsf.FileUploaderRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.fileuploader.FileUploaderRenderer</renderer-class>
+		</renderer>
+		<renderer>
 			<component-family>org.jquery4jsf.Icon</component-family>
 			<renderer-type>org.jquery4jsf.IconRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.icon.IconRenderer</renderer-class>
@@ -347,6 +362,11 @@
 			<component-family>org.jquery4jsf.TabbedPanel</component-family>
 			<renderer-type>org.jquery4jsf.TabbedPanelRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.tabbedpanel.TabbedPanelRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.TableSorter</component-family>
+			<renderer-type>org.jquery4jsf.TableSorterRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.tablesorter.TableSorterRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.Tooltip</component-family>

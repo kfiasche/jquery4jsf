@@ -145,6 +145,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>fileUploader</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlFileUploader</component-type>
+			<renderer-type>org.jquery4jsf.FileUploaderRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>icon</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlIcon</component-type>
@@ -233,6 +240,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlTabbedPanel</component-type>
 			<renderer-type>org.jquery4jsf.TabbedPanelRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>tableSorter</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlTableSorter</component-type>
+			<renderer-type>org.jquery4jsf.TableSorterRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>
