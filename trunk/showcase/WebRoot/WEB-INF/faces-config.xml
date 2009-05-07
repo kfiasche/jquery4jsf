@@ -55,4 +55,9 @@
   <managed-bean-class>org.jquery4jsf.test.colorpicker.ColorPickerBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>dataTableBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.test.datatable.DataTableBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
 </faces-config>
