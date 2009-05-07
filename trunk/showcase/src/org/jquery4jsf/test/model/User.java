@@ -18,6 +18,14 @@ package org.jquery4jsf.test.model;
 
 public class User {
 
+	public User(String name, String lastname) {
+		super();
+		this.name = name;
+		this.lastname = lastname;
+	}
+	public User() {
+		super();
+	}
 	private String name;
 	private String lastname;
 	private String email;
