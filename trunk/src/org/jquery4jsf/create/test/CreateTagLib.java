@@ -20,9 +20,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.jquery4jsf.custom.accordion.AccordionPanel;
 import org.jquery4jsf.custom.tabbedpanel.TabPanel;
-import org.jquery4jsf.custom.tabbedpanel.TabbedPanel;
 
 public class CreateTagLib {
 

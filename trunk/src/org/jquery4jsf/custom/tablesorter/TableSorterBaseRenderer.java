@@ -23,11 +23,11 @@ public class TableSorterBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, TableSorter tableSorter , FacesContext context) {
 		options.append(" {\n");
-		//encodeOptionComponentByType(options, tableSorter.getTarget(), "target", null);
+		encodeOptionComponentByType(options, tableSorter.getTarget(), "target", null);
 		encodeOptionComponentByType(options, tableSorter.getAscStyleClass(), "cssAsc", null);
 		encodeOptionComponentByType(options, tableSorter.getDescStyleClass(), "cssDesc", null);
 		encodeOptionComponentByType(options, tableSorter.getHeaderStyleClass(), "cssHeader", null);
-		//encodeOptionComponentByType(options, tableSorter.getSortedColumns(), "sortedColumns", null);
+		encodeOptionComponentByType(options, tableSorter.getSortedColumns(), "sortedColumns", null);
 		encodeOptionComponentByType(options, tableSorter.getSortMultiSortKey(), "sortMultiSortKey", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);

@@ -43,7 +43,7 @@ public class SliderRenderer extends JQueryBaseRenderer implements AjaxBaseRender
 			throws IOException {
 	}
 
-	public String getActionURL(FacesContext context) throws IOException {
+	public String getActionURL(FacesContext context) {
 		return RendererUtilities.getActionURL(context);
 	}
 

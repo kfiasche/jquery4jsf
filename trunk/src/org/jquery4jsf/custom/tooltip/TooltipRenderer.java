@@ -17,11 +17,10 @@
 package org.jquery4jsf.custom.tooltip;
 
 import java.io.IOException;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-
+import javax.faces.el.MethodBinding;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -79,6 +78,20 @@ public class TooltipRenderer extends TooltipBaseRenderer implements AjaxBaseRend
 		encodeOptionComponentByType(optionsTitle, tooltip.getTitleText(), "text", null);
 		encodeOptionComponentByType(optionsTitle, tooltip.getTitleButton(), "button", null);
 		encodeOptionComponentOptionsByType(optionsContent, optionsTitle.toString(), "title", null);
+		if (tooltip.getOncomplete() != null){
+    		String actionURL = getActionURL(context);
+    		String clientId = tooltip.getClientId(context);;
+    		if(actionURL.indexOf("?") == -1)
+    		{
+    			actionURL = actionURL + "?ajaxSourceJQuery=" + clientId;
+    		}
+    		else
+    		{
+    			actionURL = actionURL + "&ajaxSourceJQuery=" + clientId;
+    		}
+			encodeOptionComponentByType(optionsContent, actionURL, "url", null);
+			encodeOptionComponentByType(optionsContent, "post", "method", null);
+		}
 		encodeOptionComponentOptionsByType(options, optionsContent.toString(), "content", null);
 		
 		StringBuffer optionsPosition = new StringBuffer();
@@ -180,10 +193,19 @@ public class TooltipRenderer extends TooltipBaseRenderer implements AjaxBaseRend
 	}
 
 
-	public void encodePartially(FacesContext context, UIComponent component)throws IOException {
+	public void encodePartially(FacesContext context, UIComponent component) throws IOException {
+		ResponseWriter writer = context.getResponseWriter();
+		Tooltip tooltip = (Tooltip) component;
+		MethodBinding me = tooltip.getOncomplete();
+		String results = null;
+		try {
+			results = (String) me.invoke(context, new Object[]{""});
+		} catch (Exception e) {
+		}
+		writer.write(results);
 	}
 
-	public String getActionURL(FacesContext context) throws IOException {
+	public String getActionURL(FacesContext context) {
 		return RendererUtilities.getActionURL(context);
 	}
 }

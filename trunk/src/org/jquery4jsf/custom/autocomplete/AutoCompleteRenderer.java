@@ -31,7 +31,6 @@ import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.resource.ResourceContext;
 

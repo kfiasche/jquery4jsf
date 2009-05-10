@@ -173,7 +173,7 @@ public final class JQueryResourceFilter implements Filter {
 				return _outPutStream.toString(getCharacterEncoding());
 			} catch (UnsupportedEncodingException unsupportedEncodingException) {
 				throw new RuntimeException(
-						"Invalid character encoding for JsfFlexResponseWrapper toString for : "
+						"Invalid character encoding for JQueryResponseWrapper toString for : "
 								+ getCharacterEncoding());
 			}
 		}

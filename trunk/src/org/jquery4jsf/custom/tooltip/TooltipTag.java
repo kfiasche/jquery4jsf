@@ -21,6 +21,7 @@ import javax.faces.component.UIComponent;
 
 public class TooltipTag extends UIComponentTagBase {
 
+	private String oncomplete;
 	private String prerender;
 	private String text;
 	private String titleText;
@@ -68,6 +69,7 @@ public class TooltipTag extends UIComponentTagBase {
 
 	public void release(){
 		super.release();
+		this.oncomplete = null;
 		this.prerender = null;
 		this.text = null;
 		this.titleText = null;
@@ -124,6 +126,7 @@ public class TooltipTag extends UIComponentTagBase {
 			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
 		}
 
+		setMethodBindingProperty(getFacesContext(), component, "oncomplete", oncomplete);
 		setBooleanProperty(getFacesContext(), component, "prerender", prerender);
 		setStringProperty(getFacesContext(), component, "text", text);
 		setStringProperty(getFacesContext(), component, "titleText", titleText);
@@ -176,6 +179,10 @@ public class TooltipTag extends UIComponentTagBase {
 
 	public String getRendererType() {
 		return "org.jquery4jsf.TooltipRenderer";
+	}
+
+	public void setOncomplete(String value){
+		this.oncomplete = value;
 	}
 
 	public void setPrerender(String value){

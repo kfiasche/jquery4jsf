@@ -40,7 +40,7 @@ public class DatePickerRenderer extends DatePickerBaseRenderer implements AjaxBa
 	public void encodePartially(FacesContext context, UIComponent component) throws IOException {
 	}
 
-	public String getActionURL(FacesContext context) throws IOException {
+	public String getActionURL(FacesContext context) {
 		return RendererUtilities.getActionURL(context);
 	}
 

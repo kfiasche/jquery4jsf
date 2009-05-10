@@ -79,3 +79,5 @@ input.ui-button {
 .ui-toolbar .ui-button {
 	font-size: 1em;
 }
+
+.ui-button.ui-state-loading .ui-icon { background: url(images/spinner_bar.gif) no-repeat 0 0; }

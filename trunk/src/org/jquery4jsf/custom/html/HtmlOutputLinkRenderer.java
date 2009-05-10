@@ -16,7 +16,6 @@
 package org.jquery4jsf.custom.html;
 
 import java.io.IOException;
-import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;

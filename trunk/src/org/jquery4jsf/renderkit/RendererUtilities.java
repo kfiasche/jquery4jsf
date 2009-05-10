@@ -164,6 +164,9 @@ public class RendererUtilities {
 				else if (s.startsWith("{") && s.endsWith("}")){
 					createOptionComponentOptionsByType(sb, s, nameParameter);
 				}
+				else if (s.startsWith("$") && (s.endsWith(")") || s.endsWith(");"))){
+					createOptionComponentJQueryByType(sb, s, nameParameter);
+				}
 				else{
 					createOptionComponentStringByType(sb, s, nameParameter);
 				}
@@ -203,6 +206,14 @@ public class RendererUtilities {
 		}
 	}
 	
+	private static void createOptionComponentJQueryByType(StringBuffer sb, String s, String nameParameter) {
+		if (s != null){
+			sb.append(nameParameter.concat(": "));
+			sb.append(s);
+			sb.append(", \n");
+		}
+	}
+
 	public static void createOptionComponentOptionsByType(StringBuffer options, String value, String nameParameter) {
 		if (value != null && !TextUtilities.isStringVuota(value)){
 			options.append(nameParameter.concat(": {\n"));

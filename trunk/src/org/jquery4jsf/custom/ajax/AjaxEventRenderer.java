@@ -40,7 +40,7 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
 		
 	}
 
-	public String getActionURL(FacesContext context) throws IOException {
+	public String getActionURL(FacesContext context) {
 		return RendererUtilities.getActionURL(context);
 	}
 	
@@ -100,10 +100,8 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
 		encodeOptionComponentByType(options,formId, "form", null);
 		encodeOptionComponentByType(options, ajaxEvent.getEvent(), "event", "click");
 		String actionURL = null;
-		try {
-			actionURL = getActionURL(context);
-		} catch (IOException e) {
-		}
+		actionURL = getActionURL(context);
+
 		String clientId = ajaxEvent.getClientId(context);;
 		
 		String reRenderedId = RendererUtilities.getClientIdForComponent(ajaxEvent.getReRender(), context, ajaxEvent);

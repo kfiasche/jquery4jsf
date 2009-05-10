@@ -159,6 +159,19 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>menuBar</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlMenuBar</component-type>
+			<renderer-type>org.jquery4jsf.HtmlMenuBarRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>menuItem</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlMenuItem</component-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>outputCss</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.OutputCss</component-type>
@@ -205,6 +218,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlProgressBar</component-type>
 			<renderer-type>org.jquery4jsf.ProgressBarRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>quickSearch</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlQuickSearch</component-type>
+			<renderer-type>org.jquery4jsf.HtmlQuickSearchRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>

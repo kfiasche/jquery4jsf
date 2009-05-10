@@ -23,6 +23,7 @@ public class TooltipBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Tooltip tooltip , FacesContext context) {
 		options.append(" {\n");
+		encodeOptionComponentByType(options, tooltip.getOncomplete(), "oncomplete", null);
 		encodeOptionComponentByType(options, tooltip.isPrerender(), "prerender", "false");
 		encodeOptionComponentByType(options, tooltip.getText(), "text", null);
 		encodeOptionComponentByType(options, tooltip.getTitleText(), "text", null);

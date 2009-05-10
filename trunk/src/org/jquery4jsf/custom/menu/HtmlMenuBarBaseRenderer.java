@@ -13,30 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.datatable;
+package org.jquery4jsf.custom.menu;
 
 import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
+import org.jquery4jsf.renderkit.RendererUtilities;
+
 import javax.faces.context.FacesContext;
 
-public class HtmlColumnBaseRenderer extends JQueryBaseRenderer {
+public class HtmlMenuBarBaseRenderer extends JQueryBaseRenderer {
 
-	protected String encodeOptionComponent(StringBuffer options, HtmlColumn htmlColumn , FacesContext context) {
-		options.append(" {\n");
-		if (options.toString().endsWith(", \n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-		}
-		boolean noParams = false;
-		if (options.toString().endsWith(" {\n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-			noParams = true;
-		}
-		if (!noParams)
-		{
-			options.append(" }");
-		}
-		return options.toString();
-	}
+
 }

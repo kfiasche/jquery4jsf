@@ -24,6 +24,6 @@ import javax.faces.context.FacesContext;
 public interface AjaxBaseRenderer {
 
 	public void encodePartially(FacesContext context, UIComponent component) throws IOException;
-	String getActionURL(FacesContext context) throws IOException;
+	String getActionURL(FacesContext context);
 	
 }
