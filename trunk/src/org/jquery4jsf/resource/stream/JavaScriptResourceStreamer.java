@@ -18,8 +18,6 @@ package org.jquery4jsf.resource.stream;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
