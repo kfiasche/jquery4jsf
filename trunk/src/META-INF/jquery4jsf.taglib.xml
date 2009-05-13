@@ -59,6 +59,7 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlAutoComplete</component-type>
 			<renderer-type>org.jquery4jsf.AutoCompleteRenderer</renderer-type>
+			<handler-class>org.jquery4jsf.custom.autocomplete.AutoCompleteHandler</handler-class>
 		</component>
 	</tag>
 	<tag>
@@ -172,10 +173,31 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>outputBody</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.OutputBody</component-type>
+			<renderer-type>org.jquery4jsf.OutputBodyRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>outputCss</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.OutputCss</component-type>
 			<renderer-type>org.jquery4jsf.OutputCssRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>outputHead</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.OutputHead</component-type>
+			<renderer-type>org.jquery4jsf.OutputHeadRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>outputHtml</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.OutputHtml</component-type>
+			<renderer-type>org.jquery4jsf.OutputHtmlRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>
@@ -186,10 +208,24 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>outputMedia</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.OutputMedia</component-type>
+			<renderer-type>org.jquery4jsf.OutputMediaRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>outputScript</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.OutputScript</component-type>
 			<renderer-type>org.jquery4jsf.OutputScriptRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>outputText</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.OutputText</component-type>
+			<renderer-type>org.jquery4jsf.OutputTextRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>
@@ -232,6 +268,14 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlResizable</component-type>
 			<renderer-type>org.jquery4jsf.ResizableRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>scriptCollector</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.ScriptCollector</component-type>
+			<renderer-type>org.jquery4jsf.ScriptCollectorRenderer</renderer-type>
+			<handler-class>org.jquery4jsf.custom.scriptcollector.ScriptCollectorHandler</handler-class>
 		</component>
 	</tag>
 	<tag>
@@ -280,6 +324,7 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlTooltip</component-type>
 			<renderer-type>org.jquery4jsf.TooltipRenderer</renderer-type>
+			<handler-class>org.jquery4jsf.custom.tooltip.TooltipHandler</handler-class>
 		</component>
 	</tag>
 </facelet-taglib>
