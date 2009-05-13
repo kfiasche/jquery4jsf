@@ -22,10 +22,7 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.ValueBinding;
 import java.lang.String;
-import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 
 public class Panel extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -115,7 +112,7 @@ public class Panel extends HtmlBaseOutputComponent implements JQueryHtmlObject,A
 		values[3] = header;
 		values[4] = headerClass;
 		values[5] = contentClass;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

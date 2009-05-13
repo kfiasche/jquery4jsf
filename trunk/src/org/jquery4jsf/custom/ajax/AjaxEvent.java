@@ -22,14 +22,10 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Object;
-import javax.faces.event.ActionListener;
-import javax.faces.el.MethodBinding;
 
 public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxComponent {
 
@@ -95,7 +91,7 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 		values[1] = reRender;
 		values[2] = event;
 		values[3] = partialSubmit;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

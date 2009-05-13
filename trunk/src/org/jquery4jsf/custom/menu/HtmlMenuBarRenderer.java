@@ -87,10 +87,16 @@ public class HtmlMenuBarRenderer extends HtmlMenuBarBaseRenderer {
 
 	private void encodeMenuItem(FacesContext context, MenuItem submenu) throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
+		UIComponent icon = submenu.getFacet("icon");
 		writer.startElement(HTML.TAG_LI, null);
 		if (!submenu.isDisabled()){
 			writer.startElement(HTML.TAG_A, null);
 			writer.writeAttribute("href", "#", null);
+			if (icon != null){
+				icon.encodeBegin(context);
+				icon.encodeChildren(context);
+				icon.encodeEnd(context);
+			}
 			writer.writeText(submenu.getLabel(), null);
 			writer.endElement(HTML.TAG_A);
 			if (submenu.getChildren() != null 

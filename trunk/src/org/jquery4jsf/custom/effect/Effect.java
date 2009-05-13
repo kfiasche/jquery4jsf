@@ -22,10 +22,7 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.ValueBinding;
 import java.lang.String;
-import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 
 public class Effect extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -143,7 +140,7 @@ public class Effect extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 		values[4] = options;
 		values[5] = speed;
 		values[6] = callback;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

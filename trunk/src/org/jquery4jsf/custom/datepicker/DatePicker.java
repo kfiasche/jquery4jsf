@@ -25,7 +25,6 @@ import java.io.IOException;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
 public class DatePicker extends HtmlInputText implements JQueryHtmlObject,AjaxComponent {
@@ -613,7 +612,7 @@ public class DatePicker extends HtmlInputText implements JQueryHtmlObject,AjaxCo
 		values[41] = onchangeMonthYear;
 		values[42] = onclose;
 		values[43] = onselect;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

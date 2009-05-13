@@ -30,8 +30,6 @@ import com.sun.faces.util.Util;
 
 public class OutputCssRenderer extends JQueryBaseRenderer {
 
-	public static final String RENDERER_TYPE = "org.jquery4jsf.OutputScriptRenderer";
-
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		super.encodeEnd(context, component);
 		 if(context == null || context == null)

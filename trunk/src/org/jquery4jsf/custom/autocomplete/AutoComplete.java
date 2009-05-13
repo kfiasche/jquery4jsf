@@ -15,7 +15,7 @@
  */
 package org.jquery4jsf.custom.autocomplete;
 
-import javax.faces.component.html.HtmlInputText;
+import org.jquery4jsf.component.ext.HtmlInputText;
 import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
@@ -26,13 +26,7 @@ import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
-import java.lang.Object;
-import javax.faces.convert.Converter;
-import javax.faces.validator.Validator;
-import javax.faces.event.ValueChangeListener;
 import java.lang.Integer;
-import javax.faces.el.MethodBinding;
 
 public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,AjaxComponent {
 
@@ -43,7 +37,6 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 
 	private String[] resources;
 	private String jsonValue;
-	private MethodBinding oncomplete;
 	private Integer minChars;
 	private Integer delay;
 	private Integer cacheLength;
@@ -53,9 +46,6 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 	private Boolean mustMatch;
 	private Boolean selectFirst;
 	private String extraParams;
-	private String onformatItem;
-	private String onformatMatch;
-	private String onformatResult;
 	private Boolean multiple;
 	private String multipleSeparator;
 	private Integer width;
@@ -64,17 +54,15 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 	private String highlight;
 	private Boolean scroll;
 	private Integer scrollHeight;
+	private String onformatItem;
+	private String onformatMatch;
+	private String onformatResult;
+	private MethodBinding oncomplete;
 
 	public AutoComplete() {
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
-			"jquery/jquery.js",
-			"external/jquery.ajaxQueue.js",
-			"autocomplete/jquery.autocomplete.js",
-			"autocomplete/jquery.autocomplete.css",
-			"external/jquery.bgiframe.min.js",
-			"external/thickbox-compressed.js",
-			"external/thickbox.css"
+			"jquery/jquery.js"
 		};
 	}
 
@@ -91,17 +79,6 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 	}
 	public void setJsonValue(String jsonValue) {
 		this.jsonValue = jsonValue;
-	}
-
-	public MethodBinding getOncomplete() {
-		if(oncomplete != null )
-			return oncomplete;
-
-		MethodBinding oValue = (MethodBinding) getLocalOrValueBindingValue(oncomplete, "oncomplete");
-		return oValue != null ? oValue : null;
-	}
-	public void setOncomplete(MethodBinding oncomplete) {
-		this.oncomplete = oncomplete;
 	}
 
 	public int getMinChars() {
@@ -131,7 +108,7 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 			return cacheLength.intValue();
 
 		Integer oValue = (Integer) getLocalOrValueBindingValue(cacheLength, "cacheLength");
-		return oValue != null ? oValue.intValue()  : 0;
+		return oValue != null ? oValue.intValue()  : 10;
 	}
 	public void setCacheLength(int cacheLength) {
 		this.cacheLength = new Integer(cacheLength);
@@ -201,39 +178,6 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 	}
 	public void setExtraParams(String extraParams) {
 		this.extraParams = extraParams;
-	}
-
-	public String getOnformatItem() {
-		if(onformatItem != null )
-			return onformatItem;
-
-		String oValue = (String) getLocalOrValueBindingValue(onformatItem, "onformatItem");
-		return oValue != null ? oValue : null;
-	}
-	public void setOnformatItem(String onformatItem) {
-		this.onformatItem = onformatItem;
-	}
-
-	public String getOnformatMatch() {
-		if(onformatMatch != null )
-			return onformatMatch;
-
-		String oValue = (String) getLocalOrValueBindingValue(onformatMatch, "onformatMatch");
-		return oValue != null ? oValue : null;
-	}
-	public void setOnformatMatch(String onformatMatch) {
-		this.onformatMatch = onformatMatch;
-	}
-
-	public String getOnformatResult() {
-		if(onformatResult != null )
-			return onformatResult;
-
-		String oValue = (String) getLocalOrValueBindingValue(onformatResult, "onformatResult");
-		return oValue != null ? oValue : null;
-	}
-	public void setOnformatResult(String onformatResult) {
-		this.onformatResult = onformatResult;
 	}
 
 	public boolean isMultiple() {
@@ -324,58 +268,102 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 		this.scrollHeight = new Integer(scrollHeight);
 	}
 
+	public String getOnformatItem() {
+		if(onformatItem != null )
+			return onformatItem;
+
+		String oValue = (String) getLocalOrValueBindingValue(onformatItem, "onformatItem");
+		return oValue != null ? oValue : null;
+	}
+	public void setOnformatItem(String onformatItem) {
+		this.onformatItem = onformatItem;
+	}
+
+	public String getOnformatMatch() {
+		if(onformatMatch != null )
+			return onformatMatch;
+
+		String oValue = (String) getLocalOrValueBindingValue(onformatMatch, "onformatMatch");
+		return oValue != null ? oValue : null;
+	}
+	public void setOnformatMatch(String onformatMatch) {
+		this.onformatMatch = onformatMatch;
+	}
+
+	public String getOnformatResult() {
+		if(onformatResult != null )
+			return onformatResult;
+
+		String oValue = (String) getLocalOrValueBindingValue(onformatResult, "onformatResult");
+		return oValue != null ? oValue : null;
+	}
+	public void setOnformatResult(String onformatResult) {
+		this.onformatResult = onformatResult;
+	}
+
+	public MethodBinding getOncomplete() {
+		if(oncomplete != null )
+			return oncomplete;
+
+		MethodBinding oValue = (MethodBinding) getLocalOrValueBindingValue(oncomplete, "oncomplete");
+		return oValue != null ? oValue : null;
+	}
+	public void setOncomplete(MethodBinding oncomplete) {
+		this.oncomplete = oncomplete;
+	}
+
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[23];
 		values[0] = super.saveState(context);
 		values[1] = jsonValue;
-		values[2] = saveAttachedState(context, oncomplete);
-		values[3] = minChars;
-		values[4] = delay;
-		values[5] = cacheLength;
-		values[6] = matchSubset;
-		values[7] = matchCase;
-		values[8] = matchContains;
-		values[9] = mustMatch;
-		values[10] = selectFirst;
-		values[11] = extraParams;
-		values[12] = onformatItem;
-		values[13] = onformatMatch;
-		values[14] = onformatResult;
-		values[15] = multiple;
-		values[16] = multipleSeparator;
-		values[17] = width;
-		values[18] = autoFill;
-		values[19] = max;
-		values[20] = highlight;
-		values[21] = scroll;
-		values[22] = scrollHeight;
-		return ((Object) values);
+		values[2] = minChars;
+		values[3] = delay;
+		values[4] = cacheLength;
+		values[5] = matchSubset;
+		values[6] = matchCase;
+		values[7] = matchContains;
+		values[8] = mustMatch;
+		values[9] = selectFirst;
+		values[10] = extraParams;
+		values[11] = multiple;
+		values[12] = multipleSeparator;
+		values[13] = width;
+		values[14] = autoFill;
+		values[15] = max;
+		values[16] = highlight;
+		values[17] = scroll;
+		values[18] = scrollHeight;
+		values[19] = onformatItem;
+		values[20] = onformatMatch;
+		values[21] = onformatResult;
+		values[22] = saveAttachedState(context, oncomplete);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
 		this.jsonValue = (String) values[1];
-		this.oncomplete = (MethodBinding) restoreAttachedState(context, values[2]);
-		this.minChars = (Integer) values[3];
-		this.delay = (Integer) values[4];
-		this.cacheLength = (Integer) values[5];
-		this.matchSubset = (Boolean) values[6];
-		this.matchCase = (Boolean) values[7];
-		this.matchContains = (Boolean) values[8];
-		this.mustMatch = (Boolean) values[9];
-		this.selectFirst = (Boolean) values[10];
-		this.extraParams = (String) values[11];
-		this.onformatItem = (String) values[12];
-		this.onformatMatch = (String) values[13];
-		this.onformatResult = (String) values[14];
-		this.multiple = (Boolean) values[15];
-		this.multipleSeparator = (String) values[16];
-		this.width = (Integer) values[17];
-		this.autoFill = (Boolean) values[18];
-		this.max = (Integer) values[19];
-		this.highlight = (String) values[20];
-		this.scroll = (Boolean) values[21];
-		this.scrollHeight = (Integer) values[22];
+		this.minChars = (Integer) values[2];
+		this.delay = (Integer) values[3];
+		this.cacheLength = (Integer) values[4];
+		this.matchSubset = (Boolean) values[5];
+		this.matchCase = (Boolean) values[6];
+		this.matchContains = (Boolean) values[7];
+		this.mustMatch = (Boolean) values[8];
+		this.selectFirst = (Boolean) values[9];
+		this.extraParams = (String) values[10];
+		this.multiple = (Boolean) values[11];
+		this.multipleSeparator = (String) values[12];
+		this.width = (Integer) values[13];
+		this.autoFill = (Boolean) values[14];
+		this.max = (Integer) values[15];
+		this.highlight = (String) values[16];
+		this.scroll = (Boolean) values[17];
+		this.scrollHeight = (Integer) values[18];
+		this.onformatItem = (String) values[19];
+		this.onformatMatch = (String) values[20];
+		this.onformatResult = (String) values[21];
+		this.oncomplete = (MethodBinding) restoreAttachedState(context, values[22]);
 	}
 
 	public String[] getResources() {

@@ -22,10 +22,8 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
 public class Slider extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
@@ -210,7 +208,7 @@ public class Slider extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 		values[10] = onslide;
 		values[11] = onchange;
 		values[12] = onstop;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
