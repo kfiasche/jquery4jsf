@@ -17,12 +17,9 @@
 package org.jquery4jsf.custom.colorpicker;
 
 import java.io.IOException;
-import java.util.Map;
-
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.component.html.HtmlInputHidden;
-import javax.faces.component.html.HtmlInputSecret;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
