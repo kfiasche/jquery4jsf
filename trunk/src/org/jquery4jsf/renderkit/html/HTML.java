@@ -22,10 +22,12 @@ public class HTML {
 	public static final String TAG_ABBR = 		"abbr";
 	public static final String TAG_ACRONYM = 	"acronym";
 	public static final String TAG_ADDRESS = 	"address";
+	public static final String TAG_BODY = 		"body";
 	public static final String TAG_CDATA_OPEN = 		"<![CDATA[";
 	public static final String TAG_CDATA_CLOSE = 		"//]]>";
 	public static final String TAG_CODE = 		"code";
 	public static final String TAG_DIV = 		"div";
+	public static final String TAG_HEAD = 		"head";
 	public static final String TAG_H3 = 		"h3";
 	public static final String TAG_LINK = 		"link";
 	public static final String TAG_LI = 		"li";
@@ -146,8 +148,29 @@ public class HTML {
 		SRC
 	};
 	
+	public static final String ONLOAD = "onload";
+	public static final String ONUNLOAD = "onunload";
 	
+	public static final String[] HTML_BODY_TAG_ATTR = new String[]{
+		ONCLICK,
+		ONDBLCLICK,
+		ONMOUSEDOWN,
+		ONMOUSEMOVE,
+		ONMOUSEOUT,
+		ONMOUSEOVER,
+		ONMOUSEUP,
+		ONKEYDOWN,
+		ONKEYPRESS,
+		ONKEYUP,
+		ONLOAD,
+		ONUNLOAD
+	};
 	
+	public static final String PROFILE = "profile";
+	public static final String[] HTML_HEAD_TAG_ATTR = new String[]{
+		PROFILE
+	};
+
 	
 	
 
