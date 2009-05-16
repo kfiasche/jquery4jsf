@@ -89,7 +89,7 @@
 			<artifactId>jsf-facelets</artifactId>
 			<version>1.1.11</version>
 			<scope>provided</scope>
-			
+
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -170,21 +170,6 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<executions>
-					<execution>
-						<configuration>
-							<archiveClasses>true</archiveClasses>
-						</configuration>
-						<goals>
-							<goal>war</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<executions>
 					<execution>
@@ -228,15 +213,6 @@
 				<enableRulesSummary>true</enableRulesSummary> </configuration>
 				</plugin>
 			-->
-			<plugin>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<repositoryId>googlecode.svn.jquery4jsf</repositoryId>
-					<!-- <repositoryId>opennms-snapshot-repo</repositoryId> -->
-					<file>jquery4jsf.jar</file>
-				</configuration>
-			</plugin>
 
 		</plugins>
 		<extensions>
@@ -244,6 +220,11 @@
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-webdav</artifactId>
 				<version>1.0-beta-2</version>
+			</extension>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>1.0-alpha-6</version>
 			</extension>
 		</extensions>
 	</build>
@@ -282,19 +263,17 @@
 	</reporting>
 
 	<distributionManagement>
-		<repository>
-			<id>googlecode.svn.jquery4jsf</id>
+		
+			<repository> <id>googlecode.svn.jquery4jsf</id>
 			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-repository/</url>
-		</repository>
-		<snapshotRepository>
-			<id>googlecode.svn.jquery4jsf</id>
+			</repository> <snapshotRepository> <id>googlecode.svn.jquery4jsf</id>
 			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-snapshot-repository/</url>
-			<uniqueVersion>false</uniqueVersion>
-		</snapshotRepository>
-		<site>
-			<id>website</id>
-			<url>./target/site</url>
-		</site>
+			<uniqueVersion>false</uniqueVersion> </snapshotRepository>
+		
+		<!--repository>
+			<id>ftp-repository</id>
+			<url>ftp://www.jquery4jsf.org/repository</url>
+		</repository-->
 	</distributionManagement>
 
 </project>
