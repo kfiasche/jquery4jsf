@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <context-param>
+    <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+    <param-value>.xhtml</param-value>
+  </context-param>
+  	<!-- for jboss -->
+	<context-param>
+		<param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<filter>
+		<filter-name>JQueryResourceFilter</filter-name>
+		<filter-class>org.jquery4jsf.application.filter.JQueryResourceFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>JQueryResourceFilter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+ 	<servlet>
+	<servlet-name>Resource Servlet</servlet-name>
+	<servlet-class>org.jquery4jsf.resource.ResourceServlet</servlet-class>
+</servlet>
+	<servlet-mapping>
+		<servlet-name>Resource Servlet</servlet-name>
+		<url-pattern>/jquery4jsf_resource/*</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.jsf</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <!--Tomcat 5 Workaround: Listener used to initialize JSF on startup-->
+
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+
+  <!--Tomcat 5 Workaround: Listener implementation to handle web application lifecycle event-->
+  
+	<!--  <listener>
+		<listener-class>com.sun.faces.application.WebappLifecycleListener</listener-class>
+	</listener>
+	-->
+</web-app>
+

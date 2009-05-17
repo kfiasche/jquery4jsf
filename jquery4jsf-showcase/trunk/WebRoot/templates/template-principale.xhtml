@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:jq="http://www.jquery4jsf.org/jsf" dir="ltr">
+	<f:view>
+		<f:loadBundle basename="org.jquery4jsf.showcase.ExResource" var="resource" />
+		<head>
+			<title><ui:insert name="title">jQuery for JavaServer Faces showcase</ui:insert></title>
+			<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+			<ui:insert name="head"></ui:insert>
+			<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/style.css" />
+  			<!--[if IE 6]><link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/style.ie6.css" type="text/css" media="screen" /><![endif]-->
+		</head>
+		<body>
+			<div class="PageBackgroundSimpleGradient">
+				<div class="PageBackgroundGradient"></div>
+			</div>
+			<div class="PageBackgroundGlare">
+				<div class="PageBackgroundGlareImage"></div>
+			</div>
+			<div class="Main">
+				<div class="Sheet">
+					<div class="Sheet-tl"></div>
+					<div class="Sheet-tr">
+						<div></div>
+					</div>
+					<div class="Sheet-bl">
+						<div></div>
+					</div>
+					<div class="Sheet-br">
+						<div></div>
+					</div>
+					<div class="Sheet-tc">
+						<div></div>
+					</div>
+					<div class="Sheet-bc">
+						<div></div>
+					</div>
+					<div class="Sheet-cl">
+						<div></div>
+					</div>
+					<div class="Sheet-cr">
+						<div></div>
+					</div>
+					<div class="Sheet-cc"></div>
+					<div class="Sheet-body">
+						<!-- menu -->
+						<ui:include src="header.xhtml"/>
+						<div class="contentLayout">
+							<div class="sidebar1">
+								<!-- menu -->
+								<ui:include src="menu.xhtml"></ui:include>
+							</div>
+							<div class="content">
+								<div class="Post">
+									<div class="Post-body">
+										<div class="Post-inner">
+											<div class="PostContent">
+												<!--  contenuto -->
+												<ui:insert name="content">...</ui:insert>
+											</div>
+											<div class="cleared"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="cleared"></div>
+						<!-- Footer -->
+						<ui:include src="footer.xhtml"/>
+					</div>
+				</div>
+			</div>
+			</body>
+	</f:view>
+</html>

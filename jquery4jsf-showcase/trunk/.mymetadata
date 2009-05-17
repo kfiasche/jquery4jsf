@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="jquery4jsf-showcase"
+  id="myeclipse.1242382961765"
+  context-root="/jquery4jsf-showcase"
+  j2ee-spec="5.0"
+  archive="jquery4jsf-showcase.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

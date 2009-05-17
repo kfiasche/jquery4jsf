@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{resource.AJAXEVENT_TITLE_ACTION}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>AjaxEvent - #{resource.AJAXEVENT_TITLE_ACTION}</h3>
+		<p>
+			#{resource.AJAXEVENT_DESCR_ACTION}
+		</p>
+
+		<h:form>
+			<jq:ajaxStatus>
+				<f:facet name="start">
+					<h:graphicImage value="/images/ajax-loader.gif"></h:graphicImage>
+				</f:facet>
+
+				<f:facet name="complete">
+					<h:outputText value="Ajax Request Completed" />
+				</f:facet>
+			</jq:ajaxStatus>
+
+			<h:panelGrid columns="3">
+				<h:panelGrid columns="3">
+					<h:outputLabel for="firstname" value="KeyUp" id="label1" />
+					<h:inputText id="firstname" value="#{ajaxBean.nome}">
+						<jq:ajaxEvent event="keyup" reRender="out1" />
+					</h:inputText>
+					<h:outputText id="out1" value="#{ajaxBean.nome}" />
+					<h:outputLabel value="Blur" for="surname" id="label2" />
+					<h:inputText id="surname" value="#{ajaxBean.cognome}">
+						<jq:ajaxEvent event="blur" reRender="out2" />
+					</h:inputText>
+					<h:outputText id="out2" value="#{ajaxBean.cognome}" />
+				</h:panelGrid>
+			</h:panelGrid>
+		</h:form>
+		
+		<h3>
+			Source
+		</h3>
+		
+		<jq:syntaxHighlighting type="xml">
+			&lt;h:form&gt;
+			&lt;h:panelGrid columns=&quot;3&quot;&gt;
+				&lt;h:panelGrid columns=&quot;3&quot;&gt;
+					&lt;h:outputLabel for=&quot;firstname&quot; value=&quot;KeyUp&quot; id=&quot;label1&quot; /&gt;
+					&lt;h:inputText id=&quot;firstname&quot; value=&quot;# {ajaxBean.nome}&quot;&gt;
+						&lt;jq:ajaxEvent event=&quot;keyup&quot; reRender=&quot;out1&quot; /&gt;
+					&lt;/h:inputText&gt;
+					&lt;h:outputText id=&quot;out1&quot; value=&quot;# {ajaxBean.nome}&quot; /&gt;
+					&lt;h:outputLabel value=&quot;Blur&quot; for=&quot;surname&quot; id=&quot;label2&quot; /&gt;
+					&lt;h:inputText id=&quot;surname&quot; value=&quot;# {ajaxBean.cognome}&quot;&gt;
+						&lt;jq:ajaxEvent event=&quot;blur&quot; reRender=&quot;out2&quot; /&gt;
+					&lt;/h:inputText&gt;
+					&lt;h:outputText id=&quot;out2&quot; value=&quot;# {ajaxBean.cognome}&quot; /&gt;
+				&lt;/h:panelGrid&gt;
+			&lt;/h:panelGrid&gt;
+		&lt;/h:form&gt;
+		</jq:syntaxHighlighting>
+	</ui:define>
+</ui:composition>
