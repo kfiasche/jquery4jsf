@@ -22,10 +22,14 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Object;
+import javax.faces.event.ActionListener;
+import javax.faces.el.MethodBinding;
 
 public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -197,7 +201,7 @@ public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject
 		values[9] = resetForm;
 		values[10] = clearForm;
 		values[11] = iframe;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

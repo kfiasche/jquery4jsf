@@ -422,6 +422,156 @@
 			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
 		</attribute>
 		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html accesskey attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>alt</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html alt attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html dir attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Html disabled attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>lang</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html lang attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>maxlength</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Html maxlength attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onblur attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onchange attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onclick attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html ondblclick attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onfocus attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onkeydown attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onkeypress attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onkeyup attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onmousedown attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onmousemove attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onmouseout attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onmouseover attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html onmouseup attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>readonly</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Html readonly attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>size</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Html size attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html style attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html class attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html tabindex attribute of the input text]]></description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Html title attribute of the input text]]></description>
+		</attribute>
+		<attribute>
 			<name>jsonValue</name>
 			<required>false</required>
 				<type>java.lang.String</type>
@@ -3133,8 +3283,8 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>menuBar</name>
-		<tag-class>org.jquery4jsf.custom.menu.HtmlMenuBarTag</tag-class>
+		<name>menu</name>
+		<tag-class>org.jquery4jsf.custom.menu.HtmlMenuTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<name>id</name>
@@ -3308,6 +3458,28 @@
 			<required>false</required>
 				<type>java.lang.String</type>
 			<description><![CDATA[]]></description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>menuBar</name>
+		<tag-class>org.jquery4jsf.custom.menu.HtmlMenuBarTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+				<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
 		</attribute>
 	</tag>
 	<tag>

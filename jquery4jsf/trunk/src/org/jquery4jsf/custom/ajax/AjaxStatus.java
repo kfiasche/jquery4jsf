@@ -24,6 +24,8 @@ import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
 public class AjaxStatus extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
 
@@ -119,7 +121,7 @@ public class AjaxStatus extends UIComponentBase implements JQueryHtmlObject,Ajax
 		values[3] = onajaxError;
 		values[4] = onajaxComplete;
 		values[5] = onajaxStop;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

@@ -65,7 +65,7 @@ public class HtmlMenuBarRenderer extends HtmlMenuBarBaseRenderer {
         responseWriter.writeAttribute("class", "ui-button ui-button-icon-right ui-widget ui-state-default ui-corner-all", null);
         responseWriter.writeAttribute("href","#menudiv-".concat(menuBar.getId()), null);
         encodeIcon(context, menuBar);
-        responseWriter.writeText(menuBar.getLabel(), null);
+        //responseWriter.writeText(menuBar.getLabel(), null);
         responseWriter.endElement(HTML.TAG_A);
         responseWriter.startElement(HTML.TAG_DIV, null);
         responseWriter.writeAttribute("id","menudiv-".concat(menuBar.getId()), null);
@@ -135,54 +135,54 @@ public class HtmlMenuBarRenderer extends HtmlMenuBarBaseRenderer {
 		return true;
 	}
 
-	protected String encodeOptionComponent(StringBuffer options, HtmlMenuBar htmlMenuBar , FacesContext context) {
-		options.append(" {\n");
-		String content = "$('"+RendererUtilities.getJQueryId(htmlMenuBar.getClientId(context)) +"').next().html()";
-		encodeOptionComponentByType(options, content, "content", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getWidth(), "width", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getMaxHeight(), "maxHeight", null);
-		StringBuffer positionOpts = new StringBuffer();
-		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsPosX(), "posX", null);
-		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsPosY(), "posY", null);
-		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsOffsetX(), "offsetX", null);
-		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsOffsetY(), "offsetY", null);
-		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsDirectionH(), "directionH", null);
-		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsDirectionV(), "directionV", null);
-		encodeOptionComponentByType(positionOpts, htmlMenuBar.isPositionOptsDetectH(), "detectH", null);
-		encodeOptionComponentByType(positionOpts, htmlMenuBar.isPositionOptsDetectV(), "detectV", null);
-		encodeOptionComponentByType(positionOpts, htmlMenuBar.isPositionOptsLinkToFront(), "linkToFront", null);
-		encodeOptionComponentOptionsByType(options, positionOpts.toString(), "position", null);
-		
-		encodeOptionComponentByType(options, htmlMenuBar.getShowSpeed(), "showSpeed", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getCallerOnStateClass(), "callerOnState", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getLoadingStateClass(), "loadingState", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getLinkHoverClass(), "linkHover", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getLinkHoverSecondaryClass(), "linkHoverSecondary", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getCrossSpeed(), "crossSpeed", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getCrumbDefaultText(), "crumbDefaultText", null);
-		encodeOptionComponentByType(options, htmlMenuBar.isBackLink(), "backLink", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getBackLinkText(), "backLinkText", null);
-		encodeOptionComponentByType(options, htmlMenuBar.isFlyOut(), "flyOut", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getFlyOutOnStateClass(), "flyOutOnState", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getNextMenuLinkClass(), "nextMenuLink", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getTopLinkText(), "topLinkText", null);
-		encodeOptionComponentByType(options, htmlMenuBar.getNextCrumbLinkClass(), "nextCrumbLink", null);
-		if (options.toString().endsWith(", \n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-		}
-		boolean noParams = false;
-		if (options.toString().endsWith(" {\n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-			noParams = true;
-		}
-		if (!noParams)
-		{
-			options.append(" }");
-		}
-		return options.toString();
-	}
+//	protected String encodeOptionComponent(StringBuffer options, HtmlMenuBar htmlMenuBar , FacesContext context) {
+//		options.append(" {\n");
+//		String content = "$('"+RendererUtilities.getJQueryId(htmlMenuBar.getClientId(context)) +"').next().html()";
+//		encodeOptionComponentByType(options, content, "content", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getWidth(), "width", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getMaxHeight(), "maxHeight", null);
+//		StringBuffer positionOpts = new StringBuffer();
+//		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsPosX(), "posX", null);
+//		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsPosY(), "posY", null);
+//		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsOffsetX(), "offsetX", null);
+//		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsOffsetY(), "offsetY", null);
+//		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsDirectionH(), "directionH", null);
+//		encodeOptionComponentByType(positionOpts, htmlMenuBar.getPositionOptsDirectionV(), "directionV", null);
+//		encodeOptionComponentByType(positionOpts, htmlMenuBar.isPositionOptsDetectH(), "detectH", null);
+//		encodeOptionComponentByType(positionOpts, htmlMenuBar.isPositionOptsDetectV(), "detectV", null);
+//		encodeOptionComponentByType(positionOpts, htmlMenuBar.isPositionOptsLinkToFront(), "linkToFront", null);
+//		encodeOptionComponentOptionsByType(options, positionOpts.toString(), "position", null);
+//		
+//		encodeOptionComponentByType(options, htmlMenuBar.getShowSpeed(), "showSpeed", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getCallerOnStateClass(), "callerOnState", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getLoadingStateClass(), "loadingState", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getLinkHoverClass(), "linkHover", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getLinkHoverSecondaryClass(), "linkHoverSecondary", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getCrossSpeed(), "crossSpeed", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getCrumbDefaultText(), "crumbDefaultText", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.isBackLink(), "backLink", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getBackLinkText(), "backLinkText", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.isFlyOut(), "flyOut", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getFlyOutOnStateClass(), "flyOutOnState", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getNextMenuLinkClass(), "nextMenuLink", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getTopLinkText(), "topLinkText", null);
+//		encodeOptionComponentByType(options, htmlMenuBar.getNextCrumbLinkClass(), "nextCrumbLink", null);
+//		if (options.toString().endsWith(", \n")){
+//			String stringa = options.substring(0, options.length()-3);
+//			options = new StringBuffer(stringa);
+//		}
+//		boolean noParams = false;
+//		if (options.toString().endsWith(" {\n")){
+//			String stringa = options.substring(0, options.length()-3);
+//			options = new StringBuffer(stringa);
+//			noParams = true;
+//		}
+//		if (!noParams)
+//		{
+//			options.append(" }");
+//		}
+//		return options.toString();
+//	}
 	
 	
 }

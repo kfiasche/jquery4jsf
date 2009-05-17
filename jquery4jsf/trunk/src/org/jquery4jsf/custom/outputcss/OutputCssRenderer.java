@@ -38,8 +38,6 @@ public class OutputCssRenderer extends JQueryBaseRenderer {
 	            return;
 	        
 	        ResponseWriter responseWriter = context.getResponseWriter();
-	        
-	        responseWriter.write(HTML.TAG_CDATA_OPEN);
 	        responseWriter.endElement(HTML.TAG_SCRIPT);
 	        
 	}
@@ -51,14 +49,13 @@ public class OutputCssRenderer extends JQueryBaseRenderer {
 	        if(!component.isRendered())
 	            return;
 
-	        OutputCss outputScript = null;
+	        OutputCss outputCss = null;
 	        if(component instanceof OutputCss)
-	        	outputScript = (OutputCss)component;
+	        	outputCss = (OutputCss)component;
 	        
 	        ResponseWriter responseWriter = context.getResponseWriter();
-	        responseWriter.startElement(HTML.TAG_SCRIPT, outputScript);
-	        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_SCRIPT_TAG_ATTR);
-	        responseWriter.write(HTML.TAG_CDATA_OPEN);
+	        responseWriter.startElement(HTML.TAG_LINK, outputCss);
+	        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_LINK_TAG_ATTR);
 	}
 
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {

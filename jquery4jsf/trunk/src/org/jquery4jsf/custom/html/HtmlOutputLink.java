@@ -22,7 +22,9 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.Object;
+import javax.faces.convert.Converter;
 import java.lang.String;
 
 public class HtmlOutputLink extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
@@ -177,7 +179,7 @@ public class HtmlOutputLink extends HtmlBaseOutputComponent implements JQueryHtm
 		values[8] = rev;
 		values[9] = shape;
 		values[10] = target;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

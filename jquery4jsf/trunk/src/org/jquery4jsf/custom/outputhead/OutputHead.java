@@ -15,16 +15,17 @@
  */
 package org.jquery4jsf.custom.outputhead;
 
-import java.io.IOException;
-
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
-import javax.faces.el.ValueBinding;
-import javax.faces.render.Renderer;
-
 import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
+import org.jquery4jsf.custom.JQueryHtmlObject;
+import javax.faces.render.Renderer;
+import java.io.IOException;
+import javax.faces.el.ValueBinding;
+import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
 public class OutputHead extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
 
@@ -100,7 +101,7 @@ public class OutputHead extends UIComponentBase implements JQueryHtmlObject,Ajax
 		values[2] = dir;
 		values[3] = lang;
 		values[4] = langXml;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

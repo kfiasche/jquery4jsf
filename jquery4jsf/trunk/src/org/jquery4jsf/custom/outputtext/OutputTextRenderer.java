@@ -13,16 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.menu;
+package org.jquery4jsf.custom.outputtext;
 
 import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class HtmlMenuBarBaseRenderer extends JQueryBaseRenderer {
+public class OutputTextRenderer extends JQueryBaseRenderer {
 
-	protected String encodeOptionComponent(StringBuffer options, HtmlMenuBar htmlMenuBar , FacesContext context) {
+	protected String encodeOptionComponent(StringBuffer options, OutputText outputText , FacesContext context) {
 		options.append(" {\n");
+		encodeOptionComponentByType(options, outputText.getStyle(), "style", null);
+		encodeOptionComponentByType(options, outputText.getStyleClass(), "styleClass", null);
+		encodeOptionComponentByType(options, outputText.isNospan(), "nospan", null);
+		encodeOptionComponentByType(options, outputText.isEscape(), "escape", null);
+		encodeOptionComponentByType(options, outputText.getEffect(), "effect", null);
+		encodeOptionComponentByType(options, outputText.getEventEffect(), "eventEffect", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

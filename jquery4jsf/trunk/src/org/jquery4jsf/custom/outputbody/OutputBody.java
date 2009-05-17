@@ -22,7 +22,10 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
 public class OutputBody extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -228,7 +231,7 @@ public class OutputBody extends HtmlBaseOutputComponent implements JQueryHtmlObj
 		values[12] = onkeypress;
 		values[13] = onkeyup;
 		values[14] = onunload;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

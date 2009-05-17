@@ -22,7 +22,9 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.Object;
+import javax.faces.convert.Converter;
 import java.lang.String;
 
 public class HtmlAbbr extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
@@ -73,7 +75,7 @@ public class HtmlAbbr extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 		values[0] = super.saveState(context);
 		values[1] = style;
 		values[2] = styleClass;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
