@@ -38,13 +38,10 @@
 			<a href="<%=basePath%>tooltip-read-a-reference.faces">Read a reference</a>
 		</li>
 		<li>
-			<a href="<%=basePath%>dialog-message.faces">Modal message</a>
+			<a href="<%=basePath%>tooltip-position.faces">Tooltip Position</a>
 		</li>
 		<li>
-			<a href="<%=basePath%>dialog-confirmation.faces">Modal confirmation</a>
-		</li>
-		<li>
-			<a href="<%=basePath%>dialog-form.faces">Modal form</a>
+			<a href="<%=basePath%>tooltip-ajax-content.faces">Tooltip Ajax Content</a>
 		</li>
 	</ul>
 	<p></p>

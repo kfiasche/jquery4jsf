@@ -60,4 +60,14 @@
   <managed-bean-class>org.jquery4jsf.test.datatable.DataTableBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>tooltipBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.test.tooltip.TooltipBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>quickSearchBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.test.quicksearch.QuickSearchBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
 </faces-config>

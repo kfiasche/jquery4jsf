@@ -26,6 +26,13 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=iso-8859-1" />
 		<title>jQuery4jsf</title>
+		<!-- style exceptions for IE 6 -->
+<!--[if IE 6]>
+<style type="text/css">
+	.fg-menu-ipod .fg-menu li { width: 95%; }
+	.fg-menu-ipod .ui-widget-content { border:0; }
+</style>
+<![endif]-->
 		<%String path = request.getContextPath();String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%><link
 			href="<%=basePath%>style.css" rel="stylesheet" type="text/css" />
 	</head>
@@ -33,10 +40,24 @@
 		<jsp:include page="inc/header.jsp"></jsp:include>
 		<!--body part start -->
 		<div id="mainBody">
-			<jsp:include page="inc/menu-tooltip.jsp"></jsp:include>
+			<jsp:include page="inc/menu-left.jsp"></jsp:include>
 			<!--right side start -->
 			<div id="rightPan">
 				<f:view>
+					<jq:panel header="Menu Bar">
+						<jq:menuBar id="menuBar" flyOut="true" crumbDefaultText=" " showSpeed="400" label="Flat">
+							<f:facet name="icon">
+								<jq:icon type="carat-1-s"></jq:icon>
+							</f:facet>
+							<jq:menuItem id="menu1" label="Google" ></jq:menuItem>
+							<jq:menuItem id="menu2" label="Yahoo" >
+							</jq:menuItem>
+							<jq:menuItem id="menu5" label="Sub menu">
+								<jq:menuItem id="menu3" label="Altavista" disabled="true"></jq:menuItem>
+								<jq:menuItem id="menu4" label="jQuery4jsf.org" ></jq:menuItem>
+							</jq:menuItem>
+						</jq:menuBar>
+					</jq:panel>
 				</f:view>
 			</div>
 			<br class="blank" />

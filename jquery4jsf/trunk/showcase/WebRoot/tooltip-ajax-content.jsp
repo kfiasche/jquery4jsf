@@ -37,6 +37,25 @@
 			<!--right side start -->
 			<div id="rightPan">
 				<f:view>
+					<jq:panel id="panel" header="Tooltip default">
+						<h:panelGrid columns="2">
+							<h:outputLabel for="dataPicker" value="Datepicker: " />
+							<h:inputText id="dataPicker">
+								<jq:tooltip id="tooltip1" 
+								titleText="This a first tooltip"
+								showWhenEvent="click"
+								oncomplete="#{tooltipBean.onComplete}"
+								hideWhenEvent="blur"
+								cornerTarget="topRight"
+								styleName="themeroller"
+								cornerTooltip="bottomLeft"></jq:tooltip>
+							</h:inputText>
+							<h:outputLabel for="link" value="Datepicker: " />
+							<h:outputLink title="This a link of google ltd" id="link" value="http://www.google.com"><h:outputText value="Google" />
+								
+							</h:outputLink>
+						</h:panelGrid>
+					</jq:panel>
 				</f:view>
 			</div>
 			<br class="blank" />
