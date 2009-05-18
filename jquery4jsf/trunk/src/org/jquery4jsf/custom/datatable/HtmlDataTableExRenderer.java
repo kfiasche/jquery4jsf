@@ -20,13 +20,17 @@
 // Source File Name:   TableRenderer.java
 
 package org.jquery4jsf.custom.datatable;
-
-import com.sun.faces.util.Util;
+import org.jquery4jsf.utilities.MessageFactory;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.component.*;
+
+import javax.faces.component.UIColumn;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIData;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -52,7 +56,7 @@ public class HtmlDataTableExRenderer extends JQueryBaseRenderer
         throws IOException
     {
         if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(log.isLoggable(Level.FINE))
             log.logp(Level.FINE, "com.sun.faces.renderkit.html_basic.TableRenderer", "encodeBegin", "Begin encoding component " + component.getId());
         if(!component.isRendered())
@@ -121,9 +125,6 @@ public class HtmlDataTableExRenderer extends JQueryBaseRenderer
                 responsewriter.writeAttribute("width", ((HtmlDataTable)component).getWidth(), null);
         } else
         {
-            Util.renderPassThruAttributes(responsewriter, component, new String[] {
-                "rows"
-            });
         }
         responsewriter.writeText("\n", null);
         UIComponent uicomponent1 = getFacet(data, "header");
@@ -241,7 +242,7 @@ public class HtmlDataTableExRenderer extends JQueryBaseRenderer
         throws IOException
     {
         if(facescontext == null || uicomponent == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(log.isLoggable(Level.FINE))
             log.logp(Level.FINE, "com.sun.faces.renderkit.html_basic.TableRenderer", "encodeChildren", "Begin encoding children " + uicomponent.getId());
         if(!uicomponent.isRendered())
@@ -335,7 +336,7 @@ public class HtmlDataTableExRenderer extends JQueryBaseRenderer
         throws IOException
     {
         if(facescontext == null || uicomponent == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!uicomponent.isRendered())
         {
             if(log.isLoggable(Level.FINE))

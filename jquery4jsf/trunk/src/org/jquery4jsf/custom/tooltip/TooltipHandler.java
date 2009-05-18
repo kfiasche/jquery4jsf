@@ -6,6 +6,7 @@ import com.sun.facelets.tag.MethodRule;
 import com.sun.facelets.tag.jsf.ComponentConfig;
 import com.sun.facelets.tag.jsf.ComponentHandler;
 
+
 public class TooltipHandler extends ComponentHandler{
 
 	public TooltipHandler(ComponentConfig config) {

@@ -33,8 +33,7 @@ import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.resource.ResourceContext;
-
-import com.sun.faces.util.Util;
+import org.jquery4jsf.utilities.MessageFactory;
 
 public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements AjaxBaseRenderer {
 
@@ -42,7 +41,7 @@ public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements Aj
     
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 	    if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
 

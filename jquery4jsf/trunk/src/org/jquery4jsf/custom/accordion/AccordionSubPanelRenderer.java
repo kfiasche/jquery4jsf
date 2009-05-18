@@ -25,8 +25,7 @@ import javax.faces.context.ResponseWriter;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-
-import com.sun.faces.util.Util;
+import org.jquery4jsf.utilities.MessageFactory;
 
 public class AccordionSubPanelRenderer extends JQueryBaseRenderer {
 
@@ -34,7 +33,7 @@ public class AccordionSubPanelRenderer extends JQueryBaseRenderer {
 
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
         AccordionSubPanel accordionSubPanel = null;
@@ -42,7 +41,7 @@ public class AccordionSubPanelRenderer extends JQueryBaseRenderer {
 			accordionSubPanel = (AccordionSubPanel) component;
 		}
         if (accordionSubPanel.getPanelName() == null){
-        	throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+        	throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         }
         ResponseWriter responseWriter = context.getResponseWriter();
         //responseWriter.startElement(HTML.TAG_DIV, component);
@@ -57,7 +56,7 @@ public class AccordionSubPanelRenderer extends JQueryBaseRenderer {
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
         
 		if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
         
@@ -69,7 +68,7 @@ public class AccordionSubPanelRenderer extends JQueryBaseRenderer {
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
         //ResponseWriter responseWriter = context.getResponseWriter();

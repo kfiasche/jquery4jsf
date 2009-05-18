@@ -401,6 +401,232 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>alertDialog</name>
+		<tag-class>org.jquery4jsf.custom.dialog.AlertDialogTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+				<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>immediate</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>autoOpen</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[When autoOpen is true the dialog will open automatically when dialog is called. If false it will stay hidden until .dialog("open") is called on it.]]></description>
+		</attribute>
+		<attribute>
+			<name>bgiframe</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[When true, the bgiframe plugin will be used, to fix the issue in IE6 where select boxes show on top of other elements, regardless of zIndex. Requires including the bgiframe plugin. Future versions may not require a separate plugin.]]></description>
+		</attribute>
+		<attribute>
+			<name>okLabel</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>noLabel</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>okAction</name>
+			<required>false</required>
+				<type>javax.faces.el.MethodBinding</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>noAction</name>
+			<required>false</required>
+				<type>javax.faces.el.MethodBinding</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>closeOnEscape</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Specifies whether the dialog should close when it has focus and the user presses the esacpe (ESC) key.]]></description>
+		</attribute>
+		<attribute>
+			<name>dialogClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The specified class name(s) will be added to the dialog, for additional theming.]]></description>
+		</attribute>
+		<attribute>
+			<name>draggable</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[If set to true, the dialog will be draggable will be draggable by the titlebar.]]></description>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[The height of the dialog, in pixels.]]></description>
+		</attribute>
+		<attribute>
+			<name>hide</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The effect to be used when the dialog is closed.]]></description>
+		</attribute>
+		<attribute>
+			<name>maxHeight</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[The maximum height to which the dialog can be resized, in pixels.]]></description>
+		</attribute>
+		<attribute>
+			<name>maxWidth</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[The maximum width to which the dialog can be resized, in pixels.]]></description>
+		</attribute>
+		<attribute>
+			<name>minHeight</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[The minimum height to which the dialog can be resized, in pixels.]]></description>
+		</attribute>
+		<attribute>
+			<name>minWidth</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[The minimum width to which the dialog can be resized, in pixels.]]></description>
+		</attribute>
+		<attribute>
+			<name>modal</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[If set to true, the dialog will have modal behavior; other items on the page will be disabled (i.e. cannot be interacted with). Modal dialogs create an overlay below the dialog but above other page elements.]]></description>
+		</attribute>
+		<attribute>
+			<name>position</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Specifies where the dialog should be displayed. Possible values: 'center', 'left', 'right', 'top', 'bottom', or an array containing a coordinate pair (in pixel offset from top left of viewport) or the possible string values (e.g. ['right','top'] for top right corner).]]></description>
+		</attribute>
+		<attribute>
+			<name>resizable</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[If set to true, the dialog will be resizeable.]]></description>
+		</attribute>
+		<attribute>
+			<name>show</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The effect to be used when the dialog is opened.]]></description>
+		</attribute>
+		<attribute>
+			<name>stack</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Specifies whether the dialog will stack on top of other dialogs. This will cause the dialog to move to the front of other dialogs when it gains focus.]]></description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Specifies the title of the dialog. The title can also be specified by the title attribute on the dialog source element.]]></description>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[The width of the dialog, in pixels.]]></description>
+		</attribute>
+		<attribute>
+			<name>zindex</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[The width of the dialog, in pixels.]]></description>
+		</attribute>
+		<attribute>
+			<name>onbeforeclose</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered when a dialog attempts to close. If the beforeclose event handler (callback function) returns false, the close will be prevented.]]></description>
+		</attribute>
+		<attribute>
+			<name>onopen</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered when dialog is opened.]]></description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered when the dialog gains focus.]]></description>
+		</attribute>
+		<attribute>
+			<name>ondragStart</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered at the beginning of the dialog being dragged.]]></description>
+		</attribute>
+		<attribute>
+			<name>ondrag</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered when the dialog is dragged.]]></description>
+		</attribute>
+		<attribute>
+			<name>ondragStop</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered after the dialog has been dragged.]]></description>
+		</attribute>
+		<attribute>
+			<name>onresizeStart</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered at the beginning of the dialog being resized.]]></description>
+		</attribute>
+		<attribute>
+			<name>onresize</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered when the dialog is resized.]]></description>
+		</attribute>
+		<attribute>
+			<name>onresizeStop</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered after the dialog has been resized.]]></description>
+		</attribute>
+		<attribute>
+			<name>onclose</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[This event is triggered when the dialog is closed.]]></description>
+		</attribute>
+	</tag>
+	<tag>
 		<name>autoComplete</name>
 		<tag-class>org.jquery4jsf.custom.autocomplete.AutoCompleteTag</tag-class>
 		<body-content>JSP</body-content>

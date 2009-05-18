@@ -29,16 +29,14 @@ import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.resource.ResourceContext;
-
-import com.sun.faces.util.Util;
-
+import org.jquery4jsf.utilities.MessageFactory;
 public class DraggableRenderer extends DraggableBaseRenderer {
 
 	public static final String RENDERER_TYPE = Draggable.DEFAULT_RENDERER;
 	
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 	    if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
 
@@ -81,7 +79,7 @@ public class DraggableRenderer extends DraggableBaseRenderer {
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 	    if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
         

@@ -15,9 +15,9 @@
  */
 package org.jquery4jsf.custom.fileuploader;
 
-import java.lang.String;
-import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import javax.faces.context.FacesContext;
+
+import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 
 public class FileUploaderRenderer extends JQueryInputBaseRenderer {
 

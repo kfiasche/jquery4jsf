@@ -35,8 +35,7 @@ import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.resource.ResourceContext;
-
-import com.sun.faces.util.Util;
+import org.jquery4jsf.utilities.MessageFactory;
 
 public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRenderer {
 
@@ -49,7 +48,7 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
         
@@ -122,14 +121,12 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 	
 	public void decode(FacesContext context, UIComponent component) {
 		if(context == null || component == null)
-			throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 
 		Button button = null;
 		if(component instanceof Button)
 			button = (Button)component;
 
-		if(Util.componentIsDisabledOnReadonly(component))
-			return;
 		String clientId = component.getClientId(context);
 		Map map = context.getExternalContext().getRequestParameterMap();
 		String s1 = (String)map.get(clientId.concat(":button"));

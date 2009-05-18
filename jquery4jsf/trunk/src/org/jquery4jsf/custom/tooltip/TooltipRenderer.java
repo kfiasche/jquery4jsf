@@ -17,10 +17,12 @@
 package org.jquery4jsf.custom.tooltip;
 
 import java.io.IOException;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.el.MethodBinding;
+
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -28,14 +30,12 @@ import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.resource.ResourceContext;
-
-import com.sun.faces.util.Util;
-
+import org.jquery4jsf.utilities.MessageFactory;
 public class TooltipRenderer extends TooltipBaseRenderer implements AjaxBaseRenderer {
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		  if(context == null || component == null)
-	            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+	            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 	        if(!component.isRendered())
 	            return;
 	        Tooltip tooltip = null;

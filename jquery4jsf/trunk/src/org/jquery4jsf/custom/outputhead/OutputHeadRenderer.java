@@ -25,14 +25,12 @@ import org.jquery4jsf.custom.outputbody.OutputBody;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
-
-import com.sun.faces.util.Util;
-
+import org.jquery4jsf.utilities.MessageFactory;
 public class OutputHeadRenderer extends JQueryBaseRenderer {
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		if(context == null || context == null)
-			throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 		if(!component.isRendered())
 			return;
 		ResponseWriter responseWriter = context.getResponseWriter();
@@ -41,7 +39,7 @@ public class OutputHeadRenderer extends JQueryBaseRenderer {
 
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 		if(context == null || context == null)
-			throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 		if(!component.isRendered())
 			return;
 

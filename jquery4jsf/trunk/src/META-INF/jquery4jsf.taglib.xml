@@ -55,6 +55,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>alertDialog</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlAlertDialog</component-type>
+			<renderer-type>org.jquery4jsf.AlertDialogRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>autoComplete</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlAutoComplete</component-type>

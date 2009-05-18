@@ -15,9 +15,9 @@
  */
 package org.jquery4jsf.custom.outputtext;
 
-import java.lang.String;
-import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
+
+import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 
 public class OutputTextRenderer extends JQueryBaseRenderer {
 

@@ -17,6 +17,7 @@
 package org.jquery4jsf.custom.colorpicker;
 
 import java.io.IOException;
+
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.component.html.HtmlInputHidden;
@@ -30,14 +31,13 @@ import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.resource.ResourceContext;
-
-import com.sun.faces.util.Util;
+import org.jquery4jsf.utilities.MessageFactory;
 
 public class ColorPickerRenderer extends ColorPickerBaseRenderer {
 
 	public void encodeEnd(FacesContext context, UIComponent component)throws IOException {
         if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
         
@@ -101,7 +101,7 @@ public class ColorPickerRenderer extends ColorPickerBaseRenderer {
 
 	public void decode(FacesContext context, UIComponent component) {
         if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
         super.decode(context, component);

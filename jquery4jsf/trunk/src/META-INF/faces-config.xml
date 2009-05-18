@@ -48,6 +48,11 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlAlertDialog</component-type>
+		<component-class>org.jquery4jsf.custom.dialog.AlertDialog</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlAutoComplete</component-type>
 		<component-class>org.jquery4jsf.custom.autocomplete.AutoComplete</component-class>
 	</component>
@@ -282,6 +287,11 @@
 			<component-family>org.jquery4jsf.AjaxStatus</component-family>
 			<renderer-type>org.jquery4jsf.AjaxStatusRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.ajax.AjaxStatusRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.AlertDialog</component-family>
+			<renderer-type>org.jquery4jsf.AlertDialogRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.dialog.AlertDialogRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.AutoComplete</component-family>

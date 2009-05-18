@@ -34,8 +34,7 @@ import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.resource.ResourceContext;
-
-import com.sun.faces.util.Util;
+import org.jquery4jsf.utilities.MessageFactory;
 
 public class CarouselRenderer extends JQueryBaseRenderer implements AjaxBaseRenderer {
 
@@ -48,7 +47,7 @@ public class CarouselRenderer extends JQueryBaseRenderer implements AjaxBaseRend
 
 	public void encodeEnd(FacesContext context, UIComponent component)throws IOException {
         if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
 
@@ -59,7 +58,7 @@ public class CarouselRenderer extends JQueryBaseRenderer implements AjaxBaseRend
 
 	public void encodeBegin(FacesContext context, UIComponent component)throws IOException {
         if(context == null || component == null)
-            throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
         Carousel carousel = null;

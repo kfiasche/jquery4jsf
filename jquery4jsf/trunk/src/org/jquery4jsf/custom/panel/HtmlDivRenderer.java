@@ -26,9 +26,7 @@ import javax.faces.render.Renderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
-
-import com.sun.faces.util.Util;
-
+import org.jquery4jsf.utilities.MessageFactory;
 public class HtmlDivRenderer extends Renderer {
 
 
@@ -37,12 +35,12 @@ public class HtmlDivRenderer extends Renderer {
 
 	public void encodeEnd(FacesContext context,UIComponent component) throws IOException {
 		if(context == null || context == null)
-			throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 		if(!component.isRendered())
 			return;
 		
 		if(context == null || context == null)
-			throw new NullPointerException(Util.getExceptionMessageString("com.sun.faces.NULL_PARAMETERS_ERROR"));
+			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 		if(!component.isRendered())
 			return;
 		
