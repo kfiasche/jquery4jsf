@@ -1,0 +1,6 @@
+<FindBugsFilter>
+    <!-- We do not care warnings in about test files -->
+    <Match>
+      <Class name="~.*Test.*" />
+   </Match>
+</FindBugsFilter>
