@@ -18,6 +18,7 @@ package org.jquery4jsf.resource.stream;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
@@ -30,7 +31,7 @@ public class DefaultResourceStreamer implements ResourceStreamer {
 		return (mimeType != null && !mimeType.equals("text/css") && !mimeType.equals("text/js"));
 	}
 
-	public void stream(ServletContext sc, HttpServletRequest request, HttpServletResponse response, InputStream inputStream) throws IOException {
+	public void stream(ServletContext sc, HttpServletRequest request, HttpServletResponse response, InputStream inputStream, URL url) throws IOException {
 		int indice, tempIndice;
 		byte tempArr[];
 		byte mainArr[] = new byte[0];

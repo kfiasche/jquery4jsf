@@ -73,7 +73,7 @@ public class ResourceServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String resourcePath = ResourceUtils.RESOURCE_FOLDER + getResourcePath(req.getRequestURI());
+		String resourcePath = ResourceCostants.RESOURCE_FOLDER + getResourcePath(req.getRequestURI());
 		String mimeType = getResourceContentType(resourcePath);
 	    try {
 	        InputStream inputStream = ResourceServlet.class.getResourceAsStream(resourcePath);
@@ -85,17 +85,17 @@ public class ResourceServlet extends HttpServlet {
 	        resp.setContentType(mimeType);
 	        resp.setStatus(200);
 	        setCaching(resp);
-	        streamResource(req, resp, mimeType, inputStream);
+	        streamResource(req, resp, mimeType, inputStream, url);
 	    }
 	    catch (Exception e) {
 	    }
 	}
 
-	private void streamResource(HttpServletRequest req, HttpServletResponse resp, String mimeType, InputStream inputStream) throws IOException {
+	private void streamResource(HttpServletRequest req, HttpServletResponse resp, String mimeType, InputStream inputStream, URL url) throws IOException {
 		for (Iterator iterator = resourceStreamers.iterator(); iterator.hasNext();) {
 			ResourceStreamer resourceStreamer = (ResourceStreamer) iterator.next();
 			if(resourceStreamer.isAppropriateStreamer(mimeType))
-				resourceStreamer.stream(getServletContext(), req, resp, inputStream);
+				resourceStreamer.stream(getServletContext(), req, resp, inputStream, url);
 		}
 	}
 	
@@ -107,8 +107,8 @@ public class ResourceServlet extends HttpServlet {
 	}
 
 	protected String getResourcePath(String requestURI) {
-		int patternIndex = requestURI.indexOf(ResourceUtils.RESOURCE_PATTERN);
-		return requestURI.substring(patternIndex + ResourceUtils.RESOURCE_PATTERN.length(), requestURI.length());
+		int patternIndex = requestURI.indexOf(ResourceCostants.RESOURCE_PATTERN);
+		return requestURI.substring(patternIndex + ResourceCostants.RESOURCE_PATTERN.length(), requestURI.length());
 	}
 	
 	protected String getResourceContentType(String resourcePath) {

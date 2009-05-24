@@ -59,6 +59,7 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlAlertDialog</component-type>
 			<renderer-type>org.jquery4jsf.AlertDialogRenderer</renderer-type>
+			<handler-class>org.jquery4jsf.custom.dialog.AlertDialogHandler</handler-class>
 		</component>
 	</tag>
 	<tag>
@@ -164,6 +165,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlIcon</component-type>
 			<renderer-type>org.jquery4jsf.IconRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>lightBox</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlLightBox</component-type>
+			<renderer-type>org.jquery4jsf.LightBoxRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>

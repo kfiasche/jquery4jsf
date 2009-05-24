@@ -22,11 +22,13 @@ import java.util.Iterator;
 import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.renderkit.html.HTML;
+import org.jquery4jsf.resource.ResourceCostants;
 import org.jquery4jsf.utilities.TextUtilities;
 
 public class RendererUtilities {
@@ -63,8 +65,7 @@ public class RendererUtilities {
 		responseWriter.startElement(HTML.TAG_SCRIPT, component);
 		responseWriter.writeAttribute(HTML.TYPE, "text/javascript", null);
 		responseWriter.writeAttribute(HTML.LANGUAGE, "javascript", null);
-		String contextPath = context.getExternalContext().getRequestContextPath();
-		responseWriter.writeAttribute(HTML.SRC,contextPath.concat("/jquery4jsf_resource/jquery/jquery.js"), null);	
+		responseWriter.writeAttribute(HTML.SRC,getResourceURL(context, "jquery/jquery.js"), null);	
 		responseWriter.endElement(HTML.TAG_SCRIPT);
 		responseWriter.write("\n");
 	}
@@ -73,8 +74,7 @@ public class RendererUtilities {
 		responseWriter.startElement(HTML.TAG_SCRIPT, component);
 		responseWriter.writeAttribute(HTML.TYPE, "text/javascript", null);
 		responseWriter.writeAttribute(HTML.LANGUAGE, "javascript", null);
-		String contextPath = context.getExternalContext().getRequestContextPath();
-		responseWriter.writeAttribute(HTML.SRC,contextPath.concat("/jquery4jsf_resource/".concat(string)), null);	
+		responseWriter.writeAttribute(HTML.SRC,getResourceURL(context, string), null);	
 		responseWriter.endElement(HTML.TAG_SCRIPT);
 		responseWriter.write("\n");
 	}
@@ -83,8 +83,7 @@ public class RendererUtilities {
 		responseWriter.startElement(HTML.TAG_LINK, component);
 		responseWriter.writeAttribute(HTML.TYPE, "text/css", null);
 		responseWriter.writeAttribute(HTML.REL, "stylesheet", null);
-		String contextPath = context.getExternalContext().getRequestContextPath();
-		responseWriter.writeAttribute(HTML.HREF,contextPath.concat("/jquery4jsf_resource/".concat(string)), null);
+		responseWriter.writeAttribute(HTML.HREF, getResourceURL(context, string), null);
 		responseWriter.writeAttribute(HTML.MEDIA, "screen", null);
 		responseWriter.endElement(HTML.TAG_LINK);
 		responseWriter.write("\n");
@@ -247,7 +246,10 @@ public class RendererUtilities {
 	}
 	
 	private static String cleanPrefixFunction(String nomeParameter){
-		return nomeParameter.substring(2);
+		if (nomeParameter.startsWith("on"))
+			return nomeParameter.substring(2);
+		else
+			return nomeParameter;
 	}
 	
 	public static void createOptionComponentArrayByType(StringBuffer options, String value, String nameParameter) {
@@ -327,4 +329,28 @@ public class RendererUtilities {
 	public static String getJQueryId(String id){
 		return "#" + id.replaceAll(":", "\\\\\\\\:");
 	}
+	
+	public static String writeIdAttributeIfNecessary(FacesContext context,ResponseWriter writer, UIComponent component) {
+		String id = null;
+		if (shouldWriteIdAttribute(component)) {
+			try {
+				id = component.getClientId(context);
+				writer.writeAttribute("id", id, "id");
+			} catch (IOException e) {
+				System.out.println("Can't write ID attribute" + e.getMessage());
+			}
+		}
+		return id;
+	}
+	
+	public static boolean shouldWriteIdAttribute(UIComponent component) {
+		String id;
+		return (null != (id = component.getId()) && !id.startsWith(UIViewRoot.UNIQUE_ID_PREFIX));
+	}
+	
+	public static String getResourceURL(FacesContext facesContext, String resource) {
+		String contextPath = facesContext.getExternalContext().getRequestContextPath();
+		return contextPath + ResourceCostants.RESOURCE_PATTERN + resource;
+	}
+	
 }

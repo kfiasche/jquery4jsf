@@ -27,7 +27,6 @@ import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.resource.ResourceContext;
-
 import org.jquery4jsf.utilities.MessageFactory;
 public class HtmlQuickSearchRenderer extends HtmlQuickSearchBaseRenderer {
 

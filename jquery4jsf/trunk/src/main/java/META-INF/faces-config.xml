@@ -128,6 +128,11 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlLightBox</component-type>
+		<component-class>org.jquery4jsf.custom.lightbox.LightBox</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlMenu</component-type>
 		<component-class>org.jquery4jsf.custom.menu.HtmlMenu</component-class>
 	</component>
@@ -362,6 +367,11 @@
 			<component-family>org.jquery4jsf.Icon</component-family>
 			<renderer-type>org.jquery4jsf.IconRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.icon.IconRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.LightBox</component-family>
+			<renderer-type>org.jquery4jsf.LightBoxRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.lightbox.LightBoxRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.Menu</component-family>

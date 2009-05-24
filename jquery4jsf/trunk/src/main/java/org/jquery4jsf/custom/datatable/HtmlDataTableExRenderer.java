@@ -20,7 +20,6 @@
 // Source File Name:   TableRenderer.java
 
 package org.jquery4jsf.custom.datatable;
-import org.jquery4jsf.utilities.MessageFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -36,6 +35,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
+import org.jquery4jsf.utilities.MessageFactory;
 
 // Referenced classes of package com.sun.faces.renderkit.html_basic:
 //            HtmlBasicRenderer

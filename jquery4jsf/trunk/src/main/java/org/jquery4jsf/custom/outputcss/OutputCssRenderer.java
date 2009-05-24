@@ -29,19 +29,17 @@ import org.jquery4jsf.utilities.MessageFactory;
 public class OutputCssRenderer extends JQueryBaseRenderer {
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-		super.encodeEnd(context, component);
 		 if(context == null || context == null)
 	            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 	        if(!component.isRendered())
 	            return;
 	        
 	        ResponseWriter responseWriter = context.getResponseWriter();
-	        responseWriter.endElement(HTML.TAG_SCRIPT);
+	        responseWriter.endElement(HTML.TAG_LINK);
 	        
 	}
 
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-		super.encodeBegin(context, component);
 		 if(context == null || context == null)
 	            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 	        if(!component.isRendered())
@@ -57,7 +55,6 @@ public class OutputCssRenderer extends JQueryBaseRenderer {
 	}
 
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
-		super.encodeChildren(context, component);
 	}
 
 

@@ -98,19 +98,16 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
 		String formId = RendererUtilities.getJQueryIdComponent(context, form);
 		encodeOptionComponentByType(options,formId, "form", null);
 		encodeOptionComponentByType(options, ajaxEvent.getEvent(), "event", "click");
-		String actionURL = null;
-		actionURL = getActionURL(context);
-
-		String clientId = ajaxEvent.getClientId(context);;
-		
+		String actionURL = getActionURL(context);
+		String clientId = ajaxEvent.getClientId(context);
 		String reRenderedId = RendererUtilities.getClientIdForComponent(ajaxEvent.getReRender(), context, ajaxEvent);
 		if(actionURL.indexOf("?") == -1)
 		{
-			actionURL = actionURL + "?ajaxSourceJQuery=" + clientId +"&ajaxUpdate=" + reRenderedId;
+			actionURL = actionURL + "?ajaxSourceJQuery=" + clientId +"&ajaxUpdate=" + reRenderedId + "&" + clientId+"="+clientId;
 		}
 		else
 		{
-			actionURL = actionURL + "&ajaxSourceJQuery=" + clientId +"&ajaxUpdate=" + reRenderedId ;
+			actionURL = actionURL + "&ajaxSourceJQuery=" + clientId +"&ajaxUpdate=" + reRenderedId + "&" +clientId+"="+clientId;
 		}
 		encodeOptionComponentByType(options, actionURL, "url", null);
 		//encodeOptionComponentByType(options, ajaxEvent.isPartialSubmit(), "partialSubmit", "true");

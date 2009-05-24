@@ -44,13 +44,7 @@ public class AjaxStatus extends UIComponentBase implements JQueryHtmlObject,Ajax
 	public AjaxStatus() {
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
-			"jquery/jquery.js",
-			"external/jquery.ajaxQueue.js",
-			"autocomplete/jquery.autocomplete.js",
-			"autocomplete/jquery.autocomplete.css",
-			"external/jquery.bgiframe.min.js",
-			"external/thickbox-compressed.js",
-			"external/thickbox.css"
+			"jquery/jquery.js"
 		};
 	}
 

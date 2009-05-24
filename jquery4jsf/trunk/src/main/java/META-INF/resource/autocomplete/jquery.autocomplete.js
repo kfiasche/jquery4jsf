@@ -7,7 +7,7 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  *
- * Revision: $Id: jquery.autocomplete.js,v 1.1 2009/05/20 19:43:05 tipolosco Exp $
+ * Revision: $Id: jquery.autocomplete.js,v 1.2 2009/05/23 15:22:45 tipolosco Exp $
  *
  */
 
@@ -321,6 +321,10 @@ $.Autocompleter = function(input, options) {
 		}
 	};
 
+	function getForm(input){
+		return $(input).parents().find('form:first'); 
+	}
+	
 	function request(term, success, failure) {
 		if (!options.matchCase)
 			term = term.toLowerCase();
@@ -331,11 +335,17 @@ $.Autocompleter = function(input, options) {
 		// if an AJAX url has been supplied, try loading the data now
 		} else if( (typeof options.url == "string") && (options.url.length > 0) ){
 			
+			var form = getForm($input);
 			var extraParams = {
 				timestamp: +new Date()
 			};
+			
 			$.each(options.extraParams, function(key, param) {
 				extraParams[key] = typeof param == "function" ? param() : param;
+			});
+			
+			$.each($(form).formToArray(), function() {
+				extraParams[this.name] = typeof this.value == "function" ? this.value() : this.value;
 			});
 			
 			$.ajax({

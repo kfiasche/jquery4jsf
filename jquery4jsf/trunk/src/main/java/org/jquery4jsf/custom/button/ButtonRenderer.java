@@ -17,14 +17,19 @@
 package org.jquery4jsf.custom.button;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
 
+import org.jquery4jsf.component.ComponentUtilities;
+import org.jquery4jsf.custom.dialog.AlertDialog;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -55,8 +60,12 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         Button button = null;
         if(component instanceof Button)
         	button = (Button)component;
-        ResponseWriter responseWriter = context.getResponseWriter();
         
+		UIComponent form = RendererUtilities.getForm(context, component);
+		if(form == null) {
+			throw new FacesException(MessageFactory.getMessage("org.jquery4jsf.BUTTON_PARENT_FORM"));
+		}
+        ResponseWriter responseWriter = context.getResponseWriter();
         // TODO devo trovare il modo per scrivere i script nell'head
         String[] list = button.getResources();
         for (int i = 0; i < list.length; i++) {
@@ -65,10 +74,12 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 		}
         
         String idClient = button.getClientId(context);
-        if (!button.getType().equalsIgnoreCase("reset") && button.getTarget()!=null){
-        	encodeJQueryButtonScript(idClient, button, responseWriter, context);
+        AlertDialog alert = getAlertDialog(button);
+        if (alert != null){
+        	alert.encodeBegin(context);
+        	alert.encodeChildren(context);
+        	alert.encodeEnd(context);
         }
-
         responseWriter.startElement(HTML.TAG_INPUT, button);
         writeIdAttributeIfNecessary(context, responseWriter, component);
         if (!button.isResetForm() || !button.isClearForm())
@@ -80,12 +91,19 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         if (button.getStyleClass() != null){
         	styleClass = styleClass.concat(button.getStyleClass());
         }
+        
         button.getAttributes().put("styleClass", styleClass);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_STD_ATTR);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_INPUT_COMMAND_TAG_ATTR);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_JS_STD_ATTR);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_JS_ELEMENT_ATTR);
         responseWriter.endElement(HTML.TAG_INPUT);
+        
+        if (!button.getType().equalsIgnoreCase("reset") 
+        		&& (button.getTarget()!=null 
+        				|| alert != null)){
+        	encodeJQueryButtonScript(idClient, button, responseWriter, context);
+        }
        
 	}
 	
@@ -98,14 +116,21 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         JSElement formElement = new JSElement(uiForm.getClientId(context));
         JSAttribute jsButton = new JSAttribute("click",false);
         JSFunction jsFnOnClick = new JSFunction();
-        
-        JSAttribute jsForm = null;
-       	jsForm = new JSAttribute("ajaxSubmit", false);
-       
-        StringBuffer sbOption = new StringBuffer();
-        jsForm.addValue(encodeOptionComponent(sbOption, button, context));
-        formElement.addAttribute(jsForm);
-        jsFnOnClick.addJSElement(formElement);
+        AlertDialog alert = getAlertDialog(button);
+        if(alert == null){
+	        JSAttribute jsForm = null;
+	       	jsForm = new JSAttribute("ajaxSubmit", false);
+	        StringBuffer sbOption = new StringBuffer();
+	        jsForm.addValue(encodeOptionComponent(sbOption, button, context));
+	        formElement.addAttribute(jsForm);
+	        jsFnOnClick.addJSElement(formElement);
+        }
+        else{
+        	String clientIdAlert = RendererUtilities.getJQueryId(alert.getClientId(context));
+        	JSOperationElement jsOperationElement = new JSOperationElement(clientIdAlert);
+        	jsOperationElement.addOperation("$('"+clientIdAlert+"').dialog('open');");
+            jsFnOnClick.addJSElement(jsOperationElement);
+        }
         JSOperationElement jsOperationElement = new JSOperationElement(uiForm.getClientId(context));
         jsOperationElement.addOperation("return false;");
         jsFnOnClick.addJSElement(jsOperationElement);
@@ -145,19 +170,27 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 		}
 	}
 	
+	private AlertDialog getAlertDialog(Button button) {
+		List children = button.getChildren();
+		for (Iterator iterator = children.iterator(); iterator.hasNext();) {
+			Object object = (Object) iterator.next();
+			if (object instanceof AlertDialog) {
+				AlertDialog alert = (AlertDialog) object;
+				return alert;
+			}
+		}
+		return null;
+	}
+	
 	protected String encodeOptionComponent(StringBuffer options, Button button , FacesContext context) {
 		options.append(" {\n");
-		//encodeOptionComponentByType(options, button.isPartialSubmit(), "partialSubmit", null);
-		
 		String target = button.getTarget();
 		String clientId = button.getClientId(context);;
 		if (target == null || target.trim().length() == 0){
 			target = null;
-			//target = RendererUtilities.getFormId(context, button);
 		}else{
 			target = RendererUtilities.getClientIdForComponent(target, context, button);
 		}
-		
 		if (button.getUrl() != null)
 			encodeOptionComponentByType(options, button.getUrl(), "url", null);
 		else{
@@ -202,5 +235,14 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 		}
 		return options.toString();
 	}
+
+	public boolean getRendersChildren() {
+		return true;
+	}
+
+	public void encodeChildren(FacesContext arg0, UIComponent arg1)throws IOException {
+	}
+	
+	
 	
 }

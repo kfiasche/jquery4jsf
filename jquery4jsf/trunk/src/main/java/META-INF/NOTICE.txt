@@ -12,3 +12,4 @@ This product includes software developed by Alex Gorbatchev (http://alexgorbatch
 This product includes software developed by Igor Starikov  (http://idlesign.ya.ru)
 This product includes software developed by Stefan Petre (http://www.eyecon.ro)
 This product includes software developed by Maggie Costello Wachs (maggie@filamentgroup.com) and Scott Jehl (scott@filamentgroup.com)
+This product includes software developed by Leandro Vieira Pinho (http://leandrovieira.com/projects/jquery/lightbox/)

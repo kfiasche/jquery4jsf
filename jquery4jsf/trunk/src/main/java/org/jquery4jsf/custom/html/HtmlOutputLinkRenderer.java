@@ -18,6 +18,7 @@ package org.jquery4jsf.custom.html;
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -27,6 +28,11 @@ import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 
 public class HtmlOutputLinkRenderer extends JQueryBaseRenderer {
 
+    protected Object getValue(UIComponent uicomponent)
+    {
+        return ((UIOutput)uicomponent).getValue();
+    }
+	
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         if ((context == null) || (component == null))
         {

@@ -16,13 +16,26 @@
  */
 package org.jquery4jsf.resource.stream;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.net.URL;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.mozilla.javascript.ErrorReporter;
+import org.mozilla.javascript.EvaluatorException;
+
+import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
+
 
 public class JavaScriptResourceStreamer implements ResourceStreamer {
 
@@ -32,38 +45,62 @@ public class JavaScriptResourceStreamer implements ResourceStreamer {
 		return (mimeType != null && mimeType.equals("text/js"));
 	}
 
-	public void stream(ServletContext sc, HttpServletRequest request, HttpServletResponse response, InputStream inputStream) throws IOException {
+	public void stream(ServletContext sc, HttpServletRequest request, HttpServletResponse response, InputStream inputStream, URL url) throws IOException {
 		String param = sc.getInitParameter(PARAM_JAVASCRIPT_MIN);
 		if (param != null && Boolean.valueOf(param).booleanValue()){
-			ServletOutputStream outputStream = response.getOutputStream();
-			JavaScriptMin jsMin = new JavaScriptMin(inputStream, outputStream);
 			try {
-				jsMin.jsmin();
+				String charset = request.getCharacterEncoding();
+				if (charset == null) {
+				    charset = "UTF-8";
+				}
+				OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), charset);
+				Reader in = new InputStreamReader(inputStream, charset);
+				JavaScriptCompressor javaScriptCompressor = new JavaScriptCompressor(in, new ErrorReporter() {
+
+				    public void warning(String message, String sourceName,
+				            int line, String lineSource, int lineOffset) {
+				        if (line < 0) {
+				            System.err.println("\n[WARNING] " + message);
+				        } else {
+				            System.err.println("\n[WARNING] " + line + ':' + lineOffset + ':' + message);
+				        }
+				    }
+
+				    public void error(String message, String sourceName,
+				            int line, String lineSource, int lineOffset) {
+				        if (line < 0) {
+				            System.err.println("\n[ERROR] " + message);
+				        } else {
+				            System.err.println("\n[ERROR] " + line + ':' + lineOffset + ':' + message);
+				        }
+				    }
+
+				    public EvaluatorException runtimeError(String message, String sourceName,
+				            int line, String lineSource, int lineOffset) {
+				        error(message, sourceName, line, lineSource, lineOffset);
+				        return new EvaluatorException(message);
+				    }
+				});
+				
+				in.close(); in = null;
+
+				//YUICompressor settings
+				boolean yuiJsNoMunge = false;
+				boolean yuiJsPreserveAllSemiColons = true;
+				boolean yuiJsDisableOptimizations = true;
+				int yuiJsLineBreak = -1;
+				
+				StringWriter sw = new StringWriter();
+				javaScriptCompressor.compress(sw, yuiJsLineBreak, yuiJsNoMunge, false, yuiJsPreserveAllSemiColons, yuiJsDisableOptimizations);
+				writer.write(sw.toString());
+				writer.flush();
+				writer.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		else{
-			int indice, tempIndice;
-			byte tempArr[];
-			byte mainArr[] = new byte[0];
-			byte byteArr[] = new byte[65535];
-			try {
-				ServletOutputStream outputStream = response.getOutputStream();
-				for(indice = 0; (indice = inputStream.read(byteArr)) > 0;)  {
-					tempIndice = mainArr.length + indice;
-					tempArr = new byte[tempIndice];
-					System.arraycopy(mainArr, 0, tempArr, 0, mainArr.length);
-					System.arraycopy(byteArr, 0, tempArr, mainArr.length, indice);
-					mainArr = tempArr;
-				}
-				outputStream.write(mainArr);
-				outputStream.flush();
-				outputStream.close();
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
+			(new DefaultResourceStreamer()).stream(sc, request, response, inputStream, url);
 		}
 	}
 

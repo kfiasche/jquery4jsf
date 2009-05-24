@@ -93,6 +93,7 @@ public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements Aj
 		try {
 			results = (List) me.invoke(context, new Object[]{query});
 		} catch (Exception e) {
+			System.out.println("Error invoke method: "+e.getMessage());
 		}
 		int i=0;
 		for (Iterator iterator = results.iterator(); iterator.hasNext();) {
@@ -133,6 +134,8 @@ public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements Aj
 		encodeOptionComponentByType(options, autoComplete.isMatchContains(), "matchContains", "false");
 		encodeOptionComponentByType(options, autoComplete.isMustMatch(), "mustMatch", "false");
 		encodeOptionComponentByType(options, autoComplete.isSelectFirst(), "selectFirst", "true");
+		//TODO viewroot serial???
+
 		encodeOptionComponentByType(options, autoComplete.getExtraParams(), "extraParams", null);
 		encodeOptionComponentByType(options, autoComplete.getOnformatItem(), "formatItem", null);
 		encodeOptionComponentByType(options, autoComplete.getOnformatMatch(), "formatMatch", null);
