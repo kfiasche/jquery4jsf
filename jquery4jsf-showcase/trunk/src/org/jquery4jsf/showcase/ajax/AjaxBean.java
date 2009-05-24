@@ -23,6 +23,8 @@ public class AjaxBean {
 	
 	
 	public void creaRomaFans(ActionEvent actionEvent){
+		if (fans == null)
+			fans = "";
 		fans = fans.concat("Francesco Totti");
 	}
 	

@@ -18,7 +18,7 @@
 		<h:form>
 			<jq:ajaxStatus>
 				<f:facet name="start">
-					<h:graphicImage value="/images/ajax-loader.gif"></h:graphicImage>
+					<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
 				</f:facet>
 
 				<f:facet name="complete">
@@ -28,7 +28,7 @@
 			
 			<h:panelGrid columns="3">
 				<h:outputText value="Keyup" />
-				<h:inputText id="roma">
+				<h:inputText id="roma" value="#{ajaxBean.fans}" >
 					<jq:ajaxEvent event="keyup" reRender="romaout"
 						actionListener="#{ajaxBean.creaRomaFans}" />
 				</h:inputText>

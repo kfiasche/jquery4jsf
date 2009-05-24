@@ -1,0 +1,101 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{resource.LIGHTBOX_TITLE_OTHERS}" />
+	</ui:define>
+	<ui:define name="head">
+		   	<style type="text/css">
+	/* jQuery lightBox plugin - Gallery style */
+	.ui-lightbox {
+		background-color: #444;
+		padding: 10px;
+		width: 520px;
+	}
+	.ui-lightbox ul { list-style: none; }
+	.ui-lightbox ul li { display: inline; }
+	.ui-lightbox ul img {
+		border: 5px solid #3e3e3e;
+		border-width: 5px 5px 20px;
+	}
+	.ui-lightbox ul a:hover img {
+		border: 5px solid #fff;
+		border-width: 5px 5px 20px;
+		color: #fff;
+	}
+	.ui-lightbox ul a:hover { color: #fff; }
+	</style>
+	<jq:outputCss href="#{facesContext.externalContext.requestContextPath}/lightbox/theme/lightbox.css" type="text/css" rel="stylesheet" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			LightBox - #{resource.LIGHTBOX_TITLE_OTHERS}
+		</h3>
+		<p>
+			#{resource.LIGHTBOX_DESCR_OTHERS}
+		</p>
+
+		<jq:lightBox 	overlayBgColor="red"
+						overlayOpacity="0.6"
+						containerBorderSize="20" 
+						containerResizeSpeed="200"
+						txtImage="Immagine"
+						txtOf="di"
+						fixedNavigation="true"
+						imageBtnClose="#{facesContext.externalContext.requestContextPath}/lightbox/theme/images/lb_close.jpg"
+						imageBtnNext="#{facesContext.externalContext.requestContextPath}/lightbox/theme/images/next.png"
+						imageBtnPrev="#{facesContext.externalContext.requestContextPath}/lightbox/theme/images/prev.png"
+						imageLoading="#{facesContext.externalContext.requestContextPath}/lightbox/theme/images/ajax-loader.gif">
+			<h:outputLink
+				title="Pluto Aldair"
+				value="#{facesContext.externalContext.requestContextPath}/images/roma/plutoaldair.jpg">
+				<h:graphicImage
+					value="/images/roma/plutoaldair_small.jpg">
+				</h:graphicImage>
+			</h:outputLink>
+			<h:outputLink
+				title="John Arne Riise"
+				value="#{facesContext.externalContext.requestContextPath}/images/roma/johnarnerisee.jpg">
+				<h:graphicImage
+					value="/images/roma/johnarnerisee_small.jpg">
+				</h:graphicImage>
+			</h:outputLink>
+			<h:outputLink
+				title="Tim Cup 2008 - Roma Winner"
+				value="#{facesContext.externalContext.requestContextPath}/images/roma/romacoppaitalia.jpg">
+				<h:graphicImage
+					value="/images/roma/romacoppaitalia_small.jpg">
+				</h:graphicImage>
+			</h:outputLink>
+			<h:outputLink
+				title="Tim Cup 2008 - Roma Winner - Two"
+				value="#{facesContext.externalContext.requestContextPath}/images/roma/romacoppaitaliabis.jpg">
+				<h:graphicImage
+					value="/images/roma/romacoppaitaliabis_small.jpg">
+				</h:graphicImage>
+			</h:outputLink>
+			<h:outputLink
+				title="Francesco Totti"
+				value="#{facesContext.externalContext.requestContextPath}/images/roma/tottiinegitto.jpg">
+				<h:graphicImage
+					value="/images/roma/tottiinegitto_small.jpg">
+				</h:graphicImage>
+			</h:outputLink>
+			<h:outputLink
+				title="Francesco Totti and Rosella Sensi"
+				value="#{facesContext.externalContext.requestContextPath}/images/roma/tottirosellacoppaitalia.jpg">
+				<h:graphicImage
+					value="/images/roma/tottirosellacoppaitalia_small.jpg">
+				</h:graphicImage>
+			</h:outputLink>
+		</jq:lightBox>
+
+		<br />
+		<h3>
+			Source
+		</h3>
+	</ui:define>
+</ui:composition>

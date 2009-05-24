@@ -8,7 +8,7 @@
 			<div class="BlockHeader">
 				<div class="header-tag-icon">
 					<div class="BlockHeader-text">
-						<h:outputText value="#{resource.AUTOCOMPLETE_MENU}"/>
+						<h:outputText value="#{resource.LIGHTBOX_MENU}" />
 					</div>
 				</div>
 				<div class="l"></div>
@@ -43,8 +43,27 @@
 				<div class="BlockContent-body">
 					<ul class="menu">
 						<li>
-							<h:outputLink value="#{facesContext.externalContext.requestContextPath}/autocomplete/default.jsf">
-								<h:outputText value="#{resource.AUTOCOMPLETE_TITLE_DEFAULT}"/>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/lightbox/default.jsf">
+								<h:outputText value="#{resource.LIGHTBOX_TITLE_DEFAULT}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/lightbox/themes.jsf">
+								<h:outputText value="#{resource.LIGHTBOX_TITLE_SKINS}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/lightbox/others.jsf">
+								<h:outputText value="#{resource.LIGHTBOX_TITLE_OTHERS}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/lightbox/keys.jsf">
+								<h:outputText value="#{resource.LIGHTBOX_TITLE_KEYS}" />
 							</h:outputLink>
 						</li>
 					</ul>

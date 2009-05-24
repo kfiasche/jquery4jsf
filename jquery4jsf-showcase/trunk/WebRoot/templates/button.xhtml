@@ -8,7 +8,7 @@
 			<div class="BlockHeader">
 				<div class="header-tag-icon">
 					<div class="BlockHeader-text">
-						<h:outputText value="#{resource.AUTOCOMPLETE_MENU}"/>
+						<h:outputText value="#{resource.BUTTON_MENU}"/>
 					</div>
 				</div>
 				<div class="l"></div>
@@ -43,8 +43,13 @@
 				<div class="BlockContent-body">
 					<ul class="menu">
 						<li>
-							<h:outputLink value="#{facesContext.externalContext.requestContextPath}/autocomplete/default.jsf">
-								<h:outputText value="#{resource.AUTOCOMPLETE_TITLE_DEFAULT}"/>
+							<h:outputLink value="#{facesContext.externalContext.requestContextPath}/button/buttonsubmit.jsf">
+								<h:outputText value="#{resource.BUTTON_TITLE_SUBMIT}"/>
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink value="#{facesContext.externalContext.requestContextPath}/button/buttonAlert.jsf">
+								<h:outputText value="#{resource.BUTTON_TITLE_ALERT}"/>
 							</h:outputLink>
 						</li>
 					</ul>

@@ -12,6 +12,11 @@
   <managed-bean-class>org.jquery4jsf.showcase.autocomplete.AutoCompleteBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>buttonBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.button.ButtonBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
  </application>
