@@ -93,7 +93,7 @@
 	</contributors>
 
 	<dependencies>
-		 
+		 <!--
 		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -106,18 +106,17 @@
 			<version>1.2_12</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- 
+		--> 
 		<dependency>
 			<groupId>org.apache.myfaces.core</groupId>
 			<artifactId>myfaces-api</artifactId>
-			<version>1.2.5</version>
+			<version>1.2.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.myfaces.core</groupId>
 			<artifactId>myfaces-impl</artifactId>
-			<version>1.2.5</version>
+			<version>1.2.6</version>
 		</dependency>
-		-->
 		<dependency>
 			<groupId>com.sun.facelets</groupId>
 			<artifactId>jsf-facelets</artifactId>
