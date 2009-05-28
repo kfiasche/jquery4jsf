@@ -17,6 +17,21 @@
   <managed-bean-class>org.jquery4jsf.showcase.button.ButtonBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>user</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.model.User</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>DialogBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.dialog.DialogBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>tableSorterBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.tablesorter.TableSorterBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
  </application>

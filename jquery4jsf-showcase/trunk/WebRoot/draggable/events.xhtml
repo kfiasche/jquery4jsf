@@ -1,0 +1,93 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{resource.DRAGGABLE_TITLE_EVENTS}" />
+	</ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+#draggable {
+	width: 16em;
+	padding: 0 1em;
+}
+
+#draggable ul li {
+	margin: 1em 0;
+	padding: 0.5em 0;
+}
+
+* html #draggable ul li {
+	height: 1%;
+}
+
+#draggable ul li span.ui-icon {
+	float: left;
+}
+
+#draggable ul li span.count {
+	font-weight: bold;
+}
+</style>
+		<jq:outputScript type="text/javascript" charset="utf-8">
+		var counts = [0,0,0];
+		
+		function startDrag(){
+			counts[0]++;
+			updateCounterStatus($('#event-start'),counts[0]);
+		}
+		function dragDrag() {
+			counts[1]++;
+			updateCounterStatus($('#event-drag'),counts[1]);
+		}
+		function stopDrag() {
+			counts[2]++;
+			updateCounterStatus($('#event-stop'),counts[2]);
+		}
+		function updateCounterStatus($event_counter,new_count) {
+			// first update the status visually...
+			if (!$event_counter.hasClass('ui-state-hover')) {
+				$event_counter.addClass('ui-state-hover')
+					.siblings().removeClass('ui-state-hover');
+			}
+			// ...then update the numbers
+			$('span.count',$event_counter).text(new_count);
+		}
+	</jq:outputScript>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Draggable - #{resource.DRAGGABLE_TITLE_EVENTS}
+		</h3>
+		<p>
+			#{resource.DRAGGABLE_DESCR_EVENTS}
+		</p>
+		<jq:draggable id="draggable" zindex="-2" ondrag="dragDrag();" onstop="stopDrag();" onstart="startDrag();">
+			<p>
+				Portami ingiro
+			</p>
+			<jq:outputHtmlTag tagName="ul" styleClass="ui-helper-reset">
+				<jq:outputHtmlTag tagName="li"  id="event-start" styleClass="ui-state-default ui-corner-all">
+					<jq:icon type="play"/>"start" invoked
+					<h:outputText styleClass="count" value="0" />x
+				</jq:outputHtmlTag>
+				<jq:outputHtmlTag tagName="li" id="event-drag" styleClass="ui-state-default ui-corner-all">
+					<jq:icon type="arrow-4"/>"drag" invoked
+					<h:outputText styleClass="count" value="0" />x
+				</jq:outputHtmlTag>
+				<jq:outputHtmlTag tagName="li" id="event-stop" styleClass="ui-state-default ui-corner-all">
+					<jq:icon type="stop"/>"stop" invoked
+					<h:outputText styleClass="count" value="0" />x
+				</jq:outputHtmlTag>
+
+			</jq:outputHtmlTag>
+
+		</jq:draggable>
+		<br />
+		<h3>
+			Source
+		</h3>
+	</ui:define>
+</ui:composition>

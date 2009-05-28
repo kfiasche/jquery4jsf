@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{resource.DRAGGABLE_TITLE_CONSTRAIN}" />
+	</ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+		.draggable { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+	#draggable, #draggable2 { margin-bottom:20px; }
+	#draggable { cursor: n-resize; }
+	#draggable2 { cursor: e-resize; }
+	#containment-wrapper { width: 95%; height:150px; border:2px solid #ccc; padding: 10px;}
+		
+		</style>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Draggable - #{resource.DRAGGABLE_TITLE_CONSTRAIN}
+		</h3>
+		<p>
+			#{resource.DRAGGABLE_DESCR_CONSTRAIN}
+		</p>
+		<jq:draggable styleClass="draggable" id="draggable" axis="x" zindex="-2">
+			<p>Portami ingiro in orizzontale</p>
+		</jq:draggable>
+		<jq:draggable styleClass="draggable" id="draggable2" axis="y" zindex="-2">
+			<p>Portami ingiro in verticale</p>
+		</jq:draggable>
+		<jq:div id="containment-wrapper">
+			<jq:draggable  zindex="-2" styleClass="draggable" id="draggable3" containment="#containment-wrapper" scroll="false">
+				<p>
+					Portami ingiro all'interno del box 
+				</p>
+			</jq:draggable>
+			<jq:draggable id="draggable4"  zindex="-2" containment=".content" scroll="false">
+				<p>
+					Portami ingiro all'interno del box 
+				</p>
+			</jq:draggable>
+			<jq:div styleClass="draggable ui-widget-content">
+				<jq:paragraph id="draggable5" styleClass="ui-widget-header">
+					<jq:draggable for="draggable5" containment="parent" zindex="-1"></jq:draggable>
+					Portami in giro dentro al mio piccolo box
+				</jq:paragraph>
+			</jq:div>
+		</jq:div>
+		<br />
+		<h3>
+			Source
+		</h3>
+	</ui:define>
+</ui:composition>

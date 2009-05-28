@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{resource.DIALOG_TITLE_CONFIRMATION}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Dialog - #{resource.DIALOG_TITLE_CONFIRMATION}
+		</h3>
+		<p>
+			#{resource.DIALOG_DESCR_CONFIRMATION}
+		</p>
+					<jq:dialog id="dialog" title="Empty the recycle bin?"
+						autoOpen="true" bgiframe="true" resizable="false" height="140"
+						modal="true"
+						buttons="{'Delete all items in recycle bin': function() {
+										$(this).dialog('close');
+									},
+									Cancel: function() {
+										$(this).dialog('close');
+									}
+								}">
+							<p>
+								<span class="ui-icon ui-icon-alert"
+									style="float: left; margin: 0 7px 20px 0;"></span>
+							These items
+								will be permanently deleted and cannot be recovered. Are you
+								sure?
+							</p>
+					</jq:dialog>
+		<h:form id="form1">
+			<h:panelGrid columns="2">
+				<h:outputLabel for="inputText">
+					<h:outputText value="Input Text:"></h:outputText>
+				</h:outputLabel>
+				<h:inputText id="inputText"></h:inputText>
+				<h:outputLabel for="inputTextarea">
+					<h:outputText value="Input Textarea:"></h:outputText>
+				</h:outputLabel>
+				<h:inputTextarea id="inputTextarea"></h:inputTextarea>
+				<h:outputLabel for="inputChecbox">
+					<h:outputText value="Input Checkbox:"></h:outputText>
+				</h:outputLabel>
+				<h:selectBooleanCheckbox id="inputChecbox"></h:selectBooleanCheckbox>
+				<h:outputLabel for="inputCombobox">
+					<h:outputText value="Input Combo box:"></h:outputText>
+				</h:outputLabel>
+				<h:selectOneMenu id="inputCombobox">
+					<f:selectItem itemValue="a" itemLabel="Prova" />
+					<f:selectItem itemValue="b" itemLabel="Prova" />
+				</h:selectOneMenu>
+				<h:outputLabel for="inputScret">
+					<h:outputText value="Input Password:"></h:outputText>
+				</h:outputLabel>
+				<h:inputSecret id="inputScret"></h:inputSecret>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

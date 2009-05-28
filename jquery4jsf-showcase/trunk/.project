@@ -3,6 +3,7 @@
 	<name>jquery4jsf-showcase</name>
 	<comment></comment>
 	<projects>
+		<project>jquery4jsf</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

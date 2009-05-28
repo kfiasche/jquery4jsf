@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf">
+	<div class="Block">
+		<div class="Block-body">
+			<div class="BlockHeader">
+				<div class="header-tag-icon">
+					<div class="BlockHeader-text">
+						<h:outputText value="#{resource.SIMPLYSCROLL_MENU}" />
+					</div>
+				</div>
+				<div class="l"></div>
+				<div class="r">
+					<div></div>
+				</div>
+			</div>
+			<div class="BlockContent">
+				<div class="BlockContent-tl"></div>
+				<div class="BlockContent-tr">
+					<div></div>
+				</div>
+				<div class="BlockContent-bl">
+					<div></div>
+				</div>
+				<div class="BlockContent-br">
+					<div></div>
+				</div>
+				<div class="BlockContent-tc">
+					<div></div>
+				</div>
+				<div class="BlockContent-bc">
+					<div></div>
+				</div>
+				<div class="BlockContent-cl">
+					<div></div>
+				</div>
+				<div class="BlockContent-cr">
+					<div></div>
+				</div>
+				<div class="BlockContent-cc"></div>
+				<div class="BlockContent-body">
+					<ul class="menu">
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/simplyscroll/default.jsf">
+								<h:outputText value="#{resource.SIMPLYSCROLL_TITLE_DEFAULT}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/lightbox/themes.jsf">
+								<h:outputText value="#{resource.SIMPLYSCROLL_TITLE_SKINS}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/lightbox/others.jsf">
+								<h:outputText value="#{resource.SIMPLYSCROLL_TITLE_OTHERS}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/lightbox/keys.jsf">
+								<h:outputText value="#{resource.SIMPLYSCROLL_TITLE_KEYS}" />
+							</h:outputLink>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</ui:composition>

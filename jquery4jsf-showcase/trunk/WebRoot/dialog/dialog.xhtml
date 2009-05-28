@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{resource.DIALOG_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Dialog - #{resource.DIALOG_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.DIALOG_DESCR_DEFAULT}
+		</p>
+		<jq:dialog id="dialog" title="Basic dialog" autoOpen="true">
+			<h:outputText
+				value="Questa e' una dialog Box per chiudere questa finestra cliccate sul pulsante x "
+				escape="false" />
+		</jq:dialog>
+
+		<h:form id="form1">
+			<h:panelGrid columns="2">
+				<h:outputLabel for="inputText">
+					<h:outputText value="Input Text:"></h:outputText>
+				</h:outputLabel>
+				<h:inputText id="inputText"></h:inputText>
+				<h:outputLabel for="inputTextarea">
+					<h:outputText value="Input Textarea:"></h:outputText>
+				</h:outputLabel>
+				<h:inputTextarea id="inputTextarea"></h:inputTextarea>
+				<h:outputLabel for="inputChecbox">
+					<h:outputText value="Input Checkbox:"></h:outputText>
+				</h:outputLabel>
+				<h:selectBooleanCheckbox id="inputChecbox"></h:selectBooleanCheckbox>
+				<h:outputLabel for="inputCombobox">
+					<h:outputText value="Input Combo box:"></h:outputText>
+				</h:outputLabel>
+				<h:selectOneMenu id="inputCombobox">
+					<f:selectItem itemValue="a" itemLabel="Prova" />
+					<f:selectItem itemValue="b" itemLabel="Prova" />
+				</h:selectOneMenu>
+				<h:outputLabel for="inputScret">
+					<h:outputText value="Input Password:"></h:outputText>
+				</h:outputLabel>
+				<h:inputSecret id="inputScret"></h:inputSecret>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{resource.DRAGGABLE_TITLE_SNAP}" />
+	</ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.draggable {
+	width: 90px;
+	height: 80px;
+	padding: 5px;
+	float: left;
+	margin: 0 10px 10px 0;
+	font-size: .9em;
+}
+
+.ui-widget-header p,.ui-widget-content p {
+	margin: 0;
+}
+
+#snaptarget {
+	height: 140px;
+}
+</style>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Draggable - #{resource.DRAGGABLE_TITLE_SNAP}
+		</h3>
+		<p>
+			#{resource.DRAGGABLE_DESCR_SNAP}
+		</p>
+
+		<br />
+
+		<div id="snaptarget" class="ui-widget-header">
+			<p>
+				I'm a snap target
+			</p>
+		</div>
+
+		<br />
+
+		<jq:draggable id="draggable" styleClass="draggable" snap="true">
+			<p>
+				Default (snap: true), snaps to all other draggable elements
+			</p>
+		</jq:draggable>
+
+		<jq:draggable id="draggable2" styleClass="draggable" snap=".ui-widget-header">
+			<p>
+				I only snap to the big box
+			</p>
+		</jq:draggable>
+
+		<jq:draggable id="draggable3" styleClass="draggable" snapMode="outer" snap=".ui-widget-header">
+			<p>
+				I only snap to the outer edges of the big box
+			</p>
+		</jq:draggable>
+
+		<jq:draggable id="draggable4" styleClass="draggable" grid="[20,20]">
+			<p>
+				I snap to a 20 x 20 grid
+			</p>
+		</jq:draggable>
+
+		<jq:draggable id="draggable5" styleClass="draggable" grid="[80,80]">
+			<p>
+				I snap to a 80 x 80 grid
+			</p>
+		</jq:draggable>
+
+		<br />
+		<h3>
+			Source
+		</h3>
+	</ui:define>
+</ui:composition>

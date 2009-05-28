@@ -10,47 +10,19 @@
 	<description />
 
 	<build>
-		<sourceDirectory>${basedir}/src</sourceDirectory>
-		<outputDirectory>${basedir}/WebRoot/WEB-INF/classes</outputDirectory>
-		<resources>
-			<resource> 
-				<directory>${basedir}/src</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-					<exclude>**/.svn</exclude>
-					<exclude>**/.svn/**</exclude>
-					<exclude>**/_svn</exclude>
-					<exclude>**/CVS</exclude>
-					<exclude>CVS/*</exclude>
-					<exclude>_svn</exclude>
-					<exclude>**/_svn/**</exclude>
-				</excludes>
-			</resource>
-		</resources>
 		<plugins>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<webappDirectory>${basedir}/WebRoot</webappDirectory>
-					<warSourceDirectory>${basedir}/WebRoot</warSourceDirectory>
-					<webResources>
-						<resource>
-							<directory>${basedir}/WebRoot</directory>
-							<excludes>
-								<exclude>**/.svn</exclude>
-								<exclude>**/.svn/**</exclude>
-								<exclude>**/_svn</exclude>
-								<exclude>**/CVS</exclude>
-								<exclude>CVS/*</exclude>
-								<exclude>**/CVS/**</exclude>
-								<exclude>CVS</exclude>
-								<exclude>_svn</exclude>
-								<exclude>**/_svn/**</exclude>
-							</excludes>
-						</resource>
-					</webResources>
-				</configuration>
-			</plugin>
+		     <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+               		<archiveClasses>true</archiveClasses>
+                    <webResources>
+                        <resource>
+                            <directory>${basedir}/WebRoot</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -64,7 +36,7 @@
 		<dependency>
 			<groupId>org.jquery4jsf</groupId>
 			<artifactId>jquery4jsf</artifactId>
-			<version>0.0.1C-BETA</version>
+			<version>0.0.1C-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>jstl</groupId>
@@ -116,7 +88,7 @@
 		<profile>
 			<id>mojarra-1.2</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<dependencies>
 				<dependency>
@@ -134,16 +106,19 @@
 
 		<profile>
 			<id>myfaces-1.2</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<dependencies>
 				<dependency>
 					<groupId>org.apache.myfaces.core</groupId>
 					<artifactId>myfaces-api</artifactId>
-					<version>1.2.5</version>
+					<version>1.2.6</version>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.myfaces.core</groupId>
 					<artifactId>myfaces-impl</artifactId>
-					<version>1.2.5</version>
+					<version>1.2.6</version>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -154,5 +129,10 @@
 		</profile>
 
 	</profiles>
-	
+	<repositories>
+		<repository>
+			<id>googlecode.svn.jquery4jsf</id>
+			<url>http://jquery4jsf.googlecode.com/svn/maven-snapshot-repository/</url>
+		</repository>
+	</repositories>
 </project>

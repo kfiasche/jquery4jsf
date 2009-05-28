@@ -38,14 +38,16 @@
 						draggable="false"
 						resizable="false" 
 						autoOpen="false" 
+						id="alertDialog"
 						onopen="$('.ui-dialog-titlebar-close:eq(1)').hide();"
 						dialogClass="ui-widget ui-state-error"
-						okAction="#{buttonBean.doButtonAction}"
-						modal="true">
+						modal="false">
 						<jq:paragraph>
 							<jq:icon type="alert" style="float: left; margin-right: 0.3em;" />
 							<h:outputText value="Sei tifoso della A.S. Roma?" />
 						</jq:paragraph>
+						<h:commandButton action="#{buttonBean.doButtonAction}" value="Si"/>
+						<h:commandButton onclick="$('#form1\\:alertDialog').dialog('close');return false;" value="No"/>
 					</jq:alertDialog>
 				</jq:button>
 				<br />

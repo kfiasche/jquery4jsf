@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{resource.SIMPLYSCROLL_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="head">
+		<style>
+.ui-simplyscroll-w {
+	
+}
+
+.ui-simplyscroll-w ul li {
+	background-image: none;
+}
+</style>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			SimplyScroll - #{resource.SIMPLYSCROLL_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.SIMPLYSCROLL_DESCR_DEFAULT}
+		</p>
+		<jq:simpyScroll speed="5" horizontal="false" frameRate="20" 
+		autoMode="loop">
+			<h:graphicImage value="/images/roma/fta.jpg" width="290" height="200" />
+			<h:graphicImage value="/images/roma/ftb.jpg" width="290" height="200" />
+			<h:graphicImage value="/images/roma/ftc.jpg" width="290" height="200" />
+			<h:graphicImage value="/images/roma/mva.jpg" width="290" height="200" />
+			<h:graphicImage value="/images/roma/mb.jpg" width="290" height="200" />
+		</jq:simpyScroll>
+		<br />
+		<jq:simpyScroll speed="5" horizontal="false" frameRate="20" 
+		autoMode="bounce">
+			<h:graphicImage value="/images/roma/fta.jpg" width="290" height="200" />
+			<h:graphicImage value="/images/roma/ftb.jpg" width="290" height="200" />
+			<h:graphicImage value="/images/roma/ftc.jpg" width="290" height="200" />
+			<h:graphicImage value="/images/roma/mva.jpg" width="290" height="200" />
+			<h:graphicImage value="/images/roma/mb.jpg" width="290" height="200" />
+		</jq:simpyScroll>
+		<br />
+		<h3>
+			Source
+		</h3>
+	</ui:define>
+</ui:composition>

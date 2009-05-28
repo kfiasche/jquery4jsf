@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{resource.DATEPICKER_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			DatePicker - #{resource.DATEPICKER_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.DATEPICKER_DESCR_DEFAULT}
+		</p>
+		<h:form id="form1">
+					Format options:
+					<br />
+					<h:panelGrid columns="1" id="panelFormat">
+						<h:outputText value="Default - mm/dd/yy" />
+						<jq:datePicker id="datapicker1" size="30" dateFormat="mm/dd/yy" />
+						<h:outputText value="ISO 8601 - yy-mm-dd" />
+						<jq:datePicker id="datapicker2" size="30" dateFormat="yy-mm-dd" />
+						<h:outputText value="Short - d M, yy" />
+						<jq:datePicker id="datapicker3" size="30" dateFormat="d M, y" />
+						<h:outputText value="Medium - d MM, yy" />
+						<jq:datePicker id="datapicker4" size="30" dateFormat="d MM, y" />
+						<h:outputText value="Full - DD, d MM, yy" />
+						<jq:datePicker id="datapicker5" size="30"
+							dateFormat="DD, d MM, yy" />
+					</h:panelGrid>
+		</h:form>
+		<br />
+		<h3>
+			Source
+		</h3>
+	</ui:define>
+</ui:composition>
