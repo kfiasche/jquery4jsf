@@ -35,8 +35,6 @@ public class HtmlOutputLink extends HtmlBaseOutputComponent implements JQueryHtm
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.HtmlOutputLinkRenderer";
 
 	private String[] resources;
-	private String style;
-	private String styleClass;
 	private String charset;
 	private String coords;
 	private String hreflang;
@@ -54,28 +52,6 @@ public class HtmlOutputLink extends HtmlBaseOutputComponent implements JQueryHtm
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
-	}
-
-	public String getStyle() {
-		if(style != null )
-			return style;
-
-		String oValue = (String) getLocalOrValueBindingValue(style, "style");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyle(String style) {
-		this.style = style;
-	}
-
-	public String getStyleClass() {
-		if(styleClass != null )
-			return styleClass;
-
-		String oValue = (String) getLocalOrValueBindingValue(styleClass, "styleClass");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyleClass(String styleClass) {
-		this.styleClass = styleClass;
 	}
 
 	public String getCharset() {
@@ -167,33 +143,29 @@ public class HtmlOutputLink extends HtmlBaseOutputComponent implements JQueryHtm
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[11];
+		Object values[] = new Object[9];
 		values[0] = super.saveState(context);
-		values[1] = style;
-		values[2] = styleClass;
-		values[3] = charset;
-		values[4] = coords;
-		values[5] = hreflang;
-		values[6] = name;
-		values[7] = rel;
-		values[8] = rev;
-		values[9] = shape;
-		values[10] = target;
+		values[1] = charset;
+		values[2] = coords;
+		values[3] = hreflang;
+		values[4] = name;
+		values[5] = rel;
+		values[6] = rev;
+		values[7] = shape;
+		values[8] = target;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.style = (String) values[1];
-		this.styleClass = (String) values[2];
-		this.charset = (String) values[3];
-		this.coords = (String) values[4];
-		this.hreflang = (String) values[5];
-		this.name = (String) values[6];
-		this.rel = (String) values[7];
-		this.rev = (String) values[8];
-		this.shape = (String) values[9];
-		this.target = (String) values[10];
+		this.charset = (String) values[1];
+		this.coords = (String) values[2];
+		this.hreflang = (String) values[3];
+		this.name = (String) values[4];
+		this.rel = (String) values[5];
+		this.rev = (String) values[6];
+		this.shape = (String) values[7];
+		this.target = (String) values[8];
 	}
 
 	public String[] getResources() {

@@ -23,8 +23,6 @@ public class PanelExBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, PanelEx panelEx , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, panelEx.getStyle(), "style", null);
-		encodeOptionComponentByType(options, panelEx.getStyleClass(), "styleClass", null);
 		encodeOptionComponentByType(options, panelEx.getHeader(), "header", null);
 		encodeOptionComponentByType(options, panelEx.getEvent(), "event", null);
 		encodeOptionComponentByType(options, panelEx.isCollapsible(), "collapsible", "true");

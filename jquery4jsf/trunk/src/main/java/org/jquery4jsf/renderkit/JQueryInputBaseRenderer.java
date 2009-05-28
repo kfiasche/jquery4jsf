@@ -19,11 +19,10 @@ package org.jquery4jsf.renderkit;
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.ValueHolder;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-
-import com.sun.faces.renderkit.html_basic.HtmlBasicInputRenderer;
 
 public class JQueryInputBaseRenderer extends HtmlBasicInputRenderer {
 
@@ -108,10 +107,6 @@ public class JQueryInputBaseRenderer extends HtmlBasicInputRenderer {
         if(input.getTitle() != null)
             responseWriter.writeAttribute("title", input.getTitle(), null);
         responseWriter.endElement("input");
-	}
-	
-	protected String writeIdAttributeIfNecessary(FacesContext context ,ResponseWriter responseWriter, UIComponent component) {
-		return RendererUtilities.writeIdAttributeIfNecessary(context, responseWriter, component);
 	}
 	
 }

@@ -23,8 +23,6 @@ public class HtmlAbbrBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, HtmlAbbr htmlAbbr , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, htmlAbbr.getStyle(), "style", null);
-		encodeOptionComponentByType(options, htmlAbbr.getStyleClass(), "styleClass", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

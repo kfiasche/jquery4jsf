@@ -223,6 +223,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>outputHtmlTag</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.OutputHtmlTag</component-type>
+			<renderer-type>org.jquery4jsf.OutputHtmlTagRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>outputLink</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlOutputLink</component-type>
@@ -305,6 +312,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlSelectable</component-type>
 			<renderer-type>org.jquery4jsf.SelectableRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>simpyScroll</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlSimplyScroll</component-type>
+			<renderer-type>org.jquery4jsf.SimplyScrollRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>

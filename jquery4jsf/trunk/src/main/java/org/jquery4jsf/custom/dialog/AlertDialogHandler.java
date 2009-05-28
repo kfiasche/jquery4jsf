@@ -32,12 +32,10 @@ public class AlertDialogHandler extends ComponentHandler{
 	
 	protected MetaRuleset createMetaRuleset(Class type) { 
 		MetaRuleset metaRuleset = super.createMetaRuleset(type); 
-		
-		MetaRule metaRule = new MethodRule("okAction", null, null); 
+		MetaRule metaRule = new MethodRule("okAction", null, new Class[]{}); 
 		metaRuleset.addRule(metaRule);
-		MetaRule metaRule1 = new MethodRule("noAction", null, null); 
+		MetaRule metaRule1 = new MethodRule("noAction", null, new Class[]{}); 
 		metaRuleset.addRule(metaRule1);
-		
 		return metaRuleset; 
 	} 
 }

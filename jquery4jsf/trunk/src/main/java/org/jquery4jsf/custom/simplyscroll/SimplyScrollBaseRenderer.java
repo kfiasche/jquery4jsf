@@ -13,24 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.html;
+package org.jquery4jsf.custom.simplyscroll;
 
 import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class HtmlOutputLinkBaseRenderer extends JQueryBaseRenderer {
+public class SimplyScrollBaseRenderer extends JQueryBaseRenderer {
 
-	protected String encodeOptionComponent(StringBuffer options, HtmlOutputLink htmlOutputLink , FacesContext context) {
+	protected String encodeOptionComponent(StringBuffer options, SimplyScroll simplyScroll , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, htmlOutputLink.getCharset(), "charset", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getCoords(), "coords", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getHreflang(), "hreflang", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getName(), "name", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getRel(), "rel", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getRev(), "rev", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getShape(), "shape", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getTarget(), "target", null);
+		encodeOptionComponentByType(options, simplyScroll.getClassName(), "className", null);
+		encodeOptionComponentByType(options, simplyScroll.getFrameRate(), "frameRate", "24");
+		encodeOptionComponentByType(options, simplyScroll.getSpeed(), "speed", "1");
+		encodeOptionComponentByType(options, simplyScroll.isHorizontal(), "horizontal", "true");
+		encodeOptionComponentByType(options, simplyScroll.getAutoMode(), "autoMode", null);
+		encodeOptionComponentByType(options, simplyScroll.isPauseOnHover(), "pauseOnHover", "true");
+		encodeOptionComponentByType(options, simplyScroll.getJsonSource(), "jsonSource", null);
+		encodeOptionComponentByType(options, simplyScroll.isCustomContent(), "customContent", "false");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

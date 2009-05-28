@@ -26,7 +26,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
-import javax.faces.event.PhaseListener;
 import javax.faces.render.RenderKit;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -35,9 +34,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.custom.AjaxComponent;
 
-public class AjaxPhaseListener implements PhaseListener {
+public class AjaxPhaseListener implements javax.faces.event.PhaseListener {
 
-	private static final long serialVersionUID = -4178354510294658599L;
 	private static final String AJAX_VIEW_ID = "ajaxSourceJQuery";
 	private static final String AJAX_PS_ID = "ajaxUpdate";
 

@@ -35,8 +35,6 @@ public class Panel extends HtmlBaseOutputComponent implements JQueryHtmlObject,A
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.PanelRenderer";
 
 	private String[] resources;
-	private String style;
-	private String styleClass;
 	private String header;
 	private String headerClass;
 	private String contentClass;
@@ -50,28 +48,6 @@ public class Panel extends HtmlBaseOutputComponent implements JQueryHtmlObject,A
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
-	}
-
-	public String getStyle() {
-		if(style != null )
-			return style;
-
-		String oValue = (String) getLocalOrValueBindingValue(style, "style");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyle(String style) {
-		this.style = style;
-	}
-
-	public String getStyleClass() {
-		if(styleClass != null )
-			return styleClass;
-
-		String oValue = (String) getLocalOrValueBindingValue(styleClass, "styleClass");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyleClass(String styleClass) {
-		this.styleClass = styleClass;
 	}
 
 	public String getHeader() {
@@ -108,23 +84,19 @@ public class Panel extends HtmlBaseOutputComponent implements JQueryHtmlObject,A
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[6];
+		Object values[] = new Object[4];
 		values[0] = super.saveState(context);
-		values[1] = style;
-		values[2] = styleClass;
-		values[3] = header;
-		values[4] = headerClass;
-		values[5] = contentClass;
+		values[1] = header;
+		values[2] = headerClass;
+		values[3] = contentClass;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.style = (String) values[1];
-		this.styleClass = (String) values[2];
-		this.header = (String) values[3];
-		this.headerClass = (String) values[4];
-		this.contentClass = (String) values[5];
+		this.header = (String) values[1];
+		this.headerClass = (String) values[2];
+		this.contentClass = (String) values[3];
 	}
 
 	public String[] getResources() {

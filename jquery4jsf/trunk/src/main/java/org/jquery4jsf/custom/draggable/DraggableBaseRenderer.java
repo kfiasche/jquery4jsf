@@ -24,13 +24,13 @@ public class DraggableBaseRenderer extends JQueryBaseRenderer {
 	protected String encodeOptionComponent(StringBuffer options, Draggable draggable , FacesContext context) {
 		options.append(" {\n");
 		encodeOptionComponentByType(options, draggable.isAddClasses(), "addClasses", "true");
-		encodeOptionComponentByType(options, draggable.getAppendTo(), "appendTo", "parent");
+		encodeOptionComponentByType(options, draggable.getAppendTo(), "appendTo", null);
 		encodeOptionComponentByType(options, draggable.getAxis(), "axis", null);
 		encodeOptionComponentByType(options, draggable.getCancel(), "cancel", null);
 		encodeOptionComponentByType(options, draggable.getConnectToSortable(), "connectToSortable", null);
 		encodeOptionComponentByType(options, draggable.getContainment(), "containment", null);
 		encodeOptionComponentByType(options, draggable.getCursor(), "cursor", null);
-		encodeOptionComponentByType(options, draggable.getCursorAt(), "cursorAt", "parent");
+		encodeOptionComponentByType(options, draggable.getCursorAt(), "cursorAt", null);
 		encodeOptionComponentByType(options, draggable.getDelay(), "delay", "0");
 		encodeOptionComponentByType(options, draggable.getDistance(), "distance", "1");
 		encodeOptionComponentByType(options, draggable.getGrid(), "grid", null);
@@ -39,7 +39,7 @@ public class DraggableBaseRenderer extends JQueryBaseRenderer {
 		encodeOptionComponentByType(options, draggable.getIframeFix(), "iframeFix", null);
 		encodeOptionComponentByType(options, draggable.getOpacity(), "opacity", null);
 		encodeOptionComponentByType(options, draggable.isRefreshPositions(), "refreshPositions", null);
-		encodeOptionComponentByType(options, draggable.getRevert(), "revert", "parent");
+		encodeOptionComponentByType(options, draggable.getRevert(), "revert", null);
 		encodeOptionComponentByType(options, draggable.getRevertDuration(), "revertDuration", "500");
 		encodeOptionComponentByType(options, draggable.getScope(), "scope", null);
 		encodeOptionComponentByType(options, draggable.isScroll(), "scroll", "true");
@@ -49,10 +49,10 @@ public class DraggableBaseRenderer extends JQueryBaseRenderer {
 		encodeOptionComponentByType(options, draggable.getSnapMode(), "snapMode", null);
 		encodeOptionComponentByType(options, draggable.getSnapTolerance(), "snapTolerance", null);
 		encodeOptionComponentByType(options, draggable.getStack(), "stack", null);
-		encodeOptionComponentByType(options, draggable.getZIndex(), "zIndex", null);
-		encodeOptionComponentByType(options, draggable.getOndragstart(), "ondragstart", null);
+		encodeOptionComponentByType(options, draggable.getZindex(), "zIndex", null);
+		encodeOptionComponentByType(options, draggable.getOnstart(), "onstart", null);
 		encodeOptionComponentByType(options, draggable.getOndrag(), "ondrag", null);
-		encodeOptionComponentByType(options, draggable.getOndragstop(), "ondragstop", null);
+		encodeOptionComponentByType(options, draggable.getOnstop(), "onstop", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

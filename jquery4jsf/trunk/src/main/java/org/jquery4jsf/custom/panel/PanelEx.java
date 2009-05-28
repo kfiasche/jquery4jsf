@@ -35,8 +35,6 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.PanelExRenderer";
 
 	private String[] resources;
-	private String style;
-	private String styleClass;
 	private String header;
 	private String event;
 	private Boolean collapsible;
@@ -76,28 +74,6 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
-	}
-
-	public String getStyle() {
-		if(style != null )
-			return style;
-
-		String oValue = (String) getLocalOrValueBindingValue(style, "style");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyle(String style) {
-		this.style = style;
-	}
-
-	public String getStyleClass() {
-		if(styleClass != null )
-			return styleClass;
-
-		String oValue = (String) getLocalOrValueBindingValue(styleClass, "styleClass");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyleClass(String styleClass) {
-		this.styleClass = styleClass;
 	}
 
 	public String getHeader() {
@@ -376,67 +352,63 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[28];
+		Object values[] = new Object[26];
 		values[0] = super.saveState(context);
-		values[1] = style;
-		values[2] = styleClass;
-		values[3] = header;
-		values[4] = event;
-		values[5] = collapsible;
-		values[6] = collapseType;
-		values[7] = collapsed;
-		values[8] = collapseSpeed;
-		values[9] = controls;
-		values[10] = widgetClass;
-		values[11] = headerClass;
-		values[12] = contentClass;
-		values[13] = rightboxClass;
-		values[14] = controlsClass;
-		values[15] = titleClass;
-		values[16] = titleTextClass;
-		values[17] = iconClass;
-		values[18] = hoverClass;
-		values[19] = collapsePnlClass;
-		values[20] = headerIconClpsd;
-		values[21] = headerIcon;
-		values[22] = slideRIconClpsd;
-		values[23] = slideRIcon;
-		values[24] = slideLIconClpsd;
-		values[25] = slideLIcon;
-		values[26] = onunfold;
-		values[27] = onfold;
+		values[1] = header;
+		values[2] = event;
+		values[3] = collapsible;
+		values[4] = collapseType;
+		values[5] = collapsed;
+		values[6] = collapseSpeed;
+		values[7] = controls;
+		values[8] = widgetClass;
+		values[9] = headerClass;
+		values[10] = contentClass;
+		values[11] = rightboxClass;
+		values[12] = controlsClass;
+		values[13] = titleClass;
+		values[14] = titleTextClass;
+		values[15] = iconClass;
+		values[16] = hoverClass;
+		values[17] = collapsePnlClass;
+		values[18] = headerIconClpsd;
+		values[19] = headerIcon;
+		values[20] = slideRIconClpsd;
+		values[21] = slideRIcon;
+		values[22] = slideLIconClpsd;
+		values[23] = slideLIcon;
+		values[24] = onunfold;
+		values[25] = onfold;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.style = (String) values[1];
-		this.styleClass = (String) values[2];
-		this.header = (String) values[3];
-		this.event = (String) values[4];
-		this.collapsible = (Boolean) values[5];
-		this.collapseType = (String) values[6];
-		this.collapsed = (Boolean) values[7];
-		this.collapseSpeed = (String) values[8];
-		this.controls = (Boolean) values[9];
-		this.widgetClass = (String) values[10];
-		this.headerClass = (String) values[11];
-		this.contentClass = (String) values[12];
-		this.rightboxClass = (String) values[13];
-		this.controlsClass = (String) values[14];
-		this.titleClass = (String) values[15];
-		this.titleTextClass = (String) values[16];
-		this.iconClass = (String) values[17];
-		this.hoverClass = (String) values[18];
-		this.collapsePnlClass = (String) values[19];
-		this.headerIconClpsd = (String) values[20];
-		this.headerIcon = (String) values[21];
-		this.slideRIconClpsd = (String) values[22];
-		this.slideRIcon = (String) values[23];
-		this.slideLIconClpsd = (String) values[24];
-		this.slideLIcon = (String) values[25];
-		this.onunfold = (String) values[26];
-		this.onfold = (String) values[27];
+		this.header = (String) values[1];
+		this.event = (String) values[2];
+		this.collapsible = (Boolean) values[3];
+		this.collapseType = (String) values[4];
+		this.collapsed = (Boolean) values[5];
+		this.collapseSpeed = (String) values[6];
+		this.controls = (Boolean) values[7];
+		this.widgetClass = (String) values[8];
+		this.headerClass = (String) values[9];
+		this.contentClass = (String) values[10];
+		this.rightboxClass = (String) values[11];
+		this.controlsClass = (String) values[12];
+		this.titleClass = (String) values[13];
+		this.titleTextClass = (String) values[14];
+		this.iconClass = (String) values[15];
+		this.hoverClass = (String) values[16];
+		this.collapsePnlClass = (String) values[17];
+		this.headerIconClpsd = (String) values[18];
+		this.headerIcon = (String) values[19];
+		this.slideRIconClpsd = (String) values[20];
+		this.slideRIcon = (String) values[21];
+		this.slideLIconClpsd = (String) values[22];
+		this.slideLIcon = (String) values[23];
+		this.onunfold = (String) values[24];
+		this.onfold = (String) values[25];
 	}
 
 	public String[] getResources() {

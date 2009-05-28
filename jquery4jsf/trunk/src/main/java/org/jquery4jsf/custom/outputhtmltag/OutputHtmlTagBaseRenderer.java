@@ -13,24 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.html;
+package org.jquery4jsf.custom.outputhtmltag;
 
 import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class HtmlOutputLinkBaseRenderer extends JQueryBaseRenderer {
+public class OutputHtmlTagBaseRenderer extends JQueryBaseRenderer {
 
-	protected String encodeOptionComponent(StringBuffer options, HtmlOutputLink htmlOutputLink , FacesContext context) {
+	protected String encodeOptionComponent(StringBuffer options, OutputHtmlTag outputHtmlTag , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, htmlOutputLink.getCharset(), "charset", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getCoords(), "coords", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getHreflang(), "hreflang", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getName(), "name", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getRel(), "rel", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getRev(), "rev", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getShape(), "shape", null);
-		encodeOptionComponentByType(options, htmlOutputLink.getTarget(), "target", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

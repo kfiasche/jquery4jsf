@@ -23,8 +23,6 @@ public class OutputTextBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, OutputText outputText , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, outputText.getStyle(), "style", null);
-		encodeOptionComponentByType(options, outputText.getStyleClass(), "styleClass", null);
 		encodeOptionComponentByType(options, outputText.isNospan(), "nospan", null);
 		encodeOptionComponentByType(options, outputText.isEscape(), "escape", null);
 		encodeOptionComponentByType(options, outputText.getEffect(), "effect", null);

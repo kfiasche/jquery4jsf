@@ -23,9 +23,11 @@ import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
+import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Object;
 import javax.faces.convert.Converter;
-import java.lang.String;
 
 public class Paragraph extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -35,8 +37,6 @@ public class Paragraph extends HtmlBaseOutputComponent implements JQueryHtmlObje
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.ParagraphRenderer";
 
 	private String[] resources;
-	private String style;
-	private String styleClass;
 
 	public Paragraph() {
 		setRendererType(DEFAULT_RENDERER);
@@ -48,40 +48,14 @@ public class Paragraph extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		return COMPONENT_FAMILY;
 	}
 
-	public String getStyle() {
-		if(style != null )
-			return style;
-
-		String oValue = (String) getLocalOrValueBindingValue(style, "style");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyle(String style) {
-		this.style = style;
-	}
-
-	public String getStyleClass() {
-		if(styleClass != null )
-			return styleClass;
-
-		String oValue = (String) getLocalOrValueBindingValue(styleClass, "styleClass");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyleClass(String styleClass) {
-		this.styleClass = styleClass;
-	}
-
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[3];
+		Object values[] = new Object[1];
 		values[0] = super.saveState(context);
-		values[1] = style;
-		values[2] = styleClass;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.style = (String) values[1];
-		this.styleClass = (String) values[2];
 	}
 
 	public String[] getResources() {

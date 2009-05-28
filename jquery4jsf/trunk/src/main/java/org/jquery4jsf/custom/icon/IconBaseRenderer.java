@@ -23,8 +23,6 @@ public class IconBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Icon icon , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, icon.getStyle(), "style", null);
-		encodeOptionComponentByType(options, icon.getStyleClass(), "styleClass", null);
 		encodeOptionComponentByType(options, icon.getType(), "type", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);

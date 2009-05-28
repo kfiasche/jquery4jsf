@@ -73,7 +73,15 @@ public class DraggableRenderer extends DraggableBaseRenderer {
         if (draggable.getFor() == null){
         	responseWriter.startElement(HTML.TAG_DIV, draggable);
         	writeIdAttributeIfNecessary(context, responseWriter, component);
-        	responseWriter.writeAttribute("class", "ui-widget-content" , null);
+        	String styleClass = " ui-widget-content";
+        	if (draggable.getStyleClass() != null)
+        	{
+        		styleClass = draggable.getStyleClass().concat(styleClass);
+        	}
+        	responseWriter.writeAttribute("class", styleClass , "styleClass");
+        	if (draggable.getStyle() != null){
+        		responseWriter.writeAttribute("style", draggable.getStyle() , "style");
+        	}
         }
 	}
 

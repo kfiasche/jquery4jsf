@@ -26,6 +26,7 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.resource.ResourceCostants;
@@ -166,6 +167,9 @@ public class RendererUtilities {
 				else if (s.startsWith("$") && (s.endsWith(")") || s.endsWith(");"))){
 					createOptionComponentJQueryByType(sb, s, nameParameter);
 				}
+				else if (s.startsWith("[") && s.endsWith("]")){
+					createOptionComponentArrayByType(sb, s, nameParameter);
+				}
 				else{
 					createOptionComponentStringByType(sb, s, nameParameter);
 				}
@@ -254,16 +258,19 @@ public class RendererUtilities {
 	
 	public static void createOptionComponentArrayByType(StringBuffer options, String value, String nameParameter) {
 		if (value != null){
+			int inizio = value.indexOf("[");
+			int fine = value.indexOf("]");
+			value = value.substring(inizio+1, fine);
 			options.append(nameParameter.concat(": ["));
 			String values[] = value.split(",");
 			for (int i = 0; i < values.length; i++) {
 				String arrayElement = values[i];
 				if (TextUtilities.isNumber(arrayElement)){
-					options.append("".concat(value).concat(""));
+					options.append("".concat(arrayElement).concat(""));
 				}
 				else
 				{
-					options.append("'".concat(value).concat("'"));
+					options.append("'".concat(arrayElement).concat("'"));
 				}
 				if (i != values.length-1){
 					options.append(", ");
@@ -290,28 +297,35 @@ public class RendererUtilities {
 	}
 	
 	public static String getClientIdForComponent(String forAttr,FacesContext facesContext, UIComponent uiComponent) {
+//		if (forAttr == null)
+//			return null;
+//		UIComponent forComponent = uiComponent.findComponent(forAttr);
+//		if (forComponent == null) {
+//			if (forAttr.length() > 0
+//					&& forAttr.charAt(0) == NamingContainer.SEPARATOR_CHAR) {
+//				// absolute id path
+//				return forAttr.substring(1);
+//			} else {
+//				// relative id path, we assume a component on the same level
+//				// as the label component
+//				String labelClientId = uiComponent.getClientId(facesContext);
+//				int colon = labelClientId.lastIndexOf(NamingContainer.SEPARATOR_CHAR);
+//				if (colon == -1) {
+//					return forAttr;
+//				} else {
+//					return labelClientId.substring(0, colon + 1) + forAttr;
+//				}
+//			}
+//		} else {
+//			return forComponent.getClientId(facesContext);
+//		}
 		if (forAttr == null)
 			return null;
-		UIComponent forComponent = uiComponent.findComponent(forAttr);
-		if (forComponent == null) {
-			if (forAttr.length() > 0
-					&& forAttr.charAt(0) == NamingContainer.SEPARATOR_CHAR) {
-				// absolute id path
-				return forAttr.substring(1);
-			} else {
-				// relative id path, we assume a component on the same level
-				// as the label component
-				String labelClientId = uiComponent.getClientId(facesContext);
-				int colon = labelClientId.lastIndexOf(NamingContainer.SEPARATOR_CHAR);
-				if (colon == -1) {
-					return forAttr;
-				} else {
-					return labelClientId.substring(0, colon + 1) + forAttr;
-				}
-			}
-		} else {
-			return forComponent.getClientId(facesContext);
-		}
+		UIComponent component = ComponentUtilities.findComponentInRoot(forAttr);
+		if (component == null)
+			return null;
+		else
+			return component.getClientId(facesContext);
 	}
 	
 	public static String getJQueryIdComponent(String id, FacesContext facesContext, UIComponent component){

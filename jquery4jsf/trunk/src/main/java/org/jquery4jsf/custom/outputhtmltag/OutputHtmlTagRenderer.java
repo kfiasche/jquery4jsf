@@ -13,18 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.outputhtml;
+package org.jquery4jsf.custom.outputhtmltag;
 
 import java.io.IOException;
+import java.lang.String;
+
+import org.jquery4jsf.custom.outputhtmltag.OutputHtmlTag;
+import org.jquery4jsf.renderkit.JQueryBaseRenderer;
+import org.jquery4jsf.renderkit.html.HTML;
+import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
+import org.jquery4jsf.utilities.MessageFactory;
+import org.jquery4jsf.utilities.TextUtilities;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import org.jquery4jsf.renderkit.JQueryBaseRenderer;
-import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.utilities.MessageFactory;
-public class OutputHtmlRenderer extends JQueryBaseRenderer {
+public class OutputHtmlTagRenderer extends JQueryBaseRenderer {
+
+
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		 if(context == null || context == null)
@@ -32,8 +39,14 @@ public class OutputHtmlRenderer extends JQueryBaseRenderer {
 	        if(!component.isRendered())
 	            return;
 	        
+	        OutputHtmlTag outputHtml = null;
+	        if(component instanceof OutputHtmlTag)
+	        	outputHtml = (OutputHtmlTag)component;
+	        if(TextUtilities.isStringVuota(outputHtml.getTagName()))
+	        	throw new  NullPointerException();
+	        
 	        ResponseWriter responseWriter = context.getResponseWriter();
-	        responseWriter.endElement(HTML.TAG_HTML);
+	        responseWriter.endElement(outputHtml.getTagName());
 	        
 	}
 
@@ -43,12 +56,20 @@ public class OutputHtmlRenderer extends JQueryBaseRenderer {
 	        if(!component.isRendered())
 	            return;
 
-	        OutputHtml outputHtml = null;
-	        if(component instanceof OutputHtml)
-	        	outputHtml = (OutputHtml)component;
+	        OutputHtmlTag outputHtml = null;
+	        if(component instanceof OutputHtmlTag)
+	        	outputHtml = (OutputHtmlTag)component;
+	        
+	        if(TextUtilities.isStringVuota(outputHtml.getTagName()))
+	        	throw new  NullPointerException();
 	        
 	        ResponseWriter responseWriter = context.getResponseWriter();
-	        responseWriter.startElement(HTML.TAG_HTML, outputHtml);
+	        responseWriter.startElement(outputHtml.getTagName(), outputHtml);
+	        writeIdAttributeIfNecessary(context, responseWriter, outputHtml);
+	        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_STD_ATTR);
+	        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_JS_STD_ATTR);
 	        
 	}
+	
+	
 }

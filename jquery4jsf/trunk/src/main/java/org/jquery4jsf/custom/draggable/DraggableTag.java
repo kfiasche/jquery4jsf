@@ -21,6 +21,8 @@ import javax.faces.component.UIComponent;
 
 public class DraggableTag extends UIComponentTagBase {
 
+	private String style;
+	private String styleClass;
 	private String _for;
 	private String addClasses;
 	private String appendTo;
@@ -48,13 +50,15 @@ public class DraggableTag extends UIComponentTagBase {
 	private String snapMode;
 	private String snapTolerance;
 	private String stack;
-	private String zIndex;
-	private String ondragstart;
+	private String zindex;
+	private String onstart;
 	private String ondrag;
-	private String ondragstop;
+	private String onstop;
 
 	public void release(){
 		super.release();
+		this.style = null;
+		this.styleClass = null;
 		this._for = null;
 		this.addClasses = null;
 		this.appendTo = null;
@@ -82,10 +86,10 @@ public class DraggableTag extends UIComponentTagBase {
 		this.snapMode = null;
 		this.snapTolerance = null;
 		this.stack = null;
-		this.zIndex = null;
-		this.ondragstart = null;
+		this.zindex = null;
+		this.onstart = null;
 		this.ondrag = null;
-		this.ondragstop = null;
+		this.onstop = null;
 	}
 
 	protected void setProperties(UIComponent comp){
@@ -98,6 +102,8 @@ public class DraggableTag extends UIComponentTagBase {
 			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
 		}
 
+		setStringProperty(getFacesContext(), component, "style", style);
+		setStringProperty(getFacesContext(), component, "styleClass", styleClass);
 		setStringProperty(getFacesContext(), component, "for", _for);
 		setBooleanProperty(getFacesContext(), component, "addClasses", addClasses);
 		setStringProperty(getFacesContext(), component, "appendTo", appendTo);
@@ -125,10 +131,10 @@ public class DraggableTag extends UIComponentTagBase {
 		setStringProperty(getFacesContext(), component, "snapMode", snapMode);
 		setIntegerProperty(getFacesContext(), component, "snapTolerance", snapTolerance);
 		setStringProperty(getFacesContext(), component, "stack", stack);
-		setIntegerProperty(getFacesContext(), component, "zIndex", zIndex);
-		setStringProperty(getFacesContext(), component, "ondragstart", ondragstart);
+		setIntegerProperty(getFacesContext(), component, "zindex", zindex);
+		setStringProperty(getFacesContext(), component, "onstart", onstart);
 		setStringProperty(getFacesContext(), component, "ondrag", ondrag);
-		setStringProperty(getFacesContext(), component, "ondragstop", ondragstop);
+		setStringProperty(getFacesContext(), component, "onstop", onstop);
 	}
 
 	public String getComponentType() {
@@ -137,6 +143,14 @@ public class DraggableTag extends UIComponentTagBase {
 
 	public String getRendererType() {
 		return "org.jquery4jsf.DraggableRenderer";
+	}
+
+	public void setStyle(String value){
+		this.style = value;
+	}
+
+	public void setStyleClass(String value){
+		this.styleClass = value;
 	}
 
 	public void setFor(String value){
@@ -247,20 +261,20 @@ public class DraggableTag extends UIComponentTagBase {
 		this.stack = value;
 	}
 
-	public void setZIndex(String value){
-		this.zIndex = value;
+	public void setZindex(String value){
+		this.zindex = value;
 	}
 
-	public void setOndragstart(String value){
-		this.ondragstart = value;
+	public void setOnstart(String value){
+		this.onstart = value;
 	}
 
 	public void setOndrag(String value){
 		this.ondrag = value;
 	}
 
-	public void setOndragstop(String value){
-		this.ondragstop = value;
+	public void setOnstop(String value){
+		this.onstop = value;
 	}
 
 }

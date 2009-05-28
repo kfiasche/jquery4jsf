@@ -23,8 +23,6 @@ public class OutputBodyBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, OutputBody outputBody , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, outputBody.getStyle(), "style", null);
-		encodeOptionComponentByType(options, outputBody.getStyleClass(), "styleClass", null);
 		encodeOptionComponentByType(options, outputBody.getOnclick(), "onclick", null);
 		encodeOptionComponentByType(options, outputBody.getOndblclick(), "ondblclick", null);
 		encodeOptionComponentByType(options, outputBody.getOnload(), "onload", null);

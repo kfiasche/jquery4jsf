@@ -22,10 +22,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.renderkit.HtmlBasicRenderer;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
-
-import com.sun.faces.renderkit.html_basic.HtmlBasicRenderer;
 
 public class HtmlAcronymRenderer extends HtmlBasicRenderer {
 

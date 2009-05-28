@@ -4,7 +4,7 @@
 	<groupId>org.jquery4jsf</groupId>
 	<artifactId>jquery4jsf</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1C-BETA</version>
+	<version>0.0.1C-SNAPSHOT</version>
 	<name>jQuery4jsf components library</name>
 	<url>http://www.jquery4jsf.org</url>
 
@@ -15,7 +15,7 @@
 	</scm>
 
 	<repositories>
-		<!-- 
+		<!--   
 		<repository>
 			<id>jquery4jsf</id>
 			<name>jQuery4jsf Maven Repository</name>
@@ -93,6 +93,7 @@
 	</contributors>
 
 	<dependencies>
+		 <!--
 		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -104,6 +105,17 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>1.2_12</version>
 			<scope>provided</scope>
+		</dependency>
+		--> 
+		<dependency>
+			<groupId>org.apache.myfaces.core</groupId>
+			<artifactId>myfaces-api</artifactId>
+			<version>1.2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.myfaces.core</groupId>
+			<artifactId>myfaces-impl</artifactId>
+			<version>1.2.6</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.facelets</groupId>
@@ -294,19 +306,23 @@
 			-->
 		</plugins>
 	</reporting>
-	
-	<!-- distributionManagement>
-		
-			<repository> <id>googlecode.svn.jquery4jsf</id>
-			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-repository/</url>
-			</repository> <snapshotRepository> <id>googlecode.svn.jquery4jsf</id>
-			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-snapshot-repository/</url>
-			<uniqueVersion>false</uniqueVersion> </snapshotRepository>
-		
+
+	<distributionManagement>
+
 		<repository>
+			<id>googlecode.svn.jquery4jsf</id>
+			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-repository/</url>
+		</repository>
+		<snapshotRepository>
+			<id>googlecode.svn.jquery4jsf</id>
+			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-snapshot-repository/</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+
+		<!-- <repository>
 			<id>ftp-repository</id>
 			<url>ftp://www.jquery4jsf.org/repository</url>
-		</repository>
-	</distributionManagement-->
+		</repository> -->
+	</distributionManagement>
 
 </project>

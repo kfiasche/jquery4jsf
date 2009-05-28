@@ -28,6 +28,7 @@ public class HTML {
 	public static final String TAG_CODE = 		"code";
 	public static final String TAG_DIV = 		"div";
 	public static final String TAG_HEAD = 		"head";
+	public static final String TAG_H1 =			"h1";
 	public static final String TAG_H3 = 		"h3";
 	public static final String TAG_HTML = 		"html";
 	public static final String TAG_LINK = 		"link";

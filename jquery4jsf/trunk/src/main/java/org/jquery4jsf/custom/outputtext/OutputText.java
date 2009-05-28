@@ -36,8 +36,6 @@ public class OutputText extends HtmlBaseOutputComponent implements JQueryHtmlObj
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.OutputTextRenderer";
 
 	private String[] resources;
-	private String style;
-	private String styleClass;
 	private Boolean nospan;
 	private Boolean escape;
 	private String effect;
@@ -51,28 +49,6 @@ public class OutputText extends HtmlBaseOutputComponent implements JQueryHtmlObj
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
-	}
-
-	public String getStyle() {
-		if(style != null )
-			return style;
-
-		String oValue = (String) getLocalOrValueBindingValue(style, "style");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyle(String style) {
-		this.style = style;
-	}
-
-	public String getStyleClass() {
-		if(styleClass != null )
-			return styleClass;
-
-		String oValue = (String) getLocalOrValueBindingValue(styleClass, "styleClass");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyleClass(String styleClass) {
-		this.styleClass = styleClass;
 	}
 
 	public boolean isNospan() {
@@ -120,25 +96,21 @@ public class OutputText extends HtmlBaseOutputComponent implements JQueryHtmlObj
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[7];
+		Object values[] = new Object[5];
 		values[0] = super.saveState(context);
-		values[1] = style;
-		values[2] = styleClass;
-		values[3] = nospan;
-		values[4] = escape;
-		values[5] = effect;
-		values[6] = eventEffect;
+		values[1] = nospan;
+		values[2] = escape;
+		values[3] = effect;
+		values[4] = eventEffect;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.style = (String) values[1];
-		this.styleClass = (String) values[2];
-		this.nospan = (Boolean) values[3];
-		this.escape = (Boolean) values[4];
-		this.effect = (String) values[5];
-		this.eventEffect = (String) values[6];
+		this.nospan = (Boolean) values[1];
+		this.escape = (Boolean) values[2];
+		this.effect = (String) values[3];
+		this.eventEffect = (String) values[4];
 	}
 
 	public String[] getResources() {

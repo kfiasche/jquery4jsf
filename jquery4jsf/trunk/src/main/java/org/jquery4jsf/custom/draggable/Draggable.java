@@ -64,10 +64,10 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 	private String snapMode;
 	private Integer snapTolerance;
 	private String stack;
-	private Integer zIndex;
-	private String ondragstart;
+	private Integer zindex;
+	private String onstart;
 	private String ondrag;
-	private String ondragstop;
+	private String onstop;
 
 	public Draggable() {
 		setRendererType(DEFAULT_RENDERER);
@@ -110,7 +110,7 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 			return appendTo;
 
 		String oValue = (String) getLocalOrValueBindingValue(appendTo, "appendTo");
-		return oValue != null ? oValue : "parent";
+		return oValue != null ? oValue : null;
 	}
 	public void setAppendTo(String appendTo) {
 		this.appendTo = appendTo;
@@ -176,7 +176,7 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 			return cursorAt;
 
 		String oValue = (String) getLocalOrValueBindingValue(cursorAt, "cursorAt");
-		return oValue != null ? oValue : "parent";
+		return oValue != null ? oValue : null;
 	}
 	public void setCursorAt(String cursorAt) {
 		this.cursorAt = cursorAt;
@@ -275,7 +275,7 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 			return revert;
 
 		String oValue = (String) getLocalOrValueBindingValue(revert, "revert");
-		return oValue != null ? oValue : "parent";
+		return oValue != null ? oValue : null;
 	}
 	public void setRevert(String revert) {
 		this.revert = revert;
@@ -380,26 +380,26 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		this.stack = stack;
 	}
 
-	public int getZIndex() {
-		if(zIndex != null )
-			return zIndex.intValue();
+	public int getZindex() {
+		if(zindex != null )
+			return zindex.intValue();
 
-		Integer oValue = (Integer) getLocalOrValueBindingValue(zIndex, "zIndex");
+		Integer oValue = (Integer) getLocalOrValueBindingValue(zindex, "zindex");
 		return oValue != null ? oValue.intValue()  : 0;
 	}
-	public void setZIndex(int zIndex) {
-		this.zIndex = new Integer(zIndex);
+	public void setZindex(int zindex) {
+		this.zindex = new Integer(zindex);
 	}
 
-	public String getOndragstart() {
-		if(ondragstart != null )
-			return ondragstart;
+	public String getOnstart() {
+		if(onstart != null )
+			return onstart;
 
-		String oValue = (String) getLocalOrValueBindingValue(ondragstart, "ondragstart");
+		String oValue = (String) getLocalOrValueBindingValue(onstart, "onstart");
 		return oValue != null ? oValue : null;
 	}
-	public void setOndragstart(String ondragstart) {
-		this.ondragstart = ondragstart;
+	public void setOnstart(String onstart) {
+		this.onstart = onstart;
 	}
 
 	public String getOndrag() {
@@ -413,15 +413,15 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		this.ondrag = ondrag;
 	}
 
-	public String getOndragstop() {
-		if(ondragstop != null )
-			return ondragstop;
+	public String getOnstop() {
+		if(onstop != null )
+			return onstop;
 
-		String oValue = (String) getLocalOrValueBindingValue(ondragstop, "ondragstop");
+		String oValue = (String) getLocalOrValueBindingValue(onstop, "onstop");
 		return oValue != null ? oValue : null;
 	}
-	public void setOndragstop(String ondragstop) {
-		this.ondragstop = ondragstop;
+	public void setOnstop(String onstop) {
+		this.onstop = onstop;
 	}
 
 	public Object saveState(FacesContext context) {
@@ -454,10 +454,10 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		values[25] = snapMode;
 		values[26] = snapTolerance;
 		values[27] = stack;
-		values[28] = zIndex;
-		values[29] = ondragstart;
+		values[28] = zindex;
+		values[29] = onstart;
 		values[30] = ondrag;
-		values[31] = ondragstop;
+		values[31] = onstop;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -490,10 +490,10 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		this.snapMode = (String) values[25];
 		this.snapTolerance = (Integer) values[26];
 		this.stack = (String) values[27];
-		this.zIndex = (Integer) values[28];
-		this.ondragstart = (String) values[29];
+		this.zindex = (Integer) values[28];
+		this.onstart = (String) values[29];
 		this.ondrag = (String) values[30];
-		this.ondragstop = (String) values[31];
+		this.onstop = (String) values[31];
 	}
 
 	public String[] getResources() {

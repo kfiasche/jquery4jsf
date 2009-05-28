@@ -23,8 +23,6 @@ public class OutputMediaBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, OutputMedia outputMedia , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, outputMedia.getStyle(), "style", null);
-		encodeOptionComponentByType(options, outputMedia.getStyleClass(), "styleClass", null);
 		encodeOptionComponentByType(options, outputMedia.isNospan(), "nospan", null);
 		encodeOptionComponentByType(options, outputMedia.isEscape(), "escape", null);
 		encodeOptionComponentByType(options, outputMedia.getEffect(), "effect", null);

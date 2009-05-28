@@ -17,12 +17,15 @@
 package org.jquery4jsf.component;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.faces.component.ActionSource;
 import javax.faces.component.EditableValueHolder;
+import javax.faces.component.UIColumn;
 import javax.faces.component.UICommand;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIData;
 import javax.faces.component.UIGraphic;
 import javax.faces.component.UIParameter;
 import javax.faces.component.UISelectBoolean;
@@ -347,4 +350,19 @@ public class ComponentUtilities {
 		component.encodeEnd(context);
 	}
 
+    public static ArrayList getColumns(UIData data)
+    {
+        ArrayList list = new ArrayList();
+        Iterator iterator = data.getChildren().iterator();
+        do
+        {
+            if(!iterator.hasNext())
+                break;
+            UIComponent uicomponent = (UIComponent)iterator.next();
+            if((uicomponent instanceof UIColumn) && uicomponent.isRendered())
+                list.add(uicomponent);
+        } while(true);
+        return list;
+    }
+	
 }

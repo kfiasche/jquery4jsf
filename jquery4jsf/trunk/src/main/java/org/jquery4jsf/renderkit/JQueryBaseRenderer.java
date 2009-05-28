@@ -16,13 +16,9 @@
  */
 package org.jquery4jsf.renderkit;
 
-import java.io.IOException;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-
-import com.sun.faces.renderkit.html_basic.HtmlBasicRenderer;
 
 public abstract class JQueryBaseRenderer extends HtmlBasicRenderer {
 	
@@ -49,10 +45,5 @@ public abstract class JQueryBaseRenderer extends HtmlBasicRenderer {
 	protected void encodeOptionComponentFunction(StringBuffer options, String value, String nameParameter) {
 		RendererUtilities.createOptionComponentFunction(options, value, nameParameter);
 	}
-
-	protected String writeIdAttributeIfNecessary(FacesContext context ,ResponseWriter responseWriter, UIComponent component) {
-		return RendererUtilities.writeIdAttributeIfNecessary(context, responseWriter, component);
-	}
-	
 
 }

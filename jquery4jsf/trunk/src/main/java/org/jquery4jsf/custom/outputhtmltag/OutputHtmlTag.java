@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.html;
+package org.jquery4jsf.custom.outputhtmltag;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
@@ -23,20 +23,21 @@ import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
-import java.lang.Object;
-import javax.faces.convert.Converter;
 import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
-public class HtmlAddress extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class OutputHtmlTag extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
 
-	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlAddress";
-	public static final String COMPONENT_FAMILY = "org.jquery4jsf.HtmlAddress";
-	public static final String DEFAULT_RENDERER = "org.jquery4jsf.HtmlAddressRenderer";
+	public static final String COMPONENT_TYPE = "org.jquery4jsf.OutputHtmlTag";
+	public static final String COMPONENT_FAMILY = "org.jquery4jsf.OutputHtmlTag";
+	public static final String DEFAULT_RENDERER = "org.jquery4jsf.OutputHtmlTagRenderer";
 
 	private String[] resources;
+	private String tagName;
 
-	public HtmlAddress() {
+	public OutputHtmlTag() {
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 		};
@@ -46,14 +47,27 @@ public class HtmlAddress extends HtmlBaseOutputComponent implements JQueryHtmlOb
 		return COMPONENT_FAMILY;
 	}
 
+	public String getTagName() {
+		if(tagName != null )
+			return tagName;
+
+		String oValue = (String) getLocalOrValueBindingValue(tagName, "tagName");
+		return oValue != null ? oValue : null;
+	}
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[1];
+		Object values[] = new Object[2];
 		values[0] = super.saveState(context);
+		values[1] = tagName;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
+		this.tagName = (String) values[1];
 	}
 
 	public String[] getResources() {

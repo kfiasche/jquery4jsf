@@ -35,8 +35,6 @@ public class OutputBody extends HtmlBaseOutputComponent implements JQueryHtmlObj
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.OutputBodyRenderer";
 
 	private String[] resources;
-	private String style;
-	private String styleClass;
 	private String onclick;
 	private String ondblclick;
 	private String onload;
@@ -58,28 +56,6 @@ public class OutputBody extends HtmlBaseOutputComponent implements JQueryHtmlObj
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
-	}
-
-	public String getStyle() {
-		if(style != null )
-			return style;
-
-		String oValue = (String) getLocalOrValueBindingValue(style, "style");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyle(String style) {
-		this.style = style;
-	}
-
-	public String getStyleClass() {
-		if(styleClass != null )
-			return styleClass;
-
-		String oValue = (String) getLocalOrValueBindingValue(styleClass, "styleClass");
-		return oValue != null ? oValue : null;
-	}
-	public void setStyleClass(String styleClass) {
-		this.styleClass = styleClass;
 	}
 
 	public String getOnclick() {
@@ -215,41 +191,37 @@ public class OutputBody extends HtmlBaseOutputComponent implements JQueryHtmlObj
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[15];
+		Object values[] = new Object[13];
 		values[0] = super.saveState(context);
-		values[1] = style;
-		values[2] = styleClass;
-		values[3] = onclick;
-		values[4] = ondblclick;
-		values[5] = onload;
-		values[6] = onmousedown;
-		values[7] = onmousemove;
-		values[8] = onmouseout;
-		values[9] = onmouseover;
-		values[10] = onmouseup;
-		values[11] = onkeydown;
-		values[12] = onkeypress;
-		values[13] = onkeyup;
-		values[14] = onunload;
+		values[1] = onclick;
+		values[2] = ondblclick;
+		values[3] = onload;
+		values[4] = onmousedown;
+		values[5] = onmousemove;
+		values[6] = onmouseout;
+		values[7] = onmouseover;
+		values[8] = onmouseup;
+		values[9] = onkeydown;
+		values[10] = onkeypress;
+		values[11] = onkeyup;
+		values[12] = onunload;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.style = (String) values[1];
-		this.styleClass = (String) values[2];
-		this.onclick = (String) values[3];
-		this.ondblclick = (String) values[4];
-		this.onload = (String) values[5];
-		this.onmousedown = (String) values[6];
-		this.onmousemove = (String) values[7];
-		this.onmouseout = (String) values[8];
-		this.onmouseover = (String) values[9];
-		this.onmouseup = (String) values[10];
-		this.onkeydown = (String) values[11];
-		this.onkeypress = (String) values[12];
-		this.onkeyup = (String) values[13];
-		this.onunload = (String) values[14];
+		this.onclick = (String) values[1];
+		this.ondblclick = (String) values[2];
+		this.onload = (String) values[3];
+		this.onmousedown = (String) values[4];
+		this.onmousemove = (String) values[5];
+		this.onmouseout = (String) values[6];
+		this.onmouseover = (String) values[7];
+		this.onmouseup = (String) values[8];
+		this.onkeydown = (String) values[9];
+		this.onkeypress = (String) values[10];
+		this.onkeyup = (String) values[11];
+		this.onunload = (String) values[12];
 	}
 
 	public String[] getResources() {

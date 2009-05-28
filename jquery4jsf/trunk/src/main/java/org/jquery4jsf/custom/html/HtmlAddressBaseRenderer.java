@@ -23,8 +23,6 @@ public class HtmlAddressBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, HtmlAddress htmlAddress , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, htmlAddress.getStyle(), "style", null);
-		encodeOptionComponentByType(options, htmlAddress.getStyleClass(), "styleClass", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

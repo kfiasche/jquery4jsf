@@ -17,11 +17,15 @@
 package org.jquery4jsf.custom.tablesorter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIData;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -29,6 +33,7 @@ import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
+import org.jquery4jsf.utilities.TextUtilities;
 public class TableSorterRenderer extends TableSorterBaseRenderer {
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         if(context == null || component == null)
@@ -63,5 +68,56 @@ public class TableSorterRenderer extends TableSorterBaseRenderer {
         sb.append("\n");
         RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
         
+	}
+	
+	protected String encodeOptionComponent(StringBuffer options, TableSorter tableSorter , FacesContext context) {
+		options.append(" {\n");
+		encodeOptionComponentByType(options, tableSorter.getAscStyleClass(), "cssAsc", null);
+		encodeOptionComponentByType(options, tableSorter.getDescStyleClass(), "cssDesc", null);
+		encodeOptionComponentByType(options, tableSorter.getHeaderStyleClass(), "cssHeader", null);
+		if (!TextUtilities.isStringVuota(tableSorter.getSortedColumns()))
+		{
+			UIComponent dataTable = ComponentUtilities.findComponentInRoot(tableSorter.getTarget());
+			if (dataTable instanceof UIData) {
+				UIData data = (UIData) dataTable;
+				StringBuffer headers = new StringBuffer();
+				ArrayList columnsList = ComponentUtilities.getColumns(data);
+				String[] spliter = tableSorter.getSortedColumns().split(",");
+				for (int i = 0; i < columnsList.size(); i++) {
+					boolean isCheck = false;
+					for (int j = 0; j < spliter.length; j++) {
+						String idColumn = spliter[j];
+						if (!TextUtilities.isNumber(idColumn))
+							throw new FacesException("Solo numeri");
+						if (i == Integer.parseInt(idColumn)){
+							isCheck = true;
+							break;
+						}
+					}
+					if(!isCheck){
+						StringBuffer sbColumn = new StringBuffer();
+						encodeOptionComponentByType(sbColumn, false, "sorter", "true");
+						encodeOptionComponentOptionsByType(headers,sbColumn.toString(), Integer.toString(i), null);
+					}
+				}
+				encodeOptionComponentOptionsByType(options,headers.toString(), "headers", null);
+			}
+		}
+		encodeOptionComponentByType(options, tableSorter.getSortMultiSortKey(), "sortMultiSortKey", null);
+		if (options.toString().endsWith(", \n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+		}
+		boolean noParams = false;
+		if (options.toString().endsWith(" {\n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+			noParams = true;
+		}
+		if (!noParams)
+		{
+			options.append(" }");
+		}
+		return options.toString();
 	}
 }

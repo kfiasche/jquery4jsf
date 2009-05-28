@@ -54,26 +54,6 @@ public class AlertDialogRenderer extends AlertDialogBaseRenderer {
 			ResourceContext.getInstance().addResource(resource);
 		}
         String clientId = alertDialog.getClientId(context);
-        if (alertDialog.getAction() != null 
-        		|| alertDialog.getActionListener() != null){
-        	HtmlCommandButton okButton = new HtmlCommandButton();
-        	okButton.setId("buttonok_"+alertDialog.getId());
-        	okButton.setAction(alertDialog.getAction());
-        	okButton.setActionListener(alertDialog.getActionListener());
-        	alertDialog.getChildren().add(okButton);
-        }
-        if (alertDialog.getOkAction() != null){
-        	HtmlCommandButton okButton = new HtmlCommandButton();
-        	okButton.setId("buttona_"+alertDialog.getId());
-        	okButton.setAction(alertDialog.getOkAction());
-        	alertDialog.getChildren().add(okButton);
-        }
-        if (alertDialog.getNoAction() != null){
-        	HtmlCommandButton okButton = new HtmlCommandButton();
-        	okButton.setId("buttonb_"+alertDialog.getId());
-        	okButton.setAction(alertDialog.getNoAction());
-        	alertDialog.getChildren().add(okButton);
-        }
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
@@ -116,12 +96,12 @@ public class AlertDialogRenderer extends AlertDialogBaseRenderer {
 		options.append(" {\n");
 		encodeOptionComponentByType(options, alertDialog.isAutoOpen(), "autoOpen", "true");
 		encodeOptionComponentByType(options, alertDialog.isBgiframe(), "bgiframe", "false");
-		StringBuffer buttons = new StringBuffer();
-		encodeOptionComponentFunction(buttons, "$(this).dialog('close');",alertDialog.getNoLabel());
-		encodeOptionComponentFunction(buttons, "$(this).dialog('close');",alertDialog.getOkLabel());
+		//StringBuffer buttons = new StringBuffer();
+		//encodeOptionComponentFunction(buttons, "$(this).dialog('close');",alertDialog.getNoLabel());
+		//encodeOptionComponentFunction(buttons, "$(this).dialog('close');",alertDialog.getOkLabel());
 		//encodeOptionComponentByType(options, alertDialog.getOkAction(), "okAction", null);
 		//encodeOptionComponentByType(options, alertDialog.getNoAction(), "noAction", null);
-		encodeOptionComponentOptionsByType(options, buttons.toString(), "buttons", null);
+		//encodeOptionComponentOptionsByType(options, buttons.toString(), "buttons", null);
 		encodeOptionComponentByType(options, alertDialog.isCloseOnEscape(), "closeOnEscape", "true");
 		encodeOptionComponentByType(options, alertDialog.getDialogClass(), "dialogClass", null);
 		encodeOptionComponentByType(options, alertDialog.isDraggable(), "draggable", "true");
