@@ -21,10 +21,18 @@ import javax.faces.component.UIComponent;
 
 public class AccordionSubPanelTag extends UIComponentTagBase {
 
+	private String headerClass;
+	private String headerStyle;
+	private String contentClass;
+	private String contentStyle;
 	private String panelName;
 
 	public void release(){
 		super.release();
+		this.headerClass = null;
+		this.headerStyle = null;
+		this.contentClass = null;
+		this.contentStyle = null;
 		this.panelName = null;
 	}
 
@@ -38,6 +46,10 @@ public class AccordionSubPanelTag extends UIComponentTagBase {
 			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
 		}
 
+		setStringProperty(getFacesContext(), component, "headerClass", headerClass);
+		setStringProperty(getFacesContext(), component, "headerStyle", headerStyle);
+		setStringProperty(getFacesContext(), component, "contentClass", contentClass);
+		setStringProperty(getFacesContext(), component, "contentStyle", contentStyle);
 		setStringProperty(getFacesContext(), component, "panelName", panelName);
 	}
 
@@ -47,6 +59,22 @@ public class AccordionSubPanelTag extends UIComponentTagBase {
 
 	public String getRendererType() {
 		return "org.jquery4jsf.AccordionSubPanelRenderer";
+	}
+
+	public void setHeaderClass(String value){
+		this.headerClass = value;
+	}
+
+	public void setHeaderStyle(String value){
+		this.headerStyle = value;
+	}
+
+	public void setContentClass(String value){
+		this.contentClass = value;
+	}
+
+	public void setContentStyle(String value){
+		this.contentStyle = value;
 	}
 
 	public void setPanelName(String value){

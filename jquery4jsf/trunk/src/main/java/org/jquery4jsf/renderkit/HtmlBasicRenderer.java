@@ -18,6 +18,7 @@ package org.jquery4jsf.renderkit;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Map;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -50,7 +51,7 @@ public class HtmlBasicRenderer extends Renderer {
 	protected UIComponent getFacet(UIComponent component, String name) {
 
 		UIComponent facet = null;
-		if (component.getFacetCount() > 0) {
+		if (getFacetCount(component) > 0) {
 			facet = component.getFacet(name);
 			if (facet != null && !facet.isRendered()) {
 				facet = null;
@@ -59,4 +60,10 @@ public class HtmlBasicRenderer extends Renderer {
 		return facet;
 	}
 
+	protected int getFacetCount(UIComponent component){
+		Map facets = component.getFacets();
+		if (facets != null) return facets.size();
+		return -1;
+	}
+	
 }

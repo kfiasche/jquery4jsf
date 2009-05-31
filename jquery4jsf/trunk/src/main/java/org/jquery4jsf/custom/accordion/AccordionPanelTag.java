@@ -21,6 +21,9 @@ import javax.faces.component.UIComponent;
 
 public class AccordionPanelTag extends UIComponentTagBase {
 
+	private String styleClass;
+	private String style;
+	private String cookie;
 	private String active;
 	private String animated;
 	private String autoHeight;
@@ -28,14 +31,18 @@ public class AccordionPanelTag extends UIComponentTagBase {
 	private String collapsible;
 	private String event;
 	private String fillSpace;
-	private String icons;
+	private String iconsHeader;
+	private String iconsHeaderSelected;
 	private String navigation;
 	private String header;
 	private String navigationFilter;
-	private String onaccordionchange;
+	private String onchange;
 
 	public void release(){
 		super.release();
+		this.styleClass = null;
+		this.style = null;
+		this.cookie = null;
 		this.active = null;
 		this.animated = null;
 		this.autoHeight = null;
@@ -43,11 +50,12 @@ public class AccordionPanelTag extends UIComponentTagBase {
 		this.collapsible = null;
 		this.event = null;
 		this.fillSpace = null;
-		this.icons = null;
+		this.iconsHeader = null;
+		this.iconsHeaderSelected = null;
 		this.navigation = null;
 		this.header = null;
 		this.navigationFilter = null;
-		this.onaccordionchange = null;
+		this.onchange = null;
 	}
 
 	protected void setProperties(UIComponent comp){
@@ -60,18 +68,22 @@ public class AccordionPanelTag extends UIComponentTagBase {
 			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
 		}
 
-		setIntegerProperty(getFacesContext(), component, "active", active);
+		setStringProperty(getFacesContext(), component, "styleClass", styleClass);
+		setStringProperty(getFacesContext(), component, "style", style);
+		setBooleanProperty(getFacesContext(), component, "cookie", cookie);
+		setStringProperty(getFacesContext(), component, "active", active);
 		setStringProperty(getFacesContext(), component, "animated", animated);
 		setBooleanProperty(getFacesContext(), component, "autoHeight", autoHeight);
 		setBooleanProperty(getFacesContext(), component, "clearStyle", clearStyle);
 		setBooleanProperty(getFacesContext(), component, "collapsible", collapsible);
 		setStringProperty(getFacesContext(), component, "event", event);
 		setBooleanProperty(getFacesContext(), component, "fillSpace", fillSpace);
-		setStringProperty(getFacesContext(), component, "icons", icons);
+		setStringProperty(getFacesContext(), component, "iconsHeader", iconsHeader);
+		setStringProperty(getFacesContext(), component, "iconsHeaderSelected", iconsHeaderSelected);
 		setBooleanProperty(getFacesContext(), component, "navigation", navigation);
 		setStringProperty(getFacesContext(), component, "header", header);
 		setStringProperty(getFacesContext(), component, "navigationFilter", navigationFilter);
-		setStringProperty(getFacesContext(), component, "onaccordionchange", onaccordionchange);
+		setStringProperty(getFacesContext(), component, "onchange", onchange);
 	}
 
 	public String getComponentType() {
@@ -80,6 +92,18 @@ public class AccordionPanelTag extends UIComponentTagBase {
 
 	public String getRendererType() {
 		return "org.jquery4jsf.AccordionPanelRenderer";
+	}
+
+	public void setStyleClass(String value){
+		this.styleClass = value;
+	}
+
+	public void setStyle(String value){
+		this.style = value;
+	}
+
+	public void setCookie(String value){
+		this.cookie = value;
 	}
 
 	public void setActive(String value){
@@ -110,8 +134,12 @@ public class AccordionPanelTag extends UIComponentTagBase {
 		this.fillSpace = value;
 	}
 
-	public void setIcons(String value){
-		this.icons = value;
+	public void setIconsHeader(String value){
+		this.iconsHeader = value;
+	}
+
+	public void setIconsHeaderSelected(String value){
+		this.iconsHeaderSelected = value;
 	}
 
 	public void setNavigation(String value){
@@ -126,8 +154,8 @@ public class AccordionPanelTag extends UIComponentTagBase {
 		this.navigationFilter = value;
 	}
 
-	public void setOnaccordionchange(String value){
-		this.onaccordionchange = value;
+	public void setOnchange(String value){
+		this.onchange = value;
 	}
 
 }

@@ -61,22 +61,24 @@ public class AccordionPanelRenderer extends AccordionPanelBaseRenderer implement
 			String resource = list[i];
 			ResourceContext.getInstance().addResource(resource);
 		}
-        
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(accordionPanel.getClientId(context));
-        JSAttribute jsAccordion = new JSAttribute("accordion", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsAccordion.addValue(encodeOptionComponent(sbOption, accordionPanel, context));
-        element.addAttribute(jsAccordion);
-
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb); 
+        String jsRender = (String) accordionPanel.getAttributes().get("jsNoRenderer");
+        if (jsRender == null || !jsRender.equalsIgnoreCase("true")){
+	        StringBuffer sb = new StringBuffer();
+	        sb.append("\n");
+	        JSDocumentElement documentElement = new JSDocumentElement();
+	        JSElement element = new JSElement(accordionPanel.getClientId(context));
+	        JSAttribute jsAccordion = new JSAttribute("accordion", false);
+	        StringBuffer sbOption = new StringBuffer();
+	        jsAccordion.addValue(encodeOptionComponent(sbOption, accordionPanel, context));
+	        element.addAttribute(jsAccordion);
+	
+	        JSFunction function = new JSFunction();
+	        function.addJSElement(element);
+	        documentElement.addFunctionToReady(function);
+	        sb.append(documentElement.toJavaScriptCode());
+	        sb.append("\n");
+	        RendererUtilities.createTagScriptForJs(component, responseWriter, sb); 
+        }
         responseWriter.startElement(HTML.TAG_DIV, accordionPanel);
         writeIdAttributeIfNecessary(context, responseWriter, component);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_STD_ATTR);
@@ -84,22 +86,23 @@ public class AccordionPanelRenderer extends AccordionPanelBaseRenderer implement
 	
 	}
 
-	/*private String encodeOptionComponent(StringBuffer options, AccordionPanel accordionPanel, FacesContext context) {
+	protected String encodeOptionComponent(StringBuffer options, AccordionPanel accordionPanel , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options,accordionPanel.getActive(), "active");
-		encodeOptionComponentByType(options,accordionPanel.getAnimated(), "animated");
-		encodeOptionComponentByType(options,accordionPanel.isAutoHeight(), "autoHeight");
-		encodeOptionComponentByType(options,accordionPanel.isClearStyle(), "clearStyle");
-		encodeOptionComponentByType(options,accordionPanel.isCollapsible(), "collapsible");
-		encodeOptionComponentByType(options,accordionPanel.getEvent(), "event");
-		encodeOptionComponentByType(options,accordionPanel.isFillSpace(), "fillSpace");
-		encodeOptionComponentByType(options,accordionPanel.getHeader(), "header");
-		encodeOptionComponentByType(options,accordionPanel.getHeader(), "header");
-		encodeOptionComponentByType(options,accordionPanel.getIcons(), "icons");
-		encodeOptionComponentByType(options,accordionPanel.isNavigation(), "navigation");
-		encodeOptionComponentByType(options,accordionPanel.getNavigationFilter(), "navigationFilter");
-		//TODO implementare il bind delle funzioni
-		//encodeOptionComponentByType(options,accordionPanel.getOnaccordionchange(), "accordionchange");
+		encodeOptionComponentByType(options, accordionPanel.getActive(), "active", null);
+		encodeOptionComponentByType(options, accordionPanel.getAnimated(), "animated", null);
+		encodeOptionComponentByType(options, accordionPanel.isAutoHeight(), "autoHeight", "true");
+		encodeOptionComponentByType(options, accordionPanel.isClearStyle(), "clearStyle", null);
+		encodeOptionComponentByType(options, accordionPanel.isCollapsible(), "collapsible", null);
+		encodeOptionComponentByType(options, accordionPanel.getEvent(), "event", null);
+		encodeOptionComponentByType(options, accordionPanel.isFillSpace(), "fillSpace", null);
+		StringBuffer icons = new StringBuffer();
+		encodeOptionComponentByType(icons, accordionPanel.getIconsHeader(), "header", null);
+		encodeOptionComponentByType(icons, accordionPanel.getIconsHeaderSelected(), "headerSelected", null);
+		encodeOptionComponentOptionsByType(options, icons.toString(), "icons", null);
+		encodeOptionComponentByType(options, accordionPanel.isNavigation(), "navigation", null);
+		encodeOptionComponentByType(options, accordionPanel.getHeader(), "header", null);
+		encodeOptionComponentByType(options, accordionPanel.getNavigationFilter(), "navigationFilter", null);
+		encodeOptionComponentFunction(options, accordionPanel.getOnchange(), "onchange", "event,ui");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);
@@ -115,7 +118,7 @@ public class AccordionPanelRenderer extends AccordionPanelBaseRenderer implement
 			options.append(" }");
 		}
 		return options.toString();
-	}*/
+	}
 
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 	}

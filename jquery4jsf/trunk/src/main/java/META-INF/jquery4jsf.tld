@@ -81,9 +81,27 @@
 			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
 		</attribute>
 		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>cookie</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
 			<name>active</name>
 			<required>false</required>
-				<type>int</type>
+				<type>java.lang.String</type>
 			<description><![CDATA[]]></description>
 		</attribute>
 		<attribute>
@@ -123,7 +141,13 @@
 			<description><![CDATA[]]></description>
 		</attribute>
 		<attribute>
-			<name>icons</name>
+			<name>iconsHeader</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>iconsHeaderSelected</name>
 			<required>false</required>
 				<type>java.lang.String</type>
 			<description><![CDATA[]]></description>
@@ -147,7 +171,7 @@
 			<description><![CDATA[]]></description>
 		</attribute>
 		<attribute>
-			<name>onaccordionchange</name>
+			<name>onchange</name>
 			<required>false</required>
 				<type>java.lang.String</type>
 			<description><![CDATA[]]></description>
@@ -173,6 +197,30 @@
 			<required>false</required>
 				<type>javax.faces.component.UIComponent</type>
 			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>headerClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>headerStyle</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>contentClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>contentStyle</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
 		</attribute>
 		<attribute>
 			<name>panelName</name>
@@ -6086,6 +6134,94 @@
 			<required>false</required>
 				<type>java.lang.String</type>
 			<description><![CDATA[Class name assigned to any tooltip which is currently active e.g. on show.]]></description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>treeView</name>
+		<tag-class>org.jquery4jsf.custom.treeview.HtmlTreeViewTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+				<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[CSS style(s) to be applied when this component is rendered.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Space-separated list of CSS style class(es) to be applied when this element is rendered. This value must be passed through as the "class" property on generated markup.]]></description>
+		</attribute>
+		<attribute>
+			<name>animated</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Speed of animation, see jQuery animate() for details, or no animation if not specified.]]></description>
+		</attribute>
+		<attribute>
+			<name>collapsed</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Start with all branches collapsed.]]></description>
+		</attribute>
+		<attribute>
+			<name>control</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Container for a treecontrol, allowing the user to expand, collapse and toggle all branches with one click.]]></description>
+		</attribute>
+		<attribute>
+			<name>unique</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Set to allow only one branch on one level to be open (closing siblings which opening).]]></description>
+		</attribute>
+		<attribute>
+			<name>ontoggle</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Callback when toggling a branch. Arguments: "this" refers to the UL that was shown or hidden. Works only with speed option set (set speed: 1 to enable callback without animations).]]></description>
+		</attribute>
+		<attribute>
+			<name>persist</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Persist the tree state in cookies or the page location. If set to "location", looks for the anchor that matches location.href and activates that part of the treeview it. Great for href-based state-saving. If set to "cookie", saves the state of the tree on each click to a cookie and restores that state on page load.]]></description>
+		</attribute>
+		<attribute>
+			<name>cookieId</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The cookie name to use when persisting via persist:"cookie".]]></description>
+		</attribute>
+		<attribute>
+			<name>prerendered</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Set to skip rendering of classes and hitarea divs, assuming that is done by the serverside. Makes the tree more obtrusive, but speeds up render times for large trees signicifcantly.]]></description>
+		</attribute>
+		<attribute>
+			<name>add</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Populate the tree with more nodes using this option and calling the plugin again. The selector must match elements that were added somewhere to the existing tree. Classes and event handlers are applied to match the behaviour of the existing tree.]]></description>
 		</attribute>
 	</tag>
 </taglib>

@@ -46,6 +46,10 @@ public class AccordionSubPanelRenderer extends JQueryBaseRenderer {
         ResponseWriter responseWriter = context.getResponseWriter();
         //responseWriter.startElement(HTML.TAG_DIV, component);
         responseWriter.startElement(HTML.TAG_H3, component);
+        if (accordionSubPanel.getHeaderClass() != null)
+        	responseWriter.writeAttribute("class", accordionSubPanel.getHeaderClass(), "headerClass");
+        if (accordionSubPanel.getHeaderStyle() != null)
+        	responseWriter.writeAttribute("style", accordionSubPanel.getHeaderStyle(), "headerStyle");
         responseWriter.startElement(HTML.TAG_A, component);
         responseWriter.writeAttribute(HTML.HREF, "#", null);
         responseWriter.writeText(accordionSubPanel.getPanelName(), "panelName");
@@ -53,15 +57,21 @@ public class AccordionSubPanelRenderer extends JQueryBaseRenderer {
         responseWriter.endElement(HTML.TAG_H3);
 	}
 
-	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
-        
+	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {        
 		if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
-        
+        AccordionSubPanel accordionSubPanel = null;
+        if (component instanceof AccordionSubPanel) {
+			accordionSubPanel = (AccordionSubPanel) component;
+		}
         ResponseWriter responseWriter = context.getResponseWriter();
         responseWriter.startElement(HTML.TAG_DIV, component);
+        if (accordionSubPanel.getContentClass() != null)
+        	responseWriter.writeAttribute("class", accordionSubPanel.getContentClass(), "contentClass");
+        if (accordionSubPanel.getHeaderStyle() != null)
+        	responseWriter.writeAttribute("style", accordionSubPanel.getContentStyle(), "contentStyle");
         RendererUtilities.renderChildren(context,component);
         responseWriter.endElement(HTML.TAG_DIV);
 	}

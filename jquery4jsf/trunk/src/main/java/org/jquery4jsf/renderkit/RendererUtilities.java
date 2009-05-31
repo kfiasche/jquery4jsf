@@ -159,7 +159,7 @@ public class RendererUtilities {
 			if (value instanceof String){
 				String s = (String)value;
 				if (nameParameter.substring(0,2).equalsIgnoreCase("on")){
-					createOptionComponentFunction(sb, s, nameParameter);
+					createOptionComponentFunction(sb, s, nameParameter, null);
 				}
 				else if (s.startsWith("{") && s.endsWith("}")){
 					createOptionComponentOptionsByType(sb, s, nameParameter);
@@ -240,9 +240,15 @@ public class RendererUtilities {
 		}
 	}
 	
-	public static void createOptionComponentFunction(StringBuffer options, String value, String nameParameter) {
+	public static void createOptionComponentFunction(StringBuffer options, String value, String nameParameter, String params) {
 		if (value != null){
-			options.append(cleanPrefixFunction(nameParameter).concat(": function() {\n"));
+			if (params == null || params.length() == 0){
+				options.append(cleanPrefixFunction(nameParameter).concat(": function() {\n"));
+			}else{
+				options.append(cleanPrefixFunction(nameParameter).concat(": function("));
+				options.append(params);
+				options.append(") {\n");
+			}
 			options.append(value);
 			options.append("\n}");
 			options.append(", \n");

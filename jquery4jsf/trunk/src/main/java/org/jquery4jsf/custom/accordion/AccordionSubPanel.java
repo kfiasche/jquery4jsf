@@ -35,6 +35,10 @@ public class AccordionSubPanel extends HtmlBaseOutputComponent implements JQuery
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.AccordionSubPanelRenderer";
 
 	private String[] resources;
+	private String headerClass;
+	private String headerStyle;
+	private String contentClass;
+	private String contentStyle;
 	private String panelName;
 
 	public AccordionSubPanel() {
@@ -45,6 +49,50 @@ public class AccordionSubPanel extends HtmlBaseOutputComponent implements JQuery
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+
+	public String getHeaderClass() {
+		if(headerClass != null )
+			return headerClass;
+
+		String oValue = (String) getLocalOrValueBindingValue(headerClass, "headerClass");
+		return oValue != null ? oValue : null;
+	}
+	public void setHeaderClass(String headerClass) {
+		this.headerClass = headerClass;
+	}
+
+	public String getHeaderStyle() {
+		if(headerStyle != null )
+			return headerStyle;
+
+		String oValue = (String) getLocalOrValueBindingValue(headerStyle, "headerStyle");
+		return oValue != null ? oValue : null;
+	}
+	public void setHeaderStyle(String headerStyle) {
+		this.headerStyle = headerStyle;
+	}
+
+	public String getContentClass() {
+		if(contentClass != null )
+			return contentClass;
+
+		String oValue = (String) getLocalOrValueBindingValue(contentClass, "contentClass");
+		return oValue != null ? oValue : null;
+	}
+	public void setContentClass(String contentClass) {
+		this.contentClass = contentClass;
+	}
+
+	public String getContentStyle() {
+		if(contentStyle != null )
+			return contentStyle;
+
+		String oValue = (String) getLocalOrValueBindingValue(contentStyle, "contentStyle");
+		return oValue != null ? oValue : null;
+	}
+	public void setContentStyle(String contentStyle) {
+		this.contentStyle = contentStyle;
 	}
 
 	public String getPanelName() {
@@ -59,15 +107,23 @@ public class AccordionSubPanel extends HtmlBaseOutputComponent implements JQuery
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[2];
+		Object values[] = new Object[6];
 		values[0] = super.saveState(context);
-		values[1] = panelName;
+		values[1] = headerClass;
+		values[2] = headerStyle;
+		values[3] = contentClass;
+		values[4] = contentStyle;
+		values[5] = panelName;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.panelName = (String) values[1];
+		this.headerClass = (String) values[1];
+		this.headerStyle = (String) values[2];
+		this.contentClass = (String) values[3];
+		this.contentStyle = (String) values[4];
+		this.panelName = (String) values[5];
 	}
 
 	public String[] getResources() {

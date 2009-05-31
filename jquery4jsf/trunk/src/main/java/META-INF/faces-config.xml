@@ -267,6 +267,11 @@
 		<component-class>org.jquery4jsf.custom.tooltip.Tooltip</component-class>
 	</component>
 
+	<component>
+		<component-type>org.jquery4jsf.HtmlTreeView</component-type>
+		<component-class>org.jquery4jsf.custom.treeview.HtmlTreeView</component-class>
+	</component>
+
 	<render-kit>
 		<renderer>
 			<component-family>org.jquery4jsf.HtmlAbbr</component-family>
@@ -507,6 +512,11 @@
 			<component-family>org.jquery4jsf.Tooltip</component-family>
 			<renderer-type>org.jquery4jsf.TooltipRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.tooltip.TooltipRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.TreeView</component-family>
+			<renderer-type>org.jquery4jsf.HtmlTreeViewRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.treeview.HtmlTreeViewRenderer</renderer-class>
 		</renderer>
 	</render-kit>
 

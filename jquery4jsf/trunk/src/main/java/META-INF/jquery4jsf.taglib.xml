@@ -363,4 +363,11 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 			<handler-class>org.jquery4jsf.custom.tooltip.TooltipHandler</handler-class>
 		</component>
 	</tag>
+	<tag>
+		<tag-name>treeView</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlTreeView</component-type>
+			<renderer-type>org.jquery4jsf.HtmlTreeViewRenderer</renderer-type>
+		</component>
+	</tag>
 </facelet-taglib>

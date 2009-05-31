@@ -212,8 +212,8 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 		encodeOptionComponentByType(options,targetJQ, "target", null);
 		encodeOptionComponentByType(options, button.getTypeSubmit(), "type", "post");
 		encodeOptionComponentByType(options, clientId.concat(":button") , "buttonSubmit", "");
-		encodeOptionComponentFunction(options, button.getOnbeforeSubmit(), "onbeforeSubmit");
-		encodeOptionComponentFunction(options, button.getOnsuccess(), "onsuccess");
+		encodeOptionComponentFunction(options, button.getOnbeforeSubmit(), "onbeforeSubmit", null);
+		encodeOptionComponentFunction(options, button.getOnsuccess(), "onsuccess", null);
 		encodeOptionComponentByType(options, button.getDataType(), "dataType", "");
 		encodeOptionComponentByType(options, button.isSemantic(), "semantic", "false");
 		encodeOptionComponentByType(options, button.isResetForm(), "resetForm", null);
