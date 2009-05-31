@@ -1,0 +1,78 @@
+#menuLeft {
+	MIN-WIDTH: 15px;
+	MIN-HEIGHT: 15px;
+	MARGIN: 5px;
+	OVERFLOW: hidden;
+	POSITION: relative
+}
+
+#menuLeft .ui-accordion-header {
+	PADDING-RIGHT: 8px;
+	PADDING-LEFT: 8px;
+	MARGIN-BOTTOM: 7px;
+	PADDING-BOTTOM: 0px;
+	OVERFLOW: hidden;
+	LINE-HEIGHT: 30px;
+	PADDING-TOP: 0px;
+	POSITION: relative;
+	HEIGHT: 30px;
+}
+
+#menuLeft .ui-accordion-content {
+	MIN-WIDTH: 15px;
+	MIN-HEIGHT: 15px;
+	MARGIN: 0px auto;
+	OVERFLOW: hidden;
+	POSITION: relative
+}
+
+#menuLeft UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 13px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0.5em 0px;
+	PADDING-TOP: 0px;
+}
+
+#menuLeft UL LI {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 13px;
+	BACKGROUND-IMAGE: url(../images/BlockContentBullets.png);
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0.5em 0px;
+	LINE-HEIGHT: 1.2em;
+	PADDING-TOP: 0px;
+	BACKGROUND-REPEAT: no-repeat
+}
+
+#menuLeft UL LI A:link {
+	COLOR: #fcd25f;
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+	TEXT-DECORATION: underline
+}
+
+#menuLeft UL LI A {
+	COLOR: #fccf55;
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+	TEXT-DECORATION: underline
+}
+
+#menuLeft H3 A {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	COLOR: #000000;
+	LINE-HEIGHT: 30px;
+	FONT-STYLE: normal;
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+	WHITE-SPACE: nowrap
+}
+
+#menuLeft DIV {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	BACKGROUND: url(../images/Page-BgTexture.jpg) #6e6e6e fixed no-repeat
+		left top;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px auto;
+	PADDING-TOP: 0px
+}

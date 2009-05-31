@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{resource.DRAGGABLE_TITLE_AUTOSCROLL}" />
+	</ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+#draggable,#draggable2,#draggable3 {
+	width: 100px;
+	height: 100px;
+	padding: 0.5em;
+	float: left;
+	margin: 0 10px 10px 0;
+}
+</style>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Draggable - #{resource.DRAGGABLE_TITLE_AUTOSCROLL}
+		</h3>
+		<p>
+			#{resource.DRAGGABLE_DESCR_AUTOSCROLL}
+		</p>
+		<br />
+		<jq:draggable id="draggable" scroll="true">
+			<p>
+				Scroll set to true, default settings
+			</p>
+		</jq:draggable>
+
+		<jq:draggable id="draggable2" scroll="true" scrollSensitivity="100">
+			<p>
+				scrollSensitivity set to 100
+			</p>
+		</jq:draggable>
+
+		<jq:draggable id="draggable3" scroll="true" scrollSpeed="100">
+			<p>
+				scrollSpeed set to 100
+			</p>
+		</jq:draggable>
+		<div style="height: 5000px; width: 1px;"></div>
+		<br />
+		<h3>
+			Source
+		</h3>
+	</ui:define>
+</ui:composition>
