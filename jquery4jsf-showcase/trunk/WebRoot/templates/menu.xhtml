@@ -3,16 +3,62 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:jq="http://www.jquery4jsf.org/jsf">
-	<ui:include src="accordion.xhtml"></ui:include>
-	<ui:include src="ajax.xhtml"></ui:include>
-	<ui:include src="autocomplete.xhtml"></ui:include>
-	<ui:include src="button.xhtml"></ui:include>
-	<ui:include src="calendar.xhtml"></ui:include>
-	<ui:include src="carousel.xhtml"></ui:include>
-	<ui:include src="colorpicker.xhtml"></ui:include>
-	<ui:include src="datepicker.xhtml"></ui:include>
-	<ui:include src="dialog.xhtml"></ui:include>
-	<ui:include src="lightbox.xhtml"></ui:include>
-	<ui:include src="simplyscroll.xhtml"></ui:include>
-	<ui:include src="tablesort.xhtml"></ui:include>
+			<ui:define name="head">
+				<jq:outputScript charset="utf-8" type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/jquery4jsf_resource/external/jquery.cookie.js" />
+				<jq:outputScript charset="utf-8" type="text/javascript">
+				//<![CDATA[
+				function initMenu() {
+					 $('#menuLeft .BlockContent').hide();
+					 var index = $.cookie("menuLeft");
+					 if (index !== null || index !== undefined){	
+					 		var index = $.cookie("menuLeft");
+					 		//alert('salvato: '+index);
+					 		var panel = $('#menuLeft').find(".BlockContent:eq(" + index + ")"); 
+					 		panel.show();
+					 }
+					 else{
+					 	$('#menuLeft .BlockContent:first').show();
+					 }
+					 $('#menuLeft a').click(function() {
+					 	for (i=0; i<10000; i++){}
+					 });
+					 $('#menuLeft .BlockHeader').click(
+								function() {
+									var checkElement = $(this).parent().find(".BlockContent:first"); 
+									if((checkElement.is('.BlockContent')) && (checkElement.is(':visible'))) {
+				 						 return false;
+				 					}
+				 					if((checkElement.is('.BlockContent')) && (!checkElement.is(':visible'))) {
+				 						$('#menuLeft .BlockContent:visible').slideUp('normal');
+				 						checkElement.slideDown('normal');
+				 						var index = $('#menuLeft .BlockHeader').index(this);
+				 						//alert('da salvare: '+index);
+                        				$.cookie("menuLeft", index, {expires: 7, path: '/'}); 
+				 						return false;
+				 					}
+				 	 });
+				}
+				
+				$(document).ready(function() { 
+					initMenu();
+				});
+				//]]>
+				</jq:outputScript>
+				
+			</ui:define>
+			<jq:div id="menuLeft">
+			<ui:include src="accordion.xhtml"></ui:include>
+			<ui:include src="ajax.xhtml"></ui:include>
+			<ui:include src="autocomplete.xhtml"></ui:include>
+			<ui:include src="button.xhtml"></ui:include>
+			<ui:include src="calendar.xhtml"></ui:include>
+			<ui:include src="carousel.xhtml"></ui:include>
+			<ui:include src="colorpicker.xhtml"></ui:include>
+			<ui:include src="datepicker.xhtml"></ui:include>
+			<ui:include src="dialog.xhtml"></ui:include>
+			<ui:include src="draggable.xhtml"></ui:include>
+			<ui:include src="lightbox.xhtml"></ui:include>
+			<ui:include src="simplyscroll.xhtml"></ui:include>
+			<ui:include src="tablesort.xhtml"></ui:include>
+			</jq:div>
 </ui:composition>

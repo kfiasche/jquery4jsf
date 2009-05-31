@@ -7,6 +7,7 @@
 	<f:view>
 		<f:loadBundle basename="org.jquery4jsf.showcase.ExResource" var="resource" />
 		<head>
+			<link type="text/css" rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/syntaxhighlighter.css" />
 			<title><ui:insert name="title">jQuery for JavaServer Faces showcase</ui:insert></title>
 			<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 			<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/style.css" />
@@ -70,6 +71,16 @@
 						<div class="cleared"></div>
 						<!-- Footer -->
 						<ui:include src="footer.xhtml"/>
+						<script language="javascript" src="#{facesContext.externalContext.requestContextPath}/script/sh/shCore.js"></script>
+						<script language="javascript" src="#{facesContext.externalContext.requestContextPath}/script/sh/shBrushXml.js"></script>
+						<script language="javascript" src="#{facesContext.externalContext.requestContextPath}/script/sh/shBrushJava.js"></script>
+						<script language="javascript" src="#{facesContext.externalContext.requestContextPath}/script/sh/shBrushCss.js"></script>
+						<script language="javascript" src="#{facesContext.externalContext.requestContextPath}/script/sh/shBrushJScript.js"></script>
+						<script language="javascript">
+							dp.SyntaxHighlighter.ClipboardSwf = '#{facesContext.externalContext.requestContextPath}/script/sh/clipboard.swf';
+							dp.SyntaxHighlighter.HighlightAll('code');
+						</script>
+						
 					</div>
 				</div>
 			</div>

@@ -4,6 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="templates/template-principale.xhtml">
+		<ui:define name="head">
+			<jq:outputScript charset="utf-8" type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/jquery4jsf_resource/jquery/jquery.js" />
+		</ui:define>
 		<ui:define name="content">
 			<h3>hello world!!</h3>
 		</ui:define> 

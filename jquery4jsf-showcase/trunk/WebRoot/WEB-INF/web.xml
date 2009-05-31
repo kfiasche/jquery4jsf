@@ -18,6 +18,18 @@
 		<param-value>true</param-value>
 	</context-param>
 
+
+	 <!-- if you want to disable the behaviour completely -->
+	  <context-param>
+	    <param-name>org.apache.myfaces.ERROR_HANDLING</param-name>
+	    <param-value>false</param-value>
+	  </context-param>
+	  <!-- if you are using myfaces + facelets don't forget to do this -->
+	  <context-param>
+	    <param-name>facelets.DEVELOPMENT</param-name>
+	    <param-value>false</param-value>
+	  </context-param>
+
 	<context-param>
 		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
 		<param-value>.xhtml</param-value>
@@ -66,5 +78,9 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+   <listener>
+     <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+ </listener>
+  
 </web-app>
 

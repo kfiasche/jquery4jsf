@@ -8,7 +8,7 @@
 			<div class="BlockHeader">
 				<div class="header-tag-icon">
 					<div class="BlockHeader-text">
-						<h:outputText value="#{resource.DRAGGABLE_MENU}"/>
+						<h:outputText value="#{resource.DRAGGABLE_MENU}" />
 					</div>
 				</div>
 				<div class="l"></div>
@@ -43,8 +43,51 @@
 				<div class="BlockContent-body">
 					<ul class="menu">
 						<li>
-							<h:outputLink value="#{facesContext.externalContext.requestContextPath}/draggable/default.jsf">
-								<h:outputText value="#{resource.DRAGGABLE_TITLE_DEFAULT}"/>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/draggable/default.jsf">
+								<h:outputText value="#{resource.DRAGGABLE_TITLE_DEFAULT}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/draggable/delay-start.jsf">
+								<h:outputText value="#{resource.DRAGGABLE_TITLE_DELAY}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/draggable/events.jsf">
+								<h:outputText value="#{resource.DRAGGABLE_TITLE_EVENTS}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/draggable/snap.jsf">
+								<h:outputText value="#{resource.DRAGGABLE_TITLE_SNAP}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/draggable/constrain-movement.jsf">
+								<h:outputText value="#{resource.DRAGGABLE_TITLE_CONSTRAIN}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/draggable/autoscroll.jsf">
+								<h:outputText value="#{resource.DRAGGABLE_TITLE_AUTOSCROLL}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/draggable/revert.jsf">
+								<h:outputText value="#{resource.DRAGGABLE_TITLE_REVERT}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/draggable/feedback.jsf">
+								<h:outputText value="#{resource.DRAGGABLE_TITLE_FEEDBACK}" />
 							</h:outputLink>
 						</li>
 					</ul>

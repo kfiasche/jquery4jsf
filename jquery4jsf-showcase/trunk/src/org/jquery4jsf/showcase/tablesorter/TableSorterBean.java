@@ -25,6 +25,7 @@ public class TableSorterBean {
 	}
 	
 	public ArrayList getLista() {
+		
 		return lista;
 	}
 	public void setLista(ArrayList lista) {
