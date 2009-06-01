@@ -5,7 +5,7 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{resource.AJAXEVENT_TITLE_ACTION}" />
+		<h:outputText value=" - AjaxEvent - #{resource.AJAXEVENT_TITLE_ACTION}" />
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -14,7 +14,7 @@
 		<p>
 			#{resource.AJAXEVENT_DESCR_ACTION}
 		</p>
-
+		<!-- START -->
 		<h:form>
 			<jq:ajaxStatus>
 				<f:facet name="start">
@@ -35,22 +35,6 @@
 				<h:outputText id="romaout" value="#{ajaxBean.fans}" />
 			</h:panelGrid>
 		</h:form>
-
-		<h3>
-			Source
-		</h3>
-
-		<jq:syntaxHighlighting type="xml">
-		&lt;h:form&gt;
-			&lt;h:panelGrid columns=&quot;3&quot;&gt;
-				&lt;h:outputText value=&quot;Keyup&quot; /&gt;
-				&lt;h:inputText id=&quot;roma&quot;&gt;
-					&lt;jq:ajaxEvent event=&quot;keyup&quot; reRender=&quot;romaout&quot;
-						actionListener=&quot;# {ajaxBean.creaRomaFans}&quot; /&gt;
-				&lt;/h:inputText&gt;
-				&lt;h:outputText id=&quot;romaout&quot; value=&quot;# {ajaxBean.fans}&quot; /&gt;
-			&lt;/h:panelGrid&gt;
-		&lt;/h:form&gt;
-		</jq:syntaxHighlighting>
+		<!-- END -->
 	</ui:define>
 </ui:composition>

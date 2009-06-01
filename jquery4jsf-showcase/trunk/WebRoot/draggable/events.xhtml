@@ -31,6 +31,7 @@
 	font-weight: bold;
 }
 </style>
+		<!-- START -->
 		<jq:outputScript type="text/javascript" charset="utf-8">
 		var counts = [0,0,0];
 		
@@ -56,6 +57,7 @@
 			$('span.count',$event_counter).text(new_count);
 		}
 	</jq:outputScript>
+		<!-- end -->
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -64,6 +66,7 @@
 		<p>
 			#{resource.DRAGGABLE_DESCR_EVENTS}
 		</p>
+		<!-- START -->
 		<jq:draggable id="draggable" zindex="-2" ondrag="dragDrag();" onstop="stopDrag();" onstart="startDrag();">
 			<p>
 				Portami ingiro
@@ -85,9 +88,6 @@
 			</jq:outputHtmlTag>
 
 		</jq:draggable>
-		<br />
-		<h3>
-			Source
-		</h3>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

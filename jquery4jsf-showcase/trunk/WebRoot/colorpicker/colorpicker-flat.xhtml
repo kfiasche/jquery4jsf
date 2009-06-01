@@ -5,7 +5,8 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{resource.COLORPICKER_TITLE_DEFAULT}" />
+		<h:outputText
+			value=" - ColorPicker - #{resource.COLORPICKER_TITLE_DEFAULT}" />
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -14,23 +15,17 @@
 		<p>
 			#{resource.COLORPICKER_DESCR_DEFAULT}
 		</p>
+		<!-- START -->
 		<h:form id="form1">
 			<jq:paragraph>
-								Color picker flat mode: true
-							</jq:paragraph>
-			<h:outputLabel value="Color picker:" for="colopicker"
-				id="lbColorpicker" />
-			<jq:colorPicker id="colorpicker" flat="true"
-				color="#{colorPickerBean.color}" />
-			<h:commandButton value="Ok" id="button1"></h:commandButton>
-
-			<h:outputLabel value="Color picker choise:" for="colopickerOut"
-				id="lbColorpickerOut" />
+					Color picker flat mode: true
+			</jq:paragraph>
+			<h:outputLabel value="Color picker:" for="colopicker" id="lbColorpicker" />
+			<jq:colorPicker id="colorpicker" flat="true" color="#{colorPickerBean.color}" />
+			<jq:button value="Ok" id="button1"></jq:button>
+			<h:outputLabel value="Color picker choise:" for="colopickerOut" id="lbColorpickerOut" />
 			<h:outputText value="#{colorPickerBean.color}" id="colopickerOut" />
 		</h:form>
-		<br />
-		<h3>
-			Source
-		</h3>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

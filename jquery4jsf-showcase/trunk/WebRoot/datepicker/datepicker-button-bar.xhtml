@@ -5,7 +5,7 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{resource.DATEPICKER_TITLE_DEFAULT}" />
+		<h:outputText value=" - DatePicker - #{resource.DATEPICKER_TITLE_DEFAULT}" />
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -14,12 +14,10 @@
 		<p>
 			#{resource.DATEPICKER_DESCR_DEFAULT}
 		</p>
+		<!-- START -->
 		<h:form id="form1">
 				Date: <jq:datePicker id="datepicker" showButtonPanel="true"></jq:datePicker>			
 		</h:form>
-		<br />
-		<h3>
-			Source
-		</h3>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

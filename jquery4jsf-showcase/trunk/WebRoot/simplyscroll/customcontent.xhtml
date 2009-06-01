@@ -5,7 +5,7 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{resource.SIMPLYSCROLL_TITLE_DEFAULT}" />
+		<h:outputText value="#{resource.SIMPLYSCROLL_TITLE_CUSTOMCONTENT}" />
 	</ui:define>
 	<ui:define name="head">
 <style>
@@ -62,11 +62,12 @@
 	</ui:define>
 	<ui:define name="content">
 		<h3>
-			SimplyScroll - #{resource.SIMPLYSCROLL_TITLE_DEFAULT}
+			SimplyScroll - #{resource.SIMPLYSCROLL_TITLE_CUSTOMCONTENT}
 		</h3>
 		<p>
-			#{resource.SIMPLYSCROLL_DESCR_DEFAULT}
+			#{resource.SIMPLYSCROLL_DESCR_CUSTOMCONTENT}
 		</p>
+		<!-- START -->
 		<jq:simpyScroll id="scroller" customContent="true" className="custom"
 			autoMode="loop" pauseOnHover="false" frameRate="20" speed="2">
 			<h:graphicImage title="Francesco Totti" value="/images/roma/fta.jpg" width="290" height="200">
@@ -130,9 +131,6 @@
 				</f:facet>
 			</h:graphicImage>
 		</jq:simpyScroll>
-		<br />
-		<h3>
-			Source
-		</h3>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

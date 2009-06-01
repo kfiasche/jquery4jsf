@@ -73,6 +73,7 @@ div#users-contain table td,div#users-contain table th {
 		<p>
 			#{resource.DIALOG_DESCR_FORM}
 		</p>
+		<!-- START -->
 		<jq:outputScript charset="utf-8" type="text/javascript">
 						$(document).ready(function() { 
 							$('#formUser\\:create-user').click(function() {
@@ -144,11 +145,11 @@ div#users-contain table td,div#users-contain table th {
 						</h:column>
 					</h:dataTable>
 				</div>
-				<h:commandButton id="create-user"
-					styleClass="ui-button ui-state-default ui-corner-all"
+				<jq:button id="create-user"
 					value="Create new user">
-				</h:commandButton>
+				</jq:button>
 			</div>
 		</h:form>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

@@ -5,7 +5,7 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{resource.ACCORDION_TITLE_CUSTOMICONS}" />
+		<h:outputText value=" Acccordion - #{resource.ACCORDION_TITLE_CUSTOMICONS}" />
 	</ui:define>
 	<ui:define name="content">
 		<h3>Accordion Panel - #{resource.ACCORDION_TITLE_CUSTOMICONS}</h3>
@@ -13,6 +13,7 @@
 			#{resource.ACCORDION_DESCR_CUSTOMICONS}
 		</p>
 		<br/>
+		<!-- START -->
 		<jq:accordionPanel id="accordion" iconsHeaderSelected="ui-icon-circle-arrow-s" iconsHeader="ui-icon-circle-arrow-e">
 			<jq:accordionSubPanel panelName="#{resource.ACCORDION_SECTION_NAME_TOTTI}">
 				<h:panelGrid columns="2">
@@ -27,23 +28,6 @@
 					</h:panelGrid>
 			</jq:accordionSubPanel>
 		</jq:accordionPanel>
-		<br/>
-		<h3>Source</h3>
-		<pre name="code" class="xml">
-		&lt;jq:accordionPanel id=&quot;accordion&quot; iconsHeaderSelected=&quot;ui-icon-circle-arrow-s&quot; iconsHeader=&quot;ui-icon-circle-arrow-e&quot;&gt;
-			&lt;jq:accordionSubPanel panelName=&quot;# {resource.ACCORDION_SECTION_NAME_TOTTI}&quot;&gt;
-				&lt;h:panelGrid columns=&quot;2&quot;&gt;
-						&lt;h:graphicImage value=&quot;/images/roma/totti.jpg&quot;&gt;&lt;/h:graphicImage&gt;
-						&lt;h:outputText value=&quot;# {resource.ACCORDION_SECTION_NAME_TOTTI_DESCR}&quot;&gt;&lt;/h:outputText&gt;
-					&lt;/h:panelGrid&gt;
-			&lt;/jq:accordionSubPanel&gt;
-			&lt;jq:accordionSubPanel panelName=&quot;# {resource.ACCORDION_SECTION_NAME_DEROSSI}&quot;&gt;
-				&lt;h:panelGrid columns=&quot;2&quot;&gt;
-						&lt;h:graphicImage value=&quot;/images/roma/derossi.jpg&quot;&gt;&lt;/h:graphicImage&gt;
-						&lt;h:outputText value=&quot;# {resource.ACCORDION_SECTION_NAME_DEROSSI_DESCR}&quot;&gt;&lt;/h:outputText&gt;
-					&lt;/h:panelGrid&gt;
-			&lt;/jq:accordionSubPanel&gt;
-		&lt;/jq:accordionPanel&gt;
-		</pre>
+		<!-- END -->
 	</ui:define>
 </ui:composition>

@@ -9,11 +9,17 @@
 	</ui:define>
 	<ui:define name="head">
 		<link type="text/css" href="blue/style.css" rel="stylesheet" />
+		<style type="text/css">
+			.tablesorterblue th{
+				color: #000000;
+			}
+		</style>
 	</ui:define>
 	<ui:define name="content">
 		<h3>TableSort - #{resource.TABLESORT_TITLE_DEFAULT}</h3>
 		<p>#{resource.TABLESORT_DESCR_DEFAULT}</p>
-		<h:dataTable id="dataTable" styleClass="tablesorter" var="element" value="#{tableSorterBean.lista}">
+		<!-- START -->
+		<h:dataTable id="dataTable" styleClass="tablesorterblue" var="element" value="#{tableSorterBean.lista}">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Name"/>
@@ -41,8 +47,7 @@
 				</h:outputText>
 			</h:column>
 		</h:dataTable>
-		<jq:tableSorter target="dataTable" sortedColumns="0,1"/>
-		<br/>
-		<h3>Source</h3>
+		<jq:tableSorter target="dataTable"/>
+		<!-- END -->
 	</ui:define>
 </ui:composition>

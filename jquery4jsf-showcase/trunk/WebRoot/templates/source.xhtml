@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf">
+	<div style="height: 50px; width: 1px; clear: both;"></div>
+	<br />
+	<h3>
+		Source
+	</h3>
+	<jq:scriptCollector id="sourceScript" onPageLoadBegin="#{sourceBean.doSouceLocader}">
+		<pre name="code" class="xml">
+			<h:outputText value="#{sourceBean.textSource}" />
+		</pre>
+	</jq:scriptCollector>
+</ui:composition>

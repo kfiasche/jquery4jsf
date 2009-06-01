@@ -25,6 +25,7 @@
         <configuration>
           <webappDirectory>${basedir}/WebRoot</webappDirectory>
           <warSourceDirectory>${basedir}/WebRoot</warSourceDirectory>
+          <warSourceExcludes>**/.svn/**,**/CVS/**</warSourceExcludes>
         </configuration>
       </plugin>
       <plugin>

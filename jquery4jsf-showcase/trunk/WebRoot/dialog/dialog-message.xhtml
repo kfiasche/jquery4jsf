@@ -5,7 +5,7 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{resource.DIALOG_TITLE_MESSAGE}" />
+		<h:outputText value=" - Dialog - #{resource.DIALOG_TITLE_MESSAGE}" />
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -14,6 +14,7 @@
 		<p>
 			#{resource.DIALOG_DESCR_MESSAGE}
 		</p>
+		<!-- START -->
 		<jq:dialog id="dialog" title="Francesco Totti" bgiframe="true"
 			autoOpen="true" modal="true"
 			buttons="{Ok: function() { $(this).dialog('close');}}">
@@ -53,5 +54,6 @@
 				<h:inputSecret id="inputScret"></h:inputSecret>
 			</h:panelGrid>
 		</h:form>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

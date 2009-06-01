@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - Resizable - #{resource.RESIZABLE_TITLE_SYNC}" />
+	</ui:define>
+	<ui:define name="head">
+	<style type="text/css">
+	.resizable { background-position: top left; }
+	.resizable, .also { width: 150px; height: 120px; padding: 0.5em; }
+	.resizable h3, .also h3 { text-align: center; margin: 0; }
+	.also { margin-top: 1em; }
+	</style>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Resizable - #{resource.RESIZABLE_TITLE_SYNC}
+		</h3>
+		<p>
+			#{resource.RESIZABLE_DESCR_SYNC}
+		</p>
+		<!-- START -->
+		<jq:panel header="Resize"  styleClass="resizable">
+			<jq:resizable alsoResize="#also" />
+		</jq:panel>
+		<jq:panel id="also" header="will also resize"  styleClass="also">
+			<jq:resizable />
+		</jq:panel>
+		<!-- END -->
+	</ui:define>
+</ui:composition>

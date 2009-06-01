@@ -14,6 +14,7 @@
 		<p>
 			#{resource.BUTTON_DESCR_ALERT}
 		</p>
+		<!-- START -->
 		<jq:ajaxStatus id="statusAjax">
 			<f:facet name="start">
 				<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
@@ -54,13 +55,6 @@
 				<h:outputText value="#{buttonBean.text}" />
 			</div>
 			</h:form>
-
-			<h3>
-				Source
-			</h3>
-			<jq:syntaxHighlighting type="xml">
-			 	&lt;jq:button value="Clicca qui" action=" # { buttonBean.doButtonAction}"/&gt;
-			</jq:syntaxHighlighting>
-		
+			<!-- end -->
 	</ui:define>
 </ui:composition>

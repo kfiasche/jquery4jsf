@@ -5,7 +5,7 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{resource.AUTOCOMPLETE_TITLE_DEFAULT}" />
+		<h:outputText value=" - AutoComplete - #{resource.AUTOCOMPLETE_TITLE_DEFAULT}" />
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -14,6 +14,7 @@
 		<p>
 			#{resource.AUTOCOMPLETE_DESCR_DEFAULT}
 		</p>
+		<!-- START -->
 		<jq:ajaxStatus id="statusAjax">
 				<f:facet name="start">
 					<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
@@ -40,30 +41,6 @@
 			</h:panelGrid>
 		</h:form>
 		<br />
-		<h3>
-			Source
-		</h3>
-		<jq:syntaxHighlighting type="xml">
-				&lt;h:form id=&quot;form1&quot;&gt;
-			&lt;h:panelGrid columns=&quot;2&quot;&gt;
-				&lt;h:outputLabel id=&quot;label1&quot;&gt;
-					&lt;h:outputText value=&quot;Autocomplete:&quot;/&gt;
-				&lt;/h:outputLabel&gt;
-				&lt;jq:autoComplete id=&quot;autocomplete&quot; value=&quot;# {autoCompleteBean.text}&quot; oncomplete=&quot;# {autoCompleteBean.completeAlgo}&quot; /&gt;
-			&lt;/h:panelGrid&gt;
-		&lt;/h:form&gt;
-		</jq:syntaxHighlighting>
-		<br />
-		<jq:syntaxHighlighting type="java">
-			public List completeAlgo(String query){
-		        List qualcosa = new ArrayList();
-		        for(int i = 0; i &lt; 11; i++)
-		        {
-		            String a = query + i;
-		            qualcosa.add(a);
-		        }
-		        return qualcosa;
-			}
-		</jq:syntaxHighlighting>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

@@ -28,7 +28,9 @@
 	}
 	.ui-lightbox ul a:hover { color: #fff; }
 	</style>
+	<!-- START -->
 	<jq:outputCss href="#{facesContext.externalContext.requestContextPath}/lightbox/theme/lightbox.css" type="text/css" rel="stylesheet" />
+	<!-- end -->
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -37,7 +39,7 @@
 		<p>
 			#{resource.LIGHTBOX_DESCR_SKINS}
 		</p>
-
+		<!-- START -->
 		<jq:lightBox imageBtnClose="#{facesContext.externalContext.requestContextPath}/lightbox/theme/images/lb_close.jpg"
 						imageBtnNext="#{facesContext.externalContext.requestContextPath}/lightbox/theme/images/next.png"
 						imageBtnPrev="#{facesContext.externalContext.requestContextPath}/lightbox/theme/images/prev.png"
@@ -85,10 +87,6 @@
 				</h:graphicImage>
 			</h:outputLink>
 		</jq:lightBox>
-
-		<br />
-		<h3>
-			Source
-		</h3>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

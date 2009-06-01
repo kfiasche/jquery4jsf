@@ -15,11 +15,13 @@
 	p { clear:both; margin:0; padding:1em 0; }
 		
 </style>
+	<!-- START -->
 	<jq:outputScript charset="utf-8" type="text/javascript">
 		function customCallbackHelper() {
 			return $('<div class="ui-widget-header">I\'m a custom helper</div>');
 		}
 	</jq:outputScript>
+	<!-- end -->
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -29,6 +31,7 @@
 			#{resource.DRAGGABLE_DESCR_FEEDBACK}
 		</p>
 		<br />
+		<!-- START -->
 		<jq:outputHtmlTag tagName="h3" styleClass="docs">
 			With helpers:
 		</jq:outputHtmlTag>
@@ -77,9 +80,6 @@
 				</p>
 			</jq:outputHtmlTag>
 		</jq:outputHtmlTag>
-		<br />
-		<h3>
-			Source
-		</h3>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

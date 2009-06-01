@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-
-<!DOCTYPE faces-config PUBLIC
-		"-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
-		"http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
-
-<faces-config xmlns="http://java.sun.com/JSF/Configuration">
-
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
  <managed-bean>
   <managed-bean-name>ajaxBean</managed-bean-name>
   <managed-bean-class>org.jquery4jsf.showcase.ajax.AjaxBean</managed-bean-class>
@@ -34,6 +30,16 @@
  <managed-bean>
   <managed-bean-name>tableSorterBean</managed-bean-name>
   <managed-bean-class>org.jquery4jsf.showcase.tablesorter.TableSorterBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>colorPickerBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.colorpicker.ColorPickerBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>sourceBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.UtilsSCLoader</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <application>

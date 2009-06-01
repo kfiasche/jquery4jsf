@@ -1,86 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-  	<!-- jQuery for JavaServer faces param -->
-  	<context-param>
-		<description>Enable javascript resource Minifier</description>
-		<param-name>org.jquery4jsf.JAVASCRIPT_MIN</param-name>
-		<param-value>false</param-value>
-	</context-param>
-	<context-param>
-		<description>Enable css resource Minifier</description>
-		<param-name>org.jquery4jsf.CSS_MIN</param-name>
-		<param-value>false</param-value>
-	</context-param>
-
-  	<!-- for jboss -->
-	<context-param>
-		<param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
-		<param-value>true</param-value>
-	</context-param>
-
-
-	 <!-- if you want to disable the behaviour completely -->
-	  <context-param>
-	    <param-name>org.apache.myfaces.ERROR_HANDLING</param-name>
-	    <param-value>false</param-value>
-	  </context-param>
-	  <!-- if you are using myfaces + facelets don't forget to do this -->
-	  <context-param>
-	    <param-name>facelets.DEVELOPMENT</param-name>
-	    <param-value>false</param-value>
-	  </context-param>
-
-	<context-param>
-		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
-		<param-value>.xhtml</param-value>
-	</context-param>
-	
-	<context-param>
-		<param-name>facelets.SKIP_COMMENTS</param-name>
-		<param-value>true</param-value>
-	</context-param>
-	
-	<context-param>
-		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-		<param-value>server</param-value>
-	</context-param>
-
-
-	<filter>
-		<filter-name>JQueryResourceFilter</filter-name>
-		<filter-class>org.jquery4jsf.application.filter.JQueryResourceFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>JQueryResourceFilter</filter-name>
-		<servlet-name>Faces Servlet</servlet-name>
-		<dispatcher>FORWARD</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>ERROR</dispatcher>
-	</filter-mapping>
-  <servlet>
-    <servlet-name>Faces Servlet</servlet-name>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>0</load-on-startup>
-  </servlet>
- 	<servlet>
-	<servlet-name>Resource Servlet</servlet-name>
-	<servlet-class>org.jquery4jsf.resource.ResourceServlet</servlet-class>
-</servlet>
-	<servlet-mapping>
-		<servlet-name>Resource Servlet</servlet-name>
-		<url-pattern>/jquery4jsf_resource/*</url-pattern>
-	</servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>*.jsf</url-pattern>
-  </servlet-mapping>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
-   <listener>
-     <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <!-- jQuery for JavaServer faces param -->
+ <context-param>
+  <description>Enable javascript resource Minifier</description>
+  <param-name>org.jquery4jsf.JAVASCRIPT_MIN</param-name>
+  <param-value>false</param-value>
+ </context-param>
+ <context-param>
+  <description>Enable css resource Minifier</description>
+  <param-name>org.jquery4jsf.CSS_MIN</param-name>
+  <param-value>false</param-value>
+ </context-param>
+ <!-- for jboss -->
+ <context-param>
+  <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <!-- if you want to disable the behaviour completely -->
+ <context-param>
+  <param-name>org.apache.myfaces.ERROR_HANDLING</param-name>
+  <param-value>false</param-value>
+ </context-param>
+ <!-- if you are using myfaces + facelets don't forget to do this -->
+ <context-param>
+  <param-name>facelets.DEVELOPMENT</param-name>
+  <param-value>false</param-value>
+ </context-param>
+ <context-param>
+  <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+  <param-value>.xhtml</param-value>
+ </context-param>
+ <context-param>
+  <param-name>facelets.SKIP_COMMENTS</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <context-param>
+  <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+  <param-value>server</param-value>
+ </context-param>
+ <filter>
+  <filter-name>JQueryResourceFilter</filter-name>
+  <filter-class>org.jquery4jsf.application.filter.JQueryResourceFilter</filter-class>
+ </filter>
+ <filter-mapping>
+  <filter-name>JQueryResourceFilter</filter-name>
+  <servlet-name>Faces Servlet</servlet-name>
+  <dispatcher>FORWARD</dispatcher>
+  <dispatcher>INCLUDE</dispatcher>
+  <dispatcher>REQUEST</dispatcher>
+  <dispatcher>ERROR</dispatcher>
+ </filter-mapping>
+ <listener>
+  <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
  </listener>
-  
+ <servlet>
+  <servlet-name>Faces Servlet</servlet-name>
+  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+  <load-on-startup>0</load-on-startup>
+ </servlet>
+ <servlet>
+  <servlet-name>Resource Servlet</servlet-name>
+  <servlet-class>org.jquery4jsf.resource.ResourceServlet</servlet-class>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>Resource Servlet</servlet-name>
+  <url-pattern>/jquery4jsf_resource/*</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>Faces Servlet</servlet-name>
+  <url-pattern>*.jsf</url-pattern>
+ </servlet-mapping>
+ <welcome-file-list>
+  <welcome-file>index.jsp</welcome-file>
+ </welcome-file-list>
+ <login-config>
+  <auth-method>BASIC</auth-method>
+ </login-config>
 </web-app>
-

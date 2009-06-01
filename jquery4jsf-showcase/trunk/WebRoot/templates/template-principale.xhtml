@@ -8,7 +8,7 @@
 		<f:loadBundle basename="org.jquery4jsf.showcase.ExResource" var="resource" />
 		<head>
 			<link type="text/css" rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/syntaxhighlighter.css" />
-			<title><ui:insert name="title">jQuery for JavaServer Faces showcase</ui:insert></title>
+			<title>jQuery4jsf - jQuery for JavaServer Faces <ui:insert name="title"></ui:insert></title>
 			<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 			<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/style.css" />
   			<!--[if IE 6]><link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/style.ie6.css" type="text/css" media="screen" /><![endif]-->
@@ -59,8 +59,10 @@
 									<div class="Post-body">
 										<div class="Post-inner">
 											<div class="PostContent">
+												<ui:include src="themeswitcherwidget.xhtml"></ui:include>
 												<!--  contenuto -->
 												<ui:insert name="content">...</ui:insert>
+												<ui:include src="source.xhtml"></ui:include>
 											</div>
 											<div class="cleared"></div>
 										</div>

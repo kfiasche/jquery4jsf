@@ -5,7 +5,7 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{resource.DRAGGABLE_TITLE_DELAY}" />
+		<h:outputText value=" - Draggable - #{resource.DRAGGABLE_TITLE_DELAY}" />
 	</ui:define>
 	<ui:define name="head">
 		<style type="text/css">
@@ -26,7 +26,8 @@
 		<p>
 			#{resource.DRAGGABLE_DESCR_DELAY}
 		</p>
-		<p>
+		<!-- START -->
+		<div>
 		<jq:draggable styleClass="draggable" zindex="-2" id="draggable"
 			distance="20">
 			<p>
@@ -39,10 +40,7 @@
 				Portami ingiro
 			</p>
 		</jq:draggable>
-		</p>
-		<br />
-		<h3>
-			Source
-		</h3>
+		</div>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

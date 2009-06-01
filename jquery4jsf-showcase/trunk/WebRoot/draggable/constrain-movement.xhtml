@@ -5,7 +5,7 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{resource.DRAGGABLE_TITLE_CONSTRAIN}" />
+		<h:outputText value=" - Draggable - #{resource.DRAGGABLE_TITLE_CONSTRAIN}" />
 	</ui:define>
 	<ui:define name="head">
 		<style type="text/css">
@@ -24,6 +24,7 @@
 		<p>
 			#{resource.DRAGGABLE_DESCR_CONSTRAIN}
 		</p>
+		<!-- START -->
 		<jq:draggable styleClass="draggable" id="draggable" axis="x" zindex="-2">
 			<p>Portami ingiro in orizzontale</p>
 		</jq:draggable>
@@ -48,9 +49,6 @@
 				</jq:paragraph>
 			</jq:div>
 		</jq:div>
-		<br />
-		<h3>
-			Source
-		</h3>
+		<!-- end -->
 	</ui:define>
 </ui:composition>

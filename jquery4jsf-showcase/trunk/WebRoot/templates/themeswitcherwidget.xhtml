@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf">
+	
+	<script type="text/javascript"
+ 		src="http://jqueryui.com/themeroller/themeswitchertool/">
+	</script>	
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready( function() {
+			$('#switcher').themeswitcher();
+		});
+	</script>
+	
+	<div id="switcher" style="float:right;"></div>
+</ui:composition>

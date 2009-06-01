@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - Resizable - #{resource.RESIZABLE_TITLE_DELAY}" />
+	</ui:define>
+	<ui:define name="head">
+	<style type="text/css">
+	.resizable { width: 150px; height: 150px; padding: 0.5em; }
+	.resizable h3 { text-align: center; margin: 0; }
+	</style>
+		
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Resizable - #{resource.RESIZABLE_TITLE_DELAY}
+		</h3>
+		<p>
+			#{resource.RESIZABLE_DESCR_DELAY}
+		</p>
+		<!-- START -->
+		<h3>Time delay (ms):</h3>	
+		<jq:panel header="Time"  styleClass="resizable">
+			<jq:resizable delay="1000"/>
+		</jq:panel>
+		<h3>Distance delay (px):</h3>
+		<jq:panel header="Distance" styleClass="resizable">
+			<jq:resizable distance="40"/>
+		</jq:panel>
+		<!-- END -->
+	</ui:define>
+</ui:composition>
