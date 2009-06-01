@@ -13,3 +13,6 @@ This product includes software developed by Igor Starikov  (http://idlesign.ya.r
 This product includes software developed by Stefan Petre (http://www.eyecon.ro)
 This product includes software developed by Maggie Costello Wachs (maggie@filamentgroup.com) and Scott Jehl (scott@filamentgroup.com)
 This product includes software developed by Leandro Vieira Pinho (http://leandrovieira.com/projects/jquery/lightbox/)
+This product includes software developed by Will Kelly (http://logicbox.net/jquery/simplyscroll/)
+This product includes software developed by Christian Bach (http://tablesorter.com/)
+This product includes software developed by Andrea Campolonghi (http://andreacfm.com/)

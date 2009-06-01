@@ -24,6 +24,7 @@ public class ResizableBaseRenderer extends JQueryBaseRenderer {
 	protected String encodeOptionComponent(StringBuffer options, Resizable resizable , FacesContext context) {
 		options.append(" {\n");
 		encodeOptionComponentByType(options, resizable.getAlsoResize(), "alsoResize", null);
+		encodeOptionComponentByType(options, resizable.isAnimate(), "animate", null);
 		encodeOptionComponentByType(options, resizable.getAnimateDuration(), "animateDuration", null);
 		encodeOptionComponentByType(options, resizable.getAnimateEasing(), "animateEasing", null);
 		encodeOptionComponentByType(options, resizable.getAspectRatio(), "aspectRatio", null);

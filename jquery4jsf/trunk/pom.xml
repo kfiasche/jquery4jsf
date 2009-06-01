@@ -4,7 +4,7 @@
 	<groupId>org.jquery4jsf</groupId>
 	<artifactId>jquery4jsf</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1C-SNAPSHOT</version>
+	<version>0.0.1RC</version>
 	<name>jQuery4jsf components library</name>
 	<url>http://www.jquery4jsf.org</url>
 
@@ -205,6 +205,7 @@
                     <exclude>**/.svn/**</exclude>
                     <exclude>**/_svn</exclude>
                     <exclude>_svn</exclude>
+                    <exclude>.svn</exclude>
                     <exclude>**/_svn/**</exclude>
                     <exclude>**/CVS/**</exclude>
                 </excludes>
@@ -216,6 +217,7 @@
                     <exclude>**/.svn/**</exclude>
                     <exclude>**/_svn</exclude>
                     <exclude>_svn</exclude>
+                    <exclude>.svn</exclude>
                     <exclude>**/CVS/**</exclude>
                     <exclude>**/_svn/**</exclude>
                 </excludes>
@@ -227,6 +229,7 @@
                     <exclude>**/.svn/**</exclude>
                     <exclude>**/_svn</exclude>
                     <exclude>_svn</exclude>
+                    <exclude>.svn</exclude>
                     <exclude>**/CVS/**</exclude>
                     <exclude>**/_svn/**</exclude>
                 </excludes>
@@ -238,6 +241,7 @@
                     <exclude>**/.svn/**</exclude>
                     <exclude>**/_svn</exclude>
                     <exclude>**/CVS/**</exclude>
+                    <exclude>.svn</exclude>
                     <exclude>_svn</exclude>
                     <exclude>**/_svn/**</exclude>
                 </excludes>

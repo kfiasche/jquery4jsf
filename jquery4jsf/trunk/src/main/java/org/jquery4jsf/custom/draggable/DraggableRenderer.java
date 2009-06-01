@@ -63,6 +63,9 @@ public class DraggableRenderer extends DraggableBaseRenderer {
         		clientId = draggable.getFor();
         	}
         }
+        else{
+        	clientId = draggable.getParent().getClientId(context);
+        }
         JSElement element = new JSElement(clientId);
         JSAttribute jsDraggable = new JSAttribute("draggable", false);
         StringBuffer sbOption = new StringBuffer();

@@ -21,5 +21,35 @@ import javax.faces.context.FacesContext;
 
 public class AccordionPanelBaseRenderer extends JQueryBaseRenderer {
 
-
+	protected String encodeOptionComponent(StringBuffer options, AccordionPanel accordionPanel , FacesContext context) {
+		options.append(" {\n");
+		encodeOptionComponentByType(options, accordionPanel.getActive(), "active", null);
+		encodeOptionComponentByType(options, accordionPanel.getAnimated(), "animated", null);
+		encodeOptionComponentByType(options, accordionPanel.isAutoHeight(), "autoHeight", "true");
+		encodeOptionComponentByType(options, accordionPanel.isClearStyle(), "clearStyle", null);
+		encodeOptionComponentByType(options, accordionPanel.isCollapsible(), "collapsible", null);
+		encodeOptionComponentByType(options, accordionPanel.getEvent(), "event", null);
+		encodeOptionComponentByType(options, accordionPanel.isFillSpace(), "fillSpace", null);
+		encodeOptionComponentByType(options, accordionPanel.getIconsHeader(), "header", null);
+		encodeOptionComponentByType(options, accordionPanel.getIconsHeaderSelected(), "headerSelected", null);
+		encodeOptionComponentByType(options, accordionPanel.isNavigation(), "navigation", null);
+		encodeOptionComponentByType(options, accordionPanel.getHeader(), "header", null);
+		encodeOptionComponentByType(options, accordionPanel.getNavigationFilter(), "navigationFilter", null);
+		encodeOptionComponentFunction(options, accordionPanel.getOnchange(), "onchange", "event,ui");
+		if (options.toString().endsWith(", \n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+		}
+		boolean noParams = false;
+		if (options.toString().endsWith(" {\n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+			noParams = true;
+		}
+		if (!noParams)
+		{
+			options.append(" }");
+		}
+		return options.toString();
+	}
 }

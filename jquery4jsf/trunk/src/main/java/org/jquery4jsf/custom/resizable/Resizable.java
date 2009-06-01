@@ -38,6 +38,7 @@ public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 	private String[] resources;
 	private String _for;
 	private String alsoResize;
+	private Boolean animate;
 	private String animateDuration;
 	private String animateEasing;
 	private String aspectRatio;
@@ -92,6 +93,17 @@ public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 	}
 	public void setAlsoResize(String alsoResize) {
 		this.alsoResize = alsoResize;
+	}
+
+	public boolean isAnimate() {
+		if(animate != null )
+			return animate.booleanValue();
+
+		Boolean oValue = (Boolean) getLocalOrValueBindingValue(animate, "animate");
+		return oValue != null ? oValue.booleanValue()  : false;
+	}
+	public void setAnimate(boolean animate) {
+		this.animate = new Boolean(animate);
 	}
 
 	public String getAnimateDuration() {
@@ -304,29 +316,30 @@ public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[22];
+		Object values[] = new Object[23];
 		values[0] = super.saveState(context);
 		values[1] = _for;
 		values[2] = alsoResize;
-		values[3] = animateDuration;
-		values[4] = animateEasing;
-		values[5] = aspectRatio;
-		values[6] = autoHide;
-		values[7] = cancel;
-		values[8] = containment;
-		values[9] = delay;
-		values[10] = distance;
-		values[11] = ghost;
-		values[12] = grid;
-		values[13] = handles;
-		values[14] = helper;
-		values[15] = maxHeight;
-		values[16] = maxWidth;
-		values[17] = minWidth;
-		values[18] = minHeight;
-		values[19] = onstart;
-		values[20] = onresize;
-		values[21] = onstop;
+		values[3] = animate;
+		values[4] = animateDuration;
+		values[5] = animateEasing;
+		values[6] = aspectRatio;
+		values[7] = autoHide;
+		values[8] = cancel;
+		values[9] = containment;
+		values[10] = delay;
+		values[11] = distance;
+		values[12] = ghost;
+		values[13] = grid;
+		values[14] = handles;
+		values[15] = helper;
+		values[16] = maxHeight;
+		values[17] = maxWidth;
+		values[18] = minWidth;
+		values[19] = minHeight;
+		values[20] = onstart;
+		values[21] = onresize;
+		values[22] = onstop;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -334,25 +347,26 @@ public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		super.restoreState(context, values[0]);
 		this._for = (String) values[1];
 		this.alsoResize = (String) values[2];
-		this.animateDuration = (String) values[3];
-		this.animateEasing = (String) values[4];
-		this.aspectRatio = (String) values[5];
-		this.autoHide = (Boolean) values[6];
-		this.cancel = (String) values[7];
-		this.containment = (String) values[8];
-		this.delay = (Integer) values[9];
-		this.distance = (Integer) values[10];
-		this.ghost = (Boolean) values[11];
-		this.grid = (String) values[12];
-		this.handles = (String) values[13];
-		this.helper = (String) values[14];
-		this.maxHeight = (Integer) values[15];
-		this.maxWidth = (Integer) values[16];
-		this.minWidth = (Integer) values[17];
-		this.minHeight = (Integer) values[18];
-		this.onstart = (String) values[19];
-		this.onresize = (String) values[20];
-		this.onstop = (String) values[21];
+		this.animate = (Boolean) values[3];
+		this.animateDuration = (String) values[4];
+		this.animateEasing = (String) values[5];
+		this.aspectRatio = (String) values[6];
+		this.autoHide = (Boolean) values[7];
+		this.cancel = (String) values[8];
+		this.containment = (String) values[9];
+		this.delay = (Integer) values[10];
+		this.distance = (Integer) values[11];
+		this.ghost = (Boolean) values[12];
+		this.grid = (String) values[13];
+		this.handles = (String) values[14];
+		this.helper = (String) values[15];
+		this.maxHeight = (Integer) values[16];
+		this.maxWidth = (Integer) values[17];
+		this.minWidth = (Integer) values[18];
+		this.minHeight = (Integer) values[19];
+		this.onstart = (String) values[20];
+		this.onresize = (String) values[21];
+		this.onstop = (String) values[22];
 	}
 
 	public String[] getResources() {

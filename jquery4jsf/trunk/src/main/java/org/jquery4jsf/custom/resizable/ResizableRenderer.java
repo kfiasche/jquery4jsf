@@ -55,6 +55,9 @@ public class ResizableRenderer extends ResizableBaseRenderer {
 		
 		if(resizable.getFor() != null) {
 			resizableComponentClientId = RendererUtilities.getClientIdForComponent(resizable.getFor(), context, resizable);
+			if (resizableComponentClientId == null){
+				resizableComponentClientId = resizable.getFor();
+			}
 		} else {
 			resizableComponentClientId = parentClientId;
 		}

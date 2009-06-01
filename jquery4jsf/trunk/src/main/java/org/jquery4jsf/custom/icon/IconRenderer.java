@@ -60,7 +60,10 @@ public class IconRenderer extends JQueryBaseRenderer {
 			String resource = list[i];
 			ResourceContext.getInstance().addResource(resource);
 		}
-		String styleClass = "ui-icon ui-icon-".concat(icon.getType());
+        if(icon.getType() == null)
+            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
+		
+        String styleClass = "ui-icon ui-icon-".concat(icon.getType());
 		if (icon.getStyleClass() != null){
 			styleClass = styleClass.concat(" ").concat(icon.getStyleClass());
 		}

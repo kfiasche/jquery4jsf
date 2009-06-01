@@ -54,8 +54,15 @@ public class DroppableRenderer extends DroppableBaseRenderer {
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
         String clientId = droppable.getClientId(context);
+        String parentClientId = droppable.getParent().getClientId(context);
         if (droppable.getFor() != null){
         	clientId = RendererUtilities.getJQueryIdComponent(droppable.getFor(), context, droppable);
+        	if (clientId == null){
+        		clientId = droppable.getFor();
+        	}
+        }
+        else{
+        	clientId = parentClientId;
         }
         JSElement element = new JSElement(clientId);
         JSAttribute jsDroppable = new JSAttribute("droppable", false);

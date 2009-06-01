@@ -23,6 +23,7 @@ public class ResizableTag extends UIComponentTagBase {
 
 	private String _for;
 	private String alsoResize;
+	private String animate;
 	private String animateDuration;
 	private String animateEasing;
 	private String aspectRatio;
@@ -47,6 +48,7 @@ public class ResizableTag extends UIComponentTagBase {
 		super.release();
 		this._for = null;
 		this.alsoResize = null;
+		this.animate = null;
 		this.animateDuration = null;
 		this.animateEasing = null;
 		this.aspectRatio = null;
@@ -80,6 +82,7 @@ public class ResizableTag extends UIComponentTagBase {
 
 		setStringProperty(getFacesContext(), component, "for", _for);
 		setStringProperty(getFacesContext(), component, "alsoResize", alsoResize);
+		setBooleanProperty(getFacesContext(), component, "animate", animate);
 		setStringProperty(getFacesContext(), component, "animateDuration", animateDuration);
 		setStringProperty(getFacesContext(), component, "animateEasing", animateEasing);
 		setStringProperty(getFacesContext(), component, "aspectRatio", aspectRatio);
@@ -115,6 +118,10 @@ public class ResizableTag extends UIComponentTagBase {
 
 	public void setAlsoResize(String value){
 		this.alsoResize = value;
+	}
+
+	public void setAnimate(String value){
+		this.animate = value;
 	}
 
 	public void setAnimateDuration(String value){

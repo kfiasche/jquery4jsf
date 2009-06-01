@@ -91,8 +91,9 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         if (button.getStyleClass() != null){
         	styleClass = styleClass.concat(button.getStyleClass());
         }
-        
-        button.getAttributes().put("styleClass", styleClass);
+        else{
+        	button.setStyleClass(styleClass);
+        }
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_STD_ATTR);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_INPUT_COMMAND_TAG_ATTR);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_JS_STD_ATTR);
@@ -155,7 +156,8 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 		String clientId = component.getClientId(context);
 		Map map = context.getExternalContext().getRequestParameterMap();
 		String s1 = (String)map.get(clientId.concat(":button"));
-		if(s1 == null)
+		String s2 = (String)map.get(clientId);
+		if(s1 == null && s2 == null)
 			return;
 		
 		String type = button.getType();

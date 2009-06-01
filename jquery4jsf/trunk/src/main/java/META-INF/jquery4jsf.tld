@@ -5188,6 +5188,12 @@
 			<description><![CDATA[Resize these elements synchronous when resizing.]]></description>
 		</attribute>
 		<attribute>
+			<name>animate</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Animates to the final size after resizing.]]></description>
+		</attribute>
+		<attribute>
 			<name>animateDuration</name>
 			<required>false</required>
 				<type>java.lang.String</type>
