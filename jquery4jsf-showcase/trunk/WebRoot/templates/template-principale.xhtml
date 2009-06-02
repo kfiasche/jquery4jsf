@@ -50,19 +50,23 @@
 						<!-- menu -->
 						<ui:include src="header.xhtml"/>
 						<div class="contentLayout">
-							<div class="sidebar1">
+							<div class="sidebar1" style="width: 200px;">
 								<!-- menu -->
 								<ui:include src="menu.xhtml"></ui:include>
 							</div>
-							<div class="content">
+							<div class="content" style="width: 691px;">
 								<div class="Post">
 									<div class="Post-body">
 										<div class="Post-inner">
 											<div class="PostContent">
-												<ui:include src="themeswitcherwidget.xhtml"></ui:include>
+												<ui:insert name="themeswitcherwidget">
+													<ui:include src="themeswitcherwidget.xhtml"></ui:include>
+												</ui:insert>
 												<!--  contenuto -->
 												<ui:insert name="content">...</ui:insert>
-												<ui:include src="source.xhtml"></ui:include>
+												<ui:insert name="source">
+													<ui:include src="source.xhtml"></ui:include>
+												</ui:insert>
 											</div>
 											<div class="cleared"></div>
 										</div>

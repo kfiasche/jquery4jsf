@@ -40,7 +40,7 @@
 			#{resource.DROPPABLE_DESCR_REVERT}
 		</p>
 		<!-- START -->
-		<jq:panel id="draggable" styleClass="draggable">
+		<jq:panel header="Draggable" id="draggable" styleClass="draggable">
 			<jq:draggable revert="valid"/>
 			<jq:paragraph>
 				I revert when I'm dropped
@@ -48,14 +48,14 @@
 
 		</jq:panel>
 
-		<jq:panel id="draggable2" styleClass="draggable">
+		<jq:panel header="Draggable" id="draggable2" styleClass="draggable">
 			<jq:draggable revert="invalid"/>
 			<jq:paragraph>
 				I revert when I'm not dropped
 			</jq:paragraph>
 		</jq:panel>
 
-		<jq:panel id="droppable" styleClass="droppable">
+		<jq:panel header="Droppable" id="droppable" styleClass="droppable">
 			<jq:droppable hoverClass="ui-state-hover" activeClass="ui-state-active"
 				ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
 			<jq:paragraph>

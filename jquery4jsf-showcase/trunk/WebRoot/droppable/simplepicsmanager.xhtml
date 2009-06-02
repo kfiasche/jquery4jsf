@@ -1,0 +1,190 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - Droppable - #{resource.DROPPABLE_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="head">
+<style type="text/css">
+#gallery { float: left; width: 65%; min-height: 12em; } * html #gallery { height: 12em; } /* IE6 */
+.gallery.custom-state-active { background: #eee; }
+.Post UL LI {background-image: none;}
+
+.gallery li { float: left; width: 96px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
+.gallery li h3 { margin: 0 0 0.4em; cursor: move; }
+.gallery li a { float: right; }
+.gallery li a.ui-icon-zoomin { float: left; }
+.gallery li img { width: 100%; cursor: move; }
+
+#trash { float: right; width: 32%; min-height: 18em; padding: 1%;} * html #trash { height: 18em; } /* IE6 */
+#trash h3 { line-height: 16px; margin: 0 0 0.4em; }
+#trash h3 .ui-icon { float: left; }
+#trash .gallery h3 { display: none; }
+
+</style>
+		<!-- START -->
+		<jq:outputScript charset="utf-8" type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/jquery4jsf_resource/ui/ui.resizable.js" />
+		<jq:outputScript charset="utf-8" type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/jquery4jsf_resource/dialog/ui.dialog.js" />
+
+		<jq:outputScript type="text/javascript">
+	//<![CDATA[
+		$(function() {
+				// there's the gallery and the trash
+				var $gallery = $('#gallery'), $trash = $('#trash');
+
+				// image deletion function
+				var recycle_icon = '<a href="link/to/recycle/script/when/we/have/js/off" title="Recycle this image" class="ui-icon ui-icon-refresh">Recycle image</a>';
+				function deleteImage($item) {
+					$item.fadeOut(function() {
+						var $list = $('ul',$trash).length ? $('ul',$trash) : $('<ul class="gallery ui-helper-reset"/>').appendTo($trash);
+
+						$item.find('a.ui-icon-trash').remove();
+						$item.append(recycle_icon).appendTo($list).fadeIn(function() {
+							$item.animate({ width: '48px' }).find('img').animate({ height: '36px' });
+						});
+					});
+				}
+
+				// image recycle function
+				var trash_icon = '<a href="link/to/trash/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-trash">Delete image</a>';
+				function recycleImage($item) {
+					$item.fadeOut(function() {
+						$item.find('a.ui-icon-refresh').remove();
+						$item.css('width','96px').append(trash_icon).find('img').css('height','72px').end().appendTo($gallery).fadeIn();
+					});
+				}
+
+				// image preview function, demonstrating the ui.dialog used as a modal window
+				function viewLargerImage($link) {
+					var src = $link.attr('href');
+					var title = $link.siblings('img').attr('alt');
+					var $modal = $('img[src$="'+src+'"]');
+
+					if ($modal.length) {
+						$modal.dialog('open')
+					} else {
+						var img = $('<img alt="'+title+'" width="384" height="288" style="display:none;padding: 8px;" />')
+							.attr('src',src).appendTo('body');
+						setTimeout(function() {
+							img.dialog({
+									title: title,
+									width: 400,
+									modal: true
+								});
+						}, 1);
+					}
+				}
+				
+			// resolve the icons behavior with event delegation
+			$('ul.gallery > li').click(function(ev) {
+				var $item = $(this);
+				var $target = $(ev.target);
+	
+				if ($target.is('a.ui-icon-trash')) {
+					deleteImage($item);
+				} else if ($target.is('a.ui-icon-zoomin')) {
+					viewLargerImage($target);
+				} else if ($target.is('a.ui-icon-refresh')) {
+					recycleImage($item);
+				}
+				return false;
+			});
+				
+			});
+	//]]>
+		</jq:outputScript>
+		<!-- END -->
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Droppable - #{resource.DROPPABLE_TITLE_SIMPLEPICSMANAGER}
+		</h3>
+		<p>
+			#{resource.DROPPABLE_DESCR_SIMPLEPICSMANAGER}
+		</p>
+		<!-- START -->
+		<jq:div id="containement">
+			<jq:outputHtmlTag id="gallery" tagName="ul"
+				styleClass="gallery ui-helper-reset ui-helper-clearfix">
+				<jq:droppable accept="#trash li" activeClass="custom-state-active"
+					ondrop="recycleImage(ui.draggable);" />
+				<jq:outputHtmlTag id="li1" tagName="li"
+					styleClass="ui-widget-content ui-corner-tr">
+					<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
+						cursor="move" containment="#containement" />
+					<jq:panel header="High Tatras" styleClass="panel">
+						<h:graphicImage value="images/high_tatras_min.jpg"
+							alt="The peaks of High Tatras" width="96" height="72" />
+						<h:outputLink value="images/high_tatras4.jpg"
+							title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
+						<h:outputLink value="link/to/trash/script/when/we/have/js/off"
+							title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
+					</jq:panel>
+
+				</jq:outputHtmlTag>
+				<jq:outputHtmlTag id="li2" tagName="li"
+					styleClass="ui-widget-content ui-corner-tr">
+					<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
+						cursor="move" containment="#containement" />
+					<jq:panel header="High Tatras 2" styleClass="panel">
+						<h:graphicImage value="images/high_tatras2_min.jpg"
+							alt="The chalet at the Green mountain lake" width="96"
+							height="72" />
+						<h:outputLink value="images/high_tatras4.jpg"
+							title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
+						<h:outputLink value="link/to/trash/script/when/we/have/js/off"
+							title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
+					</jq:panel>
+
+				</jq:outputHtmlTag>
+				<jq:outputHtmlTag id="li3" tagName="li"
+					styleClass="ui-widget-content ui-corner-tr">
+					<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
+						cursor="move" containment="#containement" />
+					<jq:panel header="High Tatras 3" styleClass="panel">
+						<h:graphicImage value="images/high_tatras3_min.jpg"
+							alt="Planning the ascent" width="96" height="72" />
+						<h:outputLink value="images/high_tatras4.jpg"
+							title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
+						<h:outputLink value="link/to/trash/script/when/we/have/js/off"
+							title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
+					</jq:panel>
+
+				</jq:outputHtmlTag>
+
+				<jq:outputHtmlTag id="li4" tagName="li"
+					styleClass="ui-widget-content ui-corner-tr">
+					<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
+						cursor="move" containment="#containement" />
+					<jq:panel header="High Tatras 4" styleClass="panel">
+						<h:graphicImage value="images/high_tatras4_min.jpg"
+							alt="On top of Kozi kopka" width="96" height="72" />
+						<h:outputLink value="images/high_tatras4.jpg"
+							title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
+						<h:outputLink value="link/to/trash/script/when/we/have/js/off"
+							title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
+					</jq:panel>
+				</jq:outputHtmlTag>
+			</jq:outputHtmlTag>
+
+			<jq:div styleClass="cleared" />
+
+			<jq:panel id="trash" header="Trash" styleClass="panelTrash">
+				<jq:droppable accept="#gallery > li"
+					activeClass="ui-state-highlight"
+					ondrop="deleteImage(ui.draggable);" />
+				<f:facet name="header">
+					<jq:icon type="trash" />
+				</f:facet>
+			</jq:panel>
+
+		</jq:div>
+		<!-- END -->
+	</ui:define>
+</ui:composition>

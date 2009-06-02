@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - Barcode - #{resource.BARCODE_TITLE_TYPE}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Barcode - #{resource.BARCODE_TITLE_TYPE}
+		</h3>
+		<p>
+			#{resource.BARCODE_DESCR_TYPE}
+		</p>
+		<!-- START -->
+		<jq:outputHtmlTag tagName="fieldset">
+			<jq:outputHtmlTag tagName="legend">
+				<h:outputText value="ean8" />
+			</jq:outputHtmlTag>
+			<jq:outputBarcode type="ean8" value="12345678"/>
+		</jq:outputHtmlTag>
+		<br />
+		<jq:outputHtmlTag tagName="fieldset">
+			<jq:outputHtmlTag tagName="legend">
+				<h:outputText value="ean13" />
+			</jq:outputHtmlTag>
+			<jq:outputBarcode type="ean13" value="1234567890128"/>
+		</jq:outputHtmlTag>
+		<br />
+		<jq:outputHtmlTag tagName="fieldset">
+			<jq:outputHtmlTag tagName="legend">
+				<h:outputText value="code11" />
+			</jq:outputHtmlTag>
+			<jq:outputBarcode type="code11" value="1234567890128"/>
+		</jq:outputHtmlTag>
+		<br />
+		<jq:outputHtmlTag tagName="fieldset">
+			<jq:outputHtmlTag tagName="legend">
+				<h:outputText value="code39" />
+			</jq:outputHtmlTag>
+			<jq:outputBarcode type="code39" value="1234567890128"/>
+		</jq:outputHtmlTag>
+		<br />
+		<jq:outputHtmlTag tagName="fieldset">
+			<jq:outputHtmlTag tagName="legend">
+				<h:outputText value="code128" />
+			</jq:outputHtmlTag>
+			<jq:outputBarcode type="code128" value="1234567890128"/>
+		</jq:outputHtmlTag>
+		<br />
+		<jq:outputHtmlTag tagName="fieldset">
+			<jq:outputHtmlTag tagName="legend">
+				<h:outputText value="codabar" />
+			</jq:outputHtmlTag>
+			<jq:outputBarcode type="codabar" value="1234567890128"/>
+		</jq:outputHtmlTag>
+		<br />
+		<jq:outputHtmlTag tagName="fieldset">
+			<jq:outputHtmlTag tagName="legend">
+				<h:outputText value="std25" />
+			</jq:outputHtmlTag>
+			<jq:outputBarcode type="std25" value="1234567890128"/>
+		</jq:outputHtmlTag>
+		<br />
+		<jq:outputHtmlTag tagName="fieldset">
+			<jq:outputHtmlTag tagName="legend">
+				<h:outputText value="int25" />
+			</jq:outputHtmlTag>
+			<jq:outputBarcode type="int25" value="1234567890128"/>
+		</jq:outputHtmlTag>
+				<br />
+		<jq:outputHtmlTag tagName="fieldset">
+			<jq:outputHtmlTag tagName="legend">
+				<h:outputText value="code93" />
+			</jq:outputHtmlTag>
+			<jq:outputBarcode type="code93" value="1234567890128"/>
+		</jq:outputHtmlTag>
+						<br />
+		<jq:outputHtmlTag tagName="fieldset">
+			<jq:outputHtmlTag tagName="legend">
+				<h:outputText value="msi" />
+			</jq:outputHtmlTag>
+			<jq:outputBarcode type="msi" value="1234567890128"/>
+		</jq:outputHtmlTag>
+		<!-- END -->
+	</ui:define>
+</ui:composition>

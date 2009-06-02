@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - Slider - #{resource.SLIDER_TITLE_SNAP}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Slider - #{resource.SLIDER_TITLE_SNAP}
+		</h3>
+		<p>
+			#{resource.SLIDER_DESCR_SNAP}
+		</p>
+		<!-- START -->
+		<h:outputLabel id="label" value="Donation: " for="amount" />
+		<h:inputText value="$100" id="amount" style="border:0; font-weight:bold;" />
+		<br />
+		<jq:slider sliderValue="100" min="0" max="500"  step="50" onslide="$('#amount').val('$' + ui.value);" />
+		<!-- end -->
+	</ui:define>
+</ui:composition>
