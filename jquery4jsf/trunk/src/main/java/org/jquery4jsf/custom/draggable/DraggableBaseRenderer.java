@@ -50,9 +50,9 @@ public class DraggableBaseRenderer extends JQueryBaseRenderer {
 		encodeOptionComponentByType(options, draggable.getSnapTolerance(), "snapTolerance", null);
 		encodeOptionComponentByType(options, draggable.getStack(), "stack", null);
 		encodeOptionComponentByType(options, draggable.getZindex(), "zIndex", null);
-		encodeOptionComponentByType(options, draggable.getOnstart(), "onstart", null);
-		encodeOptionComponentByType(options, draggable.getOndrag(), "ondrag", null);
-		encodeOptionComponentByType(options, draggable.getOnstop(), "onstop", null);
+		encodeOptionComponentFunction(options, draggable.getOnstart(), "onstart", "event,ui");
+		encodeOptionComponentFunction(options, draggable.getOndrag(), "ondrag", "event,ui");
+		encodeOptionComponentFunction(options, draggable.getOnstop(), "onstop", "event,ui");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

@@ -148,6 +148,11 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.OutputBarcode</component-type>
+		<component-class>org.jquery4jsf.custom.outputbarcode.OutputBarcode</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.OutputBody</component-type>
 		<component-class>org.jquery4jsf.custom.outputbody.OutputBody</component-class>
 	</component>
@@ -397,6 +402,11 @@
 			<component-family>org.jquery4jsf.Menu</component-family>
 			<renderer-type>org.jquery4jsf.HtmlMenuBarRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.menu.HtmlMenuBarRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.OutputBarcode</component-family>
+			<renderer-type>org.jquery4jsf.OutputBarcodeRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.outputbarcode.OutputBarcodeRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.OutputBody</component-family>

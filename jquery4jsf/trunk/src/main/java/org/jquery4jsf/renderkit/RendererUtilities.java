@@ -19,7 +19,6 @@ package org.jquery4jsf.renderkit;
 import java.io.IOException;
 import java.util.Iterator;
 
-import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.component.UIViewRoot;
@@ -28,6 +27,7 @@ import javax.faces.context.ResponseWriter;
 
 import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.custom.JQueryHtmlObject;
+import org.jquery4jsf.custom.UIInteractions;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.resource.ResourceCostants;
 import org.jquery4jsf.utilities.TextUtilities;
@@ -373,4 +373,32 @@ public class RendererUtilities {
 		return contextPath + ResourceCostants.RESOURCE_PATTERN + resource;
 	}
 	
+	public static String encodeIdInteractions(UIComponent component, FacesContext context){
+		if (!(component instanceof UIInteractions)){
+			throw new IllegalArgumentException();	
+		}
+		UIInteractions interactions = (UIInteractions)component;
+		String clientId = "";
+		UIComponent parent = component.getParent();
+        if (!TextUtilities.isStringVuota(interactions.getFor())){
+        	clientId = getJQueryIdComponent(interactions.getFor(), context, component);
+        	if (clientId == null){
+        		// selector ????
+        		clientId = interactions.getFor();
+        	}
+        }
+        else if (!isUniqueId(component)
+        			&& !(parent instanceof UIForm || parent instanceof UIViewRoot)){
+        		clientId = parent.getClientId(context);
+        }
+        else{
+        	clientId = component.getClientId(context);
+        }
+        return clientId;
+	}
+	
+	public static boolean isUniqueId(UIComponent component){
+		return (component.getId() != null && !component.getId().startsWith(
+				UIViewRoot.UNIQUE_ID_PREFIX));
+	}
 }

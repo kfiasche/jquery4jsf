@@ -20,6 +20,7 @@ import java.lang.String;
 
 import org.jquery4jsf.custom.outputhtmltag.OutputHtmlTag;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
+import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
@@ -68,8 +69,14 @@ public class OutputHtmlTagRenderer extends JQueryBaseRenderer {
 	        writeIdAttributeIfNecessary(context, responseWriter, outputHtml);
 	        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_STD_ATTR);
 	        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_JS_STD_ATTR);
-	        
+	        RendererUtilities.renderChildren(context, component);
 	}
-	
+
+	public void encodeChildren(FacesContext arg0, UIComponent arg1)throws IOException {
+	}
+
+	public boolean getRendersChildren() {
+		return true;
+	}
 	
 }

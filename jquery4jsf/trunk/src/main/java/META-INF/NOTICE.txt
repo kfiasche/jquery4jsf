@@ -16,3 +16,5 @@ This product includes software developed by Leandro Vieira Pinho (http://leandro
 This product includes software developed by Will Kelly (http://logicbox.net/jquery/simplyscroll/)
 This product includes software developed by Christian Bach (http://tablesorter.com/)
 This product includes software developed by Andrea Campolonghi (http://andreacfm.com/)
+This product includes software developed by DEMONTE Jean-Baptiste (http://barcode-coder.com/en/)
+This product includes software developed by Keith Wood (http://keith-wood.name/bookmark.html)

@@ -195,6 +195,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>outputBarcode</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.OutputBarcode</component-type>
+			<renderer-type>org.jquery4jsf.OutputBarcodeRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>outputBody</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.OutputBody</component-type>

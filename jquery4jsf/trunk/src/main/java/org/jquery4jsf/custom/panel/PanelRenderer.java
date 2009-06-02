@@ -23,6 +23,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
+import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
@@ -56,8 +57,11 @@ public class PanelRenderer extends JQueryBaseRenderer {
 			styleClass = styleClass.concat(" ").concat(panel.getContentClass());
 		}
 		responseWriter.writeAttribute("class", styleClass, null);
+		
 		if(panel.getStyle() != null)
 			responseWriter.writeAttribute("style", panel.getStyle(), null);
+		
+		UIComponent header = panel.getFacet("header");
 		
 		responseWriter.startElement(HTML.TAG_H3, panel);
 		String styleClassHeader = "ui-widget-header";
@@ -65,8 +69,15 @@ public class PanelRenderer extends JQueryBaseRenderer {
 			styleClassHeader = styleClassHeader.concat(" ").concat(panel.getHeaderClass());
 		}
 		responseWriter.writeAttribute("class", styleClassHeader, null);
-		responseWriter.writeText(panel.getHeader(), "header");
+		if (header != null){
+			RendererUtilities.renderChild(context, header);
+			responseWriter.writeText(panel.getHeader(), "header");
+		}
+		else{
+			responseWriter.writeText(panel.getHeader(), "header");
+		}
 		responseWriter.endElement(HTML.TAG_H3);
+		
 	}
 
 	public void encodeEnd(FacesContext context,UIComponent component) throws IOException {

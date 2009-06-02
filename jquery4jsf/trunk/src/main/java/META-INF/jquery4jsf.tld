@@ -4020,6 +4020,76 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>outputBarcode</name>
+		<tag-class>org.jquery4jsf.custom.outputbarcode.OutputBarcodeTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+				<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>barWidth</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[width of a bar]]></description>
+		</attribute>
+		<attribute>
+			<name>barHeight</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[container height]]></description>
+		</attribute>
+		<attribute>
+			<name>showHRI</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[display text (HRI : Human readable Interpretation)]]></description>
+		</attribute>
+		<attribute>
+			<name>bgColor</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[background color]]></description>
+		</attribute>
+		<attribute>
+			<name>color</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[barcode color]]></description>
+		</attribute>
+		<attribute>
+			<name>fontSize</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[font size of the HRI]]></description>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[type (string) * codabar * code11 (code 11) * code39 (code 39) * code93 (code 93) * code128 (code 128) * ean8 (ean 8) * ean13 (ean 13) * std25 (standard 2 of 5 - industrial 2 of 5) * int25 (interleaved 2 of 5) * msi]]></description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+				<type>java.lang.Object</type>
+			<description><![CDATA[Value barcode (dependent on the type of barcode) If barcode type include it, the presence of the checksum is not mandatory, it ise automatically recalculated]]></description>
+		</attribute>
+	</tag>
+	<tag>
 		<name>outputBody</name>
 		<tag-class>org.jquery4jsf.custom.outputbody.OutputBodyTag</tag-class>
 		<body-content>JSP</body-content>

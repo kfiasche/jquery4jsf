@@ -26,26 +26,16 @@ import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
+import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
-public class SliderRenderer extends JQueryBaseRenderer implements AjaxBaseRenderer {
+public class SliderRenderer extends SliderBaseRenderer {
 
 	public static final String RENDERER_TYPE = "org.jquery4jsf.SliderRenderer";
-	
-	
-	public void encodePartially(FacesContext context, UIComponent component)
-			throws IOException {
-	}
 
-	public String getActionURL(FacesContext context) {
-		return RendererUtilities.getActionURL(context);
-	}
-
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
@@ -79,42 +69,9 @@ public class SliderRenderer extends JQueryBaseRenderer implements AjaxBaseRender
         
         responseWriter.startElement(HTML.TAG_DIV, component);
         responseWriter.writeAttribute("id", component.getClientId(context), "id");
+        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, slider, HTML.HTML_STD_ATTR);
         responseWriter.endElement(HTML.TAG_DIV);
 	}
-
-	private String encodeOptionComponent(StringBuffer options, Slider slider, FacesContext context) {
-		options.append(" {\n");
 		
-		encodeOptionComponentByType(options, slider.isAnimate(), "animate", null);
-		encodeOptionComponentByType(options, slider.getMax(), "max", null);
-		encodeOptionComponentByType(options, slider.getMin(), "min", null);
-		encodeOptionComponentByType(options, slider.getOrientation(), "orientation", null);
-		encodeOptionComponentByType(options, slider.getRange(), "range", null);
-		encodeOptionComponentByType(options, slider.getStep(), "step", null);
-		encodeOptionComponentByType(options, slider.getValue(), "value", null);
-		encodeOptionComponentArrayByType(options, slider.getValues(), "values");
-		
-		if (options.toString().endsWith(", \n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-		}
-		boolean noParams = false;
-		if (options.toString().endsWith(" {\n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-			noParams = true;
-		}
-		if (!noParams)
-		{
-			options.append(" }");
-		}
-		return options.toString();
-	}
-
-	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-	}
-	
-	
-	
 
 }

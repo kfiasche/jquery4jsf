@@ -31,10 +31,10 @@ public class SliderBaseRenderer extends JQueryBaseRenderer {
 		encodeOptionComponentByType(options, slider.getStep(), "step", "1");
 		encodeOptionComponentByType(options, slider.getSliderValue(), "value", "0");
 		encodeOptionComponentByType(options, slider.getValues(), "values", null);
-		encodeOptionComponentByType(options, slider.getOnstart(), "onstart", null);
-		encodeOptionComponentByType(options, slider.getOnslide(), "onslide", null);
-		encodeOptionComponentByType(options, slider.getOnchange(), "onchange", null);
-		encodeOptionComponentByType(options, slider.getOnstop(), "onstop", null);
+		encodeOptionComponentFunction(options, slider.getOnstart(), "onstart", "event,ui");
+		encodeOptionComponentFunction(options, slider.getOnslide(), "onslide", "event,ui");
+		encodeOptionComponentFunction(options, slider.getOnchange(), "onchange", "event,ui");
+		encodeOptionComponentFunction(options, slider.getOnstop(), "onstop", "event,ui");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

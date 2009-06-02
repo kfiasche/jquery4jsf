@@ -41,9 +41,9 @@ public class ResizableBaseRenderer extends JQueryBaseRenderer {
 		encodeOptionComponentByType(options, resizable.getMaxWidth(), "maxWidth", null);
 		encodeOptionComponentByType(options, resizable.getMinWidth(), "minWidth", null);
 		encodeOptionComponentByType(options, resizable.getMinHeight(), "minHeight", null);
-		encodeOptionComponentByType(options, resizable.getOnstart(), "onstart", null);
-		encodeOptionComponentByType(options, resizable.getOnresize(), "onresize", null);
-		encodeOptionComponentByType(options, resizable.getOnstop(), "onstop", null);
+		encodeOptionComponentFunction(options, resizable.getOnstart(), "onstart", "event,ui");
+		encodeOptionComponentFunction(options, resizable.getOnresize(), "onresize", "event,ui");
+		encodeOptionComponentFunction(options, resizable.getOnstop(), "onstop", "event,ui");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

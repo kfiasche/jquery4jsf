@@ -22,11 +22,13 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.custom.draggable.Draggable;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
+import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 public class ResizableRenderer extends ResizableBaseRenderer {
@@ -50,22 +52,12 @@ public class ResizableRenderer extends ResizableBaseRenderer {
 			ResourceContext.getInstance().addResource(resource);
 		}
         
-		String parentClientId = resizable.getParent().getClientId(context);
-		String resizableComponentClientId = null;
-		
-		if(resizable.getFor() != null) {
-			resizableComponentClientId = RendererUtilities.getClientIdForComponent(resizable.getFor(), context, resizable);
-			if (resizableComponentClientId == null){
-				resizableComponentClientId = resizable.getFor();
-			}
-		} else {
-			resizableComponentClientId = parentClientId;
-		}
+        String clientId = RendererUtilities.encodeIdInteractions(component, context);
         
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(resizableComponentClientId);
+        JSElement element = new JSElement(clientId);
         JSAttribute jsResizable = new JSAttribute("resizable", false);
         StringBuffer sbOption = new StringBuffer();
         jsResizable.addValue(encodeOptionComponent(sbOption, resizable, context));
@@ -76,12 +68,40 @@ public class ResizableRenderer extends ResizableBaseRenderer {
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
         RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        
+        if (RendererUtilities.isUniqueId(component)){
+        	encodeStartDivWrapper(context, resizable, clientId);
+        }
 	}
 
+	private void encodeStartDivWrapper(FacesContext context, Resizable resizable, String clientId) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+		responseWriter.startElement(HTML.TAG_DIV, resizable);
+    	responseWriter.writeAttribute("id", clientId, "id");
+    	String styleClass = " ui-widget-content";
+    	if (resizable.getStyleClass() != null)
+    	{
+    		styleClass = resizable.getStyleClass().concat(styleClass);
+    	}
+    	responseWriter.writeAttribute("class", styleClass , "styleClass");
+    	if (resizable.getStyle() != null){
+    		responseWriter.writeAttribute("style", resizable.getStyle() , "style");
+    	}
+	}
+	
+	private void encodeEndDivWrapper(FacesContext context) throws IOException {
+        ResponseWriter responseWriter = context.getResponseWriter();
+        responseWriter.endElement(HTML.TAG_DIV);
+	}
+	
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 	    if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
+        
+        if (RendererUtilities.isUniqueId(component)){
+        	encodeEndDivWrapper(context);
+        }
 	}
 }

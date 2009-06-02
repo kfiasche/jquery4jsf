@@ -19,6 +19,8 @@ package org.jquery4jsf.custom.draggable;
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -55,17 +57,8 @@ public class DraggableRenderer extends DraggableBaseRenderer {
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
-        String clientId = draggable.getClientId(context);
-        if (draggable.getFor() != null){
-        	clientId = RendererUtilities.getJQueryIdComponent(draggable.getFor(), context, draggable);
-        	if (clientId == null){
-        		// selector ????
-        		clientId = draggable.getFor();
-        	}
-        }
-        else{
-        	clientId = draggable.getParent().getClientId(context);
-        }
+        String clientId = RendererUtilities.encodeIdInteractions(component, context);
+        
         JSElement element = new JSElement(clientId);
         JSAttribute jsDraggable = new JSAttribute("draggable", false);
         StringBuffer sbOption = new StringBuffer();
@@ -77,34 +70,40 @@ public class DraggableRenderer extends DraggableBaseRenderer {
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
         RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
-        if (draggable.getFor() == null){
-        	responseWriter.startElement(HTML.TAG_DIV, draggable);
-        	writeIdAttributeIfNecessary(context, responseWriter, component);
-        	String styleClass = " ui-widget-content";
-        	if (draggable.getStyleClass() != null)
-        	{
-        		styleClass = draggable.getStyleClass().concat(styleClass);
-        	}
-        	responseWriter.writeAttribute("class", styleClass , "styleClass");
-        	if (draggable.getStyle() != null){
-        		responseWriter.writeAttribute("style", draggable.getStyle() , "style");
-        	}
+        
+        if (RendererUtilities.isUniqueId(component)){
+        	encodeStartDivWrapper(context, draggable, clientId);
         }
 	}
 
+	private void encodeStartDivWrapper(FacesContext context, Draggable draggable, String clientId) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+		responseWriter.startElement(HTML.TAG_DIV, draggable);
+    	responseWriter.writeAttribute("id", clientId, "id");
+    	String styleClass = " ui-widget-content";
+    	if (draggable.getStyleClass() != null)
+    	{
+    		styleClass = draggable.getStyleClass().concat(styleClass);
+    	}
+    	responseWriter.writeAttribute("class", styleClass , "styleClass");
+    	if (draggable.getStyle() != null){
+    		responseWriter.writeAttribute("style", draggable.getStyle() , "style");
+    	}
+	}
+	
+	private void encodeEndDivWrapper(FacesContext context) throws IOException{
+        ResponseWriter responseWriter = context.getResponseWriter();
+        responseWriter.endElement(HTML.TAG_DIV);
+	}
+	
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 	    if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
         
-        Draggable draggable = null;
-        if(component instanceof Draggable)
-            draggable = (Draggable)component;
-        
-        if (draggable.getFor() == null){
-        	ResponseWriter responseWriter = context.getResponseWriter();
-        	responseWriter.endElement(HTML.TAG_DIV);
+        if (RendererUtilities.isUniqueId(component)){
+        	encodeEndDivWrapper(context);
         }
 	}
 	

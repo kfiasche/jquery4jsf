@@ -19,9 +19,12 @@ package org.jquery4jsf.custom.droppable;
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.custom.draggable.Draggable;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -53,17 +56,9 @@ public class DroppableRenderer extends DroppableBaseRenderer {
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
-        String clientId = droppable.getClientId(context);
-        String parentClientId = droppable.getParent().getClientId(context);
-        if (droppable.getFor() != null){
-        	clientId = RendererUtilities.getJQueryIdComponent(droppable.getFor(), context, droppable);
-        	if (clientId == null){
-        		clientId = droppable.getFor();
-        	}
-        }
-        else{
-        	clientId = parentClientId;
-        }
+        
+        String clientId = RendererUtilities.encodeIdInteractions(component, context);
+        
         JSElement element = new JSElement(clientId);
         JSAttribute jsDroppable = new JSAttribute("droppable", false);
         StringBuffer sbOption = new StringBuffer();
@@ -75,11 +70,30 @@ public class DroppableRenderer extends DroppableBaseRenderer {
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
         RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
-        if (droppable.getFor() == null){
-        	responseWriter.startElement(HTML.TAG_DIV, droppable);
-        	writeIdAttributeIfNecessary(context, responseWriter, component);
-        	responseWriter.writeAttribute("class", "ui-widget-header" , null);
+        
+        if (RendererUtilities.isUniqueId(component)){
+        	encodeStartDivWrapper(context, droppable, clientId);
         }
+	}
+	
+	private void encodeStartDivWrapper(FacesContext context, Droppable draggable, String clientId) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+		responseWriter.startElement(HTML.TAG_DIV, draggable);
+    	responseWriter.writeAttribute("id", clientId, "id");
+    	String styleClass = " ui-widget-content";
+    	if (draggable.getStyleClass() != null)
+    	{
+    		styleClass = draggable.getStyleClass().concat(styleClass);
+    	}
+    	responseWriter.writeAttribute("class", styleClass , "styleClass");
+    	if (draggable.getStyle() != null){
+    		responseWriter.writeAttribute("style", draggable.getStyle() , "style");
+    	}
+	}
+	
+	private void encodeEndDivWrapper(FacesContext context) throws IOException{
+        ResponseWriter responseWriter = context.getResponseWriter();
+        responseWriter.endElement(HTML.TAG_DIV);
 	}
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
@@ -88,13 +102,8 @@ public class DroppableRenderer extends DroppableBaseRenderer {
         if(!component.isRendered())
             return;
         
-        Droppable droppable = null;
-        if(component instanceof Droppable)
-            droppable = (Droppable)component;
-        
-        if (droppable.getFor() == null){
-        	ResponseWriter responseWriter = context.getResponseWriter();
-        	responseWriter.endElement(HTML.TAG_DIV);
+        if (RendererUtilities.isUniqueId(component)){
+        	encodeEndDivWrapper(context);
         }
 	}
 	

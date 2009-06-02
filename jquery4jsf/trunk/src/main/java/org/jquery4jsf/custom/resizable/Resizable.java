@@ -20,6 +20,7 @@ import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
+import org.jquery4jsf.custom.UIInteractions;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
@@ -28,7 +29,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent,UIInteractions {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlResizable";

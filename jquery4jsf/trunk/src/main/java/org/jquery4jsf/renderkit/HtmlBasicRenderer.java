@@ -21,31 +21,34 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
 public class HtmlBasicRenderer extends Renderer {
-	
-	protected String writeIdAttributeIfNecessary(FacesContext context ,ResponseWriter responseWriter, UIComponent component) {
-		return RendererUtilities.writeIdAttributeIfNecessary(context, responseWriter, component);
+
+	protected String writeIdAttributeIfNecessary(FacesContext context,
+			ResponseWriter responseWriter, UIComponent component) {
+		return RendererUtilities.writeIdAttributeIfNecessary(context,
+				responseWriter, component);
 	}
-	
+
 	protected Object getValue(UIComponent component) {
 		throw new UnsupportedOperationException();
 	}
-	
-	protected void encodeRecursive(FacesContext context, UIComponent component) throws IOException {
+
+	protected void encodeRecursive(FacesContext context, UIComponent component)
+			throws IOException {
 		RendererUtilities.renderChildren(context, component);
 	}
-	
-	protected Iterator getChildren(UIComponent component){
-		 int childCount = component.getChildCount();
-         if (childCount > 0) {
-                 return component.getChildren().iterator();
-         }
-         else
-        	 return null;
+
+	protected Iterator getChildren(UIComponent component) {
+		int childCount = component.getChildCount();
+		if (childCount > 0) {
+			return component.getChildren().iterator();
+		} else
+			return null;
 	}
 
 	protected UIComponent getFacet(UIComponent component, String name) {
@@ -60,10 +63,11 @@ public class HtmlBasicRenderer extends Renderer {
 		return facet;
 	}
 
-	protected int getFacetCount(UIComponent component){
+	protected int getFacetCount(UIComponent component) {
 		Map facets = component.getFacets();
-		if (facets != null) return facets.size();
+		if (facets != null)
+			return facets.size();
 		return -1;
 	}
-	
+
 }

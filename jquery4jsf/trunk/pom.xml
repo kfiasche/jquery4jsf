@@ -4,7 +4,7 @@
 	<groupId>org.jquery4jsf</groupId>
 	<artifactId>jquery4jsf</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1RC</version>
+	<version>0.0.1C-SNAPSHOT</version>
 	<name>jQuery4jsf components library</name>
 	<url>http://www.jquery4jsf.org</url>
 
@@ -342,22 +342,22 @@
 		</plugins>
 	</reporting>
 
-	<distributionManagement>
+	<distributionManagement><!--
 
 		<repository>
 			<id>googlecode.svn.jquery4jsf</id>
 			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-repository/</url>
 		</repository>
-		<snapshotRepository>
+		--><snapshotRepository>
 			<id>googlecode.svn.jquery4jsf</id>
 			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-snapshot-repository/</url>
 			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
 
-		<!-- <repository>
+		 <repository>
 			<id>ftp-repository</id>
 			<url>ftp://www.jquery4jsf.org/repository</url>
-		</repository> -->
+		</repository>
 	</distributionManagement>
 
 </project>
