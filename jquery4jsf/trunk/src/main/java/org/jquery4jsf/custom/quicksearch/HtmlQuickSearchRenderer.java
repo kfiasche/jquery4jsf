@@ -54,6 +54,9 @@ public class HtmlQuickSearchRenderer extends HtmlQuickSearchBaseRenderer {
 		
 		if(quickSearch.getTarget() != null) {
 			quickSearchClientId = RendererUtilities.getClientIdForComponent(quickSearch.getTarget(), context, quickSearch);
+			if (quickSearchClientId == null){
+				quickSearchClientId = quickSearch.getTarget();
+			}
 		} else {
 			quickSearchClientId = parentClientId;
 		}

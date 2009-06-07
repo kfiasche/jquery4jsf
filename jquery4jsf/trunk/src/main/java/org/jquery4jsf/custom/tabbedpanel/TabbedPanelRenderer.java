@@ -101,12 +101,7 @@ public class TabbedPanelRenderer extends JQueryBaseRenderer {
 			TabPanel tabPanel = (TabPanel) iterator.next();
 			responseWriter.startElement(HTML.TAG_LI, null);
 			responseWriter.startElement(HTML.TAG_A, null);
-			if (tabPanel.isAjaxSupport()){
-				responseWriter.writeAttribute(HTML.HREF, tabPanel.getAjaxSource(), null);
-			}
-			else{
-				responseWriter.writeAttribute(HTML.HREF, "#"+tabPanel.getClientId(context), null);
-			}
+			responseWriter.writeAttribute(HTML.HREF, "#"+tabPanel.getClientId(context), null);
 			responseWriter.write(tabPanel.getTabName());
 			responseWriter.endElement(HTML.TAG_A);
 			responseWriter.endElement(HTML.TAG_LI);
@@ -134,7 +129,7 @@ public class TabbedPanelRenderer extends JQueryBaseRenderer {
 		options.append(" {\n");
 		
 		//TODO implementare option
-		encodeOptionComponentByType(options,tabbedPanel.getAjaxOptions(), "ajaxOptions", null);
+		//encodeOptionComponentByType(options,tabbedPanel.getAjaxOptions(), "ajaxOptions", null);
 		
 		encodeOptionComponentByType(options,tabbedPanel.isCache(), "cache", null);
 		encodeOptionComponentByType(options,tabbedPanel.isCollapsible(), "collapsible", null);

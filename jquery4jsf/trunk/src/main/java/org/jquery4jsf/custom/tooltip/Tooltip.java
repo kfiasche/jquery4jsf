@@ -40,6 +40,7 @@ public class Tooltip extends HtmlBaseOutputComponent implements JQueryHtmlObject
 	private String[] resources;
 	private MethodBinding oncomplete;
 	private Boolean prerender;
+	private String url;
 	private String text;
 	private String titleText;
 	private String titleButton;
@@ -90,6 +91,7 @@ public class Tooltip extends HtmlBaseOutputComponent implements JQueryHtmlObject
 			"jquery/jquery.js",
 			"tooltip/jquery.qtip.min.js",
 			"tooltip/jquery.qtip.themeroller.js",
+			"form/jquery.form.js",
 			"themes/base/ui.all.css"
 		};
 	}
@@ -118,6 +120,17 @@ public class Tooltip extends HtmlBaseOutputComponent implements JQueryHtmlObject
 	}
 	public void setPrerender(boolean prerender) {
 		this.prerender = new Boolean(prerender);
+	}
+
+	public String getUrl() {
+		if(url != null )
+			return url;
+
+		String oValue = (String) getLocalOrValueBindingValue(url, "url");
+		return oValue != null ? oValue : null;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public String getText() {
@@ -594,53 +607,54 @@ public class Tooltip extends HtmlBaseOutputComponent implements JQueryHtmlObject
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[46];
+		Object values[] = new Object[47];
 		values[0] = super.saveState(context);
 		values[1] = saveAttachedState(context, oncomplete);
 		values[2] = prerender;
-		values[3] = text;
-		values[4] = titleText;
-		values[5] = titleButton;
-		values[6] = positionTarget;
-		values[7] = positionType;
-		values[8] = positionContainer;
-		values[9] = cornerTarget;
-		values[10] = cornerTooltip;
-		values[11] = adjustX;
-		values[12] = adjustY;
-		values[13] = adjustMouse;
-		values[14] = adjustScreen;
-		values[15] = adjustScroll;
-		values[16] = adjustResize;
-		values[17] = showDelay;
-		values[18] = showSolo;
-		values[19] = showReady;
-		values[20] = showWhenTarget;
-		values[21] = showWhenEvent;
-		values[22] = showEffectLength;
-		values[23] = showEffectType;
-		values[24] = hideDelay;
-		values[25] = hideFixed;
-		values[26] = hideWhenTarget;
-		values[27] = hideWhenEvent;
-		values[28] = hideEffectLength;
-		values[29] = hideEffectType;
-		values[30] = styleName;
-		values[31] = styleWidthMin;
-		values[32] = styleWidthMax;
-		values[33] = styleBorderWidth;
-		values[34] = styleBorderRadius;
-		values[35] = styleBorderColor;
-		values[36] = styleTipColor;
-		values[37] = styleTipCorner;
-		values[38] = styleTipSizeX;
-		values[39] = styleTipSizeY;
-		values[40] = styleTargetClass;
-		values[41] = styleTooltipClass;
-		values[42] = styleTipClass;
-		values[43] = styleTitleClass;
-		values[44] = styleContentClass;
-		values[45] = styleActiveClass;
+		values[3] = url;
+		values[4] = text;
+		values[5] = titleText;
+		values[6] = titleButton;
+		values[7] = positionTarget;
+		values[8] = positionType;
+		values[9] = positionContainer;
+		values[10] = cornerTarget;
+		values[11] = cornerTooltip;
+		values[12] = adjustX;
+		values[13] = adjustY;
+		values[14] = adjustMouse;
+		values[15] = adjustScreen;
+		values[16] = adjustScroll;
+		values[17] = adjustResize;
+		values[18] = showDelay;
+		values[19] = showSolo;
+		values[20] = showReady;
+		values[21] = showWhenTarget;
+		values[22] = showWhenEvent;
+		values[23] = showEffectLength;
+		values[24] = showEffectType;
+		values[25] = hideDelay;
+		values[26] = hideFixed;
+		values[27] = hideWhenTarget;
+		values[28] = hideWhenEvent;
+		values[29] = hideEffectLength;
+		values[30] = hideEffectType;
+		values[31] = styleName;
+		values[32] = styleWidthMin;
+		values[33] = styleWidthMax;
+		values[34] = styleBorderWidth;
+		values[35] = styleBorderRadius;
+		values[36] = styleBorderColor;
+		values[37] = styleTipColor;
+		values[38] = styleTipCorner;
+		values[39] = styleTipSizeX;
+		values[40] = styleTipSizeY;
+		values[41] = styleTargetClass;
+		values[42] = styleTooltipClass;
+		values[43] = styleTipClass;
+		values[44] = styleTitleClass;
+		values[45] = styleContentClass;
+		values[46] = styleActiveClass;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -648,49 +662,50 @@ public class Tooltip extends HtmlBaseOutputComponent implements JQueryHtmlObject
 		super.restoreState(context, values[0]);
 		this.oncomplete = (MethodBinding) restoreAttachedState(context, values[1]);
 		this.prerender = (Boolean) values[2];
-		this.text = (String) values[3];
-		this.titleText = (String) values[4];
-		this.titleButton = (String) values[5];
-		this.positionTarget = (String) values[6];
-		this.positionType = (String) values[7];
-		this.positionContainer = (String) values[8];
-		this.cornerTarget = (String) values[9];
-		this.cornerTooltip = (String) values[10];
-		this.adjustX = (Integer) values[11];
-		this.adjustY = (Integer) values[12];
-		this.adjustMouse = (Boolean) values[13];
-		this.adjustScreen = (Boolean) values[14];
-		this.adjustScroll = (Boolean) values[15];
-		this.adjustResize = (String) values[16];
-		this.showDelay = (Integer) values[17];
-		this.showSolo = (String) values[18];
-		this.showReady = (String) values[19];
-		this.showWhenTarget = (String) values[20];
-		this.showWhenEvent = (String) values[21];
-		this.showEffectLength = (Integer) values[22];
-		this.showEffectType = (String) values[23];
-		this.hideDelay = (Integer) values[24];
-		this.hideFixed = (Boolean) values[25];
-		this.hideWhenTarget = (String) values[26];
-		this.hideWhenEvent = (String) values[27];
-		this.hideEffectLength = (Integer) values[28];
-		this.hideEffectType = (String) values[29];
-		this.styleName = (String) values[30];
-		this.styleWidthMin = (Integer) values[31];
-		this.styleWidthMax = (Integer) values[32];
-		this.styleBorderWidth = (Integer) values[33];
-		this.styleBorderRadius = (Integer) values[34];
-		this.styleBorderColor = (String) values[35];
-		this.styleTipColor = (String) values[36];
-		this.styleTipCorner = (String) values[37];
-		this.styleTipSizeX = (Integer) values[38];
-		this.styleTipSizeY = (Integer) values[39];
-		this.styleTargetClass = (String) values[40];
-		this.styleTooltipClass = (String) values[41];
-		this.styleTipClass = (String) values[42];
-		this.styleTitleClass = (String) values[43];
-		this.styleContentClass = (String) values[44];
-		this.styleActiveClass = (String) values[45];
+		this.url = (String) values[3];
+		this.text = (String) values[4];
+		this.titleText = (String) values[5];
+		this.titleButton = (String) values[6];
+		this.positionTarget = (String) values[7];
+		this.positionType = (String) values[8];
+		this.positionContainer = (String) values[9];
+		this.cornerTarget = (String) values[10];
+		this.cornerTooltip = (String) values[11];
+		this.adjustX = (Integer) values[12];
+		this.adjustY = (Integer) values[13];
+		this.adjustMouse = (Boolean) values[14];
+		this.adjustScreen = (Boolean) values[15];
+		this.adjustScroll = (Boolean) values[16];
+		this.adjustResize = (String) values[17];
+		this.showDelay = (Integer) values[18];
+		this.showSolo = (String) values[19];
+		this.showReady = (String) values[20];
+		this.showWhenTarget = (String) values[21];
+		this.showWhenEvent = (String) values[22];
+		this.showEffectLength = (Integer) values[23];
+		this.showEffectType = (String) values[24];
+		this.hideDelay = (Integer) values[25];
+		this.hideFixed = (Boolean) values[26];
+		this.hideWhenTarget = (String) values[27];
+		this.hideWhenEvent = (String) values[28];
+		this.hideEffectLength = (Integer) values[29];
+		this.hideEffectType = (String) values[30];
+		this.styleName = (String) values[31];
+		this.styleWidthMin = (Integer) values[32];
+		this.styleWidthMax = (Integer) values[33];
+		this.styleBorderWidth = (Integer) values[34];
+		this.styleBorderRadius = (Integer) values[35];
+		this.styleBorderColor = (String) values[36];
+		this.styleTipColor = (String) values[37];
+		this.styleTipCorner = (String) values[38];
+		this.styleTipSizeX = (Integer) values[39];
+		this.styleTipSizeY = (Integer) values[40];
+		this.styleTargetClass = (String) values[41];
+		this.styleTooltipClass = (String) values[42];
+		this.styleTipClass = (String) values[43];
+		this.styleTitleClass = (String) values[44];
+		this.styleContentClass = (String) values[45];
+		this.styleActiveClass = (String) values[46];
 	}
 
 	public String[] getResources() {

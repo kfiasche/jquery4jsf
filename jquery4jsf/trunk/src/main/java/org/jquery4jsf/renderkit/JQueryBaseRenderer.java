@@ -46,4 +46,8 @@ public abstract class JQueryBaseRenderer extends HtmlBasicRenderer {
 		RendererUtilities.createOptionComponentFunction(options, value, nameParameter, params);
 	}
 
+	protected String encodeOptionsWithUIParam(UIComponent component){
+		return RendererUtilities.encodeOptionsWithUIParam(component);
+	}
+	
 }

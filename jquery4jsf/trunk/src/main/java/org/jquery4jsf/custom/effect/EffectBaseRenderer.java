@@ -25,7 +25,6 @@ public class EffectBaseRenderer extends JQueryBaseRenderer {
 		options.append(" {\n");
 		encodeOptionComponentByType(options, effect.getEffect(), "effect", null);
 		encodeOptionComponentByType(options, effect.getEvent(), "event", null);
-		encodeOptionComponentByType(options, effect.getOptions(), "options", null);
 		encodeOptionComponentByType(options, effect.getSpeed(), "speed", null);
 		encodeOptionComponentByType(options, effect.getCallback(), "callback", null);
 		if (options.toString().endsWith(", \n")){

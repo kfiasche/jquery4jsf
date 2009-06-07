@@ -18,7 +18,9 @@ package org.jquery4jsf.custom.paragraph;
 
 import java.io.IOException;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -50,6 +52,12 @@ public class ParagraphRenderer extends ParagraphBaseRenderer{
 		writeIdAttributeIfNecessary(context, responseWriter, component);
 		HtmlRendererUtilities.writeHtmlAttributes(responseWriter, paragraph, HTML.HTML_STD_ATTR);
 		HtmlRendererUtilities.writeHtmlAttributes(responseWriter, paragraph, HTML.HTML_JS_STD_ATTR);
+		
+		Object value = getValue(paragraph);
+		if (value != null){
+			responseWriter.writeText(value, "value");
+		}
+		
 	}
 	
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
@@ -61,4 +69,13 @@ public class ParagraphRenderer extends ParagraphBaseRenderer{
 		responseWriter.endElement(HTML.TAG_P);
 	}
 
+	protected Object getValue(UIComponent component){
+		Object value = null;
+		try {
+			value = ((ValueHolder) component).getValue();
+		} catch (Exception e) {
+			throw new FacesException(e);
+		}
+		return value;
+	}
 }

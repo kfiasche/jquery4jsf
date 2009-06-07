@@ -17,8 +17,11 @@
 package org.jquery4jsf.custom.effect;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -71,11 +74,12 @@ public class EffectRenderer extends EffectBaseRenderer {
         JSAttribute jsEffect = new JSAttribute("effect", false);
         
         StringBuffer sbOption = new StringBuffer();
-        String optionsString = effect.getOptions() != null ? "{"+ effect.getOptions() +"}" : "{}";
+       
+        
         sbOption.append("'");
         sbOption.append(effect.getEffect());
         sbOption.append("', ");
-        sbOption.append(optionsString);
+        sbOption.append(encodeOptionsWithUIParam(effect));
         sbOption.append(", ");
         sbOption.append(effect.getSpeed());
         sbOption.append(", ");
@@ -102,26 +106,4 @@ public class EffectRenderer extends EffectBaseRenderer {
         if(!component.isRendered())
             return;
 	}
-	
-	protected String encodeOptionComponent(StringBuffer options, Effect effect , FacesContext context) {
-		options.append(" {\n");
-		encodeOptionComponentByType(options, effect.getOptions(), "options", null);
-		if (options.toString().endsWith(", \n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-		}
-		boolean noParams = false;
-		if (options.toString().endsWith(" {\n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-			noParams = true;
-		}
-		if (!noParams)
-		{
-			options.append(" }");
-		}
-		String returns = options.toString();
-		return returns.trim().equalsIgnoreCase("") ? "{}" : returns;
-	}
-	
 }

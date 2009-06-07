@@ -31,11 +31,9 @@ public class TooltipHandler extends ComponentHandler{
 	
 	protected MetaRuleset createMetaRuleset(Class type) { 
 		MetaRuleset metaRuleset = super.createMetaRuleset(type); 
-		Class[] paramList = new Class[]{String.class}; 
-		
+		Class[] paramList = new Class[]{}; 
 		MetaRule metaRule = new MethodRule("oncomplete", String.class, paramList); 
 		metaRuleset.addRule(metaRule);
-		
 		return metaRuleset; 
 	} 
 }

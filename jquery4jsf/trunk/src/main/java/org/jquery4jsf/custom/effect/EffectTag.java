@@ -24,7 +24,6 @@ public class EffectTag extends UIComponentTagBase {
 	private String _for;
 	private String effect;
 	private String event;
-	private String options;
 	private String speed;
 	private String callback;
 
@@ -33,7 +32,6 @@ public class EffectTag extends UIComponentTagBase {
 		this._for = null;
 		this.effect = null;
 		this.event = null;
-		this.options = null;
 		this.speed = null;
 		this.callback = null;
 	}
@@ -51,7 +49,6 @@ public class EffectTag extends UIComponentTagBase {
 		setStringProperty(getFacesContext(), component, "for", _for);
 		setStringProperty(getFacesContext(), component, "effect", effect);
 		setStringProperty(getFacesContext(), component, "event", event);
-		setStringProperty(getFacesContext(), component, "options", options);
 		setStringProperty(getFacesContext(), component, "speed", speed);
 		setStringProperty(getFacesContext(), component, "callback", callback);
 	}
@@ -74,10 +71,6 @@ public class EffectTag extends UIComponentTagBase {
 
 	public void setEvent(String value){
 		this.event = value;
-	}
-
-	public void setOptions(String value){
-		this.options = value;
 	}
 
 	public void setSpeed(String value){

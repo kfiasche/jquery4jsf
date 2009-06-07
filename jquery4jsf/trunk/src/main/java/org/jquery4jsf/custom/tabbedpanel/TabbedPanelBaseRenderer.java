@@ -23,7 +23,6 @@ public class TabbedPanelBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, TabbedPanel tabbedPanel , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, tabbedPanel.getAjaxOptions(), "ajaxOptions", null);
 		encodeOptionComponentByType(options, tabbedPanel.isCache(), "cache", null);
 		encodeOptionComponentByType(options, tabbedPanel.isCollapsible(), "collapsible", null);
 		encodeOptionComponentByType(options, tabbedPanel.getCookie(), "cookie", null);

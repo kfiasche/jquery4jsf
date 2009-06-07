@@ -1523,6 +1523,12 @@
 			<description><![CDATA[Html title attribute of the input text]]></description>
 		</attribute>
 		<attribute>
+			<name>locale</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
 			<name>altField</name>
 			<required>false</required>
 				<type>java.lang.String</type>
@@ -2478,6 +2484,12 @@
 			<description><![CDATA[Html title attribute of the input text]]></description>
 		</attribute>
 		<attribute>
+			<name>locale</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
 			<name>altField</name>
 			<required>false</required>
 				<type>java.lang.String</type>
@@ -3330,12 +3342,6 @@
 			<required>false</required>
 				<type>java.lang.String</type>
 			<description><![CDATA[]]></description>
-		</attribute>
-		<attribute>
-			<name>options</name>
-			<required>false</required>
-				<type>java.lang.String</type>
-			<description><![CDATA[A object/hash including specific options for the effect.]]></description>
 		</attribute>
 		<attribute>
 			<name>speed</name>
@@ -4796,6 +4802,24 @@
 			<description><![CDATA[Space-separated list of CSS style class(es) to be applied when this element is rendered. This value must be passed through as the "class" property on generated markup.]]></description>
 		</attribute>
 		<attribute>
+			<name>trueVerticalText</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>cookie</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>accordion</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
 			<name>header</name>
 			<required>false</required>
 				<type>java.lang.String</type>
@@ -5756,12 +5780,6 @@
 			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
 		</attribute>
 		<attribute>
-			<name>ajaxOptions</name>
-			<required>false</required>
-				<type>java.lang.String</type>
-			<description><![CDATA[]]></description>
-		</attribute>
-		<attribute>
 			<name>cache</name>
 			<required>false</required>
 				<type>boolean</type>
@@ -5902,18 +5920,6 @@
 			<description><![CDATA[]]></description>
 		</attribute>
 		<attribute>
-			<name>ajaxSupport</name>
-			<required>false</required>
-				<type>boolean</type>
-			<description><![CDATA[]]></description>
-		</attribute>
-		<attribute>
-			<name>ajaxSource</name>
-			<required>false</required>
-				<type>java.lang.String</type>
-			<description><![CDATA[]]></description>
-		</attribute>
-		<attribute>
 			<name>tabName</name>
 			<required>false</required>
 				<type>java.lang.String</type>
@@ -5952,6 +5958,12 @@
 			<required>false</required>
 				<type>boolean</type>
 			<description><![CDATA[If set to true, the tooltip will be created on document load]]></description>
+		</attribute>
+		<attribute>
+			<name>url</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[URL (Uniform Resource Locater) of the content to load. The content must be stored locally as cross-site XMLHTTPRequest is not yet supported by any major browsers. If set to false, no data retrieval will occur.]]></description>
 		</attribute>
 		<attribute>
 			<name>text</name>
@@ -6234,6 +6246,29 @@
 			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
 		</attribute>
 		<attribute>
+			<name>value</name>
+			<required>false</required>
+				<type>java.lang.Object</type>
+			<description><![CDATA[Value of the component that can be either an EL expression or a literal text]]></description>
+		</attribute>
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rows</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Number of rows to display per page]]></description>
+		</attribute>
+		<attribute>
+			<name>first</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Index of the first row to be displayed]]></description>
+		</attribute>
+		<attribute>
 			<name>style</name>
 			<required>false</required>
 				<type>java.lang.String</type>
@@ -6246,58 +6281,88 @@
 			<description><![CDATA[Space-separated list of CSS style class(es) to be applied when this element is rendered. This value must be passed through as the "class" property on generated markup.]]></description>
 		</attribute>
 		<attribute>
-			<name>animated</name>
-			<required>false</required>
-				<type>java.lang.String</type>
-			<description><![CDATA[Speed of animation, see jQuery animate() for details, or no animation if not specified.]]></description>
-		</attribute>
-		<attribute>
-			<name>collapsed</name>
+			<name>dataAsync</name>
 			<required>false</required>
 				<type>boolean</type>
-			<description><![CDATA[Start with all branches collapsed.]]></description>
+			<description><![CDATA[]]></description>
 		</attribute>
 		<attribute>
-			<name>control</name>
+			<name>onAsyncData</name>
 			<required>false</required>
 				<type>java.lang.String</type>
-			<description><![CDATA[Container for a treecontrol, allowing the user to expand, collapse and toggle all branches with one click.]]></description>
+			<description><![CDATA[]]></description>
 		</attribute>
 		<attribute>
-			<name>unique</name>
-			<required>false</required>
-				<type>boolean</type>
-			<description><![CDATA[Set to allow only one branch on one level to be open (closing siblings which opening).]]></description>
-		</attribute>
-		<attribute>
-			<name>ontoggle</name>
+			<name>selected</name>
 			<required>false</required>
 				<type>java.lang.String</type>
-			<description><![CDATA[Callback when toggling a branch. Arguments: "this" refers to the UL that was shown or hidden. Works only with speed option set (set speed: 1 to enable callback without animations).]]></description>
+			<description><![CDATA[]]></description>
 		</attribute>
 		<attribute>
-			<name>persist</name>
+			<name>opened</name>
 			<required>false</required>
 				<type>java.lang.String</type>
-			<description><![CDATA[Persist the tree state in cookies or the page location. If set to "location", looks for the anchor that matches location.href and activates that part of the treeview it. Great for href-based state-saving. If set to "cookie", saves the state of the tree on each click to a cookie and restores that state on page load.]]></description>
+			<description><![CDATA[INITIALLY OPENED NODES]]></description>
 		</attribute>
 		<attribute>
-			<name>cookieId</name>
+			<name>cookies</name>
 			<required>false</required>
 				<type>java.lang.String</type>
-			<description><![CDATA[The cookie name to use when persisting via persist:"cookie".]]></description>
+			<description><![CDATA[]]></description>
 		</attribute>
 		<attribute>
-			<name>prerendered</name>
-			<required>false</required>
-				<type>boolean</type>
-			<description><![CDATA[Set to skip rendering of classes and hitarea divs, assuming that is done by the serverside. Makes the tree more obtrusive, but speeds up render times for large trees signicifcantly.]]></description>
-		</attribute>
-		<attribute>
-			<name>add</name>
+			<name>languages</name>
 			<required>false</required>
 				<type>java.lang.String</type>
-			<description><![CDATA[Populate the tree with more nodes using this option and calling the plugin again. The selector must match elements that were added somewhere to the existing tree. Classes and event handlers are applied to match the behaviour of the existing tree.]]></description>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>path</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>uidots</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>uirtl</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>uianimation</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>uihovermode</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>uiscrollspd</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>uithemepath</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>uithemename</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[]]></description>
 		</attribute>
 	</tag>
 </taglib>

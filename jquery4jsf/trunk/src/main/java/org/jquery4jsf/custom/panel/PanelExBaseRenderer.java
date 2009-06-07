@@ -23,6 +23,9 @@ public class PanelExBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, PanelEx panelEx , FacesContext context) {
 		options.append(" {\n");
+		encodeOptionComponentByType(options, panelEx.isTrueVerticalText(), "trueVerticalText", null);
+		encodeOptionComponentByType(options, panelEx.getCookie(), "cookie", null);
+		encodeOptionComponentByType(options, panelEx.getAccordion(), "accordion", null);
 		encodeOptionComponentByType(options, panelEx.getHeader(), "header", null);
 		encodeOptionComponentByType(options, panelEx.getEvent(), "event", null);
 		encodeOptionComponentByType(options, panelEx.isCollapsible(), "collapsible", "true");
@@ -46,8 +49,8 @@ public class PanelExBaseRenderer extends JQueryBaseRenderer {
 		encodeOptionComponentByType(options, panelEx.getSlideRIcon(), "slideRIcon", null);
 		encodeOptionComponentByType(options, panelEx.getSlideLIconClpsd(), "slideLIconClpsd", null);
 		encodeOptionComponentByType(options, panelEx.getSlideLIcon(), "slideLIcon", null);
-		encodeOptionComponentByType(options, panelEx.getOnunfold(), "onunfold", null);
-		encodeOptionComponentByType(options, panelEx.getOnfold(), "onfold", null);
+		encodeOptionComponentFunction(options, panelEx.getOnunfold(), "onunfold", "null");
+		encodeOptionComponentFunction(options, panelEx.getOnfold(), "onfold", "null");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

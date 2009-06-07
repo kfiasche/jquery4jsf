@@ -68,7 +68,9 @@ public class IconRenderer extends JQueryBaseRenderer {
 			styleClass = styleClass.concat(" ").concat(icon.getStyleClass());
 		}
         responseWriter.startElement(HTML.TAG_SPAN, icon);
-        responseWriter.writeAttribute("class",styleClass, null);
+        responseWriter.writeAttribute("class",styleClass, "styleClass");
+        if (icon.getStyle() != null)
+        	responseWriter.writeAttribute("style",icon.getStyle(), "style");
         responseWriter.endElement(HTML.TAG_SPAN);
 	}
 	

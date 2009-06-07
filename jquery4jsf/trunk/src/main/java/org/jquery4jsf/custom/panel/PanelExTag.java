@@ -23,6 +23,9 @@ public class PanelExTag extends UIComponentTagBase {
 
 	private String style;
 	private String styleClass;
+	private String trueVerticalText;
+	private String cookie;
+	private String accordion;
 	private String header;
 	private String event;
 	private String collapsible;
@@ -53,6 +56,9 @@ public class PanelExTag extends UIComponentTagBase {
 		super.release();
 		this.style = null;
 		this.styleClass = null;
+		this.trueVerticalText = null;
+		this.cookie = null;
+		this.accordion = null;
 		this.header = null;
 		this.event = null;
 		this.collapsible = null;
@@ -92,6 +98,9 @@ public class PanelExTag extends UIComponentTagBase {
 
 		setStringProperty(getFacesContext(), component, "style", style);
 		setStringProperty(getFacesContext(), component, "styleClass", styleClass);
+		setBooleanProperty(getFacesContext(), component, "trueVerticalText", trueVerticalText);
+		setStringProperty(getFacesContext(), component, "cookie", cookie);
+		setStringProperty(getFacesContext(), component, "accordion", accordion);
 		setStringProperty(getFacesContext(), component, "header", header);
 		setStringProperty(getFacesContext(), component, "event", event);
 		setBooleanProperty(getFacesContext(), component, "collapsible", collapsible);
@@ -133,6 +142,18 @@ public class PanelExTag extends UIComponentTagBase {
 
 	public void setStyleClass(String value){
 		this.styleClass = value;
+	}
+
+	public void setTrueVerticalText(String value){
+		this.trueVerticalText = value;
+	}
+
+	public void setCookie(String value){
+		this.cookie = value;
+	}
+
+	public void setAccordion(String value){
+		this.accordion = value;
 	}
 
 	public void setHeader(String value){

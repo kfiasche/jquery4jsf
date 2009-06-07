@@ -27,6 +27,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.el.MethodBinding;
 
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
+import org.jquery4jsf.renderkit.RendererUtilities;
 
 public class ScriptCollectorRenderer extends JQueryBaseRenderer {
 	
@@ -57,35 +58,25 @@ public class ScriptCollectorRenderer extends JQueryBaseRenderer {
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 		ScriptCollector scriptCollector = (ScriptCollector) component;
 		if(scriptCollector.isDisableForm()){
-			setFormStatus(component, true, new String[]{});
+			String[] esenti = scriptCollector.getIgnoreIdFormDisable() != null ? scriptCollector.getIgnoreIdFormDisable().split(",") : new String[]{};
+			setFormStatus(component, true, esenti);
 		}
+		RendererUtilities.renderChildren(context, scriptCollector);
 	}
 	
 	private void setFormStatus(UIComponent comp, boolean disabled, String[] esenti) {
 		Iterator i = comp.getFacetsAndChildren();
 		while (i.hasNext()) {
 			UIComponent c = (UIComponent)i.next();
-			
 			if (esenti != null && contiene(esenti, c.getId()))
 				continue;
-			
-			if (c instanceof HtmlInputTextarea)
-			{
-				try {
-					Method m = c.getClass().getMethod("setReadonly", new Class[] {boolean.class});
-					m.invoke(c, new Object[] {Boolean.valueOf(disabled)});
-				} catch (Exception e) {
-					
-				}
-			}else if (c instanceof UIInput || c instanceof UICommand) {
+			if (c instanceof UIInput || c instanceof UICommand) {
 				try {
 					Method m = c.getClass().getMethod("setDisabled", new Class[] {boolean.class});
 					m.invoke(c, new Object[] {Boolean.valueOf(disabled)});
 				} catch (Exception e) {
-					
 				}
 			}
-			
 			if (c.getFacetsAndChildren().hasNext()) {
 				setFormStatus(c, disabled, esenti);
 			}
@@ -100,5 +91,11 @@ public class ScriptCollectorRenderer extends JQueryBaseRenderer {
 				return true;
 		return false;
 	}
+
+	public boolean getRendersChildren() {
+		return true;
+	}
+	
+	
 	
 }

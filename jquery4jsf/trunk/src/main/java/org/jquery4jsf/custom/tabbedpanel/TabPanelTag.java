@@ -23,15 +23,11 @@ import javax.faces.component.UIComponent;
 public class TabPanelTag extends UIComponentTagBodyBase {
 
 	private String disabled;
-	private String ajaxSupport;
-	private String ajaxSource;
 	private String tabName;
 
 	public void release(){
 		super.release();
 		this.disabled = null;
-		this.ajaxSupport = null;
-		this.ajaxSource = null;
 		this.tabName = null;
 	}
 
@@ -46,8 +42,6 @@ public class TabPanelTag extends UIComponentTagBodyBase {
 		}
 
 		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "disabled", disabled);
-		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "ajaxSupport", ajaxSupport);
-		ComponentUtilities.setStringProperty(getFacesContext(), component, "ajaxSource", ajaxSource);
 		ComponentUtilities.setStringProperty(getFacesContext(), component, "tabName", tabName);
 	}
 
@@ -61,14 +55,6 @@ public class TabPanelTag extends UIComponentTagBodyBase {
 
 	public void setDisabled(String value){
 		this.disabled = value;
-	}
-
-	public void setAjaxSupport(String value){
-		this.ajaxSupport = value;
-	}
-
-	public void setAjaxSource(String value){
-		this.ajaxSource = value;
 	}
 
 	public void setTabName(String value){

@@ -59,13 +59,22 @@ public class DatePickerRenderer extends DatePickerBaseRenderer implements AjaxBa
 			ResourceContext.getInstance().addResource(resource);
 		}
         HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
-        if (req.getLocale() != null){
+        if (req.getLocale() != null && datePicker.getLocale() == null){
         	String locale = req.getLocale().toString();
         	
         	String src = "datepicker/i18n/ui.datepicker-"+locale.substring(0,2)+".js";
         	RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, src);
         }
-        
+        if (datePicker.getLocale() != null){
+        	String locale = datePicker.getLocale();
+        	String src = "datepicker/i18n/ui.datepicker-"+locale+".js";
+        	RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, src);
+        }
+        if (req.getLocale() == null && datePicker.getLocale() == null){
+        	String locale = FacesContext.getCurrentInstance().getApplication().getDefaultLocale().toString();
+        	String src = "datepicker/i18n/ui.datepicker-"+locale.substring(0,2)+".js";
+        	RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, src);
+        }
 
         rendererInputText(responseWriter, datePicker, context);
         

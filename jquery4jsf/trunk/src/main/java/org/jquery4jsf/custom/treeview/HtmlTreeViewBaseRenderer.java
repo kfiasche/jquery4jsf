@@ -23,15 +23,20 @@ public class HtmlTreeViewBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, HtmlTreeView htmlTreeView , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, htmlTreeView.getAnimated(), "animated", null);
-		encodeOptionComponentByType(options, htmlTreeView.isCollapsed(), "collapsed", null);
-		encodeOptionComponentByType(options, htmlTreeView.getControl(), "control", null);
-		encodeOptionComponentByType(options, htmlTreeView.isUnique(), "unique", null);
-		encodeOptionComponentByType(options, htmlTreeView.getOntoggle(), "ontoggle", null);
-		encodeOptionComponentByType(options, htmlTreeView.getPersist(), "persist", null);
-		encodeOptionComponentByType(options, htmlTreeView.getCookieId(), "cookieId", null);
-		encodeOptionComponentByType(options, htmlTreeView.isPrerendered(), "prerendered", null);
-		encodeOptionComponentByType(options, htmlTreeView.getAdd(), "add", null);
+		encodeOptionComponentByType(options, htmlTreeView.isDataAsync(), "async", null);
+		encodeOptionComponentFunction(options, htmlTreeView.getOnAsyncData(), "async_data", "node");
+		encodeOptionComponentByType(options, htmlTreeView.getSelected(), "selected", null);
+		encodeOptionComponentByType(options, htmlTreeView.getOpened(), "opened", null);
+		encodeOptionComponentByType(options, htmlTreeView.getCookies(), "cookies", null);
+		encodeOptionComponentByType(options, htmlTreeView.getLanguages(), "languages", null);
+		encodeOptionComponentByType(options, htmlTreeView.getPath(), "path", null);
+		encodeOptionComponentByType(options, htmlTreeView.getUidots(), "dots", null);
+		encodeOptionComponentByType(options, htmlTreeView.getUirtl(), "rtl", null);
+		encodeOptionComponentByType(options, htmlTreeView.getUianimation(), "animation", null);
+		encodeOptionComponentByType(options, htmlTreeView.getUihovermode(), "hover_mode", null);
+		encodeOptionComponentByType(options, htmlTreeView.getUiscrollspd(), "scroll_spd", null);
+		encodeOptionComponentByType(options, htmlTreeView.getUithemepath(), "theme_path", null);
+		encodeOptionComponentByType(options, htmlTreeView.getUithemename(), "theme_name", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

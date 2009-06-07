@@ -17,8 +17,11 @@
 package org.jquery4jsf.custom.tooltip;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.el.MethodBinding;
@@ -91,6 +94,17 @@ public class TooltipRenderer extends TooltipBaseRenderer implements AjaxBaseRend
     		}
 			encodeOptionComponentByType(optionsContent, actionURL, "url", null);
 			encodeOptionComponentByType(optionsContent, "post", "method", null);
+			String data = encodeOptionsWithUIParam(tooltip);
+			if (data != null){
+				encodeOptionComponentByType(optionsContent,data, "data", null);
+			}
+		}
+		else{
+			encodeOptionComponentByType(optionsContent, tooltip.getUrl(), "url", null);
+			String data = encodeOptionsWithUIParam(tooltip);
+			if (data != null){
+				encodeOptionComponentByType(optionsContent,data, "data", null);
+			}
 		}
 		encodeOptionComponentOptionsByType(options, optionsContent.toString(), "content", null);
 		
@@ -199,7 +213,7 @@ public class TooltipRenderer extends TooltipBaseRenderer implements AjaxBaseRend
 		MethodBinding me = tooltip.getOncomplete();
 		String results = null;
 		try {
-			results = (String) me.invoke(context, new Object[]{""});
+			results = (String) me.invoke(context, new Object[]{});
 		} catch (Exception e) {
 		}
 		writer.write(results);

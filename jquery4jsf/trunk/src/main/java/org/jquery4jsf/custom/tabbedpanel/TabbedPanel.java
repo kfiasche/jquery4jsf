@@ -36,7 +36,6 @@ public class TabbedPanel extends HtmlBaseOutputComponent implements JQueryHtmlOb
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.TabbedPanelRenderer";
 
 	private String[] resources;
-	private String ajaxOptions;
 	private Boolean cache;
 	private Boolean collapsible;
 	private String cookie;
@@ -59,17 +58,6 @@ public class TabbedPanel extends HtmlBaseOutputComponent implements JQueryHtmlOb
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
-	}
-
-	public String getAjaxOptions() {
-		if(ajaxOptions != null )
-			return ajaxOptions;
-
-		String oValue = (String) getLocalOrValueBindingValue(ajaxOptions, "ajaxOptions");
-		return oValue != null ? oValue : null;
-	}
-	public void setAjaxOptions(String ajaxOptions) {
-		this.ajaxOptions = ajaxOptions;
 	}
 
 	public boolean isCache() {
@@ -172,33 +160,31 @@ public class TabbedPanel extends HtmlBaseOutputComponent implements JQueryHtmlOb
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[11];
+		Object values[] = new Object[10];
 		values[0] = super.saveState(context);
-		values[1] = ajaxOptions;
-		values[2] = cache;
-		values[3] = collapsible;
-		values[4] = cookie;
-		values[5] = deselectable;
-		values[6] = event;
-		values[7] = fx;
-		values[8] = idPrefix;
-		values[9] = selected;
-		values[10] = spinner;
+		values[1] = cache;
+		values[2] = collapsible;
+		values[3] = cookie;
+		values[4] = deselectable;
+		values[5] = event;
+		values[6] = fx;
+		values[7] = idPrefix;
+		values[8] = selected;
+		values[9] = spinner;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.ajaxOptions = (String) values[1];
-		this.cache = (Boolean) values[2];
-		this.collapsible = (Boolean) values[3];
-		this.cookie = (String) values[4];
-		this.deselectable = (Boolean) values[5];
-		this.event = (String) values[6];
-		this.fx = (String) values[7];
-		this.idPrefix = (String) values[8];
-		this.selected = (Integer) values[9];
-		this.spinner = (String) values[10];
+		this.cache = (Boolean) values[1];
+		this.collapsible = (Boolean) values[2];
+		this.cookie = (String) values[3];
+		this.deselectable = (Boolean) values[4];
+		this.event = (String) values[5];
+		this.fx = (String) values[6];
+		this.idPrefix = (String) values[7];
+		this.selected = (Integer) values[8];
+		this.spinner = (String) values[9];
 	}
 
 	public String[] getResources() {

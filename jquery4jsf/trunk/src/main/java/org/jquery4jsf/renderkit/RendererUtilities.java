@@ -18,9 +18,11 @@ package org.jquery4jsf.renderkit;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
+import javax.faces.component.UIParameter;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -28,6 +30,9 @@ import javax.faces.context.ResponseWriter;
 import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.custom.UIInteractions;
+import org.jquery4jsf.javascript.JSDocumentElement;
+import org.jquery4jsf.javascript.JSOperationElement;
+import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.resource.ResourceCostants;
 import org.jquery4jsf.utilities.TextUtilities;
@@ -293,6 +298,12 @@ public class RendererUtilities {
 				options.append(value);
 				options.append(", \n");
 			}
+			else if (TextUtilities.isBoolean(value))
+			{
+				options.append(nameParameter.concat(": "));
+				options.append(value);
+				options.append(", \n");
+			}
 			else
 			{
 				options.append(nameParameter.concat(": '"));
@@ -400,5 +411,42 @@ public class RendererUtilities {
 	public static boolean isUniqueId(UIComponent component){
 		return (component.getId() != null && !component.getId().startsWith(
 				UIViewRoot.UNIQUE_ID_PREFIX));
+	}
+	
+	public static String encodeOptionsWithUIParam(UIComponent component){
+		List children = component.getChildren();
+		StringBuffer options = new StringBuffer();
+		options.append("{");
+		for (Iterator iterator = children.iterator(); iterator.hasNext();) {
+			UIComponent child = (UIComponent) iterator.next();
+			if(child instanceof UIParameter) {
+				UIParameter param = (UIParameter) child;
+				List childrenParam = param.getChildren();
+				if (childrenParam == null || childrenParam.isEmpty())
+				{	
+					createOptionComponentByType(options, param.getValue(), param.getName(), null);
+				}
+				else
+				{
+					 String value = encodeOptionsWithUIParam(param);
+					 createOptionComponentOptionsByType(options, value, param.getName());
+				}
+			}
+		}
+		if (options.toString().endsWith(", \n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+		}
+		boolean noParams = false;
+		if (options.toString().endsWith(" {\n")){
+			String stringa = options.substring(0, options.length()-4);
+			options = new StringBuffer(stringa);
+			noParams = true;
+		}
+		if (!noParams)
+		{
+			options.append(" }");
+		}
+		return options.toString();
 	}
 }

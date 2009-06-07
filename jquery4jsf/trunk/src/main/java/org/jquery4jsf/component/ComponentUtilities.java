@@ -35,6 +35,7 @@ import javax.faces.convert.Converter;
 import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.FacesEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.webapp.UIComponentTag;
 
@@ -42,6 +43,7 @@ import org.jquery4jsf.el.JQueryMethodBinding;
 
 public class ComponentUtilities {
 
+	private static final Class[] FACES_LISTENER_ARGS = { FacesEvent.class };
 	private static final Class[] ACTION_LISTENER_ARGS = { ActionEvent.class };
 	private static final Class[] VALIDATOR_ARGS = { ActionEvent.class };
 
@@ -82,7 +84,7 @@ public class ComponentUtilities {
 				component.setValueBinding(propertyName, vb);
 			} else {
 				component.getAttributes()
-						.put(propertyName, Long.valueOf(value));
+				.put(propertyName, Long.valueOf(value));
 			}
 		}
 	}
@@ -152,7 +154,7 @@ public class ComponentUtilities {
 			if (isValueReference(mbValue)) {
 				Class params[] = { String.class };
 				MethodBinding mb = context.getApplication()
-						.createMethodBinding(mbValue, params);
+				.createMethodBinding(mbValue, params);
 				component.getAttributes().put(attributeName, mb);
 			} else {
 				throw new IllegalArgumentException("Component with id:"
@@ -169,8 +171,8 @@ public class ComponentUtilities {
 			}
 			if (isValueReference(actionListener)) {
 				MethodBinding mb = context.getApplication()
-						.createMethodBinding(actionListener,
-								ACTION_LISTENER_ARGS);
+				.createMethodBinding(actionListener,
+						ACTION_LISTENER_ARGS);
 				((ActionSource) component).setActionListener(mb);
 			}
 		}
@@ -247,10 +249,12 @@ public class ComponentUtilities {
 		return FacesContext.getCurrentInstance();
 	}
 
-	public static void setValueProperty(FacesContext context, UIComponent component,String property, String value) {
+	public static void setValueProperty(FacesContext context,
+			UIComponent component, String property, String value) {
 		if (value != null) {
 			if (UIComponentTag.isValueReference(value)) {
-				ValueBinding binding = context.getApplication().createValueBinding(value);
+				ValueBinding binding = context.getApplication()
+				.createValueBinding(value);
 				component.setValueBinding("value", binding);
 			} else if (component instanceof UICommand) {
 				((UICommand) component).setValue(value);
@@ -266,56 +270,68 @@ public class ComponentUtilities {
 		}
 	}
 
-	public static void setValueChangeListenerProperty(FacesContext context, UIComponent component,String property, String valueChangeListener) {
-		if(valueChangeListener != null) {
+	public static void setValueChangeListenerProperty(FacesContext context,
+			UIComponent component, String property, String valueChangeListener) {
+		if (valueChangeListener != null) {
 			if (isValueReference(valueChangeListener)) {
-				Class params [] = { ValueChangeEvent.class };
-				MethodBinding mb = context.getApplication().createMethodBinding(valueChangeListener, params);
-				((EditableValueHolder)component).setValueChangeListener(mb);
+				Class params[] = { ValueChangeEvent.class };
+				MethodBinding mb = context.getApplication()
+				.createMethodBinding(valueChangeListener, params);
+				((EditableValueHolder) component).setValueChangeListener(mb);
 			} else {
-				throw new IllegalArgumentException("Component with id:" + component.getId() + " has an invalid validator");
+				throw new IllegalArgumentException("Component with id:"
+						+ component.getId() + " has an invalid validator");
 			}
 		}
 	}
 
-	public static void setRequiredProperty(FacesContext context, UIComponent component,String property, String required) {
-		if(required != null) {
+	public static void setRequiredProperty(FacesContext context,
+			UIComponent component, String property, String required) {
+		if (required != null) {
 			if (isValueReference(required)) {
-				ValueBinding vb = context.getApplication().createValueBinding(required);
+				ValueBinding vb = context.getApplication().createValueBinding(
+						required);
 				component.setValueBinding("required", vb);
 			} else {
-				((EditableValueHolder)component).setRequired(Boolean.valueOf(required).booleanValue());
+				((EditableValueHolder) component).setRequired(Boolean.valueOf(
+						required).booleanValue());
 			}
 		}
 	}
 
-	public static void setImmediateProperty(FacesContext context, UIComponent component,String property, String immediate) {
-		if(immediate != null) {
+	public static void setImmediateProperty(FacesContext context,
+			UIComponent component, String property, String immediate) {
+		if (immediate != null) {
 			if (isValueReference(immediate)) {
-				ValueBinding vb = context.getApplication().createValueBinding(immediate);
+				ValueBinding vb = context.getApplication().createValueBinding(
+						immediate);
 				component.setValueBinding("immediate", vb);
 			} else {
-				((EditableValueHolder)component).setImmediate(Boolean.valueOf(immediate).booleanValue());
+				((EditableValueHolder) component).setImmediate(Boolean.valueOf(
+						immediate).booleanValue());
 			}
 		}
 	}
 
-	
-	public static void setConverterProperty(FacesContext context,UIComponent component,String property, String value) {
+	public static void setConverterProperty(FacesContext context,
+			UIComponent component, String property, String value) {
 		if (value != null) {
 			if (component instanceof ValueHolder) {
 				if (isValueReference(value)) {
-					ValueBinding vb = context.getApplication().createValueBinding(value);
-					 component.setValueBinding("converter", vb);
+					ValueBinding vb = context.getApplication()
+					.createValueBinding(value);
+					component.setValueBinding("converter", vb);
 				} else {
-					Converter converter = context.getApplication().createConverter(value);
+					Converter converter = context.getApplication()
+					.createConverter(value);
 					((ValueHolder) component).setConverter(converter);
 				}
 			}
 		}
 	}
 
-	public static void setValidatorProperty(FacesContext context,UIComponent component,String property, String validator) {
+	public static void setValidatorProperty(FacesContext context,
+			UIComponent component, String property, String validator) {
 		if (validator != null) {
 			if (!(component instanceof EditableValueHolder)) {
 				throw new IllegalArgumentException("Component "
@@ -323,15 +339,15 @@ public class ComponentUtilities {
 						+ " is no EditableValueHolder");
 			}
 			if (isValueReference(validator)) {
-				MethodBinding mb = context.getApplication().createMethodBinding(validator, VALIDATOR_ARGS);
+				MethodBinding mb = context.getApplication()
+				.createMethodBinding(validator, VALIDATOR_ARGS);
 				((EditableValueHolder) component).setValidator(mb);
 			}
 		}
 	}
 
-	
-	public static void encodeAll(FacesContext context, UIComponent component) throws IOException
-	{
+	public static void encodeAll(FacesContext context, UIComponent component)
+	throws IOException {
 		if (!component.isRendered()) {
 			return;
 		}
@@ -339,30 +355,27 @@ public class ComponentUtilities {
 		component.encodeBegin(context);
 		if (component.getRendersChildren()) {
 			component.encodeChildren(context);
-		}
-		else if (component.getChildCount() > 0) {
+		} else if (component.getChildCount() > 0) {
 			Iterator children = component.getChildren().iterator();
 			while (children.hasNext()) {
 				UIComponent child = (UIComponent) children.next();
-				encodeAll(context,child);
+				encodeAll(context, child);
 			}
 		}
 		component.encodeEnd(context);
 	}
 
-    public static ArrayList getColumns(UIData data)
-    {
-        ArrayList list = new ArrayList();
-        Iterator iterator = data.getChildren().iterator();
-        do
-        {
-            if(!iterator.hasNext())
-                break;
-            UIComponent uicomponent = (UIComponent)iterator.next();
-            if((uicomponent instanceof UIColumn) && uicomponent.isRendered())
-                list.add(uicomponent);
-        } while(true);
-        return list;
-    }
-	
+	public static ArrayList getColumns(UIData data) {
+		ArrayList list = new ArrayList();
+		Iterator iterator = data.getChildren().iterator();
+		do {
+			if (!iterator.hasNext())
+				break;
+			UIComponent uicomponent = (UIComponent) iterator.next();
+			if ((uicomponent instanceof UIColumn) && uicomponent.isRendered())
+				list.add(uicomponent);
+		} while (true);
+		return list;
+	}
+
 }

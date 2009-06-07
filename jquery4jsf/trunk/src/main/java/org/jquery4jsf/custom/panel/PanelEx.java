@@ -35,6 +35,9 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.PanelExRenderer";
 
 	private String[] resources;
+	private Boolean trueVerticalText;
+	private String cookie;
+	private String accordion;
 	private String header;
 	private String event;
 	private Boolean collapsible;
@@ -67,6 +70,7 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 			"jquery/jquery.js",
 			"ui/ui.core.js",
 			"panel/ui.panel.js",
+			"external/jquery.cookie.js",
 			"themes/base/ui.all.css",
 			"panel/ui.panel.css"
 		};
@@ -74,6 +78,39 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+
+	public boolean isTrueVerticalText() {
+		if(trueVerticalText != null )
+			return trueVerticalText.booleanValue();
+
+		Boolean oValue = (Boolean) getLocalOrValueBindingValue(trueVerticalText, "trueVerticalText");
+		return oValue != null ? oValue.booleanValue()  : false;
+	}
+	public void setTrueVerticalText(boolean trueVerticalText) {
+		this.trueVerticalText = new Boolean(trueVerticalText);
+	}
+
+	public String getCookie() {
+		if(cookie != null )
+			return cookie;
+
+		String oValue = (String) getLocalOrValueBindingValue(cookie, "cookie");
+		return oValue != null ? oValue : null;
+	}
+	public void setCookie(String cookie) {
+		this.cookie = cookie;
+	}
+
+	public String getAccordion() {
+		if(accordion != null )
+			return accordion;
+
+		String oValue = (String) getLocalOrValueBindingValue(accordion, "accordion");
+		return oValue != null ? oValue : null;
+	}
+	public void setAccordion(String accordion) {
+		this.accordion = accordion;
 	}
 
 	public String getHeader() {
@@ -352,63 +389,69 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[26];
+		Object values[] = new Object[29];
 		values[0] = super.saveState(context);
-		values[1] = header;
-		values[2] = event;
-		values[3] = collapsible;
-		values[4] = collapseType;
-		values[5] = collapsed;
-		values[6] = collapseSpeed;
-		values[7] = controls;
-		values[8] = widgetClass;
-		values[9] = headerClass;
-		values[10] = contentClass;
-		values[11] = rightboxClass;
-		values[12] = controlsClass;
-		values[13] = titleClass;
-		values[14] = titleTextClass;
-		values[15] = iconClass;
-		values[16] = hoverClass;
-		values[17] = collapsePnlClass;
-		values[18] = headerIconClpsd;
-		values[19] = headerIcon;
-		values[20] = slideRIconClpsd;
-		values[21] = slideRIcon;
-		values[22] = slideLIconClpsd;
-		values[23] = slideLIcon;
-		values[24] = onunfold;
-		values[25] = onfold;
+		values[1] = trueVerticalText;
+		values[2] = cookie;
+		values[3] = accordion;
+		values[4] = header;
+		values[5] = event;
+		values[6] = collapsible;
+		values[7] = collapseType;
+		values[8] = collapsed;
+		values[9] = collapseSpeed;
+		values[10] = controls;
+		values[11] = widgetClass;
+		values[12] = headerClass;
+		values[13] = contentClass;
+		values[14] = rightboxClass;
+		values[15] = controlsClass;
+		values[16] = titleClass;
+		values[17] = titleTextClass;
+		values[18] = iconClass;
+		values[19] = hoverClass;
+		values[20] = collapsePnlClass;
+		values[21] = headerIconClpsd;
+		values[22] = headerIcon;
+		values[23] = slideRIconClpsd;
+		values[24] = slideRIcon;
+		values[25] = slideLIconClpsd;
+		values[26] = slideLIcon;
+		values[27] = onunfold;
+		values[28] = onfold;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.header = (String) values[1];
-		this.event = (String) values[2];
-		this.collapsible = (Boolean) values[3];
-		this.collapseType = (String) values[4];
-		this.collapsed = (Boolean) values[5];
-		this.collapseSpeed = (String) values[6];
-		this.controls = (Boolean) values[7];
-		this.widgetClass = (String) values[8];
-		this.headerClass = (String) values[9];
-		this.contentClass = (String) values[10];
-		this.rightboxClass = (String) values[11];
-		this.controlsClass = (String) values[12];
-		this.titleClass = (String) values[13];
-		this.titleTextClass = (String) values[14];
-		this.iconClass = (String) values[15];
-		this.hoverClass = (String) values[16];
-		this.collapsePnlClass = (String) values[17];
-		this.headerIconClpsd = (String) values[18];
-		this.headerIcon = (String) values[19];
-		this.slideRIconClpsd = (String) values[20];
-		this.slideRIcon = (String) values[21];
-		this.slideLIconClpsd = (String) values[22];
-		this.slideLIcon = (String) values[23];
-		this.onunfold = (String) values[24];
-		this.onfold = (String) values[25];
+		this.trueVerticalText = (Boolean) values[1];
+		this.cookie = (String) values[2];
+		this.accordion = (String) values[3];
+		this.header = (String) values[4];
+		this.event = (String) values[5];
+		this.collapsible = (Boolean) values[6];
+		this.collapseType = (String) values[7];
+		this.collapsed = (Boolean) values[8];
+		this.collapseSpeed = (String) values[9];
+		this.controls = (Boolean) values[10];
+		this.widgetClass = (String) values[11];
+		this.headerClass = (String) values[12];
+		this.contentClass = (String) values[13];
+		this.rightboxClass = (String) values[14];
+		this.controlsClass = (String) values[15];
+		this.titleClass = (String) values[16];
+		this.titleTextClass = (String) values[17];
+		this.iconClass = (String) values[18];
+		this.hoverClass = (String) values[19];
+		this.collapsePnlClass = (String) values[20];
+		this.headerIconClpsd = (String) values[21];
+		this.headerIcon = (String) values[22];
+		this.slideRIconClpsd = (String) values[23];
+		this.slideRIcon = (String) values[24];
+		this.slideLIconClpsd = (String) values[25];
+		this.slideLIcon = (String) values[26];
+		this.onunfold = (String) values[27];
+		this.onfold = (String) values[28];
 	}
 
 	public String[] getResources() {

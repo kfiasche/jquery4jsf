@@ -39,7 +39,6 @@ public class Effect extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 	private String _for;
 	private String effect;
 	private String event;
-	private String options;
 	private String speed;
 	private String callback;
 
@@ -102,17 +101,6 @@ public class Effect extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 		this.event = event;
 	}
 
-	public String getOptions() {
-		if(options != null )
-			return options;
-
-		String oValue = (String) getLocalOrValueBindingValue(options, "options");
-		return oValue != null ? oValue : null;
-	}
-	public void setOptions(String options) {
-		this.options = options;
-	}
-
 	public String getSpeed() {
 		if(speed != null )
 			return speed;
@@ -136,14 +124,13 @@ public class Effect extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[7];
+		Object values[] = new Object[6];
 		values[0] = super.saveState(context);
 		values[1] = _for;
 		values[2] = effect;
 		values[3] = event;
-		values[4] = options;
-		values[5] = speed;
-		values[6] = callback;
+		values[4] = speed;
+		values[5] = callback;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -152,9 +139,8 @@ public class Effect extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 		this._for = (String) values[1];
 		this.effect = (String) values[2];
 		this.event = (String) values[3];
-		this.options = (String) values[4];
-		this.speed = (String) values[5];
-		this.callback = (String) values[6];
+		this.speed = (String) values[4];
+		this.callback = (String) values[5];
 	}
 
 	public String[] getResources() {

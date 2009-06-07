@@ -16,11 +16,40 @@
  */
 package org.jquery4jsf.component.ext;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.component.EditableValueHolder;
+import javax.faces.component.NamingContainer;
+import javax.faces.component.UIComponent;
 import javax.faces.component.UIData;
+import javax.faces.component.html.HtmlForm;
 import javax.faces.context.FacesContext;
 import javax.faces.el.ValueBinding;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.FacesEvent;
+import javax.faces.event.FacesListener;
+import javax.faces.event.PhaseId;
+import javax.faces.model.ArrayDataModel;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
+import javax.faces.model.ResultDataModel;
+import javax.faces.model.ResultSetDataModel;
+import javax.faces.model.ScalarDataModel;
+import javax.servlet.jsp.jstl.sql.Result;
 
-public class HtmlBaseDataComponent extends UIData {
+
+import org.jquery4jsf.component.model.tree.TreeDataModel;
+import org.jquery4jsf.component.model.tree.TreeNode;
+
+public class HtmlBaseDataComponent extends UIData implements NamingContainer{
 	
 	//Core Attributes
 	/**
@@ -49,7 +78,6 @@ public class HtmlBaseDataComponent extends UIData {
 	 */
 	private String xmlLang;
 
-	
 	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
 	{
 		if (localValue != null)
@@ -130,6 +158,7 @@ public class HtmlBaseDataComponent extends UIData {
 	public void setXmlLang(String xmlLang) {
 		this.xmlLang = xmlLang;
 	}
-	
-	
+
 }
+
+

@@ -56,6 +56,7 @@ public class CalendarTag extends DatePickerTag {
 	private String styleClass;
 	private String tabindex;
 	private String title;
+	private String locale;
 	private String altField;
 	private String altFormat;
 	private String appendText;
@@ -136,6 +137,7 @@ public class CalendarTag extends DatePickerTag {
 		this.styleClass = null;
 		this.tabindex = null;
 		this.title = null;
+		this.locale = null;
 		this.altField = null;
 		this.altFormat = null;
 		this.appendText = null;
@@ -225,6 +227,7 @@ public class CalendarTag extends DatePickerTag {
 		ComponentUtilities.setStringProperty(getFacesContext(), component, "styleClass", styleClass);
 		ComponentUtilities.setStringProperty(getFacesContext(), component, "tabindex", tabindex);
 		ComponentUtilities.setStringProperty(getFacesContext(), component, "title", title);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "locale", locale);
 		ComponentUtilities.setStringProperty(getFacesContext(), component, "altField", altField);
 		ComponentUtilities.setStringProperty(getFacesContext(), component, "altFormat", altFormat);
 		ComponentUtilities.setStringProperty(getFacesContext(), component, "appendText", appendText);
@@ -412,6 +415,10 @@ public class CalendarTag extends DatePickerTag {
 
 	public void setTitle(String value){
 		this.title = value;
+	}
+
+	public void setLocale(String value){
+		this.locale = value;
 	}
 
 	public void setAltField(String value){

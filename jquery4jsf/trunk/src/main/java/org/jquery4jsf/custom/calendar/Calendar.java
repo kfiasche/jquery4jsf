@@ -40,6 +40,7 @@ public class Calendar extends DatePicker implements JQueryHtmlObject,AjaxCompone
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.CalendarRenderer";
 
 	private String[] resources;
+	private String locale;
 	private String altField;
 	private String altFormat;
 	private String appendText;
@@ -96,6 +97,17 @@ public class Calendar extends DatePicker implements JQueryHtmlObject,AjaxCompone
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+
+	public String getLocale() {
+		if(locale != null )
+			return locale;
+
+		String oValue = (String) getLocalOrValueBindingValue(locale, "locale");
+		return oValue != null ? oValue : null;
+	}
+	public void setLocale(String locale) {
+		this.locale = locale;
 	}
 
 	public String getAltField() {
@@ -572,99 +584,101 @@ public class Calendar extends DatePicker implements JQueryHtmlObject,AjaxCompone
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[44];
+		Object values[] = new Object[45];
 		values[0] = super.saveState(context);
-		values[1] = altField;
-		values[2] = altFormat;
-		values[3] = appendText;
-		values[4] = buttonImage;
-		values[5] = buttonImageOnly;
-		values[6] = buttonText;
-		values[7] = changeMonth;
-		values[8] = changeYear;
-		values[9] = closeText;
-		values[10] = constrainInput;
-		values[11] = currentText;
-		values[12] = dateFormat;
-		values[13] = dayNames;
-		values[14] = dayNamesMin;
-		values[15] = dayNamesShort;
-		values[16] = defaultDate;
-		values[17] = duration;
-		values[18] = firstDay;
-		values[19] = gotoCurrent;
-		values[20] = hideIfNoPrevNext;
-		values[21] = maxDate;
-		values[22] = minDate;
-		values[23] = monthNames;
-		values[24] = monthNamesShort;
-		values[25] = navigationAsDateFormat;
-		values[26] = nextText;
-		values[27] = numberOfMonths;
-		values[28] = prevText;
-		values[29] = shortYearCutoff;
-		values[30] = showAnim;
-		values[31] = showButtonPanel;
-		values[32] = showCurrentAtPos;
-		values[33] = showMonthAfterYear;
-		values[34] = showOn;
-		values[35] = showOptions;
-		values[36] = showOtherMonths;
-		values[37] = stepMonths;
-		values[38] = yearRange;
-		values[39] = onbeforeShow;
-		values[40] = onbeforeShowDay;
-		values[41] = onchangeMonthYear;
-		values[42] = onclose;
-		values[43] = onselect;
+		values[1] = locale;
+		values[2] = altField;
+		values[3] = altFormat;
+		values[4] = appendText;
+		values[5] = buttonImage;
+		values[6] = buttonImageOnly;
+		values[7] = buttonText;
+		values[8] = changeMonth;
+		values[9] = changeYear;
+		values[10] = closeText;
+		values[11] = constrainInput;
+		values[12] = currentText;
+		values[13] = dateFormat;
+		values[14] = dayNames;
+		values[15] = dayNamesMin;
+		values[16] = dayNamesShort;
+		values[17] = defaultDate;
+		values[18] = duration;
+		values[19] = firstDay;
+		values[20] = gotoCurrent;
+		values[21] = hideIfNoPrevNext;
+		values[22] = maxDate;
+		values[23] = minDate;
+		values[24] = monthNames;
+		values[25] = monthNamesShort;
+		values[26] = navigationAsDateFormat;
+		values[27] = nextText;
+		values[28] = numberOfMonths;
+		values[29] = prevText;
+		values[30] = shortYearCutoff;
+		values[31] = showAnim;
+		values[32] = showButtonPanel;
+		values[33] = showCurrentAtPos;
+		values[34] = showMonthAfterYear;
+		values[35] = showOn;
+		values[36] = showOptions;
+		values[37] = showOtherMonths;
+		values[38] = stepMonths;
+		values[39] = yearRange;
+		values[40] = onbeforeShow;
+		values[41] = onbeforeShowDay;
+		values[42] = onchangeMonthYear;
+		values[43] = onclose;
+		values[44] = onselect;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.altField = (String) values[1];
-		this.altFormat = (String) values[2];
-		this.appendText = (String) values[3];
-		this.buttonImage = (String) values[4];
-		this.buttonImageOnly = (Boolean) values[5];
-		this.buttonText = (String) values[6];
-		this.changeMonth = (Boolean) values[7];
-		this.changeYear = (Boolean) values[8];
-		this.closeText = (String) values[9];
-		this.constrainInput = (Boolean) values[10];
-		this.currentText = (String) values[11];
-		this.dateFormat = (String) values[12];
-		this.dayNames = (String) values[13];
-		this.dayNamesMin = (String) values[14];
-		this.dayNamesShort = (String) values[15];
-		this.defaultDate = (String) values[16];
-		this.duration = (String) values[17];
-		this.firstDay = (Integer) values[18];
-		this.gotoCurrent = (Boolean) values[19];
-		this.hideIfNoPrevNext = (Boolean) values[20];
-		this.maxDate = (String) values[21];
-		this.minDate = (String) values[22];
-		this.monthNames = (String) values[23];
-		this.monthNamesShort = (String) values[24];
-		this.navigationAsDateFormat = (Boolean) values[25];
-		this.nextText = (String) values[26];
-		this.numberOfMonths = (String) values[27];
-		this.prevText = (String) values[28];
-		this.shortYearCutoff = (String) values[29];
-		this.showAnim = (String) values[30];
-		this.showButtonPanel = (Boolean) values[31];
-		this.showCurrentAtPos = (Integer) values[32];
-		this.showMonthAfterYear = (Boolean) values[33];
-		this.showOn = (String) values[34];
-		this.showOptions = (String) values[35];
-		this.showOtherMonths = (Boolean) values[36];
-		this.stepMonths = (Integer) values[37];
-		this.yearRange = (String) values[38];
-		this.onbeforeShow = (String) values[39];
-		this.onbeforeShowDay = (String) values[40];
-		this.onchangeMonthYear = (String) values[41];
-		this.onclose = (String) values[42];
-		this.onselect = (String) values[43];
+		this.locale = (String) values[1];
+		this.altField = (String) values[2];
+		this.altFormat = (String) values[3];
+		this.appendText = (String) values[4];
+		this.buttonImage = (String) values[5];
+		this.buttonImageOnly = (Boolean) values[6];
+		this.buttonText = (String) values[7];
+		this.changeMonth = (Boolean) values[8];
+		this.changeYear = (Boolean) values[9];
+		this.closeText = (String) values[10];
+		this.constrainInput = (Boolean) values[11];
+		this.currentText = (String) values[12];
+		this.dateFormat = (String) values[13];
+		this.dayNames = (String) values[14];
+		this.dayNamesMin = (String) values[15];
+		this.dayNamesShort = (String) values[16];
+		this.defaultDate = (String) values[17];
+		this.duration = (String) values[18];
+		this.firstDay = (Integer) values[19];
+		this.gotoCurrent = (Boolean) values[20];
+		this.hideIfNoPrevNext = (Boolean) values[21];
+		this.maxDate = (String) values[22];
+		this.minDate = (String) values[23];
+		this.monthNames = (String) values[24];
+		this.monthNamesShort = (String) values[25];
+		this.navigationAsDateFormat = (Boolean) values[26];
+		this.nextText = (String) values[27];
+		this.numberOfMonths = (String) values[28];
+		this.prevText = (String) values[29];
+		this.shortYearCutoff = (String) values[30];
+		this.showAnim = (String) values[31];
+		this.showButtonPanel = (Boolean) values[32];
+		this.showCurrentAtPos = (Integer) values[33];
+		this.showMonthAfterYear = (Boolean) values[34];
+		this.showOn = (String) values[35];
+		this.showOptions = (String) values[36];
+		this.showOtherMonths = (Boolean) values[37];
+		this.stepMonths = (Integer) values[38];
+		this.yearRange = (String) values[39];
+		this.onbeforeShow = (String) values[40];
+		this.onbeforeShowDay = (String) values[41];
+		this.onchangeMonthYear = (String) values[42];
+		this.onclose = (String) values[43];
+		this.onselect = (String) values[44];
 	}
 
 	public String[] getResources() {

@@ -23,6 +23,7 @@ public class TooltipTag extends UIComponentTagBase {
 
 	private String oncomplete;
 	private String prerender;
+	private String url;
 	private String text;
 	private String titleText;
 	private String titleButton;
@@ -71,6 +72,7 @@ public class TooltipTag extends UIComponentTagBase {
 		super.release();
 		this.oncomplete = null;
 		this.prerender = null;
+		this.url = null;
 		this.text = null;
 		this.titleText = null;
 		this.titleButton = null;
@@ -128,6 +130,7 @@ public class TooltipTag extends UIComponentTagBase {
 
 		setMethodBindingProperty(getFacesContext(), component, "oncomplete", oncomplete);
 		setBooleanProperty(getFacesContext(), component, "prerender", prerender);
+		setStringProperty(getFacesContext(), component, "url", url);
 		setStringProperty(getFacesContext(), component, "text", text);
 		setStringProperty(getFacesContext(), component, "titleText", titleText);
 		setStringProperty(getFacesContext(), component, "titleButton", titleButton);
@@ -187,6 +190,10 @@ public class TooltipTag extends UIComponentTagBase {
 
 	public void setPrerender(String value){
 		this.prerender = value;
+	}
+
+	public void setUrl(String value){
+		this.url = value;
 	}
 
 	public void setText(String value){

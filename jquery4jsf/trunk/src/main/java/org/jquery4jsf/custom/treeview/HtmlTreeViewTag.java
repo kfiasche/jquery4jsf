@@ -22,31 +22,49 @@ import javax.faces.component.UIComponent;
 
 public class HtmlTreeViewTag extends UIComponentTagBase {
 
+	private String value;
+	private String var;
+	private String rows;
+	private String first;
 	private String style;
 	private String styleClass;
-	private String animated;
-	private String collapsed;
-	private String control;
-	private String unique;
-	private String ontoggle;
-	private String persist;
-	private String cookieId;
-	private String prerendered;
-	private String add;
+	private String dataAsync;
+	private String onAsyncData;
+	private String selected;
+	private String opened;
+	private String cookies;
+	private String languages;
+	private String path;
+	private String uidots;
+	private String uirtl;
+	private String uianimation;
+	private String uihovermode;
+	private String uiscrollspd;
+	private String uithemepath;
+	private String uithemename;
 
 	public void release(){
 		super.release();
+		this.value = null;
+		this.var = null;
+		this.rows = null;
+		this.first = null;
 		this.style = null;
 		this.styleClass = null;
-		this.animated = null;
-		this.collapsed = null;
-		this.control = null;
-		this.unique = null;
-		this.ontoggle = null;
-		this.persist = null;
-		this.cookieId = null;
-		this.prerendered = null;
-		this.add = null;
+		this.dataAsync = null;
+		this.onAsyncData = null;
+		this.selected = null;
+		this.opened = null;
+		this.cookies = null;
+		this.languages = null;
+		this.path = null;
+		this.uidots = null;
+		this.uirtl = null;
+		this.uianimation = null;
+		this.uihovermode = null;
+		this.uiscrollspd = null;
+		this.uithemepath = null;
+		this.uithemename = null;
 	}
 
 	protected void setProperties(UIComponent comp){
@@ -59,17 +77,26 @@ public class HtmlTreeViewTag extends UIComponentTagBase {
 			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
 		}
 
+		ComponentUtilities.setValueProperty(getFacesContext(), component, "value", value);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "var", var);
+		ComponentUtilities.setIntegerProperty(getFacesContext(), component, "rows", rows);
+		ComponentUtilities.setIntegerProperty(getFacesContext(), component, "first", first);
 		ComponentUtilities.setStringProperty(getFacesContext(), component, "style", style);
 		ComponentUtilities.setStringProperty(getFacesContext(), component, "styleClass", styleClass);
-		ComponentUtilities.setStringProperty(getFacesContext(), component, "animated", animated);
-		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "collapsed", collapsed);
-		ComponentUtilities.setStringProperty(getFacesContext(), component, "control", control);
-		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "unique", unique);
-		ComponentUtilities.setStringProperty(getFacesContext(), component, "ontoggle", ontoggle);
-		ComponentUtilities.setStringProperty(getFacesContext(), component, "persist", persist);
-		ComponentUtilities.setStringProperty(getFacesContext(), component, "cookieId", cookieId);
-		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "prerendered", prerendered);
-		ComponentUtilities.setStringProperty(getFacesContext(), component, "add", add);
+		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "dataAsync", dataAsync);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "onAsyncData", onAsyncData);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "selected", selected);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "opened", opened);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "cookies", cookies);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "languages", languages);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "path", path);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "uidots", uidots);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "uirtl", uirtl);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "uianimation", uianimation);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "uihovermode", uihovermode);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "uiscrollspd", uiscrollspd);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "uithemepath", uithemepath);
+		ComponentUtilities.setStringProperty(getFacesContext(), component, "uithemename", uithemename);
 	}
 
 	public String getComponentType() {
@@ -80,6 +107,22 @@ public class HtmlTreeViewTag extends UIComponentTagBase {
 		return "org.jquery4jsf.HtmlTreeViewRenderer";
 	}
 
+	public void setValue(String value){
+		this.value = value;
+	}
+
+	public void setVar(String value){
+		this.var = value;
+	}
+
+	public void setRows(String value){
+		this.rows = value;
+	}
+
+	public void setFirst(String value){
+		this.first = value;
+	}
+
 	public void setStyle(String value){
 		this.style = value;
 	}
@@ -88,40 +131,60 @@ public class HtmlTreeViewTag extends UIComponentTagBase {
 		this.styleClass = value;
 	}
 
-	public void setAnimated(String value){
-		this.animated = value;
+	public void setDataAsync(String value){
+		this.dataAsync = value;
 	}
 
-	public void setCollapsed(String value){
-		this.collapsed = value;
+	public void setOnAsyncData(String value){
+		this.onAsyncData = value;
 	}
 
-	public void setControl(String value){
-		this.control = value;
+	public void setSelected(String value){
+		this.selected = value;
 	}
 
-	public void setUnique(String value){
-		this.unique = value;
+	public void setOpened(String value){
+		this.opened = value;
 	}
 
-	public void setOntoggle(String value){
-		this.ontoggle = value;
+	public void setCookies(String value){
+		this.cookies = value;
 	}
 
-	public void setPersist(String value){
-		this.persist = value;
+	public void setLanguages(String value){
+		this.languages = value;
 	}
 
-	public void setCookieId(String value){
-		this.cookieId = value;
+	public void setPath(String value){
+		this.path = value;
 	}
 
-	public void setPrerendered(String value){
-		this.prerendered = value;
+	public void setUidots(String value){
+		this.uidots = value;
 	}
 
-	public void setAdd(String value){
-		this.add = value;
+	public void setUirtl(String value){
+		this.uirtl = value;
+	}
+
+	public void setUianimation(String value){
+		this.uianimation = value;
+	}
+
+	public void setUihovermode(String value){
+		this.uihovermode = value;
+	}
+
+	public void setUiscrollspd(String value){
+		this.uiscrollspd = value;
+	}
+
+	public void setUithemepath(String value){
+		this.uithemepath = value;
+	}
+
+	public void setUithemename(String value){
+		this.uithemename = value;
 	}
 
 }

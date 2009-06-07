@@ -22,7 +22,6 @@ import javax.faces.component.UIComponent;
 
 public class TabbedPanelTag extends UIComponentTagBodyBase {
 
-	private String ajaxOptions;
 	private String cache;
 	private String collapsible;
 	private String cookie;
@@ -35,7 +34,6 @@ public class TabbedPanelTag extends UIComponentTagBodyBase {
 
 	public void release(){
 		super.release();
-		this.ajaxOptions = null;
 		this.cache = null;
 		this.collapsible = null;
 		this.cookie = null;
@@ -57,7 +55,6 @@ public class TabbedPanelTag extends UIComponentTagBodyBase {
 			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
 		}
 
-		ComponentUtilities.setStringProperty(getFacesContext(), component, "ajaxOptions", ajaxOptions);
 		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "cache", cache);
 		ComponentUtilities.setBooleanProperty(getFacesContext(), component, "collapsible", collapsible);
 		ComponentUtilities.setStringProperty(getFacesContext(), component, "cookie", cookie);
@@ -75,10 +72,6 @@ public class TabbedPanelTag extends UIComponentTagBodyBase {
 
 	public String getRendererType() {
 		return "org.jquery4jsf.TabbedPanelRenderer";
-	}
-
-	public void setAjaxOptions(String value){
-		this.ajaxOptions = value;
 	}
 
 	public void setCache(String value){

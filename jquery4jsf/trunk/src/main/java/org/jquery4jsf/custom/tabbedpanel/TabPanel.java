@@ -35,8 +35,6 @@ public class TabPanel extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 
 	private String[] resources;
 	private Boolean disabled;
-	private Boolean ajaxSupport;
-	private String ajaxSource;
 	private String tabName;
 
 	public TabPanel() {
@@ -60,28 +58,6 @@ public class TabPanel extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 		this.disabled = new Boolean(disabled);
 	}
 
-	public boolean isAjaxSupport() {
-		if(ajaxSupport != null )
-			return ajaxSupport.booleanValue();
-
-		Boolean oValue = (Boolean) getLocalOrValueBindingValue(ajaxSupport, "ajaxSupport");
-		return oValue != null ? oValue.booleanValue()  : false;
-	}
-	public void setAjaxSupport(boolean ajaxSupport) {
-		this.ajaxSupport = new Boolean(ajaxSupport);
-	}
-
-	public String getAjaxSource() {
-		if(ajaxSource != null )
-			return ajaxSource;
-
-		String oValue = (String) getLocalOrValueBindingValue(ajaxSource, "ajaxSource");
-		return oValue != null ? oValue : null;
-	}
-	public void setAjaxSource(String ajaxSource) {
-		this.ajaxSource = ajaxSource;
-	}
-
 	public String getTabName() {
 		if(tabName != null )
 			return tabName;
@@ -94,21 +70,17 @@ public class TabPanel extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[5];
+		Object values[] = new Object[3];
 		values[0] = super.saveState(context);
 		values[1] = disabled;
-		values[2] = ajaxSupport;
-		values[3] = ajaxSource;
-		values[4] = tabName;
+		values[2] = tabName;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
 		this.disabled = (Boolean) values[1];
-		this.ajaxSupport = (Boolean) values[2];
-		this.ajaxSource = (String) values[3];
-		this.tabName = (String) values[4];
+		this.tabName = (String) values[2];
 	}
 
 	public String[] getResources() {

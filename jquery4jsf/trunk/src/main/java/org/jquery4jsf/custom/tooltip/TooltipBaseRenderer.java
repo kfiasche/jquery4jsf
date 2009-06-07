@@ -25,6 +25,7 @@ public class TooltipBaseRenderer extends JQueryBaseRenderer {
 		options.append(" {\n");
 		encodeOptionComponentByType(options, tooltip.getOncomplete(), "oncomplete", null);
 		encodeOptionComponentByType(options, tooltip.isPrerender(), "prerender", "false");
+		encodeOptionComponentByType(options, tooltip.getUrl(), "url", null);
 		encodeOptionComponentByType(options, tooltip.getText(), "text", null);
 		encodeOptionComponentByType(options, tooltip.getTitleText(), "text", null);
 		encodeOptionComponentByType(options, tooltip.getTitleButton(), "button", null);
