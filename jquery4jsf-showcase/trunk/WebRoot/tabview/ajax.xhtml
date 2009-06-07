@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - TabView - #{resource.TABVIEW_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>TabView - #{resource.TABVIEW_TITLE_DEFAULT}</h3>
+		<p>#{resource.TABVIEW_DESCR_DEFAULT}</p>
+		<!-- START -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Francesco Totti">
+				<jq:paragraph>
+					<h:graphicImage value="/images/roma/totti.jpg" alt="Francesco Totti" style="float:left; margin: 5px;"/>
+					<h:outputText value="#{resource.ACCORDION_SECTION_NAME_TOTTI_DESCR}"></h:outputText>
+				</jq:paragraph>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Daniele De Rossi">
+				<jq:paragraph>
+					<h:graphicImage value="/images/roma/derossi.jpg" alt="Daniele De Rossi" style="float:left; margin: 5px;"/>
+					<h:outputText value="#{resource.ACCORDION_SECTION_NAME_DEROSSI_DESCR}"></h:outputText>
+				</jq:paragraph>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+		<!-- END -->
+	</ui:define>
+</ui:composition>

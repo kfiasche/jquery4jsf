@@ -23,7 +23,7 @@
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <managed-bean>
-  <managed-bean-name>DialogBean</managed-bean-name>
+  <managed-bean-name>dialogBean</managed-bean-name>
   <managed-bean-class>org.jquery4jsf.showcase.dialog.DialogBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
@@ -40,6 +40,26 @@
  <managed-bean>
   <managed-bean-name>sourceBean</managed-bean-name>
   <managed-bean-class>org.jquery4jsf.showcase.UtilsSCLoader</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>scriptCollectorBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.scriptcollector.ScriptCollectorBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>quickSearchBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.quicksearch.QuickSearchBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>treeBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.tree.TreeBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>tooltipBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.tooltip.TooltipBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <application>

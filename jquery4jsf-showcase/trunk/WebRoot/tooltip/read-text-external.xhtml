@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - Tooltip - #{resource.TOOLTIP_TITLE_TITLEATTR}" />
+	</ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.qtip-content {
+	background-color: white;
+	color: black;
+}
+</style>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Tooltip - #{resource.TOOLTIP_TITLE_TITLEATTR}
+		</h3>
+		<p>
+			#{resource.TOOLTIP_DESCR_TITLEATTR}
+		</p>
+		<!-- START -->
+		<jq:paragraph>
+			<h:graphicImage title="Francesco Totti is the best player of A.S. Roma Club" id="picTotti" value="/images/roma/totti.jpg" alt="Francesco Totti" style="float: left;">
+				<jq:tooltip  text="false"/>
+			</h:graphicImage>
+			After three years on the youth team, Totti made his first appearance for Roma's senior side at the age of sixteen, when coach Vujadin Boskov let him play in the 2-0 away victory against Brescia on March 28, 1993. 
+			In the following seasons, he began to play more games, and thus he succeeded in scoring his first goal on September 24, 1994 in a 1-1 draw against Foggia Calcio. 
+			By 1995, Totti had become a regular in the starting eleven and scored 16 goals in the next three seasons. 
+			When he assumed the team captaincy in 1997, he began to gain recognition as a club symbol. 
+			Manager Zdenek Zeman played with an offensive 4-3-3 formation, in which Totti was the left winger. 
+			Totti scored 30 goals during Zeman's two-year managerial stint.
+			Though Totti was not called up for the 1998 FIFA World Cup, he was named the Serie A Young Footballer of the Year in the 1998-99 season.
+			<jq:paragraph>
+				<h3>Source:</h3> Wikipedia
+			</jq:paragraph>
+		</jq:paragraph>
+		<!-- END -->
+	</ui:define>
+</ui:composition>

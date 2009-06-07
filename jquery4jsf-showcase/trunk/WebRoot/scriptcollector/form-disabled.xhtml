@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - ScriptCollector - #{resource.SCRIPTCOLLECTOR_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.panel {
+	width: 150px;
+	height: 150px;
+	padding: 0.4em;
+	position: relative;
+}
+
+.panel h3 {
+	margin: 0;
+	padding: 0.4em;
+	text-align: center;
+}
+</style>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			ScriptCollector - #{resource.SCRIPTCOLLECTOR_TITLE_FORM}
+		</h3>
+		<p>
+			#{resource.SCRIPTCOLLECTOR_DESCR_FORM}
+		</p>
+		<!-- START -->
+		<jq:scriptCollector disableForm="true" ignoreIdFormDisable="contact2">
+			<h:form id="contact">
+				<h:panelGrid columns="2">
+					<h:outputLabel for="firstname">
+						<h:outputText value="Firstname: " />
+					</h:outputLabel>
+					<h:inputText id="firstname" value="" />
+					<h:outputLabel for="lastname">
+						<h:outputText value="Lastname: " />
+					</h:outputLabel>
+					<h:inputText id="lastname" value="" />
+					<h:outputLabel for="phone">
+						<h:outputText value="Phone: " />
+					</h:outputLabel>
+					<h:inputText id="phone" value="" />
+					<h:outputLabel for="email">
+						<h:outputText value="Email: " />
+					</h:outputLabel>
+					<h:inputText id="email" value="" />
+					<jq:button value="Reset" type="reset" />
+					<jq:button value="Submit" />
+				</h:panelGrid>
+			</h:form>
+			
+			<h:form id="contact2" >
+				<h:panelGrid columns="2">
+					<h:outputLabel for="firstname">
+						<h:outputText value="Firstname: " />
+					</h:outputLabel>
+					<h:inputText id="firstname" value="" />
+					<h:outputLabel for="lastname">
+						<h:outputText value="Lastname: " />
+					</h:outputLabel>
+					<h:inputText id="lastname" value="" />
+					<h:outputLabel for="phone">
+						<h:outputText value="Phone: " />
+					</h:outputLabel>
+					<h:inputText id="phone" value="" />
+					<h:outputLabel for="email">
+						<h:outputText value="Email: " />
+					</h:outputLabel>
+					<h:inputText id="email" value="" />
+					<jq:button value="Reset" type="reset" />
+					<jq:button id="submit" target="target" value="Submit"  actionListener="#{buttonBean.doButtonActionListener}"/>
+				</h:panelGrid>
+				
+				<br />
+				
+				<jq:panel styleClass="panel" header="Target">
+					<h:outputText id="target" value="#{buttonBean.text}"/>
+				</jq:panel>
+					
+			</h:form>
+		</jq:scriptCollector>
+		<!-- END -->
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - PanelEx - #{resource.PANELEX_TITLE_EVENT}" />
+	</ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+			.panel { width: 150px; height: 150px; padding: 0.4em; position: relative; }
+		</style>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			PanelEx - #{resource.PANELEX_TITLE_EVENT}
+		</h3>
+		<p>
+			#{resource.PANELEX_DESCR_EVENT}
+		</p>
+		<!-- START -->
+		<jq:panelEx header="On fold" collapseType="slide-right" trueVerticalText="true" onfold="alert('onfold');" styleClass="panel">
+			<jq:paragraph>
+				OnFold Event
+			</jq:paragraph>
+		</jq:panelEx>
+		<br />
+		<jq:panelEx header="On unfold" collapseType="slide-right" trueVerticalText="true" onunfold="alert('onunfold');" styleClass="panel">
+			<jq:paragraph>
+				OnUnfold Event
+			</jq:paragraph>
+		</jq:panelEx>
+		<!-- END -->
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - Tooltip - #{resource.TOOLTIP_TITLE_LOADINGAJAX}" />
+	</ui:define>
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Tooltip - #{resource.TOOLTIP_TITLE_LOADINGAJAX}
+		</h3>
+		<p>
+			#{resource.TOOLTIP_DESCR_LOADINGAJAX}
+		</p>
+		<!-- START -->
+		<h:form id="form2">
+		</h:form>
+		<h:form id="form">
+		<h:dataTable styleClass="ui-widget ui-corner-all"
+			columnClasses="ui-widget-content" headerClass="ui-widget-header"
+			id="dataTable" var="player" value="#{quickSearchBean.listPlayers}">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Name" />
+				</f:facet>
+				<h:outputText id="name" value="#{player.name}">
+					<jq:tooltip id="tooltip1" titleText="#{player.name}"
+						titleButton="Close"
+						hideWhenEvent="blur"
+						showWhenEvent="click" oncomplete="#{tooltipBean.onComplete}"
+						cornerTarget="topRight"
+						styleName="themeroller" cornerTooltip="bottomLeft">
+							<f:param value="#{player.ruolo}" name="ruolo"></f:param>
+						</jq:tooltip>
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ruolo" />
+				</f:facet>
+				<h:outputText value="#{player.ruolo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Numero" />
+				</f:facet>
+				<h:outputText value="#{player.number}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Date" />
+				</f:facet>
+				<h:outputText value="#{player.bornDate}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nazionalita" />
+				</f:facet>
+				<h:outputText value="#{player.nazionalita}">
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+		</h:form>
+		<!-- END -->
+	</ui:define>
+</ui:composition>

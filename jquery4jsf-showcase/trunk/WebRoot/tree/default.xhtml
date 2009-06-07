@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - TreeView - #{resource.TREEVIEW_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			TreeView - #{resource.TREEVIEW_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.TREEVIEW_DESCR_DEFAULT}
+		</p>
+		<!-- START -->
+		<jq:div id="treecontainer">
+			<h:form id="form">
+				<jq:treeView var="nodeElement" id="navigation"
+					value="#{treeBean.model}">
+					<f:facet name="firstbranch">
+						<h:panelGroup>
+							<h:outputText value="#{nodeElement.data}"/>
+						</h:panelGroup>
+					</f:facet>
+					<f:facet name="others">
+						<h:panelGroup>
+							<h:outputText value="#{nodeElement.data}"/>
+						</h:panelGroup>
+					</f:facet>
+				</jq:treeView>
+			</h:form>
+		</jq:div>
+		<!-- END -->
+	</ui:define>
+</ui:composition>

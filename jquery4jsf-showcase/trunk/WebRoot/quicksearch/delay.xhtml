@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - Quick Search - #{resource.QUICKSEARCH_TITLE_DELAY}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Quick Search - #{resource.QUICKSEARCH_TITLE_DELAY}
+		</h3>
+		<p>
+			#{resource.QUICKSEARCH_DESCR_DELAY}
+		</p>
+		<!-- START -->
+
+		<jq:quickSearch labelText="Search of player" target="#dataTable tbody tr"
+			delay="50"
+			position="before" attached="#dataTable" stripeRowClass="[ui-state-active, ui-state-highlight]" />
+		<h:dataTable styleClass="ui-widget ui-corner-all" columnClasses="ui-widget-content"
+			headerClass="ui-widget-header" id="dataTable" var="player"
+			value="#{quickSearchBean.listPlayers}">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Name" />
+				</f:facet>
+				<h:outputText value="#{player.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ruolo" />
+				</f:facet>
+				<h:outputText value="#{player.ruolo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Numero" />
+				</f:facet>
+				<h:outputText value="#{player.number}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Date" />
+				</f:facet>
+				<h:outputText value="#{player.bornDate}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nazionalita" />
+				</f:facet>
+				<h:outputText value="#{player.nazionalita}">
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+		<!-- END -->
+	</ui:define>
+</ui:composition>
