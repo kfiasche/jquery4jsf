@@ -62,6 +62,16 @@
   <managed-bean-class>org.jquery4jsf.showcase.tooltip.TooltipBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>datePickerBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.datepicker.DatePickerBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>calendarBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.datepicker.CalendarBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
  </application>
