@@ -6,7 +6,7 @@
 	<artifactId>jquery4jsf-showcase</artifactId>
 	<packaging>war</packaging>
 	<name>components-showcase</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<description />
 	 <build>
 	<sourceDirectory>${basedir}/src</sourceDirectory>
@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>org.jquery4jsf</groupId>
 			<artifactId>jquery4jsf</artifactId>
-			<version>0.0.1C-SNAPSHOT</version>
+			<version>0.0.1.CR2</version>
 		</dependency>
 		
 		<dependency>
