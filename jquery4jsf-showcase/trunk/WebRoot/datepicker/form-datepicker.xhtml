@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - DatePicker - #{resource.DATEPICKER_TITLE_SIMPLEFORM}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			DatePicker - #{resource.DATEPICKER_TITLE_SIMPLEFORM}
+		</h3>
+		<p>
+			#{resource.DATEPICKER_DESCR_SIMPLEFORM}
+		</p>
+		<!-- START -->
+		<h:form id="form1">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Date of born:"/>
+				<jq:datePicker id="datePickerBorn" value="#{datePickerBean.dateOfBorn}">
+					<f:convertDateTime pattern="MM/dd/yyyy" type="date" />
+				</jq:datePicker>
+				<jq:button id="resetButton" value="Reset" type="reset"/>
+				<jq:button id="submintButton" value="Submit" type="submit" target="dateBornUp" actionListener="#{datePickerBean.doActionDatePicker}"/>
+			</h:panelGrid>
+		</h:form>
+		
+		<h:outputText id="dateBornUp" value="#{datePickerBean.textLabel}"/>
+		<!-- end -->
+	</ui:define>
+</ui:composition>

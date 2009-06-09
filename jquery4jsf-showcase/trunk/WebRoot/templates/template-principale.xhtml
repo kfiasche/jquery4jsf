@@ -8,11 +8,15 @@
 		<f:loadBundle basename="org.jquery4jsf.showcase.ExResource" var="resource" />
 		<head>
 			<link type="text/css" rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/syntaxhighlighter.css" />
-			<title>jQuery4jsf - jQuery for JavaServer Faces <ui:insert name="title"></ui:insert></title>
-			<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 			<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/style.css" />
   			<!--[if IE 6]><link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/style.ie6.css" type="text/css" media="screen" /><![endif]-->
+			<title>jQuery4jsf - jQuery for JavaServer Faces <ui:insert name="title"></ui:insert></title>
+			<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
   			<ui:insert name="head"></ui:insert>
+  			<style type="text/css">
+			#bookmarkSite ul { width: 120px; }
+			#bookmarkSite ul li { background-image: none;}
+			</style>
 		</head>
 		<body>
 			<div class="PageBackgroundSimpleGradient">

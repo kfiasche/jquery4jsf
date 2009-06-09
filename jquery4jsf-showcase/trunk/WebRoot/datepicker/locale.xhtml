@@ -1,0 +1,117 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - DatePicker - #{resource.DATEPICKER_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			DatePicker - #{resource.DATEPICKER_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.DATEPICKER_DESCR_DEFAULT}
+		</p>
+		<!-- START -->
+		<h:form id="form1">
+			<div class="demo">
+				<p>
+					<h:panelGrid headerClass="ui-widget-header" columns="2"
+						columnClasses="ui-widget-content,ui-widget-content"
+						styleClass="ui-widget">
+						<f:facet name="header">
+							<h:outputText value="Datepicker Localization" />
+						</f:facet>
+						<jq:datePicker id="datepickersq" size="12" locale="sq" />
+						<h:outputText escape="false" value="Albanian " />
+						<jq:datePicker id="datepicker00" size="12" locale="ar" />
+						<h:outputText escape="false" value="Arabic" />
+						<jq:datePicker id="datepickera" size="12" locale="hy" />
+						<h:outputText escape="false" value="Armenian " />
+						<jq:datePicker id="datepickerb" size="12" locale="bg" />
+						<h:outputText escape="false" value="Bulgarian " />
+						<jq:datePicker id="datepickerc" size="12" locale="ca" />
+
+						<h:outputText escape="false" value="Catalan " />
+						<jq:datePicker id="datepickerd" size="12" locale="zh-CN" />
+						<h:outputText escape="false" value="Chinese Simplified " />
+						<jq:datePicker id="datepickere" size="12" locale="zh-TW" />
+						<h:outputText escape="false" value="Chinese Traditional " />
+						<jq:datePicker id="datepickerf" size="12" locale="hr" />
+						<h:outputText escape="false" value="Croatian " />
+						<jq:datePicker id="datepickerg" size="12" locale="cs" />
+						<h:outputText escape="false" value="Czech " />
+						<jq:datePicker id="datepickerh" size="12" locale="da" />
+						<h:outputText escape="false" value="Danish " />
+						<jq:datePicker id="datepickerg00" size="12" locale="nl" />
+						<h:outputText escape="false" value="Dutch " />
+						<jq:datePicker id="datepickeri" size="12" locale="eo" />
+						<h:outputText escape="false" value="Esperanto" />
+						<jq:datePicker id="datepickerl" size="12" locale="fa" />
+						<h:outputText escape="false" value="Farsi/Persian " />
+						<jq:datePicker id="datepickerm" size="12" locale="fi" />
+						<h:outputText escape="false" value="Finnish " />
+						<jq:datePicker id="datepickern" size="12" locale="fr" />
+						<h:outputText escape="false" value="French " />
+						<jq:datePicker id="datepickero" size="12" locale="de" />
+						<h:outputText escape="false" value="German " />
+						<jq:datePicker id="datepickerp" size="12" locale="el" />
+						<h:outputText escape="false" value="Greek " />
+						<jq:datePicker id="datepickerq" size="12" locale="he" />
+						<h:outputText escape="false" value="Hebrew " />
+						<jq:datePicker id="datepickerr" size="12" locale="hu" />
+						<h:outputText escape="false" value="Hungarian " />
+						<jq:datePicker id="datepickers" size="12" locale="is" />
+						<h:outputText escape="false" value="Icelandic " />
+						<jq:datePicker id="datepickert" size="12" locale="id" />
+						<h:outputText escape="false" value="Indonesian " />
+						<jq:datePicker id="datepickeru" size="12" locale="it" />
+						<h:outputText escape="false" value="Italian " />
+						<jq:datePicker id="datepickerv" size="12" locale="ja" />
+						<h:outputText escape="false" value="Japanese " />
+						<jq:datePicker id="datepickerz" size="12" locale="ko" />
+						<h:outputText escape="false" value="Korean " />
+						<jq:datePicker id="datepicker1" size="12" locale="lv" />
+						<h:outputText escape="false" value="Latvian " />
+						<jq:datePicker id="datepicker2" size="12" locale="lt" />
+						<h:outputText escape="false" value="Lithuanian " />
+						<jq:datePicker id="datepicker3" size="12" locale="ms" />
+						<h:outputText escape="false" value="Malaysian " />
+						<jq:datePicker id="datepicker4" size="12" locale="no" />
+						<h:outputText escape="false" value="Norwegian " />
+						<jq:datePicker id="datepicker5" size="12" locale="pl" />
+						<h:outputText escape="false" value="Polish " />
+						<jq:datePicker id="datepicker6" size="12" locale="pt-BR" />
+						<h:outputText escape="false" value="Portuguese/Brazilian " />
+						<jq:datePicker id="datepicker7" size="12" locale="ro" />
+						<h:outputText escape="false" value="Romanian " />
+						<jq:datePicker id="datepicker8" size="12" locale="ru" />
+						<h:outputText escape="false" value="Russian " />
+						<jq:datePicker id="datepicker9" size="12" locale="sr" />
+						<h:outputText escape="false" value="Serbian " />
+						<jq:datePicker id="datepicker10" size="12" locale="sr-SR" />
+						<h:outputText escape="false" value="Serbian " />
+						<jq:datePicker id="datepicker11" size="12" locale="sk" />
+						<h:outputText escape="false" value="Slovak " />
+						<jq:datePicker id="datepicker12" size="12" locale="sl" />
+						<h:outputText escape="false" value="Slovenian " />
+						<jq:datePicker id="datepicker13" size="12" locale="es" />
+						<h:outputText escape="false" value="Spanish " />
+						<jq:datePicker id="datepicker14" size="12" locale="sv" />
+						<h:outputText escape="false" value="Swedish " />
+						<jq:datePicker id="datepicker15" size="12" locale="th" />
+						<h:outputText escape="false" value="Thai " />
+						<jq:datePicker id="datepicker16" size="12" locale="tr" />
+						<h:outputText escape="false" value="Turkish " />
+						<jq:datePicker id="datepicker17" size="12" locale="uk" />
+						<h:outputText escape="false" value="Ukranian " />
+					</h:panelGrid>
+				</p>
+			</div>
+		</h:form>
+		<!-- end -->
+	</ui:define>
+</ui:composition>
