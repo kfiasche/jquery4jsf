@@ -74,7 +74,7 @@ public class HtmlQuickSearchRenderer extends HtmlQuickSearchBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
 	}
 
 	

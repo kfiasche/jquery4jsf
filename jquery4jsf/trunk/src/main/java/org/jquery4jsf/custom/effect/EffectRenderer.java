@@ -17,11 +17,8 @@
 package org.jquery4jsf.custom.effect;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -97,7 +94,7 @@ public class EffectRenderer extends EffectBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
 	}
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {

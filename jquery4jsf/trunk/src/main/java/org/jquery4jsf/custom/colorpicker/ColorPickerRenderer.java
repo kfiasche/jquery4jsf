@@ -30,7 +30,6 @@ import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 
 public class ColorPickerRenderer extends ColorPickerBaseRenderer {
@@ -46,12 +45,7 @@ public class ColorPickerRenderer extends ColorPickerBaseRenderer {
         	colorPicker = (ColorPicker)component;
         
         ResponseWriter responseWriter = context.getResponseWriter();
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = colorPicker.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
+        encodeResources(colorPicker);
         
         UIComponent parent = colorPicker.getParent();
         String clientId = null;
@@ -61,7 +55,7 @@ public class ColorPickerRenderer extends ColorPickerBaseRenderer {
         }
         else if (!colorPicker.isFlat()){
         	clientId = colorPicker.getClientId(context);
-        	rendererInputText(responseWriter, colorPicker, context);	
+        	encodeInputText(colorPicker, context);	
         	colorPicker.getAttributes().put("target", RendererUtilities.getJQueryId(clientId));
         }
         else{
@@ -95,7 +89,7 @@ public class ColorPickerRenderer extends ColorPickerBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
         
 	}
 

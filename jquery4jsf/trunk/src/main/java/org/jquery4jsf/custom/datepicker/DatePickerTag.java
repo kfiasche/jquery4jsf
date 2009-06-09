@@ -21,6 +21,15 @@ import javax.faces.component.UIComponent;
 
 public class DatePickerTag extends UIComponentTagBase {
 
+	private String value;
+	private String converter;
+	private String immediate;
+	private String required;
+	private String validator;
+	private String valueChangeListener;
+	private String requiredMessage;
+	private String converterMessage;
+	private String validatorMessage;
 	private String accesskey;
 	private String alt;
 	private String dir;
@@ -93,6 +102,15 @@ public class DatePickerTag extends UIComponentTagBase {
 
 	public void release(){
 		super.release();
+		this.value = null;
+		this.converter = null;
+		this.immediate = null;
+		this.required = null;
+		this.validator = null;
+		this.valueChangeListener = null;
+		this.requiredMessage = null;
+		this.converterMessage = null;
+		this.validatorMessage = null;
 		this.accesskey = null;
 		this.alt = null;
 		this.dir = null;
@@ -174,6 +192,15 @@ public class DatePickerTag extends UIComponentTagBase {
 			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
 		}
 
+		setValueProperty(getFacesContext(), component, "value", value);
+		setConverterProperty(getFacesContext(), component, "converter", converter);
+		setBooleanProperty(getFacesContext(), component, "immediate", immediate);
+		setBooleanProperty(getFacesContext(), component, "required", required);
+		setValidatorProperty(getFacesContext(), component, "validator", validator);
+		setValueChangeListenerProperty(getFacesContext(), component, "valueChangeListener", valueChangeListener);
+		setStringProperty(getFacesContext(), component, "requiredMessage", requiredMessage);
+		setStringProperty(getFacesContext(), component, "converterMessage", converterMessage);
+		setStringProperty(getFacesContext(), component, "validatorMessage", validatorMessage);
 		setStringProperty(getFacesContext(), component, "accesskey", accesskey);
 		setStringProperty(getFacesContext(), component, "alt", alt);
 		setStringProperty(getFacesContext(), component, "dir", dir);
@@ -251,6 +278,42 @@ public class DatePickerTag extends UIComponentTagBase {
 
 	public String getRendererType() {
 		return "org.jquery4jsf.DatePickerRenderer";
+	}
+
+	public void setValue(String value){
+		this.value = value;
+	}
+
+	public void setConverter(String value){
+		this.converter = value;
+	}
+
+	public void setImmediate(String value){
+		this.immediate = value;
+	}
+
+	public void setRequired(String value){
+		this.required = value;
+	}
+
+	public void setValidator(String value){
+		this.validator = value;
+	}
+
+	public void setValueChangeListener(String value){
+		this.valueChangeListener = value;
+	}
+
+	public void setRequiredMessage(String value){
+		this.requiredMessage = value;
+	}
+
+	public void setConverterMessage(String value){
+		this.converterMessage = value;
+	}
+
+	public void setValidatorMessage(String value){
+		this.validatorMessage = value;
 	}
 
 	public void setAccesskey(String value){

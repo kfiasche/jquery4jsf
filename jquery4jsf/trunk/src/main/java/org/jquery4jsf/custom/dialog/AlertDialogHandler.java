@@ -16,8 +16,6 @@
  */
 package org.jquery4jsf.custom.dialog;
 
-import java.util.List;
-
 import com.sun.facelets.tag.MetaRule;
 import com.sun.facelets.tag.MetaRuleset;
 import com.sun.facelets.tag.MethodRule;

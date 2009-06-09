@@ -35,6 +35,7 @@ public class TableSorter extends HtmlBaseOutputComponent implements JQueryHtmlOb
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.TableSorterRenderer";
 
 	private String[] resources;
+	private Boolean themeroller;
 	private String target;
 	private String ascStyleClass;
 	private String descStyleClass;
@@ -47,12 +48,24 @@ public class TableSorter extends HtmlBaseOutputComponent implements JQueryHtmlOb
 		 resources = new String[]{
 			"jquery/jquery.js",
 			"tablesorter/jquery.tablesorter.js",
+			"tablesorter/jquery.tablesorter-theme.js",
 			"themes/base/ui.all.css"
 		};
 	}
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+
+	public boolean isThemeroller() {
+		if(themeroller != null )
+			return themeroller.booleanValue();
+
+		Boolean oValue = (Boolean) getLocalOrValueBindingValue(themeroller, "themeroller");
+		return oValue != null ? oValue.booleanValue()  : false;
+	}
+	public void setThemeroller(boolean themeroller) {
+		this.themeroller = new Boolean(themeroller);
 	}
 
 	public String getTarget() {
@@ -122,25 +135,27 @@ public class TableSorter extends HtmlBaseOutputComponent implements JQueryHtmlOb
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[7];
+		Object values[] = new Object[8];
 		values[0] = super.saveState(context);
-		values[1] = target;
-		values[2] = ascStyleClass;
-		values[3] = descStyleClass;
-		values[4] = headerStyleClass;
-		values[5] = sortedColumns;
-		values[6] = sortMultiSortKey;
+		values[1] = themeroller;
+		values[2] = target;
+		values[3] = ascStyleClass;
+		values[4] = descStyleClass;
+		values[5] = headerStyleClass;
+		values[6] = sortedColumns;
+		values[7] = sortMultiSortKey;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.target = (String) values[1];
-		this.ascStyleClass = (String) values[2];
-		this.descStyleClass = (String) values[3];
-		this.headerStyleClass = (String) values[4];
-		this.sortedColumns = (String) values[5];
-		this.sortMultiSortKey = (String) values[6];
+		this.themeroller = (Boolean) values[1];
+		this.target = (String) values[2];
+		this.ascStyleClass = (String) values[3];
+		this.descStyleClass = (String) values[4];
+		this.headerStyleClass = (String) values[5];
+		this.sortedColumns = (String) values[6];
+		this.sortMultiSortKey = (String) values[7];
 	}
 
 	public String[] getResources() {

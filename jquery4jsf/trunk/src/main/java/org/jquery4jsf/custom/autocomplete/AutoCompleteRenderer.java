@@ -32,7 +32,6 @@ import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 
 public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements AjaxBaseRenderer {
@@ -48,15 +47,14 @@ public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements Aj
         AutoComplete autoComplete = null;
         if(component instanceof AutoComplete)
             autoComplete = (AutoComplete)component;
-        ResponseWriter responseWriter = context.getResponseWriter();
         
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = autoComplete.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-        
+        encodeResources(autoComplete);
+        encodeAutoCompleteScript(context, autoComplete);
+        encodeInputText(autoComplete, context);
+	}
+	
+	protected void encodeAutoCompleteScript(FacesContext context, AutoComplete autoComplete) throws IOException{
+		ResponseWriter responseWriter = context.getResponseWriter();
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
@@ -70,9 +68,7 @@ public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements Aj
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
-        
-        rendererInputText(responseWriter, autoComplete, context);
+        RendererUtilities.encodeImportJavascripScript(autoComplete, responseWriter, sb);
 	}
 	
 	public void encodeChildren(FacesContext context, UIComponent component) {

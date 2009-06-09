@@ -23,7 +23,7 @@ public class DatePickerBaseRenderer extends JQueryInputBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, DatePicker datePicker , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, datePicker.getLocale(), "locale", null);
+		encodeOptionComponentByType(options, datePicker.getLocale(), "regional", null);
 		encodeOptionComponentByType(options, datePicker.getAltField(), "altField", null);
 		encodeOptionComponentByType(options, datePicker.getAltFormat(), "altFormat", null);
 		encodeOptionComponentByType(options, datePicker.getAppendText(), "appendText", null);

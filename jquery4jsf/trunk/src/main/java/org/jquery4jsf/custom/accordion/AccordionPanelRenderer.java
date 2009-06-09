@@ -26,23 +26,14 @@ import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 
-public class AccordionPanelRenderer extends AccordionPanelBaseRenderer implements AjaxBaseRenderer {
+public class AccordionPanelRenderer extends AccordionPanelBaseRenderer {
 
 	public static final String RENDERER_TYPE = "org.jquery4jsf.AccordionPanelRenderer";
-
-	public void encodePartially(FacesContext context, UIComponent component)throws IOException {
-	}
-
-	public String getActionURL(FacesContext context) {
-		return RendererUtilities.getActionURL(context);
-	}
 
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         if(context == null || component == null)
@@ -54,13 +45,8 @@ public class AccordionPanelRenderer extends AccordionPanelBaseRenderer implement
         	accordionPanel = (AccordionPanel)component;
         
         ResponseWriter responseWriter = context.getResponseWriter();
+        encodeResources(accordionPanel);
         
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = accordionPanel.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
         String jsRender = (String) accordionPanel.getAttributes().get("jsNoRenderer");
         if (jsRender == null || !jsRender.equalsIgnoreCase("true")){
 	        StringBuffer sb = new StringBuffer();
@@ -77,7 +63,7 @@ public class AccordionPanelRenderer extends AccordionPanelBaseRenderer implement
 	        documentElement.addFunctionToReady(function);
 	        sb.append(documentElement.toJavaScriptCode());
 	        sb.append("\n");
-	        RendererUtilities.createTagScriptForJs(component, responseWriter, sb); 
+	        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb); 
         }
         responseWriter.startElement(HTML.TAG_DIV, accordionPanel);
         writeIdAttributeIfNecessary(context, responseWriter, component);

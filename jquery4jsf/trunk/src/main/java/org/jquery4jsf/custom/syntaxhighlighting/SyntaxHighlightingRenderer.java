@@ -60,7 +60,7 @@ public class SyntaxHighlightingRenderer extends SyntaxHighlightingBaseRenderer {
 	        sb.append("\t\tSyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';\n");
 	        sb.append("\t\tSyntaxHighlighter.all();\n");
 	        sb.append("\n");
-	        RendererUtilities.createTagScriptForJs(component, responseWriter,  sb);
+	        RendererUtilities.encodeImportJavascripScript(component, responseWriter,  sb);
 	        responseWriter.startElement(HTML.TAG_PRE, syntax);
 	        String styleClass = "brush: " + syntax.getType() +";";
 	        responseWriter.writeAttribute("class", styleClass, null);

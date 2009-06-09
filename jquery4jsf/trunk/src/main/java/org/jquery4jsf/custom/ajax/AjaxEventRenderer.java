@@ -30,7 +30,6 @@ import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 
 public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBaseRenderer{
@@ -62,17 +61,13 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
         if(component instanceof AjaxEvent)
             ajaxEvent = (AjaxEvent)component;
         
+        encodeResources(ajaxEvent);
+        encodeAjaxEventScript(context, ajaxEvent);
+	}
+	
+	protected void encodeAjaxEventScript(FacesContext context, AjaxEvent ajaxEvent) throws IOException{
         ResponseWriter responseWriter = context.getResponseWriter();
-        
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = ajaxEvent.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-		
-       String parentId = ajaxEvent.getParent().getClientId(context);
-        
+        String parentId = ajaxEvent.getParent().getClientId(context);
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
@@ -86,8 +81,7 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
-        
+        RendererUtilities.encodeImportJavascripScript(ajaxEvent, responseWriter, sb);
 	}
 	
 	protected String encodeOptionComponent(StringBuffer options, AjaxEvent ajaxEvent , FacesContext context) {

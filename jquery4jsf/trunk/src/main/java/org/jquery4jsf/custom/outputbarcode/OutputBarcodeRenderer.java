@@ -72,7 +72,7 @@ public class OutputBarcodeRenderer extends OutputBarcodeBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
         
         responseWriter.startElement(HTML.TAG_DIV, outputBarcode);
         responseWriter.writeAttribute("id", clientId, "id");
@@ -87,7 +87,7 @@ public class OutputBarcodeRenderer extends OutputBarcodeBaseRenderer {
 		options.append(value);
 		options.append("\",");
 		options.append("\"");
-		String type = (String) outputBarcode.getType();
+		String type = outputBarcode.getType();
 		options.append(type);
 		options.append("\"");
 		options.append(", {\n");

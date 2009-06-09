@@ -22,7 +22,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import org.jquery4jsf.custom.draggable.Draggable;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -67,7 +66,7 @@ public class ResizableRenderer extends ResizableBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
         
         if (RendererUtilities.isUniqueId(component)){
         	encodeStartDivWrapper(context, resizable, clientId);

@@ -29,7 +29,6 @@ import org.jquery4jsf.javascript.event.JSHideEvent;
 import org.jquery4jsf.javascript.event.JSShowEvent;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 
 public class AjaxStatusRenderer extends AjaxStatusBaseRenderer {
@@ -44,17 +43,14 @@ public class AjaxStatusRenderer extends AjaxStatusBaseRenderer {
         if(component instanceof AjaxStatus)
             ajaxStatus = (AjaxStatus)component;
         
-        ResponseWriter responseWriter = context.getResponseWriter();
-        
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = ajaxStatus.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-        
-        String clientId = ajaxStatus.getClientId(context);
-        encodeScriptWidget(responseWriter, clientId, ajaxStatus, context);
+        encodeResources(ajaxStatus);
+        encodeAjaxStatusScript(context, ajaxStatus);
+        encodeMarkupAjaxStatus(context, ajaxStatus);
+	}
+
+	private void encodeMarkupAjaxStatus(FacesContext context, AjaxStatus ajaxStatus) throws IOException{
+		ResponseWriter responseWriter = context.getResponseWriter();
+		String clientId = ajaxStatus.getClientId(context);
         responseWriter.write("\n");
         responseWriter.startElement("div", null);
         responseWriter.writeAttribute("id", clientId, null);
@@ -66,7 +62,6 @@ public class AjaxStatusRenderer extends AjaxStatusBaseRenderer {
 		responseWriter.endElement("div");
 		responseWriter.write("\n");
 	}
-
 	
 	
 	private void encodeFacet(ResponseWriter responseWriter, String clientId, AjaxStatus ajaxStatus, FacesContext context, String facetName) throws IOException{
@@ -82,12 +77,15 @@ public class AjaxStatusRenderer extends AjaxStatusBaseRenderer {
 		responseWriter.write("\n");
 	}
 	
-	private void encodeScriptWidget(ResponseWriter responseWriter, String clientId, AjaxStatus ajaxStatus, FacesContext context) throws IOException {
+	private void encodeAjaxStatusScript(FacesContext context, AjaxStatus ajaxStatus) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+		String clientId = ajaxStatus.getClientId(context);
 		UIComponent start = ajaxStatus.getFacet("start");
 		UIComponent complete = ajaxStatus.getFacet("complete");
 		UIComponent error = ajaxStatus.getFacet("error");
-		UIComponent success = ajaxStatus.getFacet("success");
-		UIComponent stop = ajaxStatus.getFacet("stop");
+		//TODO implementare success and stop
+		//UIComponent success = ajaxStatus.getFacet("success");
+		//UIComponent stop = ajaxStatus.getFacet("stop");
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
 		JSDocumentElement documentElement = new JSDocumentElement();
@@ -160,6 +158,6 @@ public class AjaxStatusRenderer extends AjaxStatusBaseRenderer {
 		documentElement.addFunctionToReady(jsFunction);
 		sb.append(documentElement.toJavaScriptCode());
 		sb.append("\n");
-		RendererUtilities.createTagScriptForJs(ajaxStatus, responseWriter, sb);
+		RendererUtilities.encodeImportJavascripScript(ajaxStatus, responseWriter, sb);
 	}
 }

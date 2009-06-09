@@ -71,6 +71,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>bookmark</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlBookMark</component-type>
+			<renderer-type>org.jquery4jsf.BookMarkRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>button</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlButton</component-type>

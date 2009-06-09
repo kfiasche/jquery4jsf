@@ -64,7 +64,7 @@ public class PanelExRenderer extends PanelExBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
 		
 		
 		responseWriter.startElement(HTML.TAG_DIV, panelEx);

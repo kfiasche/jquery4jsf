@@ -21,8 +21,8 @@ import java.io.IOException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.servlet.http.HttpServletRequest;
 
+import org.jquery4jsf.custom.datepicker.DatePicker;
 import org.jquery4jsf.custom.datepicker.DatePickerRenderer;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
@@ -30,7 +30,6 @@ import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 
 public class CalendarRenderer extends DatePickerRenderer {
@@ -55,33 +54,16 @@ public class CalendarRenderer extends DatePickerRenderer {
         	calendar = (Calendar)component;
         
         ResponseWriter responseWriter = context.getResponseWriter();
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = calendar.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-        HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
-        if (req.getLocale() != null && calendar.getLocale() == null){
-        	String locale = req.getLocale().toString();
-        	String src = "datepicker/i18n/ui.datepicker-"+locale.substring(0,2)+".js";
-        	RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, src);
-        }
-        if (calendar.getLocale() != null){
-        	String locale = calendar.getLocale();
-        	String src = "datepicker/i18n/ui.datepicker-"+locale+".js";
-        	RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, src);
-        }
-        if (req.getLocale() == null && calendar.getLocale() == null){
-        	String locale = FacesContext.getCurrentInstance().getApplication().getDefaultLocale().toString();
-        	String src = "datepicker/i18n/ui.datepicker-"+locale.substring(0,2)+".js";
-        	RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, src);
-        }
         
+        encodeResources(calendar);
+        encodeLocale(context, calendar);
+        
+        String clientId = component.getClientId(context);
         responseWriter.startElement(HTML.TAG_DIV, component);
-        responseWriter.writeAttribute("id", component.getClientId(context), "id");
+        responseWriter.writeAttribute("id", clientId , "id");
         responseWriter.endElement(HTML.TAG_DIV);
-        
+        encodeHiddenInput(context, clientId.concat("_input"));
+        calendar.setAltField(clientId.concat("_input"));
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
@@ -95,6 +77,13 @@ public class CalendarRenderer extends DatePickerRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
+	}
+	
+	public void decode(FacesContext context, UIComponent component) {
+		DatePicker datePicker = (DatePicker) component;
+		String clientId = datePicker.getClientId(context);
+		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId+"_input");
+		datePicker.setSubmittedValue(submittedValue);
 	}
 }

@@ -76,7 +76,7 @@ public class ProgressBarRenderer extends JQueryBaseRenderer {
 		sb.append(documentElement.toJavaScriptCode());
 		sb.append("\n");
 		
-		RendererUtilities.createTagScriptForJs(component, responseWriter, sb); 
+		RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb); 
 		//if (progressBar.isResizable()){
 			responseWriter.startElement(HTML.TAG_DIV, progressBar);
 			responseWriter.writeAttribute(HTML.ID, progressBar.getClientId(context).concat("Wrapper"), null);

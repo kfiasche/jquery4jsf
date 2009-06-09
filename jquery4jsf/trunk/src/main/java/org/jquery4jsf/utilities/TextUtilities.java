@@ -16,6 +16,9 @@
  */
 package org.jquery4jsf.utilities;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public final class TextUtilities {
 
     public static boolean isNumber(String str)
@@ -67,13 +70,56 @@ public final class TextUtilities {
     }
 
 	public static boolean isStringVuota(String value) {
-		if (value == null || value.trim().length() == 0)
+		if (value == null 
+				|| value.trim().length() == 0 
+				|| value.trim().equalsIgnoreCase("null"))
 			return true;
 		else{
 			return false;
 		}
 	}
 	
+	
+	public static boolean getBooleanValue(String value){
+		if (isBoolean(value))
+			return Boolean.valueOf(value).booleanValue();
+		else{
+			return false;
+		}
+	}
+
+	public static boolean isArray(String value) {
+		return isArray(value,",");
+	}
+
+	public static boolean isArray(String value, String pattern) {
+		Pattern ARRAY_DETECTOR = Pattern.compile(pattern);
+		Matcher m = ARRAY_DETECTOR.matcher(value);
+		while (m.find()){
+			int pos=m.start();
+			int count=0;
+			for (int i=pos-1;i>0;i--){
+				if (value.charAt(i)=='\\')
+					count++;
+				else
+					break;
+			}
+			if (count % 2 == 0){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static String cleanStringArrayChar(String value) {
+		if (value.endsWith("]") && value.startsWith("["))
+		{
+			int inizio = value.indexOf("[");
+			int fine = value.indexOf("]");
+			value = value.substring(inizio+1, fine);
+		}
+		return value;
+	}
 
 
 }

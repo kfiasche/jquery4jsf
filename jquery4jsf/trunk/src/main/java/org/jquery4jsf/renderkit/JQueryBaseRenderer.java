@@ -17,8 +17,8 @@
 package org.jquery4jsf.renderkit;
 
 import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
+
+import org.jquery4jsf.custom.JQueryHtmlObject;
 
 public abstract class JQueryBaseRenderer extends HtmlBasicRenderer {
 	
@@ -50,4 +50,7 @@ public abstract class JQueryBaseRenderer extends HtmlBasicRenderer {
 		return RendererUtilities.encodeOptionsWithUIParam(component);
 	}
 	
+	protected void encodeResources(JQueryHtmlObject jqcomponent) {
+		RendererUtilities.encodeResources(jqcomponent);
+	}
 }

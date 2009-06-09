@@ -21,27 +21,42 @@ import java.io.IOException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.convert.ConverterException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
+import org.jquery4jsf.javascript.JSOperationElement;
 import org.jquery4jsf.javascript.function.JSFunction;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
-public class DatePickerRenderer extends DatePickerBaseRenderer implements AjaxBaseRenderer {
+public class DatePickerRenderer extends DatePickerBaseRenderer {
+	
 	
 	public static final String RENDERER_TYPE = "org.jquery4jsf.DatePickerRenderer";
 
-	public void encodePartially(FacesContext context, UIComponent component) throws IOException {
-	}
+	protected void encodeLocale(FacesContext context, DatePicker datePicker) throws IOException{
+        HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
+        if (req.getLocale() != null && datePicker.getLocale() == null){
+        	String locale = req.getLocale().toString();
+        	String src = "datepicker/i18n/ui.datepicker-"+locale.substring(0,2)+".js";
+        	ResourceContext.getInstance().addResource(src);
+        }
+        if (datePicker.getLocale() != null){
+        	String locale = datePicker.getLocale();
+        	String src = "datepicker/i18n/ui.datepicker-"+locale+".js";
+        	ResourceContext.getInstance().addResource(src);
+        }
+        if (req.getLocale() == null && datePicker.getLocale() == null){
+        	String locale = FacesContext.getCurrentInstance().getApplication().getDefaultLocale().toString();
+        	String src = "datepicker/i18n/ui.datepicker-"+locale.substring(0,2)+".js";
+        	ResourceContext.getInstance().addResource(src);
+        }
 
-	public String getActionURL(FacesContext context) {
-		return RendererUtilities.getActionURL(context);
 	}
-
+	
 	public void encodeBegin(FacesContext context, UIComponent component)throws IOException {
         if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
@@ -52,52 +67,47 @@ public class DatePickerRenderer extends DatePickerBaseRenderer implements AjaxBa
         	datePicker = (DatePicker)component;
         
         ResponseWriter responseWriter = context.getResponseWriter();
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = datePicker.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-        HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
-        if (req.getLocale() != null && datePicker.getLocale() == null){
-        	String locale = req.getLocale().toString();
-        	
-        	String src = "datepicker/i18n/ui.datepicker-"+locale.substring(0,2)+".js";
-        	RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, src);
-        }
-        if (datePicker.getLocale() != null){
-        	String locale = datePicker.getLocale();
-        	String src = "datepicker/i18n/ui.datepicker-"+locale+".js";
-        	RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, src);
-        }
-        if (req.getLocale() == null && datePicker.getLocale() == null){
-        	String locale = FacesContext.getCurrentInstance().getApplication().getDefaultLocale().toString();
-        	String src = "datepicker/i18n/ui.datepicker-"+locale.substring(0,2)+".js";
-        	RendererUtilities.addJsForJQueryPlugin(component, responseWriter, context, src);
-        }
-
-        rendererInputText(responseWriter, datePicker, context);
+        encodeResources(datePicker);
+        encodeLocale(context, datePicker);
+        encodeInputText(datePicker, context);
         
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
         JSElement element = new JSElement(datePicker.getClientId(context));
-        JSAttribute jsAutocomplete = new JSAttribute("datepicker", false);
+        JSAttribute jsDatePicker = new JSAttribute("datepicker", false);
         StringBuffer sbOption = new StringBuffer();
-        jsAutocomplete.addValue(encodeOptionComponent(sbOption, datePicker, context));
-        element.addAttribute(jsAutocomplete);
+        String options = encodeOptionComponent(sbOption, datePicker, context);
+        jsDatePicker.addValue(options);
+        element.addAttribute(jsDatePicker);
         JSFunction function = new JSFunction();
-        function.addJSElement(element);
+        if (datePicker.getLocale() != null){
+            JSOperationElement operationElement = new JSOperationElement("");
+            String idjq = RendererUtilities.getJQueryId(datePicker.getClientId(context));
+            operationElement.addOperation("\n $('"+idjq.concat("').datepicker($.datepicker.regional['"+datePicker.getLocale()+"']);" ));
+            operationElement.addOperation("\n $('"+idjq.concat("').datepicker('option', $.extend("+options+", \n $.datepicker.regional['"+datePicker.getLocale()+"']));" ));
+            function.addJSElement(operationElement);
+        }
+        else
+        	function.addJSElement(element);
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
         
 	}
 	
 	protected String encodeOptionComponent(StringBuffer options, DatePicker datePicker , FacesContext context) {
 		options.append(" {\n");
-		String id = RendererUtilities.getJQueryIdComponent(datePicker.getAltField(), context, datePicker);
+		String id = null;
+		if (datePicker.getAltField() != null){
+			//TODO search a id into viewtree
+			id = RendererUtilities.getJQueryIdComponent(datePicker.getAltField(), context, datePicker);
+			//is null write a jqueryid
+			if (id == null){
+				id = RendererUtilities.getJQueryId(datePicker.getAltField());
+			}
+		}
 		encodeOptionComponentByType(options, id, "altField", null);
 		encodeOptionComponentByType(options, datePicker.getAltFormat(), "altFormat", null);
 		encodeOptionComponentByType(options, datePicker.getAppendText(), "appendText", null);
@@ -156,6 +166,17 @@ public class DatePickerRenderer extends DatePickerBaseRenderer implements AjaxBa
 			options.append(" }");
 		}
 		return options.toString();
+	}
+	
+	public Object getConvertedValue(FacesContext context, UIComponent component, Object submittedValue) throws ConverterException {
+		return super.getConvertedValue(context, component, submittedValue);
+	}
+	
+	public void decode(FacesContext context, UIComponent component) {
+		DatePicker datePicker = (DatePicker) component;
+		String clientId = datePicker.getClientId(context);
+		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
+		datePicker.setSubmittedValue(submittedValue);
 	}
 	
 }

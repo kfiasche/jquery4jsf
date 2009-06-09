@@ -19,11 +19,9 @@ package org.jquery4jsf.custom.dialog;
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import org.jquery4jsf.custom.button.Button;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -67,7 +65,7 @@ public class AlertDialogRenderer extends AlertDialogBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
         
         responseWriter.startElement(HTML.TAG_DIV, alertDialog);
         responseWriter.writeAttribute("id", clientId, "id");

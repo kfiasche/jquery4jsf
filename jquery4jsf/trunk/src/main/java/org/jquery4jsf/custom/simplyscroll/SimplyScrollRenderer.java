@@ -18,14 +18,11 @@ package org.jquery4jsf.custom.simplyscroll;
 import java.io.IOException;
 import java.util.Iterator;
 
-import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIGraphic;
 import javax.faces.component.html.HtmlGraphicImage;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import org.jquery4jsf.custom.panel.Panel;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -67,7 +64,7 @@ public class SimplyScrollRenderer extends SimplyScrollBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
         responseWriter.startElement(HTML.TAG_DIV, component);
         responseWriter.writeAttribute("id", component.getClientId(context) +"Wrapper", null);
         responseWriter.writeAttribute("class", "ui-simplyscroll-w", null);

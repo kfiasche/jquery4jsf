@@ -88,7 +88,7 @@ public class HtmlTreeViewRenderer extends HtmlTreeViewBaseRenderer implements Aj
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb); 
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb); 
 		responseWriter.startElement(HTML.TAG_UL, null);
 		responseWriter.writeAttribute("id", tree.getClientId(context), "id");
 		//responseWriter.writeAttribute("class", "tree tree-checkbox", null);

@@ -28,7 +28,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
 
-import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.custom.dialog.AlertDialog;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
@@ -39,7 +38,6 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 
 public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRenderer {
@@ -65,13 +63,11 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 		if(form == null) {
 			throw new FacesException(MessageFactory.getMessage("org.jquery4jsf.BUTTON_PARENT_FORM"));
 		}
+		
+		encodeResources(button);
+		encodeButtonMarket(context, button);
+		
         ResponseWriter responseWriter = context.getResponseWriter();
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = button.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
         
         String idClient = button.getClientId(context);
         AlertDialog alert = getAlertDialog(button);
@@ -80,8 +76,21 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         	alert.encodeChildren(context);
         	alert.encodeEnd(context);
         }
+
+        
+        if (!button.getType().equalsIgnoreCase("reset") 
+        		&& (button.getTarget()!=null 
+        				|| alert != null)){
+        	encodeJQueryButtonScript(idClient, button, responseWriter, context);
+        }
+       
+	}
+	
+	protected void encodeButtonMarket(FacesContext context, Button button) throws IOException{
+		ResponseWriter responseWriter = context.getResponseWriter();
+		String idClient = button.getClientId(context);
         responseWriter.startElement(HTML.TAG_INPUT, button);
-        writeIdAttributeIfNecessary(context, responseWriter, component);
+        writeIdAttributeIfNecessary(context, responseWriter, button);
         if (!button.isResetForm() || !button.isClearForm())
         	responseWriter.writeAttribute("name", idClient, null);
         String styleClass = "ui-button ui-state-default ui-priority-primary ui-corner-all ";
@@ -99,13 +108,6 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_JS_STD_ATTR);
         HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_JS_ELEMENT_ATTR);
         responseWriter.endElement(HTML.TAG_INPUT);
-        
-        if (!button.getType().equalsIgnoreCase("reset") 
-        		&& (button.getTarget()!=null 
-        				|| alert != null)){
-        	encodeJQueryButtonScript(idClient, button, responseWriter, context);
-        }
-       
 	}
 	
 	private void encodeJQueryButtonScript(String id, Button button, ResponseWriter responseWriter, FacesContext context) throws IOException{
@@ -142,7 +144,7 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(button, responseWriter, sb); 
+        RendererUtilities.encodeImportJavascripScript(button, responseWriter, sb); 
 	}
 	
 	public void decode(FacesContext context, UIComponent component) {
@@ -175,7 +177,7 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 	private AlertDialog getAlertDialog(Button button) {
 		List children = button.getChildren();
 		for (Iterator iterator = children.iterator(); iterator.hasNext();) {
-			Object object = (Object) iterator.next();
+			Object object = iterator.next();
 			if (object instanceof AlertDialog) {
 				AlertDialog alert = (AlertDialog) object;
 				return alert;

@@ -31,7 +31,6 @@ import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 import org.jquery4jsf.utilities.TextUtilities;
 public class TableSorterRenderer extends TableSorterBaseRenderer {
@@ -44,18 +43,16 @@ public class TableSorterRenderer extends TableSorterBaseRenderer {
         if(component instanceof TableSorter)
         	tableSorter = (TableSorter)component;
         
+        encodeResources(tableSorter);
+        encodeTableSorterScript(context, tableSorter);
+	}
+	
+	protected void encodeTableSorterScript(FacesContext context, TableSorter tableSorter) throws IOException{
         ResponseWriter responseWriter = context.getResponseWriter();
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = tableSorter.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-        
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
-        String id = RendererUtilities.getJQueryIdComponent(tableSorter.getTarget(), context, component);
+        String id = RendererUtilities.getJQueryIdComponent(tableSorter.getTarget(), context, tableSorter);
         JSElement element = new JSElement(id);
         JSAttribute jsTableSorter = new JSAttribute("tablesorter", false);
         StringBuffer sbOption = new StringBuffer();
@@ -66,8 +63,7 @@ public class TableSorterRenderer extends TableSorterBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
-        
+        RendererUtilities.encodeImportJavascripScript(tableSorter, responseWriter, sb);
 	}
 	
 	protected String encodeOptionComponent(StringBuffer options, TableSorter tableSorter , FacesContext context) {
@@ -104,6 +100,8 @@ public class TableSorterRenderer extends TableSorterBaseRenderer {
 			}
 		}
 		encodeOptionComponentByType(options, tableSorter.getSortMultiSortKey(), "sortMultiSortKey", null);
+		//encodeOptionComponentByType(options, "[zebra]", "widgets", null);
+		encodeOptionComponentByType(options, true, "widthFixed", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

@@ -21,6 +21,7 @@ import javax.faces.component.UIComponent;
 
 public class TableSorterTag extends UIComponentTagBase {
 
+	private String themeroller;
 	private String target;
 	private String ascStyleClass;
 	private String descStyleClass;
@@ -30,6 +31,7 @@ public class TableSorterTag extends UIComponentTagBase {
 
 	public void release(){
 		super.release();
+		this.themeroller = null;
 		this.target = null;
 		this.ascStyleClass = null;
 		this.descStyleClass = null;
@@ -48,6 +50,7 @@ public class TableSorterTag extends UIComponentTagBase {
 			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
 		}
 
+		setBooleanProperty(getFacesContext(), component, "themeroller", themeroller);
 		setStringProperty(getFacesContext(), component, "target", target);
 		setStringProperty(getFacesContext(), component, "ascStyleClass", ascStyleClass);
 		setStringProperty(getFacesContext(), component, "descStyleClass", descStyleClass);
@@ -62,6 +65,10 @@ public class TableSorterTag extends UIComponentTagBase {
 
 	public String getRendererType() {
 		return "org.jquery4jsf.TableSorterRenderer";
+	}
+
+	public void setThemeroller(String value){
+		this.themeroller = value;
 	}
 
 	public void setTarget(String value){

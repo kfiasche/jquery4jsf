@@ -16,19 +16,17 @@
 package org.jquery4jsf.custom.outputhtmltag;
 
 import java.io.IOException;
-import java.lang.String;
 
-import org.jquery4jsf.custom.outputhtmltag.OutputHtmlTag;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
+
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
 import org.jquery4jsf.utilities.TextUtilities;
-
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
 
 public class OutputHtmlTagRenderer extends JQueryBaseRenderer {
 

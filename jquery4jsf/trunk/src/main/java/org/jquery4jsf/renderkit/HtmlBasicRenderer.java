@@ -21,9 +21,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.convert.ConverterException;
 import javax.faces.render.Renderer;
 
 public class HtmlBasicRenderer extends Renderer {
@@ -69,5 +69,17 @@ public class HtmlBasicRenderer extends Renderer {
 			return facets.size();
 		return -1;
 	}
+	
+	protected void encodeHiddenInput(FacesContext context, String id) throws IOException {
+		ResponseWriter writer = context.getResponseWriter();	
+		writer.startElement("input", null);
+		writer.writeAttribute("id", id, null);
+		writer.writeAttribute("name", id, null);
+		writer.writeAttribute("type", "hidden", null);
+		writer.endElement("input");
+	}
 
+	public Object getConvertedValue(FacesContext context, UIComponent component, Object submittedValue) throws ConverterException {
+		return RendererUtilities.getConvertedValue(context, component, submittedValue);
+	}
 }

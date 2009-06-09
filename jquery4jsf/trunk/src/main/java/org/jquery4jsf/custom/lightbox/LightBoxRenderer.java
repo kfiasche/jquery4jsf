@@ -68,7 +68,7 @@ public class LightBoxRenderer extends LightBoxBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
         
 		String clientId = lightBox.getClientId(context);
         responseWriter.startElement(HTML.TAG_DIV, lightBox);

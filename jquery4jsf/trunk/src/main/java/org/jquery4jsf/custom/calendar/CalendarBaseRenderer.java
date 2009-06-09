@@ -23,7 +23,7 @@ public class CalendarBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Calendar calendar , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, calendar.getLocale(), "locale", null);
+		encodeOptionComponentByType(options, calendar.getLocale(), "regional", null);
 		encodeOptionComponentByType(options, calendar.getAltField(), "altField", null);
 		encodeOptionComponentByType(options, calendar.getAltFormat(), "altFormat", null);
 		encodeOptionComponentByType(options, calendar.getAppendText(), "appendText", null);

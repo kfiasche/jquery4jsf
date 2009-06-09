@@ -58,6 +58,11 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlBookMark</component-type>
+		<component-class>org.jquery4jsf.custom.bookmark.BookMark</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlButton</component-type>
 		<component-class>org.jquery4jsf.custom.button.Button</component-class>
 	</component>
@@ -322,6 +327,11 @@
 			<component-family>org.jquery4jsf.AutoComplete</component-family>
 			<renderer-type>org.jquery4jsf.AutoCompleteRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.autocomplete.AutoCompleteRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.BookMark</component-family>
+			<renderer-type>org.jquery4jsf.BookMarkRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.bookmark.BookMarkRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.Button</component-family>

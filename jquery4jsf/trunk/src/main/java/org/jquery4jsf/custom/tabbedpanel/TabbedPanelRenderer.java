@@ -69,7 +69,7 @@ public class TabbedPanelRenderer extends JQueryBaseRenderer {
 	        documentElement.addFunctionToReady(function);
 	        sb.append(documentElement.toJavaScriptCode());
 	        sb.append("\n");
-	        RendererUtilities.createTagScriptForJs(component, responseWriter, sb); 
+	        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb); 
 	        
 	        responseWriter.startElement(HTML.TAG_DIV, tabbedPanel);
 	        responseWriter.writeAttribute(HTML.ID, tabbedPanel.getClientId(context) ,"id");

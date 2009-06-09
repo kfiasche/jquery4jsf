@@ -88,7 +88,7 @@ public class CarouselRenderer extends JQueryBaseRenderer implements AjaxBaseRend
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb); 
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb); 
         
         responseWriter.startElement(HTML.TAG_UL, carousel);
         responseWriter.writeAttribute(HTML.ID, carousel.getClientId(context), "id");

@@ -1033,6 +1033,160 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>bookmark</name>
+		<tag-class>org.jquery4jsf.custom.bookmark.BookMarkTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value to specify the visibility of the component]]></description>
+		</attribute>
+		<attribute>
+			<name>binding</name>
+			<required>false</required>
+				<type>javax.faces.component.UIComponent</type>
+			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[CSS style(s) to be applied when this component is rendered.]]></description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Space-separated list of CSS style class(es) to be applied when this element is rendered. This value must be passed through as the "class" property on generated markup.]]></description>
+		</attribute>
+		<attribute>
+			<name>url</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The URL to bookmark, leave blank for the current page]]></description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The title to bookmark, leave blank for the current one]]></description>
+		</attribute>
+		<attribute>
+			<name>sites</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[List of site IDs to use, empty for all]]></description>
+		</attribute>
+		<attribute>
+			<name>icons</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Horizontal amalgamation of all site icons]]></description>
+		</attribute>
+		<attribute>
+			<name>iconSize</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[The size of the individual icons]]></description>
+		</attribute>
+		<attribute>
+			<name>iconCols</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[The number of icons across the combined image]]></description>
+		</attribute>
+		<attribute>
+			<name>target</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The name of the target window for the bookmarking links]]></description>
+		</attribute>
+		<attribute>
+			<name>compact</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[True if a compact presentation should be used, false for full]]></description>
+		</attribute>
+		<attribute>
+			<name>hint</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Popup hint for links, {s} is replaced by display name]]></description>
+		</attribute>
+		<attribute>
+			<name>popup</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[True to have it popup on demand, false to show always]]></description>
+		</attribute>
+		<attribute>
+			<name>popupText</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Text for the popup trigger]]></description>
+		</attribute>
+		<attribute>
+			<name>addFavorite</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[True to add a 'add to favourites' link, false for none]]></description>
+		</attribute>
+		<attribute>
+			<name>favoriteText</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Display name for the favourites link]]></description>
+		</attribute>
+		<attribute>
+			<name>favoriteIcon</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[Icon for the favourites link]]></description>
+		</attribute>
+		<attribute>
+			<name>addEmail</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[True to add a 'e-mail a friend' link, false for none]]></description>
+		</attribute>
+		<attribute>
+			<name>emailText</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Display name for the e-mail link]]></description>
+		</attribute>
+		<attribute>
+			<name>emailIcon</name>
+			<required>false</required>
+				<type>int</type>
+			<description><![CDATA[]]></description>
+		</attribute>
+		<attribute>
+			<name>emailSubject</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The subject for the e-mail]]></description>
+		</attribute>
+		<attribute>
+			<name>emailBody</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[The body of the e-mail. Use '{t}' for the position of the page title, '{u}' for the page URL, and '\n' for new lines]]></description>
+		</attribute>
+		<attribute>
+			<name>manualBookmark</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Instructions for manually bookmarking the page]]></description>
+		</attribute>
+	</tag>
+	<tag>
 		<name>button</name>
 		<tag-class>org.jquery4jsf.custom.button.ButtonTag</tag-class>
 		<body-content>JSP</body-content>
@@ -2332,6 +2486,60 @@
 			<required>false</required>
 				<type>javax.faces.component.UIComponent</type>
 			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+				<type>java.lang.Object</type>
+			<description><![CDATA[Value of the component that can be either an EL expression or a literal text]]></description>
+		</attribute>
+		<attribute>
+			<name>converter</name>
+			<required>false</required>
+				<type>javax.faces.convert.Converter</type>
+			<description><![CDATA[An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id]]></description>
+		</attribute>
+		<attribute>
+			<name>immediate</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value that specifies the lifecycle phase the valueChangeEvents should be processed, when true the events will be fired at "apply request values", if immediate is set to false, valueChangeEvents are fired in "process validations" phase. Default is false]]></description>
+		</attribute>
+		<attribute>
+			<name>required</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[Boolean value that makes the component required, default value is false]]></description>
+		</attribute>
+		<attribute>
+			<name>validator</name>
+			<required>false</required>
+				<type>javax.faces.validator.Validator</type>
+			<description><![CDATA[A method binding EL expression that refers to a method for validating the input]]></description>
+		</attribute>
+		<attribute>
+			<name>valueChangeListener</name>
+			<required>false</required>
+				<type>javax.faces.event.ValueChangeListener</type>
+			<description><![CDATA[A method binding EL expression that refers to a method for handling a value change event]]></description>
+		</attribute>
+		<attribute>
+			<name>requiredMessage</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Message to be displayed when required field validation fails]]></description>
+		</attribute>
+		<attribute>
+			<name>converterMessage</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Message to be displayed when conversion fails]]></description>
+		</attribute>
+		<attribute>
+			<name>validatorMessage</name>
+			<required>false</required>
+				<type>java.lang.String</type>
+			<description><![CDATA[Message to be displayed when validation fails]]></description>
 		</attribute>
 		<attribute>
 			<name>accesskey</name>
@@ -5854,6 +6062,12 @@
 			<required>false</required>
 				<type>javax.faces.component.UIComponent</type>
 			<description><![CDATA[An EL expression that maps to a server-side component instance in a backing bean]]></description>
+		</attribute>
+		<attribute>
+			<name>themeroller</name>
+			<required>false</required>
+				<type>boolean</type>
+			<description><![CDATA[if set enable a themeroller css style]]></description>
 		</attribute>
 		<attribute>
 			<name>target</name>

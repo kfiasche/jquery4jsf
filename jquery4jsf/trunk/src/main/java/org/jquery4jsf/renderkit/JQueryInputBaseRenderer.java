@@ -18,11 +18,11 @@ package org.jquery4jsf.renderkit;
 
 import java.io.IOException;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.ValueHolder;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+
+import org.jquery4jsf.custom.JQueryHtmlObject;
 
 public class JQueryInputBaseRenderer extends HtmlBasicInputRenderer {
 
@@ -46,12 +46,16 @@ public class JQueryInputBaseRenderer extends HtmlBasicInputRenderer {
 		RendererUtilities.createOptionComponentArrayByType(options, value, nameParameter);
 	}
 	
+	protected void encodeResources(JQueryHtmlObject jqcomponent) {
+		RendererUtilities.encodeResources(jqcomponent);
+	}
 	
-	protected void rendererInputText(ResponseWriter responseWriter, HtmlInputText input, FacesContext facesContext) throws IOException{
+	protected void encodeInputText(HtmlInputText input, FacesContext context) throws IOException{
+		ResponseWriter responseWriter = context.getResponseWriter();
         responseWriter.startElement("input", input);
-        writeIdAttributeIfNecessary(facesContext, responseWriter, input);
+        writeIdAttributeIfNecessary(context, responseWriter, input);
         responseWriter.writeAttribute("type", "text", null);
-        responseWriter.writeAttribute("name", input.getClientId(facesContext), "clientId");
+        responseWriter.writeAttribute("name", input.getClientId(context), "clientId");
         if(input.getValue() != null)
             responseWriter.writeAttribute("value", getValue(input), "value");
         if(input.getStyleClass() != null)

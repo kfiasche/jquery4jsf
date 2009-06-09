@@ -66,7 +66,7 @@ public class DialogRenderer extends JQueryBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
         
         responseWriter.startElement(HTML.TAG_DIV, dialog);
         writeIdAttributeIfNecessary(context, responseWriter, component);

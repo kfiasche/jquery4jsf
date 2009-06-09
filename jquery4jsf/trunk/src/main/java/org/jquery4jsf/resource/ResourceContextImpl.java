@@ -44,8 +44,11 @@ public class ResourceContextImpl extends ResourceContext {
 			
 		}
 		if (!listResource.contains(resource)){
-			if (isCssThemeResource(resource) && isThemeEnabled())
-				return listResource.add(resource);
+			if (isCssThemeResource(resource)){
+				if (isThemeEnabled()){
+					return listResource.add(resource);
+				}
+			}
 			else
 				return listResource.add(resource);
 		}

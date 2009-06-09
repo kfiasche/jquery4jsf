@@ -20,25 +20,31 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.component.UIParameter;
 import javax.faces.component.UIViewRoot;
+import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
+import javax.faces.el.ValueBinding;
 
 import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.custom.UIInteractions;
-import org.jquery4jsf.javascript.JSDocumentElement;
-import org.jquery4jsf.javascript.JSOperationElement;
-import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.html.HTML;
+import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.resource.ResourceCostants;
 import org.jquery4jsf.utilities.TextUtilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RendererUtilities {
 	
+	private static Logger logger = LoggerFactory.getLogger(RendererUtilities.class);
 	public static String getFormId(FacesContext context, UIComponent component)
 	{
 		while (component != null && !(component instanceof UIForm))
@@ -114,7 +120,7 @@ public class RendererUtilities {
 		}
 	}
 	
-	public static void createTagScriptForJs(UIComponent component, ResponseWriter responseWriter, StringBuffer sb) throws IOException {
+	public static void encodeImportJavascripScript(UIComponent component, ResponseWriter responseWriter, StringBuffer sb) throws IOException {
 		responseWriter.startElement(HTML.TAG_SCRIPT, component);
 		responseWriter.writeAttribute(HTML.TYPE, "text/javascript", null);
 		responseWriter.writeAttribute(HTML.LANGUAGE, "javascript", null);
@@ -247,7 +253,7 @@ public class RendererUtilities {
 	
 	public static void createOptionComponentFunction(StringBuffer options, String value, String nameParameter, String params) {
 		if (value != null){
-			if (params == null || params.length() == 0){
+			if (TextUtilities.isStringVuota(params)){
 				options.append(cleanPrefixFunction(nameParameter).concat(": function() {\n"));
 			}else{
 				options.append(cleanPrefixFunction(nameParameter).concat(": function("));
@@ -268,15 +274,14 @@ public class RendererUtilities {
 	}
 	
 	public static void createOptionComponentArrayByType(StringBuffer options, String value, String nameParameter) {
-		if (value != null){
-			int inizio = value.indexOf("[");
-			int fine = value.indexOf("]");
-			value = value.substring(inizio+1, fine);
+		if (!TextUtilities.isStringVuota(value)
+				&& TextUtilities.isArray(value)){
+			value = TextUtilities.cleanStringArrayChar(value);
 			options.append(nameParameter.concat(": ["));
 			String values[] = value.split(",");
 			for (int i = 0; i < values.length; i++) {
 				String arrayElement = values[i];
-				if (TextUtilities.isNumber(arrayElement)){
+				if (TextUtilities.isNumber(arrayElement) || TextUtilities.isBoolean(arrayElement)){
 					options.append("".concat(arrayElement).concat(""));
 				}
 				else
@@ -449,4 +454,47 @@ public class RendererUtilities {
 		}
 		return options.toString();
 	}
+
+	public static void encodeResources(JQueryHtmlObject jqcomponent) {
+        String[] list = jqcomponent.getResources();
+        for (int i = 0; i < list.length; i++) {
+			String resource = list[i];
+			ResourceContext.getInstance().addResource(resource);
+		}
+	}
+	
+	public static Object getConvertedValue(FacesContext context, UIComponent component, Object submittedValue)throws ConverterException {
+		if (submittedValue instanceof String) {
+			Converter converter = getConverter(context, component);
+			if (converter != null) {
+				return converter.getAsObject(context, component, (String) submittedValue);
+			}
+		}
+		return submittedValue;
+	}
+
+	public static Converter getConverter(FacesContext context, UIComponent component) {
+		Converter converter = null;
+		if (component instanceof ValueHolder) {
+			converter = ((ValueHolder) component).getConverter();
+		}
+		if (converter == null) {
+			ValueBinding valueBinding = component.getValueBinding("value");
+			if (valueBinding != null) {
+				Class converterType = valueBinding.getType(context);
+				if (converterType == null 
+						|| converterType == String.class 
+						|| converterType == Object.class) {
+					return null;
+				}
+				try {
+					converter = context.getApplication().createConverter(converterType);
+				} catch (FacesException e) {
+					logger.error("Non è stato trovato il converter per questa tipo di classe: "+converterType);
+				}
+			}
+		}
+		return converter;
+	}
+
 }

@@ -19,8 +19,6 @@ package org.jquery4jsf.custom.draggable;
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -69,7 +67,7 @@ public class DraggableRenderer extends DraggableBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.createTagScriptForJs(component, responseWriter, sb);
+        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
         
         if (RendererUtilities.isUniqueId(component)){
         	encodeStartDivWrapper(context, draggable, clientId);
