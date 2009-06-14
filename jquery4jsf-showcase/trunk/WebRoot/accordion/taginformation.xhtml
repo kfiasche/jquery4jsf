@@ -1,0 +1,147 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf">
+	<style type="text/css">
+.ui-widget-content{
+	font-size: 9px;
+}
+
+.ui-widget-content-left{
+	width: 25%;
+}
+
+.ui-widget-content-right{
+	width: 75%;
+}
+
+.ui-widget-content-break {
+	width: 120px;
+	white-space: pre-wrap; /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+</style>
+	
+	<h3 class="ui-widget-header">
+		Tag Information accordionPanel
+	</h3>
+
+	<h:panelGrid columns="2" cellpadding="0" cellspacing="0" border="0"
+		styleClass="ui-widget ui-corner-all"
+		columnClasses="ui-widget-content ui-widget-content-left,ui-widget-content ui-widget-content-right" width="100%">
+		<h:outputText value="Tag Class" />
+		<h:outputText
+			value="#{accordionBean.accordionPanelDefinition.tagClass}" />
+		<h:outputText value="TagExtraInfo Class" />
+		<h:outputText value="None" />
+		<h:outputText value="Body Content" />
+		<h:outputText
+			value="#{accordionBean.accordionPanelDefinition.bodyContent}" />
+		<h:outputText value="Display Name" />
+		<h:outputText value="None" />
+	</h:panelGrid>
+	
+	<h3 class="ui-widget-header">
+		Attributes accordionPanel
+	</h3>
+	<h:dataTable
+		value="#{accordionBean.accordionPanelDefinition.attributes}"
+		var="attribute" styleClass="ui-widget ui-corner-all" cellpadding="3"
+		cellspacing="0" border="0"
+		columnClasses="ui-widget-content ui-widget-content-break" headerClass="ui-widget-header">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Name" />
+			</f:facet>
+			<h:outputText escape="false" value="#{attribute.name}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Required" />
+			</f:facet>
+			<h:outputText escape="false" value="#{attribute.required}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Request-time" />
+			</f:facet>
+			<h:outputText escape="false" value="#{attribute.rtexprvalue}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Type" />
+			</f:facet>
+			<h:outputText escape="false" value="#{attribute.type}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Description" />
+			</f:facet>
+			<h:outputText escape="false" value="#{attribute.description}" />
+		</h:column>
+	</h:dataTable>
+	
+	<h3 class="ui-widget-header">
+		Tag Information accordionSubPanel
+	</h3>
+
+	<h:panelGrid columns="2" cellpadding="0" cellspacing="0" border="0"
+		styleClass="ui-widget ui-corner-all"
+		columnClasses="ui-widget-content ui-widget-content-left,ui-widget-content ui-widget-content-right" width="100%">
+		<h:outputText value="Tag Class" />
+		<h:outputText
+			value="#{accordionBean.accordionSubPanelDefinition.tagClass}" />
+		<h:outputText value="TagExtraInfo Class" />
+		<h:outputText value="None" />
+		<h:outputText value="Body Content" />
+		<h:outputText
+			value="#{accordionBean.accordionSubPanelDefinition.bodyContent}" />
+		<h:outputText value="Display Name" />
+		<h:outputText value="None" />
+	</h:panelGrid>
+	
+	<h3 class="ui-widget-header">
+		Attributes accordionSubPanel
+	</h3>
+	<h:dataTable
+		value="#{accordionBean.accordionSubPanelDefinition.attributes}"
+		var="attribute" styleClass="ui-widget ui-corner-all" cellpadding="3"
+		cellspacing="0" border="0"
+		columnClasses="ui-widget-content ui-widget-content-break" headerClass="ui-widget-header">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Name" />
+			</f:facet>
+			<h:outputText escape="false" value="#{attribute.name}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Required" />
+			</f:facet>
+			<h:outputText escape="false" value="#{attribute.required}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Request-time" />
+			</f:facet>
+			<h:outputText escape="false" value="#{attribute.rtexprvalue}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Type" />
+			</f:facet>
+			<h:outputText escape="false" value="#{attribute.type}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Description" />
+			</f:facet>
+			<h:outputText escape="false" value="#{attribute.description}" />
+		</h:column>
+	</h:dataTable>
+</ui:composition>

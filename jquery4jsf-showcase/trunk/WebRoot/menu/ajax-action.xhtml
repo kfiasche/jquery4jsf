@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - Menu - #{resource.MENU_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Menu - #{resource.MENU_TITLE_DEFAULT}
+		</h3>
+
+		<p>
+			#{resource.MENU_DESCR_DEFAULT}
+		</p>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form1">
+					<jq:menuBar id="menuBar">
+						<jq:menu id="menu1" showSpeed="400" label="Flat Menu 1">
+							<jq:menuItem id="google" ajaxSubmit="true" label="Google"
+								actionListener="#{buttonBean.doButtonActionListener}"
+								target="update" />
+							<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
+							<jq:menuItem label="MSN" value="http://www.msn.com" />
+							<jq:menuItem label="Ask" value="http://www.ask.com" />
+							<jq:menuItem label="AOL" value="http://www.aol.com" />
+						</jq:menu>
+						<jq:menu id="menu2" showSpeed="400" label="Flat Menu 2">
+							<jq:menuItem label="Google" value="http://www.google.com" />
+							<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
+							<jq:menuItem label="MSN" value="http://www.msn.com" />
+							<jq:menuItem label="Ask" value="http://www.ask.com" />
+							<jq:menuItem label="AOL" value="http://www.aol.com" />
+						</jq:menu>
+						<jq:menu id="menu3" showSpeed="400" label="Flat Menu 3">
+							<jq:menuItem label="Google" value="http://www.google.com" />
+							<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
+							<jq:menuItem label="MSN" value="http://www.msn.com" />
+							<jq:menuItem label="Ask" value="http://www.ask.com" />
+							<jq:menuItem label="AOL" value="http://www.aol.com" />
+						</jq:menu>
+					</jq:menuBar>
+				</h:form>
+				<jq:ajaxStatus>
+					<f:facet name="start">
+						<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
+					</f:facet>
+					<f:facet name="complete">
+						<h:outputText value="Ajax Request Completed" />
+					</f:facet>
+					<f:facet name="error">
+						<h:outputText value="Ajax Request Error" />
+					</f:facet>
+				</jq:ajaxStatus>
+				<br />
+				<h:outputText id="update" value="#{buttonBean.text}" />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>
