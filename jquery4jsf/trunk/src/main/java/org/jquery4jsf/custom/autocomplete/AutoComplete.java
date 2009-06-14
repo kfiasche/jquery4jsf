@@ -26,13 +26,8 @@ import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Object;
-import javax.faces.convert.Converter;
-import javax.faces.validator.Validator;
-import javax.faces.event.ValueChangeListener;
 import java.lang.Integer;
-import javax.faces.el.MethodBinding;
 
 public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,AjaxComponent {
 
@@ -350,7 +345,7 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 		values[20] = onformatMatch;
 		values[21] = onformatResult;
 		values[22] = saveAttachedState(context, oncomplete);
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

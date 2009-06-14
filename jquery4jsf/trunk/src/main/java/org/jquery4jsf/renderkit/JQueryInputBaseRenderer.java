@@ -18,6 +18,7 @@ package org.jquery4jsf.renderkit;
 
 import java.io.IOException;
 
+import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -44,6 +45,14 @@ public class JQueryInputBaseRenderer extends HtmlBasicInputRenderer {
 	
 	protected void encodeOptionComponentArrayByType(StringBuffer options, String value, String nameParameter) {
 		RendererUtilities.createOptionComponentArrayByType(options, value, nameParameter);
+	}
+	
+	protected void encodeOptionComponentFunction(StringBuffer options, String value, String nameParameter, String params) {
+		RendererUtilities.createOptionComponentFunction(options, value, nameParameter, params);
+	}
+
+	protected String encodeOptionsWithUIParam(UIComponent component){
+		return RendererUtilities.encodeOptionsWithUIParam(component);
 	}
 	
 	protected void encodeResources(JQueryHtmlObject jqcomponent) {

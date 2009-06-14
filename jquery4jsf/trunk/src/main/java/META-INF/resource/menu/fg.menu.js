@@ -10,6 +10,14 @@ Copyright (c) 2009 Filament Group
 Dual licensed under the MIT (filamentgroup.com/examples/mit-license.txt) and GPL (filamentgroup.com/examples/gpl-license.txt) licenses.
 --------------------------------------------------------------------*/
 
+// BUTTONS
+
+$('.fg-button').hover(
+	function(){ $(this).removeClass('ui-state-default').addClass('ui-state-focus'); },
+	function(){ $(this).removeClass('ui-state-focus').addClass('ui-state-default'); }
+);
+
+
 
 var allUIMenus = [];
 
@@ -206,7 +214,7 @@ function Menu(caller, options){
 			else { menu.drilldown(container, options); }	
 		}
 		else {
-			container.find('a').click(function(){
+			container.find('a').bind('click', function(){
 				menu.chooseItem(this);
 				return false;
 			});
@@ -244,8 +252,21 @@ function Menu(caller, options){
 	this.chooseItem = function(item){
 		menu.kill();
 		// edit this for your own custom function/callback:
-		//$('#menuSelection').text($(item).text());	
-		// location.href = $(item).attr('href');
+		//$('#menuSelection').text($(item).text());
+		var href = $(item).attr('href');
+		if (href != '#'){
+			location.href = href;
+		}
+		else{
+			var url = $(item).attr('url');
+			var id = $(item).attr('id');
+			var target = $(item).attr('target');
+			var form = $(item).attr('form');
+			var data = {};
+			data[$(item).attr('id')] = $(item).attr('id');
+			$('#'+form).ajaxSubmit({'url': url, 'target': 'update', 'data': data}); 
+			return false;
+		}
 	};
 };
 
@@ -299,7 +320,7 @@ Menu.prototype.flyout = function(container, options) {
 		);	
 	});
 	
-	container.find('a').click(function(){
+	container.find('a').bind('click', function(){
 		menu.chooseItem(this);
 		return false;
 	});
@@ -414,7 +435,7 @@ Menu.prototype.drilldown = function(container, options) {
 						var newCrumb = $('<li class="fg-menu-current-crumb"><a href="javascript://" class="fg-menu-crumb">'+crumbText+'</a></li>');	
 						newCrumb
 							.appendTo(breadcrumb)
-							.find('a').click(function(){
+							.find('a').bind('click',function(){
 								if ($(this).parent().is('.fg-menu-current-crumb')){
 									menu.chooseItem(this);
 								}

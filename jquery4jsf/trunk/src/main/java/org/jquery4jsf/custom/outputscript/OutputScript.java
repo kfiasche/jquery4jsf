@@ -24,8 +24,6 @@ import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
-import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 
 public class OutputScript extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
 
@@ -101,7 +99,7 @@ public class OutputScript extends UIComponentBase implements JQueryHtmlObject,Aj
 		values[2] = type;
 		values[3] = defer;
 		values[4] = charset;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

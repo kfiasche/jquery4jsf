@@ -22,10 +22,8 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
 public class ProgressBar extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
@@ -94,7 +92,7 @@ public class ProgressBar extends HtmlBaseOutputComponent implements JQueryHtmlOb
 		values[1] = progressBarValue;
 		values[2] = resizable;
 		values[3] = onchange;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

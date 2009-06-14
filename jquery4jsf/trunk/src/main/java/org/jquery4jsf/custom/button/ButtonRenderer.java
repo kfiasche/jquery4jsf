@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
@@ -27,6 +28,7 @@ import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpServletRequest;
 
 import org.jquery4jsf.custom.dialog.AlertDialog;
 import org.jquery4jsf.javascript.JSAttribute;
@@ -34,19 +36,42 @@ import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.JSOperationElement;
 import org.jquery4jsf.javascript.function.JSFunction;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRenderer {
-
-	public void encodePartially(FacesContext context, UIComponent component)throws IOException {		
+public class ButtonRenderer extends ButtonBaseRenderer {
+	
+	private Logger logger = LoggerFactory.getLogger(ButtonRenderer.class);
+	private void printRequestValue(HttpServletRequest request){
+		Map params = request.getParameterMap();
+		Set keySet = params.keySet();
+		for (Iterator iterator = keySet.iterator(); iterator.hasNext();) {
+			String key = (String) iterator.next();
+			Object value = params.get(key);
+			if (value instanceof String[]){
+				String[] args = (String[])value;
+				for (int i = 0; i < args.length; i++) {
+					String valore = args[i];
+					System.out.println("Nome parametro: "+key+" valore: "+valore);
+				}
+			}
+			else if (value instanceof String){
+				String valore = (String)value;
+				System.out.println("Nome parametro: "+key+" valore: "+valore);
+			}
+			else{
+				System.out.println("Nome parametro: "+key+" valore: "+value.toString());
+			}
+		}
 	}
-
-	public String getActionURL(FacesContext context){
-		return RendererUtilities.getActionURL(context);
+	public void decode(FacesContext context, UIComponent component) {		
+		String param = component.getClientId(context);
+		printRequestValue((HttpServletRequest) context.getExternalContext().getRequest());
+		if(context.getExternalContext().getRequestParameterMap().containsKey(param))
+			component.queueEvent(new ActionEvent(component));
 	}
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
@@ -57,130 +82,108 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
         
         Button button = null;
         if(component instanceof Button)
-        	button = (Button)component;
+        	 button = (Button) component;
         
-		UIComponent form = RendererUtilities.getForm(context, component);
-		if(form == null) {
-			throw new FacesException(MessageFactory.getMessage("org.jquery4jsf.BUTTON_PARENT_FORM"));
-		}
-		
 		encodeResources(button);
-		encodeButtonMarket(context, button);
-		
-        ResponseWriter responseWriter = context.getResponseWriter();
-        
-        String idClient = button.getClientId(context);
-        AlertDialog alert = getAlertDialog(button);
-        if (alert != null){
-        	alert.encodeBegin(context);
-        	alert.encodeChildren(context);
-        	alert.encodeEnd(context);
-        }
-
-        
-        if (!button.getType().equalsIgnoreCase("reset") 
-        		&& (button.getTarget()!=null 
-        				|| alert != null)){
-        	encodeJQueryButtonScript(idClient, button, responseWriter, context);
-        }
-       
+		encodeButtonScript(context, button);
+		encodeButtonMarkup(context, button);
 	}
-	
-	protected void encodeButtonMarket(FacesContext context, Button button) throws IOException{
+
+	private void encodeButtonScript(FacesContext context, Button button) throws IOException {
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("\n");
+		JSDocumentElement documentElement = new JSDocumentElement();
+		JSElement element = new JSElement(button.getClientId(context));
+		JSAttribute jsCarousel = new JSAttribute("button", false);
+		StringBuffer optionsButton = new StringBuffer();
+		jsCarousel.addValue(encodeOptionButtonComponent(optionsButton, button, context));
+		element.addAttribute(jsCarousel);
+
+		sb.append("\n");
+
+		JSElement buttonElement = new JSElement(button.getClientId(context));
+		UIForm uiForm = RendererUtilities.getForm(context, button);
+		JSElement formElement = new JSElement(uiForm.getClientId(context));
+		JSAttribute jsButton = new JSAttribute("bind",false);
+		JSFunction jsFnOnClick = new JSFunction();
+		AlertDialog alert = getAlertDialog(button);
+		if(alert == null && button.getType().equalsIgnoreCase("submit") && button.isAjaxSubmit()){
+			JSAttribute jsForm = null;
+			jsForm = new JSAttribute("ajaxSubmit", false);
+			StringBuffer sbOption = new StringBuffer();
+			jsForm.addValue(encodeOptionComponent(sbOption, button, context));
+			formElement.addAttribute(jsForm);
+			jsFnOnClick.addJSElement(formElement);
+			JSOperationElement jsOperationElement = new JSOperationElement(uiForm.getClientId(context));
+			jsOperationElement.addOperation("return false;");
+			jsFnOnClick.addJSElement(jsOperationElement);
+			jsButton.addValue("'click', "+jsFnOnClick.toJavaScriptCode());
+			buttonElement.addAttribute(jsButton);
+		}
+		
+		if (alert != null){
+			JSOperationElement jsOperationElement = new JSOperationElement(uiForm.getClientId(context));
+			String alertId = RendererUtilities.getJQueryId(alert.getClientId(context));
+			jsOperationElement.addOperation("$('"+alertId+"').dialog('open');");
+			jsOperationElement.addOperation("return false;");
+			jsFnOnClick.addJSElement(jsOperationElement);
+			jsButton.addValue("'click', "+jsFnOnClick.toJavaScriptCode());
+			buttonElement.addAttribute(jsButton);
+		}
+		JSFunction function = new JSFunction();
+		function.addJSElement(element);
+		function.addJSElement(buttonElement);
+		documentElement.addFunctionToReady(function);
+		sb.append(documentElement.toJavaScriptCode());
+		sb.append("\n");
+
+
 		ResponseWriter responseWriter = context.getResponseWriter();
-		String idClient = button.getClientId(context);
-        responseWriter.startElement(HTML.TAG_INPUT, button);
-        writeIdAttributeIfNecessary(context, responseWriter, button);
-        if (!button.isResetForm() || !button.isClearForm())
-        	responseWriter.writeAttribute("name", idClient, null);
-        String styleClass = "ui-button ui-state-default ui-priority-primary ui-corner-all ";
-        if (button.isDisabled()){
-        	styleClass = "ui-state-default ui-state-disabled ui-corner-all ";
-        }
-        if (button.getStyleClass() != null){
-        	styleClass = styleClass.concat(button.getStyleClass());
-        }
-        else{
-        	button.setStyleClass(styleClass);
-        }
-        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_STD_ATTR);
-        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_INPUT_COMMAND_TAG_ATTR);
-        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_JS_STD_ATTR);
-        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_JS_ELEMENT_ATTR);
-        responseWriter.endElement(HTML.TAG_INPUT);
+		RendererUtilities.encodeImportJavascripScript(button, responseWriter, sb); 
 	}
 	
-	private void encodeJQueryButtonScript(String id, Button button, ResponseWriter responseWriter, FacesContext context) throws IOException{
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement buttonElement = new JSElement(id);
-        UIForm uiForm = RendererUtilities.getForm(context, button);
-        JSElement formElement = new JSElement(uiForm.getClientId(context));
-        JSAttribute jsButton = new JSAttribute("click",false);
-        JSFunction jsFnOnClick = new JSFunction();
-        AlertDialog alert = getAlertDialog(button);
-        if(alert == null){
-	        JSAttribute jsForm = null;
-	       	jsForm = new JSAttribute("ajaxSubmit", false);
-	        StringBuffer sbOption = new StringBuffer();
-	        jsForm.addValue(encodeOptionComponent(sbOption, button, context));
-	        formElement.addAttribute(jsForm);
-	        jsFnOnClick.addJSElement(formElement);
-        }
-        else{
-        	String clientIdAlert = RendererUtilities.getJQueryId(alert.getClientId(context));
-        	JSOperationElement jsOperationElement = new JSOperationElement(clientIdAlert);
-        	jsOperationElement.addOperation("$('"+clientIdAlert+"').dialog('open');");
-            jsFnOnClick.addJSElement(jsOperationElement);
-        }
-        JSOperationElement jsOperationElement = new JSOperationElement(uiForm.getClientId(context));
-        jsOperationElement.addOperation("return false;");
-        jsFnOnClick.addJSElement(jsOperationElement);
-        jsButton.addValue(jsFnOnClick.toJavaScriptCode());
-        buttonElement.addAttribute(jsButton);
-        JSFunction function = new JSFunction();
-        function.addJSElement(buttonElement);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(button, responseWriter, sb); 
-	}
-	
-	public void decode(FacesContext context, UIComponent component) {
-		if(context == null || component == null)
-			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-
-		Button button = null;
-		if(component instanceof Button)
-			button = (Button)component;
-
-		String clientId = component.getClientId(context);
-		Map map = context.getExternalContext().getRequestParameterMap();
-		String s1 = (String)map.get(clientId.concat(":button"));
-		String s2 = (String)map.get(clientId);
-		if(s1 == null && s2 == null)
-			return;
+	private void encodeButtonMarkup(FacesContext context, Button button) throws IOException {
+		UIForm form = RendererUtilities.getForm(context, button);
+		String buttonId = button.getClientId(context);
+		if (form == null){
+			throw new FacesException("Il tag Button "+ buttonId + " deve all'interno di un tag form.");
+		}
+		AlertDialog alertDialog = getAlertDialog(button);
+		ResponseWriter responseWriter = context.getResponseWriter();
 		
-		String type = button.getType();
-		if(type != null && type.toLowerCase().equals("reset"))
-		{
-			return;
-		} 
-		else
-		{
-			button.queueEvent(new ActionEvent(component));
-			return;
+		responseWriter.startElement("button", button);
+		responseWriter.writeAttribute(HTML.ID, buttonId, "id");
+		String type = button.getType() == null ? "submit" : button.getType();
+		responseWriter.writeAttribute(HTML.TYPE, type, "type");
+		responseWriter.writeAttribute(HTML.NAME, buttonId, "name");
+		
+		if(button.getStyleClass() != null) {
+			responseWriter.writeAttribute("class", button.getStyleClass(), null);
+		}
+		if(button.getValue() != null)
+		{	
+			responseWriter.write((String) button.getValue());
+		}
+		responseWriter.endElement("button");
+		
+		if(alertDialog != null) {
+			encodeAlertDialogMarkup(context, button, alertDialog);
 		}
 	}
-	
+
+	private void encodeAlertDialogMarkup(FacesContext context, Button button, AlertDialog alertDialog) throws IOException {
+		alertDialog.encodeBegin(context);
+		alertDialog.encodeChildren(context);
+		alertDialog.encodeEnd(context);
+	}
+
 	private AlertDialog getAlertDialog(Button button) {
-		List children = button.getChildren();
-		for (Iterator iterator = children.iterator(); iterator.hasNext();) {
+		List childs = button.getChildren();
+		for (Iterator iterator = childs.iterator(); iterator.hasNext();) {
 			Object object = iterator.next();
 			if (object instanceof AlertDialog) {
-				AlertDialog alert = (AlertDialog) object;
-				return alert;
+				return (AlertDialog) object;
 			}
 		}
 		return null;
@@ -213,12 +216,14 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 		if(target != null){
 			targetJQ = RendererUtilities.getJQueryId(target);
 		}
+		else{
+			UIForm form = RendererUtilities.getForm(context, button);
+			targetJQ = RendererUtilities.getJQueryId(form.getClientId(context));
+		}
 		encodeOptionComponentByType(options,targetJQ, "target", null);
-		encodeOptionComponentByType(options, button.getTypeSubmit(), "type", "post");
-		encodeOptionComponentByType(options, clientId.concat(":button") , "buttonSubmit", "");
+		encodeOptionComponentByType(options, clientId , "buttonSubmit", "");
 		encodeOptionComponentFunction(options, button.getOnbeforeSubmit(), "onbeforeSubmit", null);
 		encodeOptionComponentFunction(options, button.getOnsuccess(), "onsuccess", null);
-		encodeOptionComponentByType(options, button.getDataType(), "dataType", "");
 		encodeOptionComponentByType(options, button.isSemantic(), "semantic", "false");
 		encodeOptionComponentByType(options, button.isResetForm(), "resetForm", null);
 		encodeOptionComponentByType(options, button.isClearForm(), "clearForm", null);
@@ -239,14 +244,28 @@ public class ButtonRenderer extends ButtonBaseRenderer implements AjaxBaseRender
 		}
 		return options.toString();
 	}
-
-	public boolean getRendersChildren() {
-		return true;
+	
+	protected String encodeOptionButtonComponent(StringBuffer options, Button button , FacesContext context) {
+		options.append(" {\n");
+		encodeOptionComponentByType(options, button.getIcon(), "icon", null);
+		encodeOptionComponentByType(options, button.isActive(), "active", "true");
+		encodeOptionComponentByType(options, button.isToggle(), "isToggle", "true");
+		encodeOptionComponentByType(options, button.getCheckButtonset(), "checkButtonset", null);
+		encodeOptionComponentFunction(options, button.getOntoggle(), "ontoggle", "ui, event");
+		if (options.toString().endsWith(", \n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+		}
+		boolean noParams = false;
+		if (options.toString().endsWith(" {\n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+			noParams = true;
+		}
+		if (!noParams)
+		{
+			options.append(" }");
+		}
+		return options.toString();
 	}
-
-	public void encodeChildren(FacesContext arg0, UIComponent arg1)throws IOException {
-	}
-	
-	
-	
 }

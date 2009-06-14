@@ -14,21 +14,37 @@
 		<url>http://code.google.com/p/jquery4jsf/source/browse/#svn/trunk</url>
 	</scm>
 
-	<!--
-		<repositories> <repository> <id>jquery4jsf</id> <name>jQuery4jsf Maven
-		Repository</name> <url>http://www.jquery4jsf.org/repository</url>
-		<layout>default</layout> </repository> <repository>
-		<id>jboss-repo</id> <name>jBoss Maven Repository</name>
-		<url>http://repository.jboss.org/maven2</url> <layout>default</layout>
-		</repository> <repository> <id>codehaus</id>
-		<name>repository.codehaus.org</name>
-		<url>http://repository.codehaus.org</url> </repository> <repository>
-		<id>dotsrc</id> <name>dotsrc</name>
-		<url>http://mirrors.dotsrc.org/maven2</url> </repository> <repository>
-		<id>java.net.download</id> <name>download.java.net</name>
-		<url>http://download.java.net/maven/2</url> </repository>
-		</repositories>
-	-->
+
+	<repositories>
+		<repository>
+			<id>jquery4jsf</id>
+			<name>jQuery4jsf Maven Repository</name>
+			<url>http://www.jquery4jsf.org/repository</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>jboss-repo</id>
+			<name>jBoss Maven Repository</name>
+			<url>http://repository.jboss.org/maven2</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>codehaus</id>
+			<name>repository.codehaus.org</name>
+			<url>http://repository.codehaus.org</url>
+		</repository>
+		<repository>
+			<id>dotsrc</id>
+			<name>dotsrc</name>
+			<url>http://mirrors.dotsrc.org/maven2</url>
+		</repository>
+		<repository>
+			<id>java.net.download</id>
+			<name>download.java.net</name>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+	</repositories>
+
 
 	<licenses>
 		<license>
@@ -266,7 +282,6 @@
 				<enableRulesSummary>true</enableRulesSummary> </configuration>
 				</plugin>
 			-->
-
 		</plugins>
 		<extensions>
 			<extension>
@@ -320,21 +335,21 @@
 		</plugins>
 	</reporting>
 
-	<distributionManagement>
+	<distributionManagement><!--
 
 		<repository>
 			<id>googlecode.svn.jquery4jsf</id>
 			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-repository/</url>
 		</repository>
-		<snapshotRepository>
+		--><snapshotRepository>
 			<id>googlecode.svn.jquery4jsf</id>
 			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-snapshot-repository/</url>
 			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
-		<!--
+		
 			<repository> <id>ftp-repository</id>
 			<url>ftp://www.jquery4jsf.org/repository</url> </repository>
-		-->
+		
 	</distributionManagement>
 
 </project>

@@ -25,27 +25,10 @@ import javax.faces.context.ResponseWriter;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 public class PanelRenderer extends JQueryBaseRenderer {
 
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-		if(context == null || context == null)
-			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-		if(!component.isRendered())
-			return;
-		
-		Panel panel = null;
-		if(component instanceof Panel)
-			panel = (Panel)component;
-		
-		// TODO devo trovare il modo per scrivere i script nell'head
-		String[] list = panel.getResources();
-		for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-		
+	protected void encodePanelMarkup(FacesContext context, Panel panel) throws IOException {
 		ResponseWriter responseWriter = context.getResponseWriter();
 		responseWriter.startElement(HTML.TAG_DIV, panel);
 		responseWriter.writeAttribute("id", panel.getClientId(context), "id");
@@ -60,34 +43,66 @@ public class PanelRenderer extends JQueryBaseRenderer {
 		
 		if(panel.getStyle() != null)
 			responseWriter.writeAttribute("style", panel.getStyle(), null);
-		
-		UIComponent header = panel.getFacet("header");
-		
-		responseWriter.startElement(HTML.TAG_H3, panel);
-		String styleClassHeader = "ui-widget-header";
-		if (panel.getHeaderClass() != null){
-			styleClassHeader = styleClassHeader.concat(" ").concat(panel.getHeaderClass());
-		}
-		responseWriter.writeAttribute("class", styleClassHeader, null);
-		if (header != null){
-			RendererUtilities.renderChild(context, header);
-			responseWriter.writeText(panel.getHeader(), "header");
-		}
-		else{
-			responseWriter.writeText(panel.getHeader(), "header");
-		}
-		responseWriter.endElement(HTML.TAG_H3);
-		
+		encodePanelHeader(context, panel);
+		encodePanelContent(context, panel);
+		encodePanelFooter(context, panel);
+		responseWriter.endElement(HTML.TAG_DIV);
 	}
 
+	protected void encodePanelFooter(FacesContext context, Panel panel) {
+		//TODO da implementare
+	}
+
+	protected void encodePanelContent(FacesContext context, Panel panel) throws IOException {
+		UIComponent content = panel.getFacet("content");
+		if (content != null){
+			RendererUtilities.renderChildren(context, content);
+		}
+		else{
+			RendererUtilities.renderChildren(context, panel);
+		}
+	}
+
+	protected void encodePanelHeader(FacesContext context, Panel panel) throws IOException{
+		ResponseWriter responseWriter = context.getResponseWriter();
+		UIComponent header = panel.getFacet("header");
+		if (header != null || panel.getHeader() != null){
+			responseWriter.startElement(HTML.TAG_H3, panel);
+			String styleClassHeader = "ui-widget-header";
+			if (panel.getHeaderClass() != null){
+				styleClassHeader = styleClassHeader.concat(" ").concat(panel.getHeaderClass());
+			}
+			responseWriter.writeAttribute("class", styleClassHeader, null);
+			if (header != null){
+				RendererUtilities.renderChild(context, header);
+				responseWriter.writeText(panel.getHeader(), "header");
+			}
+			else{
+				responseWriter.writeText(panel.getHeader(), "header");
+			}
+			responseWriter.endElement(HTML.TAG_H3);
+		}
+	}
+	
 	public void encodeEnd(FacesContext context,UIComponent component) throws IOException {
 		if(context == null || context == null)
 			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 		if(!component.isRendered())
 			return;
 		
-		ResponseWriter responseWriter = context.getResponseWriter();
-		responseWriter.endElement(HTML.TAG_DIV);
+		Panel panel = null;
+		if(component instanceof Panel)
+			panel = (Panel)component;
+		
+		encodeResources(panel);
+		encodePanelMarkup(context, panel);
+
+	}
+		
+	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 	}
 	
+	public boolean getRendersChildren() {
+		return true;
+	}
 }

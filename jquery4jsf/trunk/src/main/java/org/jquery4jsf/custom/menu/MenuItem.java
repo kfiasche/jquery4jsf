@@ -19,17 +19,17 @@ import org.jquery4jsf.component.ext.HtmlBaseCommandComponent;
 import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
+import org.jquery4jsf.utilities.MessageFactory;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Object;
-import javax.faces.event.ActionListener;
-import javax.faces.el.MethodBinding;
+
+import javax.faces.event.ActionEvent;
+import java.util.Map;
 
 public class MenuItem extends HtmlBaseCommandComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -38,6 +38,7 @@ public class MenuItem extends HtmlBaseCommandComponent implements JQueryHtmlObje
 	public static final String COMPONENT_FAMILY = "org.jquery4jsf.Menu";
 
 	private String[] resources;
+	private Boolean ajaxSubmit;
 	private String label;
 	private Boolean disabled;
 	private String disabledClass;
@@ -51,6 +52,17 @@ public class MenuItem extends HtmlBaseCommandComponent implements JQueryHtmlObje
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+
+	public boolean isAjaxSubmit() {
+		if(ajaxSubmit != null )
+			return ajaxSubmit.booleanValue();
+
+		Boolean oValue = (Boolean) getLocalOrValueBindingValue(ajaxSubmit, "ajaxSubmit");
+		return oValue != null ? oValue.booleanValue()  : false;
+	}
+	public void setAjaxSubmit(boolean ajaxSubmit) {
+		this.ajaxSubmit = new Boolean(ajaxSubmit);
 	}
 
 	public String getLabel() {
@@ -98,25 +110,42 @@ public class MenuItem extends HtmlBaseCommandComponent implements JQueryHtmlObje
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[5];
+		Object values[] = new Object[6];
 		values[0] = super.saveState(context);
-		values[1] = label;
-		values[2] = disabled;
-		values[3] = disabledClass;
-		values[4] = target;
-		return ((Object) values);
+		values[1] = ajaxSubmit;
+		values[2] = label;
+		values[3] = disabled;
+		values[4] = disabledClass;
+		values[5] = target;
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.label = (String) values[1];
-		this.disabled = (Boolean) values[2];
-		this.disabledClass = (String) values[3];
-		this.target = (String) values[4];
+		this.ajaxSubmit = (Boolean) values[1];
+		this.label = (String) values[2];
+		this.disabled = (Boolean) values[3];
+		this.disabledClass = (String) values[4];
+		this.target = (String) values[5];
 	}
 
 	public String[] getResources() {
 		return resources;
+	}
+
+
+
+	public void decode(FacesContext context) {
+		if(context == null)
+			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
+	
+		String clientId = this.getClientId(context);
+		Map map = context.getExternalContext().getRequestParameterMap();
+		String s1 = (String)map.get(clientId);
+		if(s1 == null)
+			return;
+		this.queueEvent(new ActionEvent(this));
+		return;
 	}
 
 	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)

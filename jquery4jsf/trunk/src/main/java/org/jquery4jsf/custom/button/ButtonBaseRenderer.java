@@ -23,17 +23,20 @@ public class ButtonBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Button button , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, button.isPartialSubmit(), "partialSubmit", null);
+		encodeOptionComponentByType(options, button.isAjaxSubmit(), "ajaxSubmit", null);
+		encodeOptionComponentByType(options, button.getIcon(), "icon", null);
+		encodeOptionComponentByType(options, button.isActive(), "active", null);
+		encodeOptionComponentByType(options, button.isToggle(), "isToggle", null);
+		encodeOptionComponentByType(options, button.getCheckButtonset(), "checkButtonset", null);
+		encodeOptionComponentFunction(options, button.getOntoggle(), "ontoggle", "ui, event");
 		encodeOptionComponentByType(options, button.getTarget(), "target", null);
 		encodeOptionComponentByType(options, button.getUrl(), "url", null);
-		encodeOptionComponentByType(options, button.getTypeSubmit(), "type", null);
-		encodeOptionComponentByType(options, button.getOnbeforeSubmit(), "beforeSubmit", null);
-		encodeOptionComponentByType(options, button.getOnsuccess(), "success", null);
-		encodeOptionComponentByType(options, button.getDataType(), "success", null);
 		encodeOptionComponentByType(options, button.isSemantic(), "semantic", null);
 		encodeOptionComponentByType(options, button.isResetForm(), "resetForm", null);
 		encodeOptionComponentByType(options, button.isClearForm(), "clearForm", null);
 		encodeOptionComponentByType(options, button.isIframe(), "iframe", null);
+		encodeOptionComponentByType(options, button.getOnbeforeSubmit(), "beforeSubmit", null);
+		encodeOptionComponentByType(options, button.getOnsuccess(), "success", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

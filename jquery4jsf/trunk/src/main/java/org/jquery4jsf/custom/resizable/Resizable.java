@@ -23,10 +23,8 @@ import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.custom.UIInteractions;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
 public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent,UIInteractions {
@@ -341,7 +339,7 @@ public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		values[20] = onstart;
 		values[21] = onresize;
 		values[22] = onstop;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

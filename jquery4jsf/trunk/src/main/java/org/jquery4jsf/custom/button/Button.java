@@ -22,14 +22,10 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Object;
-import javax.faces.event.ActionListener;
-import javax.faces.el.MethodBinding;
 
 public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -39,22 +35,26 @@ public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.ButtonRenderer";
 
 	private String[] resources;
-	private Boolean partialSubmit;
+	private Boolean ajaxSubmit;
+	private String icon;
+	private Boolean active;
+	private Boolean toggle;
+	private String checkButtonset;
+	private String ontoggle;
 	private String target;
 	private String url;
-	private String typeSubmit;
-	private String onbeforeSubmit;
-	private String onsuccess;
-	private String dataType;
 	private Boolean semantic;
 	private Boolean resetForm;
 	private Boolean clearForm;
 	private Boolean iframe;
+	private String onbeforeSubmit;
+	private String onsuccess;
 
 	public Button() {
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"ui/ui.core.js",
 			"form/jquery.form.js",
 			"button/ui.button.js",
 			"themes/base/ui.all.css",
@@ -66,15 +66,70 @@ public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject
 		return COMPONENT_FAMILY;
 	}
 
-	public boolean isPartialSubmit() {
-		if(partialSubmit != null )
-			return partialSubmit.booleanValue();
+	public boolean isAjaxSubmit() {
+		if(ajaxSubmit != null )
+			return ajaxSubmit.booleanValue();
 
-		Boolean oValue = (Boolean) getLocalOrValueBindingValue(partialSubmit, "partialSubmit");
+		Boolean oValue = (Boolean) getLocalOrValueBindingValue(ajaxSubmit, "ajaxSubmit");
 		return oValue != null ? oValue.booleanValue()  : false;
 	}
-	public void setPartialSubmit(boolean partialSubmit) {
-		this.partialSubmit = new Boolean(partialSubmit);
+	public void setAjaxSubmit(boolean ajaxSubmit) {
+		this.ajaxSubmit = new Boolean(ajaxSubmit);
+	}
+
+	public String getIcon() {
+		if(icon != null )
+			return icon;
+
+		String oValue = (String) getLocalOrValueBindingValue(icon, "icon");
+		return oValue != null ? oValue : null;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+	public boolean isActive() {
+		if(active != null )
+			return active.booleanValue();
+
+		Boolean oValue = (Boolean) getLocalOrValueBindingValue(active, "active");
+		return oValue != null ? oValue.booleanValue()  : false;
+	}
+	public void setActive(boolean active) {
+		this.active = new Boolean(active);
+	}
+
+	public boolean isToggle() {
+		if(toggle != null )
+			return toggle.booleanValue();
+
+		Boolean oValue = (Boolean) getLocalOrValueBindingValue(toggle, "toggle");
+		return oValue != null ? oValue.booleanValue()  : false;
+	}
+	public void setToggle(boolean toggle) {
+		this.toggle = new Boolean(toggle);
+	}
+
+	public String getCheckButtonset() {
+		if(checkButtonset != null )
+			return checkButtonset;
+
+		String oValue = (String) getLocalOrValueBindingValue(checkButtonset, "checkButtonset");
+		return oValue != null ? oValue : null;
+	}
+	public void setCheckButtonset(String checkButtonset) {
+		this.checkButtonset = checkButtonset;
+	}
+
+	public String getOntoggle() {
+		if(ontoggle != null )
+			return ontoggle;
+
+		String oValue = (String) getLocalOrValueBindingValue(ontoggle, "ontoggle");
+		return oValue != null ? oValue : null;
+	}
+	public void setOntoggle(String ontoggle) {
+		this.ontoggle = ontoggle;
 	}
 
 	public String getTarget() {
@@ -97,50 +152,6 @@ public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject
 	}
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	public String getTypeSubmit() {
-		if(typeSubmit != null )
-			return typeSubmit;
-
-		String oValue = (String) getLocalOrValueBindingValue(typeSubmit, "typeSubmit");
-		return oValue != null ? oValue : null;
-	}
-	public void setTypeSubmit(String typeSubmit) {
-		this.typeSubmit = typeSubmit;
-	}
-
-	public String getOnbeforeSubmit() {
-		if(onbeforeSubmit != null )
-			return onbeforeSubmit;
-
-		String oValue = (String) getLocalOrValueBindingValue(onbeforeSubmit, "onbeforeSubmit");
-		return oValue != null ? oValue : null;
-	}
-	public void setOnbeforeSubmit(String onbeforeSubmit) {
-		this.onbeforeSubmit = onbeforeSubmit;
-	}
-
-	public String getOnsuccess() {
-		if(onsuccess != null )
-			return onsuccess;
-
-		String oValue = (String) getLocalOrValueBindingValue(onsuccess, "onsuccess");
-		return oValue != null ? oValue : null;
-	}
-	public void setOnsuccess(String onsuccess) {
-		this.onsuccess = onsuccess;
-	}
-
-	public String getDataType() {
-		if(dataType != null )
-			return dataType;
-
-		String oValue = (String) getLocalOrValueBindingValue(dataType, "dataType");
-		return oValue != null ? oValue : null;
-	}
-	public void setDataType(String dataType) {
-		this.dataType = dataType;
 	}
 
 	public boolean isSemantic() {
@@ -187,36 +198,64 @@ public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject
 		this.iframe = new Boolean(iframe);
 	}
 
+	public String getOnbeforeSubmit() {
+		if(onbeforeSubmit != null )
+			return onbeforeSubmit;
+
+		String oValue = (String) getLocalOrValueBindingValue(onbeforeSubmit, "onbeforeSubmit");
+		return oValue != null ? oValue : null;
+	}
+	public void setOnbeforeSubmit(String onbeforeSubmit) {
+		this.onbeforeSubmit = onbeforeSubmit;
+	}
+
+	public String getOnsuccess() {
+		if(onsuccess != null )
+			return onsuccess;
+
+		String oValue = (String) getLocalOrValueBindingValue(onsuccess, "onsuccess");
+		return oValue != null ? oValue : null;
+	}
+	public void setOnsuccess(String onsuccess) {
+		this.onsuccess = onsuccess;
+	}
+
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[12];
+		Object values[] = new Object[15];
 		values[0] = super.saveState(context);
-		values[1] = partialSubmit;
-		values[2] = target;
-		values[3] = url;
-		values[4] = typeSubmit;
-		values[5] = onbeforeSubmit;
-		values[6] = onsuccess;
-		values[7] = dataType;
-		values[8] = semantic;
-		values[9] = resetForm;
-		values[10] = clearForm;
-		values[11] = iframe;
-		return ((Object) values);
+		values[1] = ajaxSubmit;
+		values[2] = icon;
+		values[3] = active;
+		values[4] = toggle;
+		values[5] = checkButtonset;
+		values[6] = ontoggle;
+		values[7] = target;
+		values[8] = url;
+		values[9] = semantic;
+		values[10] = resetForm;
+		values[11] = clearForm;
+		values[12] = iframe;
+		values[13] = onbeforeSubmit;
+		values[14] = onsuccess;
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.partialSubmit = (Boolean) values[1];
-		this.target = (String) values[2];
-		this.url = (String) values[3];
-		this.typeSubmit = (String) values[4];
-		this.onbeforeSubmit = (String) values[5];
-		this.onsuccess = (String) values[6];
-		this.dataType = (String) values[7];
-		this.semantic = (Boolean) values[8];
-		this.resetForm = (Boolean) values[9];
-		this.clearForm = (Boolean) values[10];
-		this.iframe = (Boolean) values[11];
+		this.ajaxSubmit = (Boolean) values[1];
+		this.icon = (String) values[2];
+		this.active = (Boolean) values[3];
+		this.toggle = (Boolean) values[4];
+		this.checkButtonset = (String) values[5];
+		this.ontoggle = (String) values[6];
+		this.target = (String) values[7];
+		this.url = (String) values[8];
+		this.semantic = (Boolean) values[9];
+		this.resetForm = (Boolean) values[10];
+		this.clearForm = (Boolean) values[11];
+		this.iframe = (Boolean) values[12];
+		this.onbeforeSubmit = (String) values[13];
+		this.onsuccess = (String) values[14];
 	}
 
 	public String[] getResources() {

@@ -22,10 +22,8 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
 public class HtmlMenu extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
@@ -67,10 +65,9 @@ public class HtmlMenu extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"form/jquery.form.js",
 			"menu/fg.menu.js",
 			"menu/fg.menu.css",
-			"button/ui.button.js",
-			"button/ui.button.css",
 			"themes/base/ui.all.css"
 		};
 	}
@@ -394,7 +391,7 @@ public class HtmlMenu extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 		values[24] = nextMenuLinkClass;
 		values[25] = topLinkText;
 		values[26] = nextCrumbLinkClass;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

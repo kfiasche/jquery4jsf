@@ -22,10 +22,7 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.ValueBinding;
 import java.lang.String;
-import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 
 public class HtmlDiv extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -49,7 +46,7 @@ public class HtmlDiv extends HtmlBaseOutputComponent implements JQueryHtmlObject
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[1];
 		values[0] = super.saveState(context);
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

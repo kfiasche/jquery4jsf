@@ -22,10 +22,8 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 
 public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -262,7 +260,7 @@ public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtm
 		values[14] = header;
 		values[15] = navigationFilter;
 		values[16] = onchange;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

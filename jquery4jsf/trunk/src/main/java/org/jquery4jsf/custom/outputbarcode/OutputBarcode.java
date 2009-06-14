@@ -25,7 +25,6 @@ import java.io.IOException;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
 import java.lang.Integer;
 import java.lang.Object;
 
@@ -139,7 +138,7 @@ public class OutputBarcode extends UIComponentBase implements JQueryHtmlObject,A
 		if(value != null )
 			return value;
 
-		Object oValue = (Object) getLocalOrValueBindingValue(value, "value");
+		Object oValue = getLocalOrValueBindingValue(value, "value");
 		return oValue != null ? oValue : null;
 	}
 	public void setValue(Object value) {
@@ -157,7 +156,7 @@ public class OutputBarcode extends UIComponentBase implements JQueryHtmlObject,A
 		values[6] = fontSize;
 		values[7] = type;
 		values[8] = value;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
@@ -169,7 +168,7 @@ public class OutputBarcode extends UIComponentBase implements JQueryHtmlObject,A
 		this.color = (String) values[5];
 		this.fontSize = (String) values[6];
 		this.type = (String) values[7];
-		this.value = (Object) values[8];
+		this.value = values[8];
 	}
 
 	public String[] getResources() {

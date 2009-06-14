@@ -18,3 +18,4 @@ This product includes software developed by Christian Bach (http://tablesorter.c
 This product includes software developed by Andrea Campolonghi (http://andreacfm.com/)
 This product includes software developed by DEMONTE Jean-Baptiste (http://barcode-coder.com/en/)
 This product includes software developed by Keith Wood (http://keith-wood.name/bookmark.html)
+This product includes software developed by Brandon Aaron (http://brandonaaron.net)

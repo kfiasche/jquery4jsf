@@ -51,17 +51,20 @@ public class ButtonTag extends UIComponentTagBase {
 	private String tabindex;
 	private String title;
 	private String type;
-	private String partialSubmit;
+	private String ajaxSubmit;
+	private String icon;
+	private String active;
+	private String toggle;
+	private String checkButtonset;
+	private String ontoggle;
 	private String target;
 	private String url;
-	private String typeSubmit;
-	private String onbeforeSubmit;
-	private String onsuccess;
-	private String dataType;
 	private String semantic;
 	private String resetForm;
 	private String clearForm;
 	private String iframe;
+	private String onbeforeSubmit;
+	private String onsuccess;
 
 	public void release(){
 		super.release();
@@ -95,17 +98,20 @@ public class ButtonTag extends UIComponentTagBase {
 		this.tabindex = null;
 		this.title = null;
 		this.type = null;
-		this.partialSubmit = null;
+		this.ajaxSubmit = null;
+		this.icon = null;
+		this.active = null;
+		this.toggle = null;
+		this.checkButtonset = null;
+		this.ontoggle = null;
 		this.target = null;
 		this.url = null;
-		this.typeSubmit = null;
-		this.onbeforeSubmit = null;
-		this.onsuccess = null;
-		this.dataType = null;
 		this.semantic = null;
 		this.resetForm = null;
 		this.clearForm = null;
 		this.iframe = null;
+		this.onbeforeSubmit = null;
+		this.onsuccess = null;
 	}
 
 	protected void setProperties(UIComponent comp){
@@ -148,17 +154,20 @@ public class ButtonTag extends UIComponentTagBase {
 		setStringProperty(getFacesContext(), component, "tabindex", tabindex);
 		setStringProperty(getFacesContext(), component, "title", title);
 		setStringProperty(getFacesContext(), component, "type", type);
-		setBooleanProperty(getFacesContext(), component, "partialSubmit", partialSubmit);
+		setBooleanProperty(getFacesContext(), component, "ajaxSubmit", ajaxSubmit);
+		setStringProperty(getFacesContext(), component, "icon", icon);
+		setBooleanProperty(getFacesContext(), component, "active", active);
+		setBooleanProperty(getFacesContext(), component, "toggle", toggle);
+		setStringProperty(getFacesContext(), component, "checkButtonset", checkButtonset);
+		setStringProperty(getFacesContext(), component, "ontoggle", ontoggle);
 		setStringProperty(getFacesContext(), component, "target", target);
 		setStringProperty(getFacesContext(), component, "url", url);
-		setStringProperty(getFacesContext(), component, "typeSubmit", typeSubmit);
-		setStringProperty(getFacesContext(), component, "onbeforeSubmit", onbeforeSubmit);
-		setStringProperty(getFacesContext(), component, "onsuccess", onsuccess);
-		setStringProperty(getFacesContext(), component, "dataType", dataType);
 		setBooleanProperty(getFacesContext(), component, "semantic", semantic);
 		setBooleanProperty(getFacesContext(), component, "resetForm", resetForm);
 		setBooleanProperty(getFacesContext(), component, "clearForm", clearForm);
 		setBooleanProperty(getFacesContext(), component, "iframe", iframe);
+		setStringProperty(getFacesContext(), component, "onbeforeSubmit", onbeforeSubmit);
+		setStringProperty(getFacesContext(), component, "onsuccess", onsuccess);
 	}
 
 	public String getComponentType() {
@@ -289,8 +298,28 @@ public class ButtonTag extends UIComponentTagBase {
 		this.type = value;
 	}
 
-	public void setPartialSubmit(String value){
-		this.partialSubmit = value;
+	public void setAjaxSubmit(String value){
+		this.ajaxSubmit = value;
+	}
+
+	public void setIcon(String value){
+		this.icon = value;
+	}
+
+	public void setActive(String value){
+		this.active = value;
+	}
+
+	public void setToggle(String value){
+		this.toggle = value;
+	}
+
+	public void setCheckButtonset(String value){
+		this.checkButtonset = value;
+	}
+
+	public void setOntoggle(String value){
+		this.ontoggle = value;
 	}
 
 	public void setTarget(String value){
@@ -299,22 +328,6 @@ public class ButtonTag extends UIComponentTagBase {
 
 	public void setUrl(String value){
 		this.url = value;
-	}
-
-	public void setTypeSubmit(String value){
-		this.typeSubmit = value;
-	}
-
-	public void setOnbeforeSubmit(String value){
-		this.onbeforeSubmit = value;
-	}
-
-	public void setOnsuccess(String value){
-		this.onsuccess = value;
-	}
-
-	public void setDataType(String value){
-		this.dataType = value;
 	}
 
 	public void setSemantic(String value){
@@ -331,6 +344,14 @@ public class ButtonTag extends UIComponentTagBase {
 
 	public void setIframe(String value){
 		this.iframe = value;
+	}
+
+	public void setOnbeforeSubmit(String value){
+		this.onbeforeSubmit = value;
+	}
+
+	public void setOnsuccess(String value){
+		this.onsuccess = value;
 	}
 
 }

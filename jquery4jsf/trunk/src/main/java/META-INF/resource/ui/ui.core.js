@@ -1,5 +1,5 @@
 /*
- * jQuery UI 1.7.2
+ * jQuery UI @VERSION
  *
  * Copyright (c) 2009 AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -14,7 +14,7 @@ var _remove = $.fn.remove,
 
 //Helper functions and ui object
 $.ui = {
-	version: "1.7.2",
+	version: "@VERSION",
 
 	// $.ui.plugin is deprecated.  Use the proxy pattern instead.
 	plugin: {
@@ -135,6 +135,19 @@ if (isFF2) {
 
 //jQuery plugins
 $.fn.extend({
+	_focus: $.fn.focus,
+	focus: function(delay, fn) {
+		return typeof delay === 'number'
+			? this.each(function() {
+				var elem = this;
+				setTimeout(function() {
+					$(elem).focus();
+					(fn && fn.call(elem));
+				}, delay);
+			})
+			: this._focus.apply(this, arguments);
+	},
+	
 	remove: function() {
 		// Safari has a native remove event which actually removes DOM elements,
 		// so we have to use triggerHandler instead of trigger (#3037).
@@ -203,65 +216,59 @@ $.extend($.expr[':'], {
 
 // $.widget is a factory to create jQuery plugins
 // taking some boilerplate code out of the plugin code
-function getter(namespace, plugin, method, args) {
-	function getMethods(type) {
-		var methods = $[namespace][plugin][type] || [];
-		return (typeof methods == 'string' ? methods.split(/,?\s+/) : methods);
-	}
-
-	var methods = getMethods('getter');
-	if (args.length == 1 && typeof args[0] == 'string') {
-		methods = methods.concat(getMethods('getterSetter'));
-	}
-	return ($.inArray(method, methods) != -1);
-}
-
 $.widget = function(name, prototype) {
-	var namespace = name.split(".")[0];
+	var namespace = name.split(".")[0],
+		fullName;
 	name = name.split(".")[1];
+	fullName = namespace + '-' + name;
 
+	// create selector for plugin
+	$.expr[':'][fullName] = function(elem) {
+		return !!$.data(elem, name);
+	};
+	
 	// create plugin method
 	$.fn[name] = function(options) {
 		var isMethodCall = (typeof options == 'string'),
-			args = Array.prototype.slice.call(arguments, 1);
+			args = Array.prototype.slice.call(arguments, 1),
+			returnValue = this;
 
 		// prevent calls to internal methods
 		if (isMethodCall && options.substring(0, 1) == '_') {
-			return this;
+			return returnValue;
 		}
 
-		// handle getter methods
-		if (isMethodCall && getter(namespace, name, options, args)) {
-			var instance = $.data(this[0], name);
-			return (instance ? instance[options].apply(instance, args)
-				: undefined);
-		}
+		(isMethodCall
+			? this.each(function() {
+				var instance = $.data(this, name),
+					methodValue = (instance && $.isFunction(instance[options])
+						? instance[options].apply(instance, args)
+						: instance);
+				if (methodValue !== instance) {
+					returnValue = methodValue;
+					return false;
+				}
+			})
+			: this.each(function() {
+				($.data(this, name) ||
+					$.data(this, name, new $[namespace][name](this, options))._extInit());
+			}));
 
-		// handle initialization and non-getter methods
-		return this.each(function() {
-			var instance = $.data(this, name);
-
-			// constructor
-			(!instance && !isMethodCall &&
-				$.data(this, name, new $[namespace][name](this, options))._init());
-
-			// method call
-			(instance && isMethodCall && $.isFunction(instance[options]) &&
-				instance[options].apply(instance, args));
-		});
+		return returnValue;
 	};
 
 	// create widget constructor
 	$[namespace] = $[namespace] || {};
 	$[namespace][name] = function(element, options) {
 		var self = this;
-
+			
 		this.namespace = namespace;
 		this.widgetName = name;
 		this.widgetEventPrefix = $[namespace][name].eventPrefix || name;
-		this.widgetBaseClass = namespace + '-' + name;
-
-		this.options = $.extend({},
+		this.widgetBaseClass = fullName;
+		
+		// add widget defaults
+		this.options = $.extend(true, {},
 			$.widget.defaults,
 			$[namespace][name].defaults,
 			$.metadata && $.metadata.get(element)[name],
@@ -281,22 +288,36 @@ $.widget = function(name, prototype) {
 			.bind('remove', function() {
 				return self.destroy();
 			});
+			
+		// load extensions
+		this.extensions = {};
+		$.each($[namespace][name].extension, function(extensionName, extension) {
+			var ext = new extension(self);
+			if (ext.isActive)
+				self.extensions[extensionName] = ext;
+		});
 	};
 
 	// add widget prototype
 	$[namespace][name].prototype = $.extend({}, $.widget.prototype, prototype);
-
-	// TODO: merge getter and getterSetter properties from widget prototype
-	// and plugin prototype
-	$[namespace][name].getterSetter = 'option';
+	$[namespace][name].extension = {};
 };
 
 $.widget.prototype = {
 	_init: function() {},
+	_extInit: function() {
+		this._init();
+		
+		$.each(this.extensions, function() {
+			this._postInit();
+		});
+	},
 	destroy: function() {
 		this.element.removeData(this.widgetName)
 			.removeClass(this.widgetBaseClass + '-disabled' + ' ' + this.namespace + '-state-disabled')
 			.removeAttr('aria-disabled');
+
+		return this;
 	},
 
 	option: function(key, value) {
@@ -314,6 +335,8 @@ $.widget.prototype = {
 		$.each(options, function(key, value) {
 			self._setData(key, value);
 		});
+
+		return self;
 	},
 	_getData: function(key) {
 		return this.options[key];
@@ -332,9 +355,11 @@ $.widget.prototype = {
 
 	enable: function() {
 		this._setData('disabled', false);
+		return this;
 	},
 	disable: function() {
 		this._setData('disabled', true);
+		return this;
 	},
 
 	_trigger: function(type, event, data) {
@@ -359,6 +384,21 @@ $.widget.prototype = {
 
 		return !($.isFunction(callback) && callback.call(this.element[0], event, data) === false
 			|| event.isDefaultPrevented());
+	},
+	
+	_extend: function(type, data) {		
+		var result;
+		
+		// call extension method on each extension which has a function with that name
+		$.each(this.extensions, function(name, extension) {
+			if (extension[type] && typeof extension[type] == 'function') {
+				// will break loop if false is returned
+				return result = extension[type](data);
+			}
+		});
+		
+		// will return true if loop was broken
+		return result === false;
 	}
 };
 
@@ -366,6 +406,59 @@ $.widget.defaults = {
 	disabled: false
 };
 
+// $.widget.extension is a factory to create jQuery extensions to plugins
+// taking some boilerplate code out of the plugin code
+$.widget.extension = function(widgetName, name, prototype) {
+	var widgetNamespace = $ [widgetName.split(".")[0]] [widgetName.split(".")[1]];
+	
+	// If widget doesn't exist, don't continue
+	if (!widgetNamespace) return;
+	
+	widgetNamespace.extension[name] = function(widget) {
+		var self = this;
+		
+		this.extensionName = name;
+		this.widget = widget;
+		this.element = widget.element;
+		this.options = widget.options;
+		
+		this._preInit();
+		
+		// Don't continue extending if extension isn't active
+		if (!this.isActive) return;
+		
+		$.each(this._overrides, function(funcName, func) {
+			var baseFunc = self.widget[funcName];
+			self.widget[funcName] = function() {
+				var args = Array.prototype.slice.call(arguments, 0);
+				args.splice(0, 0,
+					function() {
+						if (baseFunc)
+							return baseFunc.apply(self.widget, arguments);
+					}
+				);
+				
+				return func.apply(self, args);
+			}
+		});
+		
+		$.each(this._public, function(funcName, func) {
+			self.widget[funcName] = function() {
+				return func.apply(self, arguments);
+			}
+		});
+	}
+	
+	widgetNamespace.extension[name].prototype = $.extend({}, $.widget.extension.prototype, prototype);
+};
+
+$.widget.extension.prototype = {
+	_preInit: function() {},
+	_postInit: function() {},
+	_overrides: {},
+	_public: {},
+	isActive: false
+};
 
 /** Mouse Interaction Plugin **/
 

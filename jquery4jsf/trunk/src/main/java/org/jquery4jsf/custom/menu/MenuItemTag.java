@@ -25,6 +25,7 @@ public class MenuItemTag extends UIComponentTagBase {
 	private String actionListener;
 	private String action;
 	private String immediate;
+	private String ajaxSubmit;
 	private String label;
 	private String disabled;
 	private String disabledClass;
@@ -36,6 +37,7 @@ public class MenuItemTag extends UIComponentTagBase {
 		this.actionListener = null;
 		this.action = null;
 		this.immediate = null;
+		this.ajaxSubmit = null;
 		this.label = null;
 		this.disabled = null;
 		this.disabledClass = null;
@@ -56,6 +58,7 @@ public class MenuItemTag extends UIComponentTagBase {
 		setActionListenerProperty(getFacesContext(), component, "actionListener", actionListener);
 		setActionProperty(getFacesContext(), component, "action", action);
 		setBooleanProperty(getFacesContext(), component, "immediate", immediate);
+		setBooleanProperty(getFacesContext(), component, "ajaxSubmit", ajaxSubmit);
 		setStringProperty(getFacesContext(), component, "label", label);
 		setBooleanProperty(getFacesContext(), component, "disabled", disabled);
 		setStringProperty(getFacesContext(), component, "disabledClass", disabledClass);
@@ -84,6 +87,10 @@ public class MenuItemTag extends UIComponentTagBase {
 
 	public void setImmediate(String value){
 		this.immediate = value;
+	}
+
+	public void setAjaxSubmit(String value){
+		this.ajaxSubmit = value;
 	}
 
 	public void setLabel(String value){

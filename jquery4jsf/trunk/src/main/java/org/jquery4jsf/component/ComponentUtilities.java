@@ -35,7 +35,6 @@ import javax.faces.convert.Converter;
 import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.FacesEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.webapp.UIComponentTag;
 
@@ -43,7 +42,6 @@ import org.jquery4jsf.el.JQueryMethodBinding;
 
 public class ComponentUtilities {
 
-	private static final Class[] FACES_LISTENER_ARGS = { FacesEvent.class };
 	private static final Class[] ACTION_LISTENER_ARGS = { ActionEvent.class };
 	private static final Class[] VALIDATOR_ARGS = { ActionEvent.class };
 

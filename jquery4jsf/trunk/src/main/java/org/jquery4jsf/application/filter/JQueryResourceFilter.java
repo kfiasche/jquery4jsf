@@ -139,7 +139,8 @@ public final class JQueryResourceFilter implements Filter {
 				scriptElements.append("/");
 				scriptElements.append(resource);
 				scriptElements.append("\" "); 
-				scriptElements.append("rel=\"stylesheet\" />\n");
+				scriptElements.append("rel=\"stylesheet\"");
+				scriptElements.append("media=\"screen\" />\n");
 			}
 		}
 		return scriptElements.toString();

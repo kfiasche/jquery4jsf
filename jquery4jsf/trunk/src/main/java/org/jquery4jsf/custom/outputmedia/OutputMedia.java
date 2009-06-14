@@ -22,9 +22,7 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
-import javax.faces.el.ValueBinding;
 import java.lang.Object;
-import javax.faces.convert.Converter;
 import java.lang.String;
 import java.lang.Boolean;
 
@@ -102,7 +100,7 @@ public class OutputMedia extends HtmlBaseOutputComponent implements JQueryHtmlOb
 		values[2] = escape;
 		values[3] = effect;
 		values[4] = eventEffect;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

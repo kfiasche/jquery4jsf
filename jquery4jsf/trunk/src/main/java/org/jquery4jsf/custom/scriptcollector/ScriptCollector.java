@@ -26,8 +26,6 @@ import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
-import javax.faces.component.UIComponent;
-import javax.faces.el.MethodBinding;
 
 public class ScriptCollector extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
 
@@ -116,7 +114,7 @@ public class ScriptCollector extends UIComponentBase implements JQueryHtmlObject
 		values[3] = saveAttachedState(context, onPagePost);
 		values[4] = disableForm;
 		values[5] = ignoreIdFormDisable;
-		return ((Object) values);
+		return (values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

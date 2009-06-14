@@ -112,6 +112,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>commandLink</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.CommandLink</component-type>
+			<renderer-type>org.jquery4jsf.CommandLinkRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>dataTableEx</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlDataTableEx</component-type>
@@ -343,6 +350,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>spinner</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlSpinner</component-type>
+			<renderer-type>org.jquery4jsf.SpinnerRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>syntaxHighlighting</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlSyntaxHighlighting</component-type>
@@ -382,6 +396,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlTreeView</component-type>
 			<renderer-type>org.jquery4jsf.HtmlTreeViewRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>watermark</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlWatermark</component-type>
+			<renderer-type>org.jquery4jsf.WatermarkRenderer</renderer-type>
 		</component>
 	</tag>
 </facelet-taglib>

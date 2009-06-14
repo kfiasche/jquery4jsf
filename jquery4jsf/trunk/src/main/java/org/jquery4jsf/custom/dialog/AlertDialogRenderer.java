@@ -28,13 +28,12 @@ import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 public class AlertDialogRenderer extends AlertDialogBaseRenderer {
 
 	public static final String RENDERER_TYPE = "org.jquery4jsf.DialogRenderer";
 
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 	    if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
@@ -43,14 +42,25 @@ public class AlertDialogRenderer extends AlertDialogBaseRenderer {
         AlertDialog alertDialog = null;
         if(component instanceof AlertDialog)
             alertDialog = (AlertDialog)component;
-        ResponseWriter responseWriter = context.getResponseWriter();
         
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = alertDialog.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
+        encodeResources(alertDialog);
+        encodeAlertDialogScript(context, alertDialog);
+        encodeAlertDialogMarkup(context, alertDialog);
+	}
+	
+	
+	private void encodeAlertDialogMarkup(FacesContext context, AlertDialog alertDialog) throws IOException {
+        String clientId = alertDialog.getClientId(context);
+        ResponseWriter responseWriter = context.getResponseWriter();
+        responseWriter.startElement(HTML.TAG_DIV, alertDialog);
+        responseWriter.writeAttribute("id", clientId, "id");
+        RendererUtilities.renderChildren(context, alertDialog);
+        responseWriter.endElement(HTML.TAG_DIV);
+	}
+
+
+	private void encodeAlertDialogScript(FacesContext context, AlertDialog alertDialog) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
         String clientId = alertDialog.getClientId(context);
         StringBuffer sb = new StringBuffer();
         sb.append("\n");
@@ -65,28 +75,15 @@ public class AlertDialogRenderer extends AlertDialogBaseRenderer {
         documentElement.addFunctionToReady(function);
         sb.append(documentElement.toJavaScriptCode());
         sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
-        
-        responseWriter.startElement(HTML.TAG_DIV, alertDialog);
-        responseWriter.writeAttribute("id", clientId, "id");
+        RendererUtilities.encodeImportJavascripScript(alertDialog, responseWriter, sb);
 	}
 	
-	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-	    if(context == null || component == null)
-            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-        if(!component.isRendered())
-            return;
-
-        ResponseWriter responseWriter = context.getResponseWriter();
-        responseWriter.endElement(HTML.TAG_DIV);
-	}
 
 	public boolean getRendersChildren() {
 		return true;
 	}
 
 	public void encodeChildren(FacesContext context, UIComponent component)throws IOException {
-		RendererUtilities.renderChildren(context, component);
 	}
 
 	
