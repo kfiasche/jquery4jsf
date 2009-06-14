@@ -336,7 +336,6 @@
 	</reporting>
 
 	<distributionManagement>
-
 		<repository>
 			<id>googlecode.svn.jquery4jsf</id>
 			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-repository/</url>
@@ -346,10 +345,10 @@
 			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-snapshot-repository/</url>
 			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
-		<!--
-			<repository> <id>ftp-repository</id>
-			<url>ftp://www.jquery4jsf.org/repository</url> </repository>
-		-->
+		
+			<!--<repository> <id>ftp-repository</id>
+			<url>ftp://www.jquery4jsf.org/repository</url> </repository>-->
+		
 	</distributionManagement>
 
 </project>
