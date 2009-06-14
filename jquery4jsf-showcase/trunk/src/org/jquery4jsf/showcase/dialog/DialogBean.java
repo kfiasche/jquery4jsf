@@ -53,7 +53,7 @@ public class DialogBean
 	}
 	
     public static Object getManagedBean(String beanName) {
-    	String cleanKey = ((String)beanName).replaceAll("[#\\{\\}]*","").trim();
+    	String cleanKey = (beanName).replaceAll("[#\\{\\}]*","").trim();
         Object o = getValueBinding(getJsfEl(cleanKey)).getValue(FacesContext.getCurrentInstance());
         return o;
     }

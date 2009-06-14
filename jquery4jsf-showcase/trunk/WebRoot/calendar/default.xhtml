@@ -8,12 +8,26 @@
 		<h:outputText value=" - Calendar - #{resource.CALENDAR_TITLE_DEFAULT}" />
 	</ui:define>
 	<ui:define name="content">
-		<h3>Calendar - #{resource.CALENDAR_TITLE_DEFAULT}</h3>
-		<p>#{resource.CALENDAR_DESCR_DEFAULT}</p>
-		<!-- START -->
-		<br/>
-		<jq:calendar id="calendar" />
-		<br/>
-		<!-- end -->
+		<h3>
+			Calendar - #{resource.CALENDAR_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.CALENDAR_DESCR_DEFAULT}
+		</p>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:calendar id="calendar" />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="calendar"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['calendar']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

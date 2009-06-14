@@ -16,22 +16,16 @@
 		</p>
 		<br/>
 		<!-- START -->
-		<jq:ajaxStatus>
-			<jq:ajaxStatus id="statusAjax">
-				<f:facet name="start">
-					<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
-				</f:facet>
-				<f:facet name="complete">
-					<h:outputText value="Ajax Request complete"></h:outputText>
-				</f:facet>
-				<f:facet name="error">
-					<jq:dialog title="Error" modal="true" id="dialogAjaxError"
-						autoOpen="false">
-						<jq:icon type="alert"></jq:icon>
-						<h:outputText value="Ajax Request Error"></h:outputText>
-					</jq:dialog>
-				</f:facet>
-			</jq:ajaxStatus>
+		<jq:ajaxStatus id="statusAjax">
+			<f:facet name="start">
+				<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value="Ajax Request complete"></h:outputText>
+			</f:facet>
+			<f:facet name="error">
+				<h:outputText value="Ajax Request Error"></h:outputText>
+			</f:facet>
 		</jq:ajaxStatus>
 		<h:form id="form1">
 			<h:panelGrid columns="2" style="margin-bottom:10px">
@@ -44,7 +38,7 @@
 				<h:inputText id="surname" value="#{ajaxBean.cognome}" />
 
 				<jq:button id="button1" value="Reset" type="reset" />
-				<jq:button id="button2" value="Ajax Submit" target="display" />
+				<jq:button id="button2" value="Ajax Submit" ajaxSubmit="true" target="display" />
 			</h:panelGrid>
 			
 			<h3>Risultato</h3>

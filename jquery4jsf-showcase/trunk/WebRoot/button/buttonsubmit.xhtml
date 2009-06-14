@@ -14,29 +14,26 @@
 		<p>
 			#{resource.BUTTON_DESCR_SUBMIT}
 		</p>
-		<!-- START -->
-		<jq:ajaxStatus id="statusAjax">
-			<f:facet name="start">
-				<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
-			</f:facet>
-			<f:facet name="complete">
-				<h:outputText value="Ajax Request complete"></h:outputText>
-			</f:facet>
-			<f:facet name="error">
-				<jq:dialog title="Error" modal="true" id="dialogAjaxError"
-					autoOpen="false">
-					<jq:icon type="alert"></jq:icon>
-					<h:outputText value="Ajax Request Error"></h:outputText>
-				</jq:dialog>
-			</f:facet>
-		</jq:ajaxStatus>
-
-		<h:form id="form1">
-			<div>
-				<jq:button value="Clicca qui" action="#{buttonBean.doButtonAction}" />
-				<h:outputText value="#{buttonBean.text}" />
-			</div>
-		</h:form>
-		<!-- end -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form1">
+					<div>
+						<jq:button type="submit" value="Submit" id="button"
+							action="#{buttonBean.doButtonAction}" />
+						<h:outputText value="#{buttonBean.text}" />
+					</div>
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="button"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['button']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

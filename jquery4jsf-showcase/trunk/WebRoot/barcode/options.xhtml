@@ -5,8 +5,7 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText
-			value=" - Barcode - #{resource.BARCODE_TITLE_OPTIONS}" />
+		<h:outputText value=" - Barcode - #{resource.BARCODE_TITLE_OPTIONS}" />
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -15,19 +14,48 @@
 		<p>
 			#{resource.BARCODE_DESCR_OPTIONS}
 		</p>
-		<!-- START -->
-		<h3>barWidth</h3>
-		<jq:outputBarcode id="a" value="1234567890128" type="ean13" barWidth="2"/>
-		<h3>barHeight</h3>
-		<jq:outputBarcode id="b" value="1234567890128" type="ean13" barWidth="2" barHeight="30"/>
-		<h3>bgColor</h3>
-		<jq:outputBarcode id="c" value="1234567890128" type="ean13" barWidth="2" barHeight="30" bgColor="yellow"/>
-		<h3>color</h3>
-		<jq:outputBarcode id="d" value="1234567890128" type="ean13" barWidth="2" barHeight="30" color="red"/>
-		<h3>fontSize</h3>
-		<jq:outputBarcode id="e" value="1234567890128" type="ean13" barWidth="2" barHeight="30" fontSize="20"/>
-		<h3>showHRI</h3>
-		<jq:outputBarcode id="f" value="1234567890128" type="ean13" barWidth="2" barHeight="30" showHRI="false"/>
-		<!-- END -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h3>
+					barWidth
+				</h3>
+				<jq:outputBarcode id="a" value="1234567890128" type="ean13"
+					barWidth="2" />
+				<h3>
+					barHeight
+				</h3>
+				<jq:outputBarcode id="b" value="1234567890128" type="ean13"
+					barWidth="2" barHeight="30" />
+				<h3>
+					bgColor
+				</h3>
+				<jq:outputBarcode id="c" value="1234567890128" type="ean13"
+					barWidth="2" barHeight="30" bgColor="yellow" />
+				<h3>
+					color
+				</h3>
+				<jq:outputBarcode id="d" value="1234567890128" type="ean13"
+					barWidth="2" barHeight="30" color="red" />
+				<h3>
+					fontSize
+				</h3>
+				<jq:outputBarcode id="e" value="1234567890128" type="ean13"
+					barWidth="2" barHeight="30" fontSize="20" />
+				<h3>
+					showHRI
+				</h3>
+				<jq:outputBarcode id="f" value="1234567890128" type="ean13"
+					barWidth="2" barHeight="30" showHRI="false" />
+				<!-- END -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="outputBarcode"></ui:param>
+					<ui:param name="tagDefinition" value="#{startupBean.tagLib.tags['outputBarcode']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

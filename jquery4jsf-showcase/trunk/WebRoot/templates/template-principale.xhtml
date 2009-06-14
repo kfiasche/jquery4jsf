@@ -13,10 +13,6 @@
 			<title>jQuery4jsf - jQuery for JavaServer Faces <ui:insert name="title"></ui:insert></title>
 			<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
   			<ui:insert name="head"></ui:insert>
-  			<style type="text/css">
-			#bookmarkSite ul { width: 120px; }
-			#bookmarkSite ul li { background-image: none;}
-			</style>
 		</head>
 		<body>
 			<div class="PageBackgroundSimpleGradient">
@@ -62,14 +58,14 @@
 								<div class="Post">
 									<div class="Post-body">
 										<div class="Post-inner">
+											<div class="cleared"></div>
 											<div class="PostContent">
 												<ui:insert name="themeswitcherwidget">
 													<ui:include src="themeswitcherwidget.xhtml"></ui:include>
 												</ui:insert>
 												<!--  contenuto -->
-												<ui:insert name="content">...</ui:insert>
-												<ui:insert name="source">
-													<ui:include src="source.xhtml"></ui:include>
+												<ui:insert name="content">
+													....
 												</ui:insert>
 											</div>
 											<div class="cleared"></div>
@@ -90,7 +86,6 @@
 							dp.SyntaxHighlighter.ClipboardSwf = '#{facesContext.externalContext.requestContextPath}/script/sh/clipboard.swf';
 							dp.SyntaxHighlighter.HighlightAll('code');
 						</script>
-						
 					</div>
 				</div>
 			</div>

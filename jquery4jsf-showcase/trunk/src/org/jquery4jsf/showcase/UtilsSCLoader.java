@@ -7,7 +7,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.faces.context.FacesContext;
+import javax.faces.el.ValueBinding;
 import javax.servlet.ServletContext;
+
+import org.jquery4jsf.showcase.parser.model.TagDefinition;
+
+import com.sun.facelets.FaceletContext;
 
 public class UtilsSCLoader {
 
@@ -20,7 +25,19 @@ public class UtilsSCLoader {
 	public void setTextSource(String textSource) {
 		this.textSource = textSource;
 	}
-
+//	public void doTagInformationLocader(FacesContext context){
+//		ValueBinding vb = context.getApplication().createValueBinding("#{tagName}");
+//		
+//		String tagName = (String) vb.getValue(context);
+//		if (tagName != null){
+//			ValueBinding vbs = context.getApplication().createValueBinding("#{startupBean}");
+//			StartupBean sb = (StartupBean) vbs.getValue(context);
+//			TagDefinition tagDefinition = sb.getTagLib().getTags().get(tagName);
+//			ValueBinding vbt = context.getApplication().createValueBinding("#{tagDefinition}");
+//			vbt.setValue(context, tagDefinition);
+//		}
+//	}
+	
 	public void doSouceLocader(FacesContext context){
 		String sourcePath = context.getViewRoot().getViewId();
 		if (sourcePath != null) {

@@ -14,76 +14,87 @@
 		<p>
 			#{resource.BARCODE_DESCR_TYPE}
 		</p>
-		<!-- START -->
-		<jq:outputHtmlTag tagName="fieldset">
-			<jq:outputHtmlTag tagName="legend">
-				<h:outputText value="ean8" />
-			</jq:outputHtmlTag>
-			<jq:outputBarcode type="ean8" value="12345678"/>
-		</jq:outputHtmlTag>
-		<br />
-		<jq:outputHtmlTag tagName="fieldset">
-			<jq:outputHtmlTag tagName="legend">
-				<h:outputText value="ean13" />
-			</jq:outputHtmlTag>
-			<jq:outputBarcode type="ean13" value="1234567890128"/>
-		</jq:outputHtmlTag>
-		<br />
-		<jq:outputHtmlTag tagName="fieldset">
-			<jq:outputHtmlTag tagName="legend">
-				<h:outputText value="code11" />
-			</jq:outputHtmlTag>
-			<jq:outputBarcode type="code11" value="1234567890128"/>
-		</jq:outputHtmlTag>
-		<br />
-		<jq:outputHtmlTag tagName="fieldset">
-			<jq:outputHtmlTag tagName="legend">
-				<h:outputText value="code39" />
-			</jq:outputHtmlTag>
-			<jq:outputBarcode type="code39" value="1234567890128"/>
-		</jq:outputHtmlTag>
-		<br />
-		<jq:outputHtmlTag tagName="fieldset">
-			<jq:outputHtmlTag tagName="legend">
-				<h:outputText value="code128" />
-			</jq:outputHtmlTag>
-			<jq:outputBarcode type="code128" value="1234567890128"/>
-		</jq:outputHtmlTag>
-		<br />
-		<jq:outputHtmlTag tagName="fieldset">
-			<jq:outputHtmlTag tagName="legend">
-				<h:outputText value="codabar" />
-			</jq:outputHtmlTag>
-			<jq:outputBarcode type="codabar" value="1234567890128"/>
-		</jq:outputHtmlTag>
-		<br />
-		<jq:outputHtmlTag tagName="fieldset">
-			<jq:outputHtmlTag tagName="legend">
-				<h:outputText value="std25" />
-			</jq:outputHtmlTag>
-			<jq:outputBarcode type="std25" value="1234567890128"/>
-		</jq:outputHtmlTag>
-		<br />
-		<jq:outputHtmlTag tagName="fieldset">
-			<jq:outputHtmlTag tagName="legend">
-				<h:outputText value="int25" />
-			</jq:outputHtmlTag>
-			<jq:outputBarcode type="int25" value="1234567890128"/>
-		</jq:outputHtmlTag>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="ean8" />
+					</jq:outputHtmlTag>
+					<jq:outputBarcode type="ean8" value="12345678" />
+				</jq:outputHtmlTag>
 				<br />
-		<jq:outputHtmlTag tagName="fieldset">
-			<jq:outputHtmlTag tagName="legend">
-				<h:outputText value="code93" />
-			</jq:outputHtmlTag>
-			<jq:outputBarcode type="code93" value="1234567890128"/>
-		</jq:outputHtmlTag>
-						<br />
-		<jq:outputHtmlTag tagName="fieldset">
-			<jq:outputHtmlTag tagName="legend">
-				<h:outputText value="msi" />
-			</jq:outputHtmlTag>
-			<jq:outputBarcode type="msi" value="1234567890128"/>
-		</jq:outputHtmlTag>
-		<!-- END -->
+				<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="ean13" />
+					</jq:outputHtmlTag>
+					<jq:outputBarcode type="ean13" value="1234567890128" />
+				</jq:outputHtmlTag>
+				<br />
+				<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="code11" />
+					</jq:outputHtmlTag>
+					<jq:outputBarcode type="code11" value="1234567890128" />
+				</jq:outputHtmlTag>
+				<br />
+				<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="code39" />
+					</jq:outputHtmlTag>
+					<jq:outputBarcode type="code39" value="1234567890128" />
+				</jq:outputHtmlTag>
+				<br />
+				<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="code128" />
+					</jq:outputHtmlTag>
+					<jq:outputBarcode type="code128" value="1234567890128" />
+				</jq:outputHtmlTag>
+				<br />
+				<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="codabar" />
+					</jq:outputHtmlTag>
+					<jq:outputBarcode type="codabar" value="1234567890128" />
+				</jq:outputHtmlTag>
+				<br />
+				<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="std25" />
+					</jq:outputHtmlTag>
+					<jq:outputBarcode type="std25" value="1234567890128" />
+				</jq:outputHtmlTag>
+				<br />
+				<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="int25" />
+					</jq:outputHtmlTag>
+					<jq:outputBarcode type="int25" value="1234567890128" />
+				</jq:outputHtmlTag>
+				<br />
+				<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="code93" />
+					</jq:outputHtmlTag>
+					<jq:outputBarcode type="code93" value="1234567890128" />
+				</jq:outputHtmlTag>
+				<br />
+				<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="msi" />
+					</jq:outputHtmlTag>
+					<jq:outputBarcode type="msi" value="1234567890128" />
+				</jq:outputHtmlTag>
+				<!-- END -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="outputBarcode"></ui:param>
+					<ui:param name="tagDefinition" value="#{startupBean.tagLib.tags['outputBarcode']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

@@ -72,6 +72,26 @@
   <managed-bean-class>org.jquery4jsf.showcase.datepicker.CalendarBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>spinnerBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.spinner.SpinnerBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>startupBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.StartupBean</managed-bean-class>
+  <managed-bean-scope>application</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>accordionBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.accordion.AccordionBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>outputBarcodeBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.outputbarcode.OutputBarcodeBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
  </application>

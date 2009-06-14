@@ -21,7 +21,7 @@ public class DatePickerBean {
 	
 	public void doActionDatePicker(ActionEvent actionEvent){
 		if (dateOfBorn != null){
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 			String date = sdf.format(dateOfBorn);
 			textLabel = "This is my birthday ".concat(date);
 		}

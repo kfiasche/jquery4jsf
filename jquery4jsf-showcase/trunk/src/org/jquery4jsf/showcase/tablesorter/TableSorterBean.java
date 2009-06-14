@@ -1,7 +1,6 @@
 package org.jquery4jsf.showcase.tablesorter;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.jquery4jsf.showcase.model.User;

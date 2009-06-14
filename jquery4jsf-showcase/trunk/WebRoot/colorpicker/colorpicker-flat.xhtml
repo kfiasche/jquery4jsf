@@ -15,17 +15,32 @@
 		<p>
 			#{resource.COLORPICKER_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
-		<h:form id="form1">
-			<jq:paragraph>
-					Color picker flat mode: true
-			</jq:paragraph>
-			<h:outputLabel value="Color picker:" for="colopicker" id="lbColorpicker" />
-			<jq:colorPicker id="colorpicker" flat="true" color="#{colorPickerBean.color}" />
-			<jq:button value="Ok" id="button1"></jq:button>
-			<h:outputLabel value="Color picker choise:" for="colopickerOut" id="lbColorpickerOut" />
-			<h:outputText value="#{colorPickerBean.color}" id="colopickerOut" />
-		</h:form>
-		<!-- end -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form1">
+					<jq:paragraph>
+						Color picker flat mode: true
+					</jq:paragraph>
+					<h:outputLabel value="Color picker:" for="colopicker"
+						id="lbColorpicker" />
+					<jq:colorPicker id="colorpicker" flat="true"
+						color="#{colorPickerBean.color}" />
+					<jq:button value="Ok" id="button1"></jq:button>
+					<h:outputLabel value="Color picker choise:" for="colopickerOut"
+						id="lbColorpickerOut" />
+					<h:outputText value="#{colorPickerBean.color}" id="colopickerOut" />
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="colorPicker"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['colorPicker']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

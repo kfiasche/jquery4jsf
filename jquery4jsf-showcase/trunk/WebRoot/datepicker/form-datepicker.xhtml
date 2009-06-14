@@ -15,19 +15,35 @@
 		<p>
 			#{resource.DATEPICKER_DESCR_SIMPLEFORM}
 		</p>
-		<!-- START -->
-		<h:form id="form1">
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Date of born:"/>
-				<jq:datePicker id="datePickerBorn" value="#{datePickerBean.dateOfBorn}">
-					<f:convertDateTime pattern="MM/dd/yyyy" type="date" />
-				</jq:datePicker>
-				<jq:button id="resetButton" value="Reset" type="reset"/>
-				<jq:button id="submintButton" value="Submit" type="submit" target="dateBornUp" actionListener="#{datePickerBean.doActionDatePicker}"/>
-			</h:panelGrid>
-		</h:form>
-		
-		<h:outputText id="dateBornUp" value="#{datePickerBean.textLabel}"/>
-		<!-- end -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form1">
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Date of born:" />
+						<jq:datePicker id="datePickerBorn"
+							locale="en"
+							value="#{datePickerBean.dateOfBorn}">
+							<f:convertDateTime pattern="MM/dd/yyyy" type="date" />
+						</jq:datePicker>
+						<jq:button id="resetButton" value="Reset" type="reset" />
+						<jq:button id="submintButton" value="Submit" type="submit"
+							target="dateBornUp"
+							ajaxSubmit="true"
+							actionListener="#{datePickerBean.doActionDatePicker}" />
+					</h:panelGrid>
+				</h:form>
+				<h:outputText id="dateBornUp" value="#{datePickerBean.textLabel}" />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="datePicker"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['datePicker']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

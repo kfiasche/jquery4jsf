@@ -9,17 +9,38 @@
 	</ui:define>
 	<ui:define name="head">
 		<style type="text/css">
-			#bookmark ul { width: 120px; }
-			#bookmark ul li { background-image: none;}
-		</style>
+#bookmark ul {
+	width: 120px;
+}
+
+#bookmark ul li {
+	background-image: none;
+}
+</style>
 	</ui:define>
 	<ui:define name="content">
-		<h3>BookMark - #{resource.BOOKMARK_TITLE_DEFAULT}</h3>
-		<p>#{resource.BOOKMARK_DESCR_DEFAULT}</p>
-		<!-- START -->
-		<br/>
-		<jq:bookmark id="bookmark" sites="delicious,digg,furl,stumbleupon"/>
-		<br/>
-		<!-- end -->
+		<h3>
+			BookMark - #{resource.BOOKMARK_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.BOOKMARK_DESCR_DEFAULT}
+		</p>
+		<br />
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:bookmark id="bookmark" sites="delicious,digg,furl,stumbleupon" />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="bookmark"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['bookmark']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+		<br />
 	</ui:define>
 </ui:composition>

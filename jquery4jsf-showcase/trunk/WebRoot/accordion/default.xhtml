@@ -5,29 +5,44 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value=" Acccordion - #{resource.ACCORDION_TITLE_DEFAULT}" />
+		<h:outputText
+			value=" Acccordion - #{resource.ACCORDION_TITLE_DEFAULT}" />
 	</ui:define>
 	<ui:define name="content">
-		<h3>Accordion Panel - #{resource.ACCORDION_TITLE_DEFAULT}</h3>
+		<h3>
+			Accordion Panel - #{resource.ACCORDION_TITLE_DEFAULT}
+		</h3>
 		<p>
 			#{resource.ACCORDION_DESCR_DEFAULT}
 		</p>
-		<br/>
+		<br />
 		<!-- START -->
-		<jq:accordionPanel id="accordion" autoHeight="true">
-			<jq:accordionSubPanel panelName="#{resource.ACCORDION_SECTION_NAME_TOTTI}">
-				<h:panelGrid columns="2">
-						<h:graphicImage value="/images/roma/totti.jpg"></h:graphicImage>
-						<h:outputText value="#{resource.ACCORDION_SECTION_NAME_TOTTI_DESCR}"></h:outputText>
-					</h:panelGrid>
-			</jq:accordionSubPanel>
-			<jq:accordionSubPanel panelName="#{resource.ACCORDION_SECTION_NAME_DEROSSI}">
-				<h:panelGrid columns="2">
-						<h:graphicImage value="/images/roma/derossi.jpg"></h:graphicImage>
-						<h:outputText value="#{resource.ACCORDION_SECTION_NAME_DEROSSI_DESCR}"></h:outputText>
-					</h:panelGrid>
-			</jq:accordionSubPanel>
-		</jq:accordionPanel>
-		<!-- END -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<jq:accordionPanel id="accordion" autoHeight="true">
+					<jq:accordionSubPanel
+						panelName="#{resource.ACCORDION_SECTION_NAME_TOTTI}">
+						<h:panelGrid columns="2">
+							<h:graphicImage value="/images/roma/totti.jpg"></h:graphicImage>
+							<h:outputText
+								value="#{resource.ACCORDION_SECTION_NAME_TOTTI_DESCR}"></h:outputText>
+						</h:panelGrid>
+					</jq:accordionSubPanel>
+					<jq:accordionSubPanel
+						panelName="#{resource.ACCORDION_SECTION_NAME_DEROSSI}">
+						<h:panelGrid columns="2">
+							<h:graphicImage value="/images/roma/derossi.jpg"></h:graphicImage>
+							<h:outputText
+								value="#{resource.ACCORDION_SECTION_NAME_DEROSSI_DESCR}"></h:outputText>
+						</h:panelGrid>
+					</jq:accordionSubPanel>
+				</jq:accordionPanel>
+				<!-- END -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="taginformation.xhtml"></ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

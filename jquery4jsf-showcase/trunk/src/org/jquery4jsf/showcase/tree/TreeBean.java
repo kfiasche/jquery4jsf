@@ -1,6 +1,5 @@
 package org.jquery4jsf.showcase.tree;
 
-import org.jquery4jsf.component.model.tree.TreeDataModel;
 import org.jquery4jsf.component.model.tree.TreeNode;
 
 
