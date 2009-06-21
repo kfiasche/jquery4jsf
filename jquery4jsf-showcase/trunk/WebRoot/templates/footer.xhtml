@@ -1,17 +1,22 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf">
 	<div class="Footer">
 		<div class="Footer-inner">
 			<div class="Footer-text">
 				<p>
-					<h:outputText escape="false" value="Copyright 2009 Giuseppe Trisciuoglio."/>
+					<h:outputText escape="false"
+						value="Copyright 2009 Giuseppe Trisciuoglio." />
 					<br />
-					<h:outputText value="All Rights Reserved."/>
+					<h:outputText value="All Rights Reserved." />
 				</p>
 				<p>
-					<h:outputLink value="http://www.jquery4jsf.org/"><h:outputText escape="false" value="JSF components based on jQuery" /></h:outputLink> 
+					<h:outputLink value="http://www.jquery4jsf.org/">
+						<h:outputText escape="false"
+							value="JSF components based on jQuery" />
+					</h:outputLink>
 				</p>
 			</div>
 		</div>
@@ -21,7 +26,7 @@
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
-<script type="text/javascript">
+	<script type="text/javascript">
 try {
 var pageTracker = _gat._getTracker("UA-9087523-1");
 pageTracker._trackPageview();

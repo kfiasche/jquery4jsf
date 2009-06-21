@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" Acccordion - #{resource.ACCORDION_TITLE_ADDAJAXEVENT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Accordion Panel - #{resource.ACCORDION_TITLE_ADDAJAXEVENT}
+		</h3>
+		<p>
+			#{resource.ACCORDION_DESCR_ADDAJAXEVENT}
+		</p>
+		<br />
+		<!-- START -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<jq:ajaxStatus>
+					<f:facet name="start">
+						<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
+					</f:facet>
+					<f:facet name="error">
+						<h:outputText value="Ajax Error" />
+					</f:facet>
+					<f:facet name="complete">
+						<h:outputText value="Ajax Request Completed" />
+					</f:facet>
+				</jq:ajaxStatus>
+				<h3 class="ui-corner-all ui-widget-header">
+					Accordion change event
+				</h3>
+				<h:form id="form1">
+					<jq:accordionPanel id="accordion" autoHeight="true">
+						<jq:ajaxEvent event="accordionchange" actionListener="#{accordionBean.actionListener}"
+							target="label1" />
+						<jq:accordionSubPanel panelName="Panel 1">
+							<h:outputText id="label1" value="#{accordionBean.content}" />
+						</jq:accordionSubPanel>
+						<jq:accordionSubPanel panelName="Panel 2">
+							<h:outputText  id="label2" value="#{accordionBean.content}" />
+						</jq:accordionSubPanel>
+					</jq:accordionPanel>
+				</h:form>
+				<h3 class="ui-corner-all ui-widget-header">
+					Accordion change start event
+				</h3>
+				<h:form id="form2">
+				<jq:accordionPanel id="accordion2" autoHeight="true">
+						<jq:ajaxEvent event="accordionchangestart" actionListener="#{accordionBean.actionListener}"
+							target="label22" />
+						<jq:accordionSubPanel panelName="Panel 1">
+							<h:outputText id="label21" value="#{accordionBean.content}" />
+						</jq:accordionSubPanel>
+						<jq:accordionSubPanel panelName="Panel 2">
+							<h:outputText id="label22" value="#{accordionBean.content}" />
+						</jq:accordionSubPanel>
+					</jq:accordionPanel>
+				</h:form>
+				<!-- END -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="taginformation.xhtml"></ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>

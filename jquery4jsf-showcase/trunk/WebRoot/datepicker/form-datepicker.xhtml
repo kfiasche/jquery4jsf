@@ -21,15 +21,13 @@
 				<h:form id="form1">
 					<h:panelGrid columns="2">
 						<h:outputLabel value="Date of born:" />
-						<jq:datePicker id="datePickerBorn"
-							locale="en"
+						<jq:datePicker id="datePickerBorn" locale="en"
 							value="#{datePickerBean.dateOfBorn}">
 							<f:convertDateTime pattern="MM/dd/yyyy" type="date" />
 						</jq:datePicker>
 						<jq:button id="resetButton" value="Reset" type="reset" />
 						<jq:button id="submintButton" value="Submit" type="submit"
-							target="dateBornUp"
-							ajaxSubmit="true"
+							target="dateBornUp" ajaxSubmit="true"
 							actionListener="#{datePickerBean.doActionDatePicker}" />
 					</h:panelGrid>
 				</h:form>

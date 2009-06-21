@@ -9,19 +9,41 @@
 	</ui:define>
 	<ui:define name="head">
 		<style type="text/css">
-			#draggable, #draggable2, #draggable3, #set div { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
-	#draggable, #draggable2, #draggable3 { margin-bottom:20px; }
-	#set { clear:both; float:left; width: 368px; height: 120px; }
-	p { clear:both; margin:0; padding:1em 0; }
-		
+#draggable,#draggable2,#draggable3,#set div {
+	width: 90px;
+	height: 90px;
+	padding: 0.5em;
+	float: left;
+	margin: 0 10px 10px 0;
+}
+
+#draggable,#draggable2,#draggable3 {
+	margin-bottom: 20px;
+}
+
+#set {
+	clear: both;
+	float: left;
+	width: 368px;
+	height: 120px;
+}
+
+p {
+	clear: both;
+	margin: 0;
+	padding: 1em 0;
+}
 </style>
-	<!-- START -->
-	<jq:outputScript charset="utf-8" type="text/javascript">
+		<!-- START -->
+		<jq:outputScript charset="utf-8" type="text/javascript">
 		function customCallbackHelper() {
-			return $('<div class="ui-widget-header">I\'m a custom helper</div>');
+			return $('<div class="ui-corner-all ui-widget-header">
+				I\'m a custom helper
+			</div>');
 		}
 	</jq:outputScript>
-	<!-- end -->
+		<!-- end -->
+		<ui:include src="../templates/source.xhtml"></ui:include>
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -31,55 +53,66 @@
 			#{resource.DRAGGABLE_DESCR_FEEDBACK}
 		</p>
 		<br />
-		<!-- START -->
-		<jq:outputHtmlTag tagName="h3" styleClass="docs">
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:outputHtmlTag tagName="h3" styleClass="docs">
 			With helpers:
 		</jq:outputHtmlTag>
 
-		<jq:draggable id="draggable" helper="original">
-			<p>
-				Original
-			</p>
+				<jq:draggable id="draggable" helper="original">
+					<p>
+						Original
+					</p>
 
-		</jq:draggable>
+				</jq:draggable>
 
-		<jq:draggable id="draggable2" opacity="0.7" helper="clone">
-			<p>
-				Semi-transparent clone
-			</p>
-		</jq:draggable>
+				<jq:draggable id="draggable2" opacity="0.7" helper="clone">
+					<p>
+						Semi-transparent clone
+					</p>
+				</jq:draggable>
 
-		<jq:draggable id="draggable3" cursor="move"
-			cursorAt="{ top: -12, left: -20 }"
-			helper="customCallbackHelper()">
-			<p>
-				Custom helper (in combination with cursorAt)
-			</p>
-		</jq:draggable>
+				<jq:draggable id="draggable3" cursor="move"
+					cursorAt="{ top: -12, left: -20 }" helper="customCallbackHelper()">
+					<p>
+						Custom helper (in combination with cursorAt)
+					</p>
+				</jq:draggable>
 
-		<jq:outputHtmlTag tagName="h3" styleClass="docs">
+				<jq:outputHtmlTag tagName="h3" styleClass="docs">
 			Stacked:
 		</jq:outputHtmlTag>
-		<jq:outputHtmlTag id="set" tagName="div">
-			<jq:draggable for="#set div"  stack="{ group: '#set div', min: 1 }" />
-			<jq:outputHtmlTag tagName="div">
-				<p>
-					We are draggables..
-				</p>
-			</jq:outputHtmlTag>
+				<jq:outputHtmlTag id="set" tagName="div">
+					<jq:draggable for="#set div" stack="{ group: '#set div', min: 1 }" />
+					<jq:outputHtmlTag tagName="div">
+						<p>
+							We are draggables..
+						</p>
+					</jq:outputHtmlTag>
 
-			<jq:outputHtmlTag tagName="div">
-				<p>
-					..whose z-indexes are controlled automatically..
-				</p>
-			</jq:outputHtmlTag>
+					<jq:outputHtmlTag tagName="div">
+						<p>
+							..whose z-indexes are controlled automatically..
+						</p>
+					</jq:outputHtmlTag>
 
-			<jq:outputHtmlTag tagName="div">
-				<p>
-					..with the stack option.
-				</p>
-			</jq:outputHtmlTag>
-		</jq:outputHtmlTag>
-		<!-- end -->
+					<jq:outputHtmlTag tagName="div">
+						<p>
+							..with the stack option.
+						</p>
+					</jq:outputHtmlTag>
+				</jq:outputHtmlTag>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="draggable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['draggable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

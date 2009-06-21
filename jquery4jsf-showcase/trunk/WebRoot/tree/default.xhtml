@@ -14,24 +14,36 @@
 		<p>
 			#{resource.TREEVIEW_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
-		<jq:div id="treecontainer">
-			<h:form id="form">
-				<jq:treeView var="nodeElement" id="navigation"
-					value="#{treeBean.model}">
-					<f:facet name="firstbranch">
-						<h:panelGroup>
-							<h:outputText value="#{nodeElement.data}"/>
-						</h:panelGroup>
-					</f:facet>
-					<f:facet name="others">
-						<h:panelGroup>
-							<h:outputText value="#{nodeElement.data}"/>
-						</h:panelGroup>
-					</f:facet>
-				</jq:treeView>
-			</h:form>
-		</jq:div>
-		<!-- END -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:div id="treecontainer">
+					<h:form id="form">
+						<jq:treeView var="nodeElement" id="navigation"
+							value="#{treeBean.model}">
+							<f:facet name="firstbranch">
+								<h:panelGroup>
+									<h:outputText value="#{nodeElement.data}" />
+								</h:panelGroup>
+							</f:facet>
+							<f:facet name="others">
+								<h:panelGroup>
+									<h:outputText value="#{nodeElement.data}" />
+								</h:panelGroup>
+							</f:facet>
+						</jq:treeView>
+					</h:form>
+				</jq:div>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="tooltip"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['tooltip']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

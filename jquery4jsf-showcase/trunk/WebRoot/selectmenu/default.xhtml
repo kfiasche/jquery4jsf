@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - MultiSelect - #{resource.MULTISELECT_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			MultiSelect - #{resource.MULTISELECT_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.MULTISELECT_DESCR_DEFAULT}
+		</p>
+		<br />
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+
+				<jq:ajaxStatus id="statusAjax">
+					<f:facet name="start">
+						<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
+					</f:facet>
+					<f:facet name="complete">
+						<h:outputText value="Ajax Request complete"></h:outputText>
+					</f:facet>
+					<f:facet name="error">
+						<h:outputText value="Ajax Request Error"></h:outputText>
+					</f:facet>
+				</jq:ajaxStatus>
+				<h:form id="form1">
+					<h3 class="ui-corner-all ui-widget-header">
+						MultiSelect UI
+					</h3>
+					<br />
+					<jq:selectManyListbox value="#{selectManyListBoxBean.values}"
+						id="multiselect" style="width: 400px; height: 200px">
+						<jq:ajaxEvent actionListener="#{selectManyListBoxBean.actionListener}" event="multiselectchange" target="update" />
+						<f:selectItems value="#{selectManyListBoxBean.listaNazioni}" />
+					</jq:selectManyListbox>
+					<br />
+					<jq:button
+						target="update"
+						ajaxSubmit="true"
+						actionListener="#{selectManyListBoxBean.actionListener}"
+						value="Submit" />
+				</h:form>
+
+				<h:outputText id="update"
+					value="#{selectManyListBoxBean.textValues}" />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="selectManyListbox"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['selectManyListbox']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>

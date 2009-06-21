@@ -5,31 +5,12 @@
   <param-name>org.jquery4jsf.THEME_CSS_ENABLE</param-name>
   <param-value>true</param-value>
  </context-param>
- <!-- base
-black-tie
-blitzer
-cupertino
-dark-hive
-dot-luv
-eggplant
-excite-bike
-flick
-hot-sneaks
-humanity
-le-frog
-mint-choc
-overcast
-pepper-grinder
-redmond
-smoothness
-south-street
-start
-sunny
-swanky-purse
-trontastic
-ui-darkness
-ui-lightness
-vader -->
+ <!--
+		base black-tie blitzer cupertino dark-hive dot-luv eggplant
+		excite-bike flick hot-sneaks humanity le-frog mint-choc overcast
+		pepper-grinder redmond smoothness south-street start sunny
+		swanky-purse trontastic ui-darkness ui-lightness vader
+	-->
  <context-param>
   <param-name>org.jquery4jsf.THEME_CSS</param-name>
   <param-value>start</param-value>
@@ -41,9 +22,9 @@ vader -->
   <param-value>false</param-value>
  </context-param>
  <context-param>
-  <description>jsmin or yuicomprensor</description>
+  <description>jsmin or yuicompressor</description>
   <param-name>org.jquery4jsf.JAVASCRIPT_TYPE</param-name>
-  <param-value>yuicomprensor</param-value>
+  <param-value>jsmin</param-value>
  </context-param>
  <context-param>
   <description>Enable css resource Minifier</description>

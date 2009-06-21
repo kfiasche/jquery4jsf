@@ -43,46 +43,58 @@
 		<p>
 			#{resource.DROPPABLE_DESCR_FEEDBACK}
 		</p>
-		<!-- START -->
-		<jq:outputHtmlTag tagName="h3" styleClass="docs">
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:outputHtmlTag tagName="h3" styleClass="docs">
 			Feedback on hover:
 		</jq:outputHtmlTag>
 
 
-		<jq:panel header="Draggable" id="draggable" styleClass="draggable">
-			<jq:draggable />
-			<jq:paragraph>
+				<jq:panel header="Draggable" id="draggable" styleClass="draggable">
+					<jq:draggable />
+					<jq:paragraph>
 				Drag me to my target
 			</jq:paragraph>
-		</jq:panel>
+				</jq:panel>
 
-		<jq:panel header="Droppable" id="droppable" styleClass="droppable">
-			<jq:droppable hoverClass="ui-state-active"
-				ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
-			<jq:paragraph>
+				<jq:panel header="Droppable" id="droppable" styleClass="droppable">
+					<jq:droppable hoverClass="ui-state-active"
+						ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
+					<jq:paragraph>
 				Drop here
 			</jq:paragraph>
-		</jq:panel>
+				</jq:panel>
 
-		<jq:outputHtmlTag tagName="h3" styleClass="docs">
+				<jq:outputHtmlTag tagName="h3" styleClass="docs">
 			Feedback on activating draggable:
 		</jq:outputHtmlTag>
 
-		<jq:panel header="Draggable" id="draggable2" styleClass="draggable">
-			<jq:draggable />
-			<jq:paragraph>
+				<jq:panel header="Draggable" id="draggable2" styleClass="draggable">
+					<jq:draggable />
+					<jq:paragraph>
 				Drag me to my target
 			</jq:paragraph>
-		</jq:panel>
+				</jq:panel>
 
-		<jq:panel header="Droppable" id="droppable2" styleClass="droppable">
-			<jq:droppable accept="#draggable2" hoverClass="ui-state-active"
-				ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
-			<jq:paragraph>
+				<jq:panel header="Droppable" id="droppable2" styleClass="droppable">
+					<jq:droppable accept="#draggable2" hoverClass="ui-state-active"
+						ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
+					<jq:paragraph>
 				Drop here
 			</jq:paragraph>
-		</jq:panel>
+				</jq:panel>
 
-		<!-- END -->
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="droppable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['droppable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

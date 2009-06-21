@@ -6,6 +6,7 @@ public class SpinnerBean {
 
 	private Integer spinnerValue;
 	private String textSpinner;
+	private String textHexadecimal;
 	
 	public Integer getSpinnerValue() {
 		return spinnerValue;
@@ -27,6 +28,14 @@ public class SpinnerBean {
 
 	public void setTextSpinner(String textSpinner) {
 		this.textSpinner = textSpinner;
+	}
+
+	public String getTextHexadecimal() {
+		return textHexadecimal;
+	}
+
+	public void setTextHexadecimal(String textHexadecimal) {
+		this.textHexadecimal = textHexadecimal;
 	}
 	
 }

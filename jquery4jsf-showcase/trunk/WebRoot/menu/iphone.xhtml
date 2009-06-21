@@ -14,7 +14,19 @@
 		<p>
 			#{resource.MENU_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
-		<!-- end -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="menu"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['menu']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

@@ -7,12 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.faces.context.FacesContext;
-import javax.faces.el.ValueBinding;
 import javax.servlet.ServletContext;
-
-import org.jquery4jsf.showcase.parser.model.TagDefinition;
-
-import com.sun.facelets.FaceletContext;
 
 public class UtilsSCLoader {
 

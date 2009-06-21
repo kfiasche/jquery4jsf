@@ -39,30 +39,43 @@
 		<p>
 			#{resource.DROPPABLE_DESCR_REVERT}
 		</p>
-		<!-- START -->
-		<jq:panel header="Draggable" id="draggable" styleClass="draggable">
-			<jq:draggable revert="valid"/>
-			<jq:paragraph>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:panel header="Draggable" id="draggable" styleClass="draggable">
+					<jq:draggable revert="valid" />
+					<jq:paragraph>
 				I revert when I'm dropped
 			</jq:paragraph>
 
-		</jq:panel>
+				</jq:panel>
 
-		<jq:panel header="Draggable" id="draggable2" styleClass="draggable">
-			<jq:draggable revert="invalid"/>
-			<jq:paragraph>
+				<jq:panel header="Draggable" id="draggable2" styleClass="draggable">
+					<jq:draggable revert="invalid" />
+					<jq:paragraph>
 				I revert when I'm not dropped
 			</jq:paragraph>
-		</jq:panel>
+				</jq:panel>
 
-		<jq:panel header="Droppable" id="droppable" styleClass="droppable">
-			<jq:droppable hoverClass="ui-state-hover" activeClass="ui-state-active"
-				ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
-			<jq:paragraph>
+				<jq:panel header="Droppable" id="droppable" styleClass="droppable">
+					<jq:droppable hoverClass="ui-state-hover"
+						activeClass="ui-state-active"
+						ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
+					<jq:paragraph>
 				Drop me here
 			</jq:paragraph>
-		</jq:panel>
+				</jq:panel>
 
-		<!-- END -->
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="droppable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['droppable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

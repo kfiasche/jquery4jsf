@@ -5,16 +5,29 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText
-			value=" - Resizable - #{resource.RESIZABLE_TITLE_SYNC}" />
+		<h:outputText value=" - Resizable - #{resource.RESIZABLE_TITLE_SYNC}" />
 	</ui:define>
 	<ui:define name="head">
-	<style type="text/css">
-	.resizable { background-position: top left; }
-	.resizable, .also { width: 150px; height: 120px; padding: 0.5em; }
-	.resizable h3, .also h3 { text-align: center; margin: 0; }
-	.also { margin-top: 1em; }
-	</style>
+		<style type="text/css">
+.resizable {
+	background-position: top left;
+}
+
+.resizable,.also {
+	width: 150px;
+	height: 120px;
+	padding: 0.5em;
+}
+
+.resizable h3,.also h3 {
+	text-align: center;
+	margin: 0;
+}
+
+.also {
+	margin-top: 1em;
+}
+</style>
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -23,13 +36,25 @@
 		<p>
 			#{resource.RESIZABLE_DESCR_SYNC}
 		</p>
-		<!-- START -->
-		<jq:panel header="Resize"  styleClass="resizable">
-			<jq:resizable alsoResize="#also" />
-		</jq:panel>
-		<jq:panel id="also" header="will also resize"  styleClass="also">
-			<jq:resizable />
-		</jq:panel>
-		<!-- END -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:panel header="Resize" styleClass="resizable">
+					<jq:resizable alsoResize="#also" />
+				</jq:panel>
+				<jq:panel id="also" header="will also resize" styleClass="also">
+					<jq:resizable />
+				</jq:panel>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="resizable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['resizable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

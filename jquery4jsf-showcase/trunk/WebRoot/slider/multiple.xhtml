@@ -24,53 +24,67 @@
 		<p>
 			#{resource.SLIDER_DESCR_MULTIPLE}
 		</p>
-		<!-- START -->
-		<jq:paragraph
-			styleClass="ui-state-default ui-corner-all ui-helper-clearfix"
-			style="white-space:nowrap; padding: 4px;">
-			<jq:icon type="volume-on" style="float: left; margin: -2px 5px 0 0;" /><h:outputText value=" Master volume"/>
-		</jq:paragraph>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:paragraph
+					styleClass="ui-state-default ui-corner-all ui-helper-clearfix"
+					style="white-space:nowrap; padding: 4px;">
+					<jq:icon type="volume-on"
+						style="float: left; margin: -2px 5px 0 0;" />
+					<h:outputText value=" Master volume" />
+				</jq:paragraph>
 
-		<jq:slider range="min" orientation="horizontal" sliderValue="60">
-			<f:attribute name="style" value="width:260px; margin:15px;" />
-		</jq:slider>
+				<jq:slider range="min" orientation="horizontal" sliderValue="60">
+					<f:attribute name="style" value="width:260px; margin:15px;" />
+				</jq:slider>
 
-		<jq:paragraph styleClass="ui-state-default ui-corner-all"
-			style="padding:4px;margin-top:4em;">
-			<jq:icon type="signal" style="float:left; margin:-2px 5px 0 0;" />
-			<h:outputText value="Graphic Eq" />
-		</jq:paragraph>
+				<jq:paragraph styleClass="ui-state-default ui-corner-all"
+					style="padding:4px;margin-top:4em;">
+					<jq:icon type="signal" style="float:left; margin:-2px 5px 0 0;" />
+					<h:outputText value="Graphic Eq" />
+				</jq:paragraph>
 
-		<jq:div id="eq">
-			<jq:slider range="min" animate="true" orientation="vertical"
-				sliderValue="88">
-				<f:attribute name="style" value="margin:15px;" />
-			</jq:slider>
-			<jq:slider range="min" animate="true" orientation="vertical"
-				sliderValue="77">
-				<f:attribute name="style" value="margin:15px;" />
-			</jq:slider>
-			<jq:slider range="min" animate="true" orientation="vertical"
-				sliderValue="55">
-				<f:attribute name="style" value="margin:15px;" />
-			</jq:slider>
-			<jq:slider range="min" animate="true" orientation="vertical"
-				sliderValue="33">
-				<f:attribute name="style" value="margin:15px;" />
-			</jq:slider>
-			<jq:slider range="min" animate="true" orientation="vertical"
-				sliderValue="40">
-				<f:attribute name="style" value="margin:15px;" />
-			</jq:slider>
-			<jq:slider range="min" animate="true" orientation="vertical"
-				sliderValue="45">
-				<f:attribute name="style" value="margin:15px;" />
-			</jq:slider>
-			<jq:slider range="min" animate="true" orientation="vertical"
-				sliderValue="70">
-				<f:attribute name="style" value="margin:15px;" />
-			</jq:slider>
-		</jq:div>
-		<!-- end -->
+				<jq:div id="eq">
+					<jq:slider range="min" animate="true" orientation="vertical"
+						sliderValue="88">
+						<f:attribute name="style" value="margin:15px;" />
+					</jq:slider>
+					<jq:slider range="min" animate="true" orientation="vertical"
+						sliderValue="77">
+						<f:attribute name="style" value="margin:15px;" />
+					</jq:slider>
+					<jq:slider range="min" animate="true" orientation="vertical"
+						sliderValue="55">
+						<f:attribute name="style" value="margin:15px;" />
+					</jq:slider>
+					<jq:slider range="min" animate="true" orientation="vertical"
+						sliderValue="33">
+						<f:attribute name="style" value="margin:15px;" />
+					</jq:slider>
+					<jq:slider range="min" animate="true" orientation="vertical"
+						sliderValue="40">
+						<f:attribute name="style" value="margin:15px;" />
+					</jq:slider>
+					<jq:slider range="min" animate="true" orientation="vertical"
+						sliderValue="45">
+						<f:attribute name="style" value="margin:15px;" />
+					</jq:slider>
+					<jq:slider range="min" animate="true" orientation="vertical"
+						sliderValue="70">
+						<f:attribute name="style" value="margin:15px;" />
+					</jq:slider>
+				</jq:div>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="slider"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['slider']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

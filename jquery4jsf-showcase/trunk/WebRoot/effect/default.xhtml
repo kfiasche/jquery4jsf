@@ -9,11 +9,27 @@
 	</ui:define>
 	<ui:define name="head">
 		<style type="text/css">
-			.toggler { position: relative;}
-			.panel { width: 150px; height: 150px; padding: 0.4em; position: relative; }
-			.panel h3 { margin: 0; padding: 0.4em; text-align: center; }
-			.ui-effects-transfer { border: 2px dotted gray; } 
-		</style>
+.toggler {
+	position: relative;
+}
+
+.panel {
+	width: 150px;
+	height: 150px;
+	padding: 0.4em;
+	position: relative;
+}
+
+.panel h3 {
+	margin: 0;
+	padding: 0.4em;
+	text-align: center;
+}
+
+.ui-effects-transfer {
+	border: 2px dotted gray;
+}
+</style>
 		<jq:outputScript type="text/javascript" charset="utf-8">
 		function callback(){
 			setTimeout(function(){
@@ -29,98 +45,124 @@
 		<p>
 			#{resource.EFFECT_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
-		<jq:div styleClass="toggler">
-		<h:panelGrid columns="3" width="100%">
-			<h:column>
-				<jq:panel header="Blind" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500" effect="blind" />
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:div styleClass="toggler">
+					<h:panelGrid columns="3" width="100%">
+						<h:column>
+							<jq:panel header="Blind" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="blind" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Bounce" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="bounce" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Clip" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="clip" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Drop" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="drop" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Explode" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="explode" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Fold" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="fold" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Highlight" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="highlight" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Puff" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="puff" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Pulsate" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="pulsate" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Scale" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="scale">
+									<f:param name="percent" value="23" />
+								</jq:effect>
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Shake" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="shake" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Size" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="size">
+									<f:param name="to" value="">
+										<f:param name="width" value="200" />
+										<f:param name="height" value="60" />
+									</f:param>
+								</jq:effect>
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Slide" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="slide" />
+							</jq:panel>
+						</h:column>
+						<h:column>
+							<jq:panel header="Transfer" styleClass="panel">
+								<jq:effect event="click" callback="callback()" speed="500"
+									effect="transfer">
+									<f:param name="to" value="#target" />
+									<f:param name="className" value="ui-effects-transfer" />
+								</jq:effect>
+							</jq:panel>
+						</h:column>
+						<h:column>
+						</h:column>
+					</h:panelGrid>
+				</jq:div>
+
+				<jq:panel header="Target" styleClass="panel" id="target">
+					<jq:paragraph value="I'am target of transfert effect" />
 				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Bounce" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500" effect="bounce" />
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Clip" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="clip" />
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Drop" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="drop" />
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Explode" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="explode" />
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Fold" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="fold" />
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Highlight" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="highlight" />
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Puff" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="puff" />
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Pulsate" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="pulsate" />
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Scale" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="scale">
-						<f:param name="percent" value="23" />
-					</jq:effect>
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Shake" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="shake" />
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Size" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="size">
-						<f:param name="to" value="">
-							<f:param name="width" value="200"/>
-							<f:param name="height" value="60"/>
-						</f:param>
-					</jq:effect>
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Slide" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="slide" />
-				</jq:panel>
-			</h:column>
-			<h:column>
-				<jq:panel header="Transfer" styleClass="panel">
-					<jq:effect event="click" callback="callback()" speed="500"  effect="transfer">
-						<f:param name="to" value="#target"/>
-						<f:param name="className" value="ui-effects-transfer"/>
-					</jq:effect>
-				</jq:panel>
-			</h:column>
-			<h:column>
-			</h:column>
-		</h:panelGrid>
-		</jq:div>
-		
-		<jq:panel header="Target" styleClass="panel" id="target">
-			<jq:paragraph value="I'am target of transfert effect"/>
-		</jq:panel>
-		
-		<!-- END -->
+
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="effect"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['effect']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

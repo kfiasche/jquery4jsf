@@ -92,6 +92,16 @@
   <managed-bean-class>org.jquery4jsf.showcase.outputbarcode.OutputBarcodeBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>selectManyListBoxBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.selectmanylistbox.SelectManyListBoxBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>watermarkBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.watermark.WatermarkBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
  </application>

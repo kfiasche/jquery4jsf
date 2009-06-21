@@ -48,39 +48,52 @@
 		<p>
 			#{resource.DROPPABLE_DESCR_PREVENT}
 		</p>
-		<!-- START -->
-		<jq:panel id="draggable" header="Draggable" styleClass="draggable">
-			<jq:draggable for="draggable" />
-			<jq:paragraph>Drag me to my target</jq:paragraph>
-		</jq:panel>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:panel id="draggable" header="Draggable" styleClass="draggable">
+					<jq:draggable for="draggable" />
+					<jq:paragraph>Drag me to my target</jq:paragraph>
+				</jq:panel>
 
-		<jq:panel header="Droppable" id="droppable" styleClass="droppable">
-			<jq:paragraph>
+				<jq:panel header="Droppable" id="droppable" styleClass="droppable">
+					<jq:paragraph>
 				Outer droppable
 			</jq:paragraph>
-			<jq:div id="droppable-inner" styleClass="ui-widget-header">
-				<jq:paragraph>
+					<jq:div id="droppable-inner" styleClass="ui-corner-all ui-widget-header">
+						<jq:paragraph>
 					Inner droppable (not greedy)
 				</jq:paragraph>
-			</jq:div>
-		</jq:panel>
-		<jq:droppable for="#droppable, #droppable-inner"
-			activeClass="ui-state-hover" hoverClass="ui-state-active"
-			ondrop="$(this).addClass('ui-state-highlight').find('> p').html('Dropped!');return false;" />
-		<jq:panel header="Droppable Two" id="droppable" styleClass="droppable">
-			<jq:paragraph>
+					</jq:div>
+				</jq:panel>
+				<jq:droppable for="#droppable, #droppable-inner"
+					activeClass="ui-state-hover" hoverClass="ui-state-active"
+					ondrop="$(this).addClass('ui-state-highlight').find('> p').html('Dropped!');return false;" />
+				<jq:panel header="Droppable Two" id="droppable"
+					styleClass="droppable">
+					<jq:paragraph>
 				Outer droppable
 			</jq:paragraph>
 
-			<jq:div id="droppable2-inner" styleClass="ui-widget-header">
-				<jq:paragraph>
+					<jq:div id="droppable2-inner" styleClass="ui-corner-all ui-widget-header">
+						<jq:paragraph>
 					Inner droppable (greedy)
 				</jq:paragraph>
-			</jq:div>
-		</jq:panel>
-		<jq:droppable for="#droppable2, #droppable2-inner" greedy="true"
-			activeClass="ui-state-hover" hoverClass="ui-state-active"
-			ondrop="$(this).addClass('ui-state-highlight').find('> p').html('Dropped!');" />
-		<!-- END -->
+					</jq:div>
+				</jq:panel>
+				<jq:droppable for="#droppable2, #droppable2-inner" greedy="true"
+					activeClass="ui-state-hover" hoverClass="ui-state-active"
+					ondrop="$(this).addClass('ui-state-highlight').find('> p').html('Dropped!');" />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="droppable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['droppable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

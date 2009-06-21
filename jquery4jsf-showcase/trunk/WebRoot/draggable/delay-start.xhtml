@@ -26,21 +26,33 @@
 		<p>
 			#{resource.DRAGGABLE_DESCR_DELAY}
 		</p>
-		<!-- START -->
-		<div>
-		<jq:draggable styleClass="draggable" zindex="-2" id="draggable"
-			distance="20">
-			<p>
-				Portami ingiro
-			</p>
-		</jq:draggable>
-		<jq:draggable styleClass="draggable" zindex="-2" id="draggable2"
-			delay="1000">
-			<p>
-				Portami ingiro
-			</p>
-		</jq:draggable>
-		</div>
-		<!-- end -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<div>
+					<jq:draggable styleClass="draggable" zindex="-2" id="draggable"
+						distance="20">
+						<p>
+							Portami ingiro
+						</p>
+					</jq:draggable>
+					<jq:draggable styleClass="draggable" zindex="-2" id="draggable2"
+						delay="1000">
+						<p>
+							Portami ingiro
+						</p>
+					</jq:draggable>
+				</div>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="draggable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['draggable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

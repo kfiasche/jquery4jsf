@@ -9,12 +9,28 @@
 			value=" - Droppable - #{resource.DROPPABLE_TITLE_DEFAULT}" />
 	</ui:define>
 	<ui:define name="head">
-	<style type="text/css">
-	.draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-	.droppable { width: 150px; height: 150px; padding: 0.5em; float: left;}
-	.droppable h3, .draggable h3 { text-align: center; margin: 0; }
-	</style>
-		
+		<style type="text/css">
+.draggable {
+	width: 100px;
+	height: 100px;
+	padding: 0.5em;
+	float: left;
+	margin: 10px 10px 10px 0;
+}
+
+.droppable {
+	width: 150px;
+	height: 150px;
+	padding: 0.5em;
+	float: left;
+}
+
+.droppable h3,.draggable h3 {
+	text-align: center;
+	margin: 0;
+}
+</style>
+
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -23,15 +39,32 @@
 		<p>
 			#{resource.DROPPABLE_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
-		<jq:panel id="draggable" header="Draggable"  styleClass="draggable">
-			<jq:draggable for="draggable" />
-			<p>Drag me to my target</p>
-		</jq:panel>
-		<jq:panel id="droppable" header="Droppable"  styleClass="droppable">
-			<jq:droppable for="droppable" ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
-			<p>Drop here</p>
-		</jq:panel>
-		<!-- END -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:panel id="draggable" header="Draggable" styleClass="draggable">
+					<jq:draggable for="draggable" />
+					<p>
+						Drag me to my target
+					</p>
+				</jq:panel>
+				<jq:panel id="droppable" header="Droppable" styleClass="droppable">
+					<jq:droppable for="droppable"
+						ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
+					<p>
+						Drop here
+					</p>
+				</jq:panel>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="droppable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['droppable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

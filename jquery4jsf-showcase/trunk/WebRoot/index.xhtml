@@ -4,20 +4,23 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="templates/template-principale.xhtml">
-		<ui:define name="title">
+	<ui:define name="title">
 			Demo
 		</ui:define>
-		<ui:define name="head">
-			<jq:outputScript charset="utf-8" type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/jquery4jsf_resource/jquery/jquery.js" />
-		</ui:define>
-		<ui:define name="themeswitcherwidget">
-			<div></div>
-		</ui:define>
-		<ui:define name="content">
-			<h3>jQuery4jsf Components Showcase Demo</h3>
+	<ui:define name="head">
+		<jq:outputScript charset="utf-8" type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/jquery4jsf_resource/jquery/jquery.js" />
+	</ui:define>
+	<ui:define name="themeswitcherwidget">
+		<div></div>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			jQuery4jsf Components Showcase Demo
+		</h3>
 			jQuery4jsf is a library of components based on the jQuery javascript framework, this library aims to facilitate the application developer to develop their own jsf pages offering a suite of components unique. The library is developed using jQuery plugins most famous as the jQuery UI, TreeView, DatePicker, Calendar, TabView, Tooltip, and many more.
 		</ui:define>
-		<ui:define name="source">
-			<div></div>
-		</ui:define>
+	<ui:define name="source">
+		<div></div>
+	</ui:define>
 </ui:composition>

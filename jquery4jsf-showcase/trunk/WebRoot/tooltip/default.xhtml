@@ -14,25 +14,40 @@
 		<p>
 			#{resource.TOOLTIP_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
-		<jq:paragraph>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:paragraph>
 			After three years on the youth team, Totti made his first appearance for Roma's senior side at the age of sixteen, when coach Vujadin Boskov let him play in the 2-0 away victory against Brescia on March 28, 1993. 
 			In the following seasons, he began to play more games, and thus he succeeded in scoring his first goal on September 24, 1994 in a 1-1 draw against Foggia Calcio. 
 			By 1995, Totti had become a regular in the starting eleven and scored 16 goals in the next three seasons. 
 			When he assumed the team captaincy in 1997, he began to gain recognition as a club symbol. 
-			Manager <h:outputLink id="zeman" value="http://en.wikipedia.org/wiki/Zden%C4%9Bk_Zeman">
-				<jq:tooltip titleText="Zdenek Zeman" styleName="themeroller"
-					styleWidthMax="100"
-					text="Zdenek Zeman (born March 12, 1947 in Prague) is a Czech-Italian football coach. 
+			Manager <h:outputLink id="zeman"
+						value="http://en.wikipedia.org/wiki/Zden%C4%9Bk_Zeman">
+						<jq:tooltip titleText="Zdenek Zeman" styleName="themeroller"
+							styleWidthMax="100"
+							text="Zdenek Zeman (born March 12, 1947 in Prague) is a Czech-Italian football coach. 
 					 He has managed numerous different teams, mostly in Italian football, over the years." />
-				<h:outputText value="Zdenek Zeman" />
-			</h:outputLink> played with an offensive 4-3-3 formation, in which Totti was the left winger. 
+						<h:outputText value="Zdenek Zeman" />
+					</h:outputLink> played with an offensive 4-3-3 formation, in which Totti was the left winger. 
 			Totti scored 30 goals during Zeman's two-year managerial stint.
 			Though Totti was not called up for the 1998 FIFA World Cup, he was named the Serie A Young Footballer of the Year in the 1998-99 season.
 		</jq:paragraph>
-		<jq:paragraph>
-			<h3>Source:</h3> Wikipedia
+				<jq:paragraph>
+					<h3>
+						Source:
+					</h3> Wikipedia
 		</jq:paragraph>
-		<!-- END -->
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="tooltip"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['tooltip']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

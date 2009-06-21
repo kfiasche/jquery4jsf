@@ -39,27 +39,40 @@
 		<p>
 			#{resource.DROPPABLE_DESCR_ACCEPT}
 		</p>
-		<!-- START -->
-		<jq:panel id="draggable" header="Draggable" styleClass="draggable">
-			<jq:draggable for="draggable" />
-			<jq:paragraph>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:panel id="draggable" header="Draggable" styleClass="draggable">
+					<jq:draggable for="draggable" />
+					<jq:paragraph>
 				Drag me to my target
 			</jq:paragraph>
-		</jq:panel>
-		<jq:panel id="draggable-invalid" header="Draggable not valid" styleClass="draggable">
-			<jq:draggable for="draggable-invalid"/>
-			<jq:paragraph>
+				</jq:panel>
+				<jq:panel id="draggable-invalid" header="Draggable not valid"
+					styleClass="draggable">
+					<jq:draggable for="draggable-invalid" />
+					<jq:paragraph>
 				I'm draggable but can't be dropped
 			</jq:paragraph>
-		</jq:panel>
-		<jq:panel header="Droppable" styleClass="droppable">
-			<jq:droppable accept="#draggable" activeClass="ui-state-hover"
-				hoverClass="ui-state-active"
-				ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
-			<jq:paragraph>
+				</jq:panel>
+				<jq:panel header="Droppable" styleClass="droppable">
+					<jq:droppable accept="#draggable" activeClass="ui-state-hover"
+						hoverClass="ui-state-active"
+						ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
+					<jq:paragraph>
 				accept: 'Draggable'
 			</jq:paragraph>
-		</jq:panel>
-		<!-- END -->
+				</jq:panel>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="droppable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['droppable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

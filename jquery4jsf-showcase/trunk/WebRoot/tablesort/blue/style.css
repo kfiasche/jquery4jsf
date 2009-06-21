@@ -1,38 +1,46 @@
 /* tables */
 table.tablesorterblue {
-	font-family:arial;
+	font-family: arial;
 	background-color: #CDCDCD;
-	margin:10px 0pt 15px;
+	margin: 10px 0pt 15px;
 	font-size: 8pt;
 	text-align: left;
 }
-table.tablesorterblue thead tr th, table.tablesorterblue tfoot tr th {
+
+table.tablesorterblue thead tr th,table.tablesorterblue tfoot tr th {
 	background-color: #e6EEEE;
 	border: 1px solid #FFF;
 	font-size: 8pt;
 	padding: 4px;
 }
+
 table.tablesorterblue thead tr .header {
 	background-image: url(bg.gif);
 	background-repeat: no-repeat;
 	background-position: center right;
 	cursor: pointer;
 }
+
 table.tablesorterblue tbody td {
 	color: #3D3D3D;
 	padding: 4px;
 	background-color: #FFF;
 	vertical-align: top;
 }
+
 table.tablesorterblue tbody tr.odd td {
-	background-color:#F0F0F6;
+	background-color: #F0F0F6;
 }
+
 table.tablesorterblue thead tr .headerSortUp {
 	background-image: url(asc.gif);
 }
+
 table.tablesorterblue thead tr .headerSortDown {
 	background-image: url(desc.gif);
 }
-table.tablesorterblue thead tr .headerSortDown, table.tablesorterblue thead tr .headerSortUp {
-background-color: #8dbdd8;
+
+table.tablesorterblue thead tr .headerSortDown,table.tablesorterblue thead tr .headerSortUp
+	{
+	background-color: #8dbdd8;
 }

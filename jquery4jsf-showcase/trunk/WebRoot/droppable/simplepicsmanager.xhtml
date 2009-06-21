@@ -9,22 +9,72 @@
 			value=" - Droppable - #{resource.DROPPABLE_TITLE_DEFAULT}" />
 	</ui:define>
 	<ui:define name="head">
-<style type="text/css">
-#gallery { float: left; width: 65%; min-height: 12em; } * html #gallery { height: 12em; } /* IE6 */
-.gallery.custom-state-active { background: #eee; }
-.Post UL LI {background-image: none;}
+		<style type="text/css">
+#gallery {
+	float: left;
+	width: 65%;
+	min-height: 12em;
+}
 
-.gallery li { float: left; width: 96px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
-.gallery li h3 { margin: 0 0 0.4em; cursor: move; }
-.gallery li a { float: right; }
-.gallery li a.ui-icon-zoomin { float: left; }
-.gallery li img { width: 100%; cursor: move; }
+* html #gallery {
+	height: 12em;
+}  /* IE6 */
+.gallery.custom-state-active {
+	background: #eee;
+}
 
-#trash { float: right; width: 32%; min-height: 18em; padding: 1%;} * html #trash { height: 18em; } /* IE6 */
-#trash h3 { line-height: 16px; margin: 0 0 0.4em; }
-#trash h3 .ui-icon { float: left; }
-#trash .gallery h3 { display: none; }
+.Post UL LI {
+	background-image: none;
+}
 
+.gallery li {
+	float: left;
+	width: 96px;
+	padding: 0.4em;
+	margin: 0 0.4em 0.4em 0;
+	text-align: center;
+}
+
+.gallery li h3 {
+	margin: 0 0 0.4em;
+	cursor: move;
+}
+
+.gallery li a {
+	float: right;
+}
+
+.gallery li a.ui-icon-zoomin {
+	float: left;
+}
+
+.gallery li img {
+	width: 100%;
+	cursor: move;
+}
+
+#trash {
+	float: right;
+	width: 32%;
+	min-height: 18em;
+	padding: 1%;
+}
+
+* html #trash {
+	height: 18em;
+}  /* IE6 */
+#trash h3 {
+	line-height: 16px;
+	margin: 0 0 0.4em;
+}
+
+#trash h3 .ui-icon {
+	float: left;
+}
+
+#trash .gallery h3 {
+	display: none;
+}
 </style>
 		<!-- START -->
 		<jq:outputScript charset="utf-8" type="text/javascript"
@@ -99,7 +149,8 @@
 			});
 	//]]>
 		</jq:outputScript>
-		<!-- END -->
+		<!-- end -->
+		<ui:include src="../templates/source.xhtml"></ui:include>
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -108,83 +159,94 @@
 		<p>
 			#{resource.DROPPABLE_DESCR_SIMPLEPICSMANAGER}
 		</p>
-		<!-- START -->
-		<jq:div id="containement">
-			<jq:outputHtmlTag id="gallery" tagName="ul"
-				styleClass="gallery ui-helper-reset ui-helper-clearfix">
-				<jq:droppable accept="#trash li" activeClass="custom-state-active"
-					ondrop="recycleImage(ui.draggable);" />
-				<jq:outputHtmlTag id="li1" tagName="li"
-					styleClass="ui-widget-content ui-corner-tr">
-					<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
-						cursor="move" containment="#containement" />
-					<jq:panel header="High Tatras" styleClass="panel">
-						<h:graphicImage value="images/high_tatras_min.jpg"
-							alt="The peaks of High Tatras" width="96" height="72" />
-						<h:outputLink value="images/high_tatras4.jpg"
-							title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
-						<h:outputLink value="link/to/trash/script/when/we/have/js/off"
-							title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:div id="containement">
+					<jq:outputHtmlTag id="gallery" tagName="ul"
+						styleClass="gallery ui-helper-reset ui-helper-clearfix">
+						<jq:droppable accept="#trash li" activeClass="custom-state-active"
+							ondrop="recycleImage(ui.draggable);" />
+						<jq:outputHtmlTag id="li1" tagName="li"
+							styleClass="ui-widget-content ui-corner-tr">
+							<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
+								cursor="move" containment="#containement" />
+							<jq:panel header="High Tatras" styleClass="panel">
+								<h:graphicImage value="images/high_tatras_min.jpg"
+									alt="The peaks of High Tatras" width="96" height="72" />
+								<h:outputLink value="images/high_tatras4.jpg"
+									title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
+								<h:outputLink value="link/to/trash/script/when/we/have/js/off"
+									title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
+							</jq:panel>
+
+						</jq:outputHtmlTag>
+						<jq:outputHtmlTag id="li2" tagName="li"
+							styleClass="ui-widget-content ui-corner-tr">
+							<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
+								cursor="move" containment="#containement" />
+							<jq:panel header="High Tatras 2" styleClass="panel">
+								<h:graphicImage value="images/high_tatras2_min.jpg"
+									alt="The chalet at the Green mountain lake" width="96"
+									height="72" />
+								<h:outputLink value="images/high_tatras4.jpg"
+									title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
+								<h:outputLink value="link/to/trash/script/when/we/have/js/off"
+									title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
+							</jq:panel>
+
+						</jq:outputHtmlTag>
+						<jq:outputHtmlTag id="li3" tagName="li"
+							styleClass="ui-widget-content ui-corner-tr">
+							<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
+								cursor="move" containment="#containement" />
+							<jq:panel header="High Tatras 3" styleClass="panel">
+								<h:graphicImage value="images/high_tatras3_min.jpg"
+									alt="Planning the ascent" width="96" height="72" />
+								<h:outputLink value="images/high_tatras4.jpg"
+									title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
+								<h:outputLink value="link/to/trash/script/when/we/have/js/off"
+									title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
+							</jq:panel>
+
+						</jq:outputHtmlTag>
+
+						<jq:outputHtmlTag id="li4" tagName="li"
+							styleClass="ui-widget-content ui-corner-tr">
+							<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
+								cursor="move" containment="#containement" />
+							<jq:panel header="High Tatras 4" styleClass="panel">
+								<h:graphicImage value="images/high_tatras4_min.jpg"
+									alt="On top of Kozi kopka" width="96" height="72" />
+								<h:outputLink value="images/high_tatras4.jpg"
+									title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
+								<h:outputLink value="link/to/trash/script/when/we/have/js/off"
+									title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
+							</jq:panel>
+						</jq:outputHtmlTag>
+					</jq:outputHtmlTag>
+
+					<jq:div styleClass="cleared" />
+
+					<jq:panel id="trash" header="Trash" styleClass="panelTrash">
+						<jq:droppable accept="#gallery > li"
+							activeClass="ui-state-highlight"
+							ondrop="deleteImage(ui.draggable);" />
+						<f:facet name="header">
+							<jq:icon type="trash" />
+						</f:facet>
 					</jq:panel>
-
-				</jq:outputHtmlTag>
-				<jq:outputHtmlTag id="li2" tagName="li"
-					styleClass="ui-widget-content ui-corner-tr">
-					<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
-						cursor="move" containment="#containement" />
-					<jq:panel header="High Tatras 2" styleClass="panel">
-						<h:graphicImage value="images/high_tatras2_min.jpg"
-							alt="The chalet at the Green mountain lake" width="96"
-							height="72" />
-						<h:outputLink value="images/high_tatras4.jpg"
-							title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
-						<h:outputLink value="link/to/trash/script/when/we/have/js/off"
-							title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
-					</jq:panel>
-
-				</jq:outputHtmlTag>
-				<jq:outputHtmlTag id="li3" tagName="li"
-					styleClass="ui-widget-content ui-corner-tr">
-					<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
-						cursor="move" containment="#containement" />
-					<jq:panel header="High Tatras 3" styleClass="panel">
-						<h:graphicImage value="images/high_tatras3_min.jpg"
-							alt="Planning the ascent" width="96" height="72" />
-						<h:outputLink value="images/high_tatras4.jpg"
-							title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
-						<h:outputLink value="link/to/trash/script/when/we/have/js/off"
-							title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
-					</jq:panel>
-
-				</jq:outputHtmlTag>
-
-				<jq:outputHtmlTag id="li4" tagName="li"
-					styleClass="ui-widget-content ui-corner-tr">
-					<jq:draggable cancel="a.ui-icon" revert="invalid" helper="clone"
-						cursor="move" containment="#containement" />
-					<jq:panel header="High Tatras 4" styleClass="panel">
-						<h:graphicImage value="images/high_tatras4_min.jpg"
-							alt="On top of Kozi kopka" width="96" height="72" />
-						<h:outputLink value="images/high_tatras4.jpg"
-							title="View larger image" styleClass="ui-icon ui-icon-zoomin">View larger</h:outputLink>
-						<h:outputLink value="link/to/trash/script/when/we/have/js/off"
-							title="Delete this image" styleClass="ui-icon ui-icon-trash">Delete image</h:outputLink>
-					</jq:panel>
-				</jq:outputHtmlTag>
-			</jq:outputHtmlTag>
-
-			<jq:div styleClass="cleared" />
-
-			<jq:panel id="trash" header="Trash" styleClass="panelTrash">
-				<jq:droppable accept="#gallery > li"
-					activeClass="ui-state-highlight"
-					ondrop="deleteImage(ui.draggable);" />
-				<f:facet name="header">
-					<jq:icon type="trash" />
-				</f:facet>
-			</jq:panel>
-
-		</jq:div>
-		<!-- END -->
+				</jq:div>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="droppable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['droppable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

@@ -14,46 +14,58 @@
 		<p>
 			#{resource.DIALOG_DESCR_MESSAGE}
 		</p>
-		<!-- START -->
-		<jq:dialog id="dialog" title="Francesco Totti" bgiframe="true"
-			autoOpen="true" modal="true"
-			buttons="{Ok: function() { $(this).dialog('close');}}">
-			<jq:paragraph>
-					<jq:icon type="circle-check"
-						style="float: left; margin: 0 7px 50px 0;" /> 
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:dialog id="dialog" title="Francesco Totti" bgiframe="true"
+					autoOpen="true" modal="true"
+					buttons="{Ok: function() { $(this).dialog('close');}}">
+					<jq:paragraph>
+						<jq:icon type="circle-check"
+							style="float: left; margin: 0 7px 50px 0;" /> 
 					Francesco Totti (born September 27, 1976) is an Italian World Cup-winning footballer who plays for Italian Serie A club Roma. His position is that of a striker or an attacking midfielder, though he is best known for playing as a second striker. Totti, who has spent his entire career at Roma, is the number-one goalscorer and the most capped player in the club's history.
 			</jq:paragraph>
-			<jq:paragraph>
-				
-			</jq:paragraph>
-		</jq:dialog>
-		<h:form id="form1">
-			<h:panelGrid columns="2">
-				<h:outputLabel for="inputText">
-					<h:outputText value="Input Text:"></h:outputText>
-				</h:outputLabel>
-				<h:inputText id="inputText"></h:inputText>
-				<h:outputLabel for="inputTextarea">
-					<h:outputText value="Input Textarea:"></h:outputText>
-				</h:outputLabel>
-				<h:inputTextarea id="inputTextarea"></h:inputTextarea>
-				<h:outputLabel for="inputChecbox">
-					<h:outputText value="Input Checkbox:"></h:outputText>
-				</h:outputLabel>
-				<h:selectBooleanCheckbox id="inputChecbox"></h:selectBooleanCheckbox>
-				<h:outputLabel for="inputCombobox">
-					<h:outputText value="Input Combo box:"></h:outputText>
-				</h:outputLabel>
-				<h:selectOneMenu id="inputCombobox">
-					<f:selectItem itemValue="a" itemLabel="Prova" />
-					<f:selectItem itemValue="b" itemLabel="Prova" />
-				</h:selectOneMenu>
-				<h:outputLabel for="inputScret">
-					<h:outputText value="Input Password:"></h:outputText>
-				</h:outputLabel>
-				<h:inputSecret id="inputScret"></h:inputSecret>
-			</h:panelGrid>
-		</h:form>
-		<!-- end -->
+					<jq:paragraph>
+
+					</jq:paragraph>
+				</jq:dialog>
+				<h:form id="form1">
+					<h:panelGrid columns="2">
+						<h:outputLabel for="inputText">
+							<h:outputText value="Input Text:"></h:outputText>
+						</h:outputLabel>
+						<h:inputText id="inputText"></h:inputText>
+						<h:outputLabel for="inputTextarea">
+							<h:outputText value="Input Textarea:"></h:outputText>
+						</h:outputLabel>
+						<h:inputTextarea id="inputTextarea"></h:inputTextarea>
+						<h:outputLabel for="inputChecbox">
+							<h:outputText value="Input Checkbox:"></h:outputText>
+						</h:outputLabel>
+						<h:selectBooleanCheckbox id="inputChecbox"></h:selectBooleanCheckbox>
+						<h:outputLabel for="inputCombobox">
+							<h:outputText value="Input Combo box:"></h:outputText>
+						</h:outputLabel>
+						<h:selectOneMenu id="inputCombobox">
+							<f:selectItem itemValue="a" itemLabel="Prova" />
+							<f:selectItem itemValue="b" itemLabel="Prova" />
+						</h:selectOneMenu>
+						<h:outputLabel for="inputScret">
+							<h:outputText value="Input Password:"></h:outputText>
+						</h:outputLabel>
+						<h:inputSecret id="inputScret"></h:inputSecret>
+					</h:panelGrid>
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="dialog"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['dialog']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

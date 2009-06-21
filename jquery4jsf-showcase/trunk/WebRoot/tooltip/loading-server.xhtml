@@ -17,57 +17,67 @@
 		<p>
 			#{resource.TOOLTIP_DESCR_LOADINGAJAX}
 		</p>
-		<!-- START -->
-		<h:form id="form2">
-		</h:form>
-		<h:form id="form">
-		<h:dataTable styleClass="ui-widget ui-corner-all"
-			columnClasses="ui-widget-content" headerClass="ui-widget-header"
-			id="dataTable" var="player" value="#{quickSearchBean.listPlayers}">
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Name" />
-				</f:facet>
-				<h:outputText id="name" value="#{player.name}">
-					<jq:tooltip id="tooltip1" titleText="#{player.name}"
-						titleButton="Close"
-						hideWhenEvent="blur"
-						showWhenEvent="click" oncomplete="#{tooltipBean.onComplete}"
-						cornerTarget="topRight"
-						styleName="themeroller" cornerTooltip="bottomLeft">
-							<f:param value="#{player.ruolo}" name="ruolo"></f:param>
-						</jq:tooltip>
-				</h:outputText>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Ruolo" />
-				</f:facet>
-				<h:outputText value="#{player.ruolo}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Numero" />
-				</f:facet>
-				<h:outputText value="#{player.number}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Date" />
-				</f:facet>
-				<h:outputText value="#{player.bornDate}">
-					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
-				</h:outputText>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Nazionalita" />
-				</f:facet>
-				<h:outputText value="#{player.nazionalita}">
-				</h:outputText>
-			</h:column>
-		</h:dataTable>
-		</h:form>
-		<!-- END -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form2">
+				</h:form>
+				<h:form id="form">
+					<h:dataTable styleClass="ui-widget ui-corner-all"
+						columnClasses="ui-widget-content" headerClass="ui-corner-all ui-widget-header"
+						id="dataTable" var="player" value="#{quickSearchBean.listPlayers}">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText id="name" value="#{player.name}">
+								<jq:tooltip id="tooltip1" titleText="#{player.name}"
+									titleButton="Close" hideWhenEvent="blur" showWhenEvent="click"
+									oncomplete="#{tooltipBean.onComplete}" cornerTarget="topRight"
+									styleName="themeroller" cornerTooltip="bottomLeft">
+									<f:param value="#{player.ruolo}" name="ruolo"></f:param>
+								</jq:tooltip>
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ruolo" />
+							</f:facet>
+							<h:outputText value="#{player.ruolo}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Numero" />
+							</f:facet>
+							<h:outputText value="#{player.number}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Date" />
+							</f:facet>
+							<h:outputText value="#{player.bornDate}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nazionalita" />
+							</f:facet>
+							<h:outputText value="#{player.nazionalita}">
+							</h:outputText>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="tooltip"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['tooltip']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

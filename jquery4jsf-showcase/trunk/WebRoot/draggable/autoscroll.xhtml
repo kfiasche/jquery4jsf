@@ -5,7 +5,8 @@
 	xmlns:jq="http://www.jquery4jsf.org/jsf"
 	template="../templates/template-principale.xhtml">
 	<ui:define name="title">
-		<h:outputText value=" - Draggable - #{resource.DRAGGABLE_TITLE_AUTOSCROLL}" />
+		<h:outputText
+			value=" - Draggable - #{resource.DRAGGABLE_TITLE_AUTOSCROLL}" />
 	</ui:define>
 	<ui:define name="head">
 		<style type="text/css">
@@ -26,27 +27,39 @@
 			#{resource.DRAGGABLE_DESCR_AUTOSCROLL}
 		</p>
 		<br />
-		<!-- START -->
-		<div>
-		<jq:draggable id="draggable" scroll="true">
-			<p>
-				Scroll set to true, default settings
-			</p>
-		</jq:draggable>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<div>
+					<jq:draggable id="draggable" scroll="true">
+						<p>
+							Scroll set to true, default settings
+						</p>
+					</jq:draggable>
 
-		<jq:draggable id="draggable2" scroll="true" scrollSensitivity="100">
-			<p>
-				scrollSensitivity set to 100
-			</p>
-		</jq:draggable>
+					<jq:draggable id="draggable2" scroll="true" scrollSensitivity="100">
+						<p>
+							scrollSensitivity set to 100
+						</p>
+					</jq:draggable>
 
-		<jq:draggable id="draggable3" scroll="true" scrollSpeed="100">
-			<p>
-				scrollSpeed set to 100
-			</p>
-		</jq:draggable>
-		<div style="height: 5000px; width: 1px;"></div>
-		</div>
-		<!-- end -->
+					<jq:draggable id="draggable3" scroll="true" scrollSpeed="100">
+						<p>
+							scrollSpeed set to 100
+						</p>
+					</jq:draggable>
+					<div style="height: 5000px; width: 1px;"></div>
+				</div>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="draggable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['draggable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

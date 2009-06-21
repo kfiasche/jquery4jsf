@@ -14,10 +14,24 @@
 		<p>
 			#{resource.SLIDER_DESCR_RANGE}
 		</p>
-		<!-- START -->
-		<h:outputLabel id="label" value="Range prices: " for="amount" />
-		<h:inputText value="$75 - $300" id="amount" style="border:0; font-weight:bold;" />
-		<jq:slider range="true" min="0" max="500" values="[75, 300]" onslide="$('#amount').val('$' + ui.values[0] + ' - $' + ui.values[1]);"/>
-		<!-- end -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:outputLabel id="label" value="Range prices: " for="amount" />
+				<h:inputText value="$75 - $300" id="amount"
+					style="border:0; font-weight:bold;" />
+				<jq:slider range="true" min="0" max="500" values="[75, 300]"
+					onslide="$('#amount').val('$' + ui.values[0] + ' - $' + ui.values[1]);" />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="slider"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['slider']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

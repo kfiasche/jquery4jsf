@@ -8,7 +8,7 @@
 		<h:outputText value="#{resource.SIMPLYSCROLL_TITLE_CUSTOMCONTENT}" />
 	</ui:define>
 	<ui:define name="head">
-<style>
+		<style>
 .custom { /* Applied to container DIV */
 	width: 394px;
 	height: 210px;
@@ -23,40 +23,41 @@
 
 /* Existing styles */
 #scroller .section {
-	float:left;
+	float: left;
 	width: 298px;
 	height: 210px;
 }
 
 #scroller .hp-highlight {
-	height:210px;
-	margin:-10px 10px 10px 0;
+	height: 210px;
+	margin: -10px 10px 10px 0;
 }
 
 #scroller .feature-headline {
-	position:relative;
-	top:140px;
-	width:280px;
-	background:white;
-	margin:5px 5px 7px 5px;
-	padding:5px 5px 0 5px;
+	position: relative;
+	top: 140px;
+	width: 280px;
+	background: white;
+	margin: 5px 5px 7px 5px;
+	padding: 5px 5px 0 5px;
 }
+
 #scroller .feature-headline a {
 	font-weight: bold;
 	text-decoration: none;
-	color:#cc0000;
+	color: #cc0000;
 }
 
 #scroller h1 {
-	font-weight:normal;
-	font-size:19px;
+	font-weight: normal;
+	font-size: 19px;
 }
 
 #scroller p {
 	font-size: 14px !important;
-	color:#666666;
-	line-height:70%;
-	padding:0 0 2px;
+	color: #666666;
+	line-height: 70%;
+	padding: 0 0 2px;
 }
 </style>
 	</ui:define>
@@ -67,70 +68,88 @@
 		<p>
 			#{resource.SIMPLYSCROLL_DESCR_CUSTOMCONTENT}
 		</p>
-		<!-- START -->
-		<jq:simpyScroll id="scroller" customContent="true" className="custom"
-			autoMode="loop" pauseOnHover="false" frameRate="20" speed="2">
-			<h:graphicImage title="Francesco Totti" value="/images/roma/fta.jpg" width="290" height="200">
-				<f:facet name="header">
-					<h:outputLink value="http://www.asroma.it">
-						<h:outputText value="Francesco Totti"/>
-					</h:outputLink>
-				</f:facet>
-				<f:facet name="content">
-					<jq:paragraph>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:simpyScroll id="scroller" customContent="true"
+					className="custom" autoMode="loop" pauseOnHover="false"
+					frameRate="20" speed="2">
+					<h:graphicImage title="Francesco Totti"
+						value="/images/roma/fta.jpg" width="290" height="200">
+						<f:facet name="header">
+							<h:outputLink value="http://www.asroma.it">
+								<h:outputText value="Francesco Totti" />
+							</h:outputLink>
+						</f:facet>
+						<f:facet name="content">
+							<jq:paragraph>
 						Francesco Totti is the best players of As Roma Team.
 					</jq:paragraph>
-				</f:facet>
-			</h:graphicImage>
-			<h:graphicImage title="Francesco Totti" value="/images/roma/ftb.jpg" width="290" height="200">
-				<f:facet name="header">
-					<h:outputLink value="http://www.asroma.it">
-						<h:outputText value="Francesco Totti"/>
-					</h:outputLink>
-				</f:facet>
-				<f:facet name="content">
-					<jq:paragraph>
+						</f:facet>
+					</h:graphicImage>
+					<h:graphicImage title="Francesco Totti"
+						value="/images/roma/ftb.jpg" width="290" height="200">
+						<f:facet name="header">
+							<h:outputLink value="http://www.asroma.it">
+								<h:outputText value="Francesco Totti" />
+							</h:outputLink>
+						</f:facet>
+						<f:facet name="content">
+							<jq:paragraph>
 						Francesco Totti is the best players of As Roma Team.
 					</jq:paragraph>
-				</f:facet>
-			</h:graphicImage>
-			<h:graphicImage title="Francesco Totti" value="/images/roma/ftc.jpg" width="290" height="200">
-				<f:facet name="header">
-					<h:outputLink value="http://www.asroma.it">
-						<h:outputText value="Francesco Totti"/>
-					</h:outputLink>
-				</f:facet>
-				<f:facet name="content">
-					<jq:paragraph>
+						</f:facet>
+					</h:graphicImage>
+					<h:graphicImage title="Francesco Totti"
+						value="/images/roma/ftc.jpg" width="290" height="200">
+						<f:facet name="header">
+							<h:outputLink value="http://www.asroma.it">
+								<h:outputText value="Francesco Totti" />
+							</h:outputLink>
+						</f:facet>
+						<f:facet name="content">
+							<jq:paragraph>
 						Francesco Totti is the best players of As Roma Team.
 					</jq:paragraph>
-				</f:facet>
-			</h:graphicImage>
-			<h:graphicImage title="Mirko Vucinic" value="/images/roma/mva.jpg" width="290" height="200">
-				<f:facet name="header">
-					<h:outputLink value="http://www.asroma.it">
-						<h:outputText value="Mirko Vucinic"/>
-					</h:outputLink>
-				</f:facet>
-				<f:facet name="content">
-					<jq:paragraph>
+						</f:facet>
+					</h:graphicImage>
+					<h:graphicImage title="Mirko Vucinic" value="/images/roma/mva.jpg"
+						width="290" height="200">
+						<f:facet name="header">
+							<h:outputLink value="http://www.asroma.it">
+								<h:outputText value="Mirko Vucinic" />
+							</h:outputLink>
+						</f:facet>
+						<f:facet name="content">
+							<jq:paragraph>
 						Mirko Vucinic is the best forward of As Roma Team.
 					</jq:paragraph>
-				</f:facet>
-			</h:graphicImage>
-			<h:graphicImage title="Matteo Brighi" value="/images/roma/mb.jpg" width="290" height="200">
-				<f:facet name="header">
-					<h:outputLink value="http://www.asroma.it">
-						<h:outputText value="Matteo Brighi"/>
-					</h:outputLink>
-				</f:facet>
-				<f:facet name="content">
-					<jq:paragraph>
+						</f:facet>
+					</h:graphicImage>
+					<h:graphicImage title="Matteo Brighi" value="/images/roma/mb.jpg"
+						width="290" height="200">
+						<f:facet name="header">
+							<h:outputLink value="http://www.asroma.it">
+								<h:outputText value="Matteo Brighi" />
+							</h:outputLink>
+						</f:facet>
+						<f:facet name="content">
+							<jq:paragraph>
 						Matteo Brighi is the best midfielder of As Roma Team.
 					</jq:paragraph>
-				</f:facet>
-			</h:graphicImage>
-		</jq:simpyScroll>
-		<!-- end -->
+						</f:facet>
+					</h:graphicImage>
+				</jq:simpyScroll>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="resizable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['resizable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

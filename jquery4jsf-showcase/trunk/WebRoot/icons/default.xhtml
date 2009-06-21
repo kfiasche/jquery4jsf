@@ -8,8 +8,6 @@
 		<h:outputText value=" - Icons - #{resource.ICON_TITLE_DEFAULT}" />
 	</ui:define>
 	<ui:define name="head">
-		<jq:outputScript charset="utf-8" type="text/javascript"
-			src="#{facesContext.externalContext.requestContextPath}/jquery4jsf_resource/jquery/jquery.js" />
 		<style type="text/css">
 ul#icons {
 	margin: 0;
@@ -40,12 +38,14 @@ ul#icons span.ui-icon {
 		<p>
 			#{resource.ICON_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
-		<jq:div>
-			<jq:outputHtmlTag tagName="fieldset">
-				<jq:outputHtmlTag tagName="legend">
-					<h:outputText value="Icons" />
-					<ul id="icons" class="ui-widget ui-helper-clearfix">
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:div>
+					<jq:outputHtmlTag tagName="fieldset">
+						<jq:outputHtmlTag tagName="legend">
+							<h:outputText value="Icons" />
+							<ul id="icons" class="ui-widget ui-helper-clearfix">
 								<li class="ui-state-default ui-corner-all" title="carat-1-n">
 									<jq:icon type="carat-1-n"></jq:icon>
 								</li>
@@ -646,9 +646,19 @@ ul#icons span.ui-icon {
 									<jq:icon type="grip-diagonal-se"></jq:icon>
 								</li>
 							</ul>
-				</jq:outputHtmlTag>
-			</jq:outputHtmlTag>
-		</jq:div>
-		<!-- END -->
+						</jq:outputHtmlTag>
+					</jq:outputHtmlTag>
+				</jq:div>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="icon"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['icon']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

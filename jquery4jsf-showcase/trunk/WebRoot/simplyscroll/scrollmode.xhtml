@@ -25,24 +25,46 @@
 		<p>
 			#{resource.SIMPLYSCROLL_DESCR_SCROLLMODE}
 		</p>
-		<!-- START -->
-		<jq:simpyScroll id="ssLoop" speed="5" horizontal="false" frameRate="20" 
-		autoMode="loop">
-			<h:graphicImage value="/images/roma/fta.jpg" width="290" height="200" />
-			<h:graphicImage value="/images/roma/ftb.jpg" width="290" height="200" />
-			<h:graphicImage value="/images/roma/ftc.jpg" width="290" height="200" />
-			<h:graphicImage value="/images/roma/mva.jpg" width="290" height="200" />
-			<h:graphicImage value="/images/roma/mb.jpg" width="290" height="200" />
-		</jq:simpyScroll>
-		<br />
-		<jq:simpyScroll id="ssBouce" speed="1" horizontal="false" frameRate="20" 
-		autoMode="bounce">
-			<h:graphicImage value="/images/roma/fta.jpg" width="290" height="200" />
-			<h:graphicImage value="/images/roma/ftb.jpg" width="290" height="200" />
-			<h:graphicImage value="/images/roma/ftc.jpg" width="290" height="200" />
-			<h:graphicImage value="/images/roma/mva.jpg" width="290" height="200" />
-			<h:graphicImage value="/images/roma/mb.jpg" width="290" height="200" />
-		</jq:simpyScroll>
-		<!-- end -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:simpyScroll id="ssLoop" speed="5" horizontal="false"
+					frameRate="20" autoMode="loop">
+					<h:graphicImage value="/images/roma/fta.jpg" width="290"
+						height="200" />
+					<h:graphicImage value="/images/roma/ftb.jpg" width="290"
+						height="200" />
+					<h:graphicImage value="/images/roma/ftc.jpg" width="290"
+						height="200" />
+					<h:graphicImage value="/images/roma/mva.jpg" width="290"
+						height="200" />
+					<h:graphicImage value="/images/roma/mb.jpg" width="290"
+						height="200" />
+				</jq:simpyScroll>
+				<br />
+				<jq:simpyScroll id="ssBouce" speed="1" horizontal="false"
+					frameRate="20" autoMode="bounce">
+					<h:graphicImage value="/images/roma/fta.jpg" width="290"
+						height="200" />
+					<h:graphicImage value="/images/roma/ftb.jpg" width="290"
+						height="200" />
+					<h:graphicImage value="/images/roma/ftc.jpg" width="290"
+						height="200" />
+					<h:graphicImage value="/images/roma/mva.jpg" width="290"
+						height="200" />
+					<h:graphicImage value="/images/roma/mb.jpg" width="290"
+						height="200" />
+				</jq:simpyScroll>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="resizable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['resizable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

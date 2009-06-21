@@ -9,9 +9,20 @@
 	</ui:define>
 	<ui:define name="head">
 		<style type="text/css">
-			.panel { width: 150px; height: 150px; padding: 0.4em; position: relative; }
-			.panel h3 { line-height: 16px; margin: 0; padding: 0.4em; text-align: center; }
-		</style>
+.panel {
+	width: 150px;
+	height: 150px;
+	padding: 0.4em;
+	position: relative;
+}
+
+.panel h3 {
+	line-height: 16px;
+	margin: 0;
+	padding: 0.4em;
+	text-align: center;
+}
+</style>
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -20,15 +31,27 @@
 		<p>
 			#{resource.PANEL_DESCR_HEADER}
 		</p>
-		<!-- START -->
-		<jq:panel styleClass="panel" header="Information">
-			<f:facet name="header">	
-					<jq:icon type="info" style="float:left;"/>
-			</f:facet>
-			<jq:paragraph>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:panel styleClass="panel" header="Information">
+					<f:facet name="header">
+						<jq:icon type="info" style="float:left;" />
+					</f:facet>
+					<jq:paragraph>
 				jQuery is the best framework javascript
 			</jq:paragraph>
-		</jq:panel>
-		<!-- END -->
+				</jq:panel>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="panel"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['panel']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

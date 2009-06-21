@@ -31,30 +31,42 @@
 		<p>
 			#{resource.SCRIPTCOLLECTOR_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
-		<jq:panel styleClass="panel" header="Text Start">
-			<h:outputText value="#{scriptCollectorBean.loadText}" />
-		</jq:panel>
-		<jq:scriptCollector onPagePost="#{scriptCollectorBean.onPagePost}"
-			onPageLoadBegin="#{scriptCollectorBean.onPageLoad}"
-			onPageLoadEnd="#{scriptCollectorBean.onPageLoadEnd}">
-			<h:form>
-				<h:panelGrid columns="2" width="100%">
-					<jq:panel styleClass="panel" header="Text onLoadBegin">
-						<h:outputText value="#{scriptCollectorBean.loadText}" />
-					</jq:panel>
-					<jq:panel styleClass="panel" header="Text onPost">
-						<h:outputText value="#{scriptCollectorBean.postText}" />
-					</jq:panel>
-				</h:panelGrid>
-				<jq:button value="onPost" />
-			</h:form>
-		</jq:scriptCollector>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:panel styleClass="panel" header="Text Start">
+					<h:outputText value="#{scriptCollectorBean.loadText}" />
+				</jq:panel>
+				<jq:scriptCollector onPagePost="#{scriptCollectorBean.onPagePost}"
+					onPageLoadBegin="#{scriptCollectorBean.onPageLoad}"
+					onPageLoadEnd="#{scriptCollectorBean.onPageLoadEnd}">
+					<h:form>
+						<h:panelGrid columns="2" width="100%">
+							<jq:panel styleClass="panel" header="Text onLoadBegin">
+								<h:outputText value="#{scriptCollectorBean.loadText}" />
+							</jq:panel>
+							<jq:panel styleClass="panel" header="Text onPost">
+								<h:outputText value="#{scriptCollectorBean.postText}" />
+							</jq:panel>
+						</h:panelGrid>
+						<jq:button value="onPost" />
+					</h:form>
+				</jq:scriptCollector>
 
-		<jq:panel styleClass="panel" header="Text onLoadEnd">
-			<h:outputText value="#{scriptCollectorBean.loadText}" />
-		</jq:panel>
+				<jq:panel styleClass="panel" header="Text onLoadEnd">
+					<h:outputText value="#{scriptCollectorBean.loadText}" />
+				</jq:panel>
 
-		<!-- END -->
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="resizable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['resizable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

@@ -24,7 +24,7 @@
 						<f:convertDateTime pattern="MM/dd/yyyy" type="date" />
 						<jq:ajaxEvent event="change"
 							actionListener="#{calendarBean.doActionCalendar}"
-							reRender="update" />
+							target="update" />
 					</jq:calendar>
 				</h:form>
 				<h:outputText id="update" value="#{calendarBean.textLabel}" />

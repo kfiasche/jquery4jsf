@@ -8,23 +8,43 @@
 		<h:outputText value=" - TabView - #{resource.TABVIEW_TITLE_AJAX}" />
 	</ui:define>
 	<ui:define name="content">
-		<h3>TabView - #{resource.TABVIEW_TITLE_AJAX}</h3>
-		<p>#{resource.TABVIEW_DESCR_AJAX}</p>
-		<!-- START -->
+		<h3>
+			TabView - #{resource.TABVIEW_TITLE_AJAX}
+		</h3>
+		<p>
+			#{resource.TABVIEW_DESCR_AJAX}
+		</p>
 		<jq:tabbedPanel>
-			<jq:tabPanel tabName="Francesco Totti">
-				<jq:paragraph>
-					<h:graphicImage value="/images/roma/totti.jpg" alt="Francesco Totti" style="float:left; margin: 5px;"/>
-					<h:outputText value="#{resource.ACCORDION_SECTION_NAME_TOTTI_DESCR}"></h:outputText>
-				</jq:paragraph>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:tabbedPanel>
+					<jq:tabPanel tabName="Francesco Totti">
+						<jq:paragraph>
+							<h:graphicImage value="/images/roma/totti.jpg"
+								alt="Francesco Totti" style="float:left; margin: 5px;" />
+							<h:outputText
+								value="#{resource.ACCORDION_SECTION_NAME_TOTTI_DESCR}"></h:outputText>
+						</jq:paragraph>
+					</jq:tabPanel>
+					<jq:tabPanel tabName="Daniele De Rossi">
+						<jq:paragraph>
+							<h:graphicImage value="/images/roma/derossi.jpg"
+								alt="Daniele De Rossi" style="float:left; margin: 5px;" />
+							<h:outputText
+								value="#{resource.ACCORDION_SECTION_NAME_DEROSSI_DESCR}"></h:outputText>
+						</jq:paragraph>
+					</jq:tabPanel>
+				</jq:tabbedPanel>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
 			</jq:tabPanel>
-			<jq:tabPanel tabName="Daniele De Rossi">
-				<jq:paragraph>
-					<h:graphicImage value="/images/roma/derossi.jpg" alt="Daniele De Rossi" style="float:left; margin: 5px;"/>
-					<h:outputText value="#{resource.ACCORDION_SECTION_NAME_DEROSSI_DESCR}"></h:outputText>
-				</jq:paragraph>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="tabPanel"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['tabPanel']}"></ui:param>
+				</ui:include>
 			</jq:tabPanel>
 		</jq:tabbedPanel>
-		<!-- END -->
 	</ui:define>
 </ui:composition>

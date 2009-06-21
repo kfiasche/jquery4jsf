@@ -14,47 +14,51 @@
 		<p>
 			#{resource.MENU_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
 		<jq:tabbedPanel>
 			<jq:tabPanel tabName="Demo">
-				<jq:menuBar id="menuBar">
-					<jq:menu id="menu1" showSpeed="400" label="Flat Menu 1" flyOut="true">
-						<jq:menuItem label="Google" value="http://www.google.com" />
-						<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
-						<jq:menuItem label="MSN" value="http://www.msn.com" />
-						<jq:menuItem label="Ask" value="http://www.ask.com" />
-						<jq:menuItem label="Motori di Ricerca">
-							<jq:menuItem label="Google" value="http://www.google.com" />
-							<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
-							<jq:menuItem label="MSN" value="http://www.msn.com" />
-							<jq:menuItem label="Ask" value="http://www.ask.com" />
-							<jq:menuItem label="AOL" value="http://www.aol.com" />
-							<jq:menuItem label="Google" value="http://www.google.com" />
-							<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
-							<jq:menuItem label="MSN" value="http://www.msn.com" />
-							<jq:menuItem label="Ask" value="http://www.ask.com" />
-						</jq:menuItem>
-					</jq:menu>
-					<jq:menu id="menu2" showSpeed="400" label="Flat Menu 2">
-						<jq:menuItem label="Google" value="http://www.google.com" />
-						<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
-						<jq:menuItem label="MSN" value="http://www.msn.com" />
-						<jq:menuItem label="Ask" value="http://www.ask.com" />
-						<jq:menuItem label="AOL" value="http://www.aol.com" />
-					</jq:menu>
-					<jq:menu id="menu3" showSpeed="400" label="Flat Menu 3">
-						<jq:menuItem label="Google" value="http://www.google.com" />
-						<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
-						<jq:menuItem label="MSN" value="http://www.msn.com" />
-						<jq:menuItem label="Ask" value="http://www.ask.com" />
-						<jq:menuItem label="AOL" value="http://www.aol.com" />
-					</jq:menu>
-				</jq:menuBar>
-				<!-- end -->
-				<ui:include src="../templates/source.xhtml"></ui:include>
-			</jq:tabPanel>
-			<jq:tabPanel tabName="Tag Information">
-			</jq:tabPanel>
-		</jq:tabbedPanel>
+				<!-- START -->
+				<jq:tabbedPanel>
+					<jq:tabPanel tabName="Demo">
+						<jq:menuBar id="menuBar">
+							<jq:menu id="menu1" showSpeed="400" label="Flat Menu 1"
+								flyOut="true">
+								<jq:menuItem label="Google" value="http://www.google.com" />
+								<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
+								<jq:menuItem label="MSN" value="http://www.msn.com" />
+								<jq:menuItem label="Ask" value="http://www.ask.com" />
+								<jq:menuItem label="Motori di Ricerca">
+									<jq:menuItem label="Google" value="http://www.google.com" />
+									<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
+									<jq:menuItem label="MSN" value="http://www.msn.com" />
+									<jq:menuItem label="Ask" value="http://www.ask.com" />
+									<jq:menuItem label="AOL" value="http://www.aol.com" />
+									<jq:menuItem label="Google" value="http://www.google.com" />
+									<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
+									<jq:menuItem label="MSN" value="http://www.msn.com" />
+									<jq:menuItem label="Ask" value="http://www.ask.com" />
+								</jq:menuItem>
+							</jq:menu>
+							<jq:menu id="menu2" showSpeed="400" label="Flat Menu 2">
+								<jq:menuItem label="Google" value="http://www.google.com" />
+								<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
+								<jq:menuItem label="MSN" value="http://www.msn.com" />
+								<jq:menuItem label="Ask" value="http://www.ask.com" />
+								<jq:menuItem label="AOL" value="http://www.aol.com" />
+							</jq:menu>
+							<jq:menu id="menu3" showSpeed="400" label="Flat Menu 3">
+								<jq:menuItem label="Google" value="http://www.google.com" />
+								<jq:menuItem label="Yahoo" value="http://www.yahoo.com" />
+								<jq:menuItem label="MSN" value="http://www.msn.com" />
+								<jq:menuItem label="Ask" value="http://www.ask.com" />
+								<jq:menuItem label="AOL" value="http://www.aol.com" />
+							</jq:menu>
+						</jq:menuBar>
+						<!-- end -->
+						<ui:include src="../templates/source.xhtml"></ui:include>
+						<ui:include src="../templates/source.xhtml"></ui:include>
+					</jq:tabPanel>
+					<jq:tabPanel tabName="Tag Information">
+					</jq:tabPanel>
+				</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

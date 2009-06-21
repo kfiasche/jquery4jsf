@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - Watermark - #{resource.WATERMARK_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-watermark-label {
+	color: #999999;
+}
+</style>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Watermark - #{resource.WATERMARK_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.WATERMARK_DESCR_DEFAULT}
+		</p>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:ajaxStatus>
+					<f:facet name="start">
+						<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
+					</f:facet>
+					<f:facet name="complete">
+						<h:outputText value="Ajax Request Completed" />
+					</f:facet>
+				</jq:ajaxStatus>
+				<h:form id="form">
+					<jq:outputHtmlTag tagName="fieldset">
+						<jq:outputHtmlTag tagName="legend">
+							<h:outputText value="Login" />
+						</jq:outputHtmlTag>
+						<h:panelGrid columns="2">
+							<h:outputText value="Username: " />
+							<h:inputText id="username" value="#{watermarkBean.username}">
+								<jq:watermark placeholderText="Username" />
+							</h:inputText>
+							<h:outputText value="Password: " />
+							<h:inputSecret id="password" value="#{watermarkBean.password}">
+								<jq:watermark placeholderText="Password" />
+							</h:inputSecret>
+							<jq:button ajaxSubmit="true" value="Submit" target="update" actionListener="#{watermarkBean.actionListener}"/>
+						</h:panelGrid>
+					</jq:outputHtmlTag>
+					<br />
+					<jq:div id="update" styleClass="ui-widget" style="#{watermarkBean.show}">
+						<jq:div styleClass="ui-state-highlight ui-corner-all"
+							style="padding: 0pt 0.7em; margin-top: 20px;">
+							<jq:paragraph>
+								<jq:icon type="info" style="float: left; margin-right: 0.3em;" />
+								<h:outputText value="#{watermarkBean.msg}" />
+							</jq:paragraph>
+						</jq:div>
+					</jq:div>
+				</h:form>
+				<br />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="watermark"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['watermark']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>

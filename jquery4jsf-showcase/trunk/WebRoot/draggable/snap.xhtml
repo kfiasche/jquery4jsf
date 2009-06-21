@@ -36,44 +36,58 @@
 		</p>
 
 		<br />
-		<!-- START -->
-		<div id="snaptarget" class="ui-widget-header">
-			<p>
-				I'm a snap target
-			</p>
-		</div>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<div id="snaptarget" class="ui-corner-all ui-widget-header">
+					<p>
+						I'm a snap target
+					</p>
+				</div>
 
-		<br />
+				<br />
 
-		<jq:draggable id="draggable" styleClass="draggable" snap="true">
-			<p>
-				Default (snap: true), snaps to all other draggable elements
-			</p>
-		</jq:draggable>
+				<jq:draggable id="draggable" styleClass="draggable" snap="true">
+					<p>
+						Default (snap: true), snaps to all other draggable elements
+					</p>
+				</jq:draggable>
 
-		<jq:draggable id="draggable2" styleClass="draggable" snap=".ui-widget-header">
-			<p>
-				I only snap to the big box
-			</p>
-		</jq:draggable>
+				<jq:draggable id="draggable2" styleClass="draggable"
+					snap=".ui-widget-header">
+					<p>
+						I only snap to the big box
+					</p>
+				</jq:draggable>
 
-		<jq:draggable id="draggable3" styleClass="draggable" snapMode="outer" snap=".ui-widget-header">
-			<p>
-				I only snap to the outer edges of the big box
-			</p>
-		</jq:draggable>
+				<jq:draggable id="draggable3" styleClass="draggable"
+					snapMode="outer" snap=".ui-widget-header">
+					<p>
+						I only snap to the outer edges of the big box
+					</p>
+				</jq:draggable>
 
-		<jq:draggable id="draggable4" styleClass="draggable" grid="[20,20]">
-			<p>
-				I snap to a 20 x 20 grid
-			</p>
-		</jq:draggable>
+				<jq:draggable id="draggable4" styleClass="draggable" grid="[20,20]">
+					<p>
+						I snap to a 20 x 20 grid
+					</p>
+				</jq:draggable>
 
-		<jq:draggable id="draggable5" styleClass="draggable" grid="[80,80]">
-			<p>
-				I snap to a 80 x 80 grid
-			</p>
-		</jq:draggable>
-		<!-- end -->
+				<jq:draggable id="draggable5" styleClass="draggable" grid="[80,80]">
+					<p>
+						I snap to a 80 x 80 grid
+					</p>
+				</jq:draggable>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="draggable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['draggable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

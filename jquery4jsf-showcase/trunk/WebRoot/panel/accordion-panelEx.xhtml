@@ -9,8 +9,13 @@
 	</ui:define>
 	<ui:define name="head">
 		<style type="text/css">
-			.panel { width: 150px; height: 150px; padding: 0.4em; position: relative; }
-		</style>
+.panel {
+	width: 150px;
+	height: 150px;
+	padding: 0.4em;
+	position: relative;
+}
+</style>
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -19,28 +24,44 @@
 		<p>
 			#{resource.PANELEX_DESCR_ACCORDION}
 		</p>
-		<!-- START -->
-		<jq:div style="padding:1.5em;border:solid 2px #eee;margin:5px;width:250;">
-		<jq:paragraph>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:div
+					style="padding:1.5em;border:solid 2px #eee;margin:5px;width:250;">
+					<jq:paragraph>
 			This a group of panel with accordion
 		</jq:paragraph>
-		<br />
-		<jq:panelEx header="Panel Accordion 1" styleClass="panel" accordion="panel">
-			<jq:paragraph>
+					<br />
+					<jq:panelEx header="Panel Accordion 1" styleClass="panel"
+						accordion="panel">
+						<jq:paragraph>
 				Just me and you, pal. Just me and you. 
 			</jq:paragraph>
-		</jq:panelEx>
-		<jq:panelEx header="Panel Accordion 2" styleClass="panel" accordion="panel">
-			<jq:paragraph>
+					</jq:panelEx>
+					<jq:panelEx header="Panel Accordion 2" styleClass="panel"
+						accordion="panel">
+						<jq:paragraph>
 				Just me and you, pal. Just me and you. 
 			</jq:paragraph>
-		</jq:panelEx>
-		<jq:panelEx header="Panel Accordion 3" styleClass="panel" accordion="panel">
-			<jq:paragraph>
+					</jq:panelEx>
+					<jq:panelEx header="Panel Accordion 3" styleClass="panel"
+						accordion="panel">
+						<jq:paragraph>
 				Just me and you, pal. Just me and you. 
 			</jq:paragraph>
-		</jq:panelEx>
-		</jq:div>
-		<!-- END -->
+					</jq:panelEx>
+				</jq:div>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="panelEx"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['panelEx']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

@@ -15,27 +15,41 @@
 		<p>
 			#{resource.SPINNER_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
-		<jq:ajaxStatus>
-			<f:facet name="start">
-				<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
-			</f:facet>
-			<f:facet name="complete">
-				<h:outputText value="Ajax Request Completed" />
-			</f:facet>
-		</jq:ajaxStatus>
-		<h:form id="form">
-			<h:panelGrid columns="2">
-				<h:outputText value="Spinner value:" />
-				<h:inputText id="spinner" value="#{spinnerBean.spinnerValue}">
-					<jq:spinner currency="euro" min="5" max="2000" />
-				</h:inputText>
-				<jq:button value="Send" actionListener="#{spinnerBean.doSpinnerListener}"
-					target="update" id="button" />
-			</h:panelGrid>
-		</h:form>
-		<br />
-		<h:outputText value="#{spinnerBean.textSpinner}" id="update" />
-		<!-- end -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:ajaxStatus>
+					<f:facet name="start">
+						<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
+					</f:facet>
+					<f:facet name="complete">
+						<h:outputText value="Ajax Request Completed" />
+					</f:facet>
+				</jq:ajaxStatus>
+				<h:form id="form">
+					<h:panelGrid columns="2">
+						<h:outputText value="Spinner value:" />
+						<h:inputText id="spinner" value="#{spinnerBean.spinnerValue}">
+							<jq:spinner currency="euro" min="5" max="2000" />
+						</h:inputText>
+						<jq:button value="Send"
+							ajaxSubmit="true"
+							actionListener="#{spinnerBean.doSpinnerListener}" target="update"
+							id="button" />
+					</h:panelGrid>
+				</h:form>
+				<br />
+				<h:outputText value="#{spinnerBean.textSpinner}" id="update" />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="spinner"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['spinner']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

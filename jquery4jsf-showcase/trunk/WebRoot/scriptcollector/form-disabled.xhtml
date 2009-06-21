@@ -31,61 +31,75 @@
 		<p>
 			#{resource.SCRIPTCOLLECTOR_DESCR_FORM}
 		</p>
-		<!-- START -->
-		<jq:scriptCollector disableForm="true" ignoreIdFormDisable="contact2">
-			<h:form id="contact">
-				<h:panelGrid columns="2">
-					<h:outputLabel for="firstname">
-						<h:outputText value="Firstname: " />
-					</h:outputLabel>
-					<h:inputText id="firstname" value="" />
-					<h:outputLabel for="lastname">
-						<h:outputText value="Lastname: " />
-					</h:outputLabel>
-					<h:inputText id="lastname" value="" />
-					<h:outputLabel for="phone">
-						<h:outputText value="Phone: " />
-					</h:outputLabel>
-					<h:inputText id="phone" value="" />
-					<h:outputLabel for="email">
-						<h:outputText value="Email: " />
-					</h:outputLabel>
-					<h:inputText id="email" value="" />
-					<jq:button value="Reset" type="reset" />
-					<jq:button value="Submit" />
-				</h:panelGrid>
-			</h:form>
-			
-			<h:form id="contact2" >
-				<h:panelGrid columns="2">
-					<h:outputLabel for="firstname">
-						<h:outputText value="Firstname: " />
-					</h:outputLabel>
-					<h:inputText id="firstname" value="" />
-					<h:outputLabel for="lastname">
-						<h:outputText value="Lastname: " />
-					</h:outputLabel>
-					<h:inputText id="lastname" value="" />
-					<h:outputLabel for="phone">
-						<h:outputText value="Phone: " />
-					</h:outputLabel>
-					<h:inputText id="phone" value="" />
-					<h:outputLabel for="email">
-						<h:outputText value="Email: " />
-					</h:outputLabel>
-					<h:inputText id="email" value="" />
-					<jq:button value="Reset" type="reset" />
-					<jq:button id="submit" target="target" value="Submit"  actionListener="#{buttonBean.doButtonActionListener}"/>
-				</h:panelGrid>
-				
-				<br />
-				
-				<jq:panel styleClass="panel" header="Target">
-					<h:outputText id="target" value="#{buttonBean.text}"/>
-				</jq:panel>
-					
-			</h:form>
-		</jq:scriptCollector>
-		<!-- END -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:scriptCollector disableForm="true"
+					ignoreIdFormDisable="contact2">
+					<h:form id="contact">
+						<h:panelGrid columns="2">
+							<h:outputLabel for="firstname">
+								<h:outputText value="Firstname: " />
+							</h:outputLabel>
+							<h:inputText id="firstname" value="" />
+							<h:outputLabel for="lastname">
+								<h:outputText value="Lastname: " />
+							</h:outputLabel>
+							<h:inputText id="lastname" value="" />
+							<h:outputLabel for="phone">
+								<h:outputText value="Phone: " />
+							</h:outputLabel>
+							<h:inputText id="phone" value="" />
+							<h:outputLabel for="email">
+								<h:outputText value="Email: " />
+							</h:outputLabel>
+							<h:inputText id="email" value="" />
+							<jq:button value="Reset" type="reset" />
+							<jq:button value="Submit" />
+						</h:panelGrid>
+					</h:form>
+
+					<h:form id="contact2">
+						<h:panelGrid columns="2">
+							<h:outputLabel for="firstname">
+								<h:outputText value="Firstname: " />
+							</h:outputLabel>
+							<h:inputText id="firstname" value="" />
+							<h:outputLabel for="lastname">
+								<h:outputText value="Lastname: " />
+							</h:outputLabel>
+							<h:inputText id="lastname" value="" />
+							<h:outputLabel for="phone">
+								<h:outputText value="Phone: " />
+							</h:outputLabel>
+							<h:inputText id="phone" value="" />
+							<h:outputLabel for="email">
+								<h:outputText value="Email: " />
+							</h:outputLabel>
+							<h:inputText id="email" value="" />
+							<jq:button value="Reset" type="reset" />
+							<jq:button id="submit" target="target" value="Submit"
+								actionListener="#{buttonBean.doButtonActionListener}" />
+						</h:panelGrid>
+
+						<br />
+
+						<jq:panel styleClass="panel" header="Target">
+							<h:outputText id="target" value="#{buttonBean.text}" />
+						</jq:panel>
+
+					</h:form>
+				</jq:scriptCollector>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="resizable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['resizable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

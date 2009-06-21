@@ -9,8 +9,13 @@
 	</ui:define>
 	<ui:define name="head">
 		<style type="text/css">
-			.panel { width: 150px; height: 150px; padding: 0.4em; position: relative; }
-		</style>
+.panel {
+	width: 150px;
+	height: 150px;
+	padding: 0.4em;
+	position: relative;
+}
+</style>
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -19,12 +24,24 @@
 		<p>
 			#{resource.PANELEX_DESCR_DEFAULT}
 		</p>
-		<!-- START -->
-		<jq:panelEx header="Panel" styleClass="panel">
-			<jq:paragraph>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:panelEx header="Panel" styleClass="panel">
+					<jq:paragraph>
 				This a simple panel
 			</jq:paragraph>
-		</jq:panelEx>
-		<!-- END -->
+				</jq:panelEx>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="panelEx"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['panelEx']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

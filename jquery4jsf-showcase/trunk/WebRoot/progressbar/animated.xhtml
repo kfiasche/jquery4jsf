@@ -18,7 +18,8 @@
 	background-image: url('images/pbar-ani.gif');
 }
 </style>
-		<!-- END -->
+		<!-- end -->
+		<ui:include src="../templates/source.xhtml"></ui:include>
 	</ui:define>
 	<ui:define name="content">
 		<h3>
@@ -27,8 +28,20 @@
 		<p>
 			#{resource.PROGRESSBAR_DESCR_ANIMATED}
 		</p>
-		<!-- START -->
-		<jq:progressBar progressBarValue="59" />
-		<!-- end -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:progressBar progressBarValue="59" />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="progressbar"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['progressbar']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

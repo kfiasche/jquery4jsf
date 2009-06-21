@@ -30,11 +30,23 @@
 		<p>
 			#{resource.RESIZABLE_DESCR_MAXMINRESIZE}
 		</p>
-		<!-- START -->
-		<jq:panel header="Resize larger / smaller" styleClass="resizable">
-			<jq:resizable maxHeight="250" maxWidth="350" minHeight="150"
-				minWidth="200" />
-		</jq:panel>
-		<!-- END -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:panel header="Resize larger / smaller" styleClass="resizable">
+					<jq:resizable maxHeight="250" maxWidth="350" minHeight="150"
+						minWidth="200" />
+				</jq:panel>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="resizable"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['resizable']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

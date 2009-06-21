@@ -17,16 +17,27 @@
 		<p>
 			#{resource.TOOLTIP_DESCR_DYNAMICLOADIMG}
 		</p>
-		<!-- START -->
-		<h:outputText id="FrancescoTotti" value="Francesco Totti">
-			<jq:tooltip titleText="Wikipedia - Totti Francesco "
-				cornerTarget="bottomMiddle"
-				cornerTooltip="topMiddle"
-				url="#{facesContext.externalContext.requestContextPath}/tooltip/content/totti.jsf"
-				titleButton="Close" styleName="themeroller" adjustScreen="true"
-				hideWhenEvent="unfocus" showSolo="true" showWhenEvent="click">
-			</jq:tooltip>
-		</h:outputText>
-		<!-- END -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:outputText id="FrancescoTotti" value="Francesco Totti">
+					<jq:tooltip titleText="Wikipedia - Totti Francesco "
+						cornerTarget="bottomMiddle" cornerTooltip="topMiddle"
+						url="#{facesContext.externalContext.requestContextPath}/tooltip/content/totti.jsf"
+						titleButton="Close" styleName="themeroller" adjustScreen="true"
+						hideWhenEvent="unfocus" showSolo="true" showWhenEvent="click">
+					</jq:tooltip>
+				</h:outputText>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="tooltip"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['tooltip']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

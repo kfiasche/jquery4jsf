@@ -14,10 +14,24 @@
 		<p>
 			#{resource.SLIDER_DESCR_RANGEMIN}
 		</p>
-		<!-- START -->
-		<h:outputLabel id="label" value="Maximum prices: " for="amount" />
-		<h:inputText value="$37" id="amount" style="border:0; font-weight:bold;" />
-		<jq:slider range="min" min="1" max="700" sliderValue="37" onslide="$('#amount').val('$' + ui.value);" />
-		<!-- end -->
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:outputLabel id="label" value="Maximum prices: " for="amount" />
+				<h:inputText value="$37" id="amount"
+					style="border:0; font-weight:bold;" />
+				<jq:slider range="min" min="1" max="700" sliderValue="37"
+					onslide="$('#amount').val('$' + ui.value);" />
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="slider"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['slider']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

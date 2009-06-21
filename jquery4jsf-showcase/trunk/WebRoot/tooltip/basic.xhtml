@@ -22,11 +22,14 @@
 		<p>
 			#{resource.TOOLTIP_DESCR_BASIC}
 		</p>
-		<!-- START -->
-		<jq:paragraph>
-			<h:graphicImage id="picTotti" value="/images/roma/totti.jpg" alt="Francesco Totti" style="float: left;">
-				<jq:tooltip  text="Francesco Totti Pic"/>
-			</h:graphicImage>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:paragraph>
+					<h:graphicImage id="picTotti" value="/images/roma/totti.jpg"
+						alt="Francesco Totti" style="float: left;">
+						<jq:tooltip text="Francesco Totti Pic" />
+					</h:graphicImage>
 			After three years on the youth team, Totti made his first appearance for Roma's senior side at the age of sixteen, when coach Vujadin Boskov let him play in the 2-0 away victory against Brescia on March 28, 1993. 
 			In the following seasons, he began to play more games, and thus he succeeded in scoring his first goal on September 24, 1994 in a 1-1 draw against Foggia Calcio. 
 			By 1995, Totti had become a regular in the starting eleven and scored 16 goals in the next three seasons. 
@@ -35,9 +38,21 @@
 			Totti scored 30 goals during Zeman's two-year managerial stint.
 			Though Totti was not called up for the 1998 FIFA World Cup, he was named the Serie A Young Footballer of the Year in the 1998-99 season.
 			<jq:paragraph>
-				<h3>Source:</h3> Wikipedia
+						<h3>
+							Source:
+						</h3> Wikipedia
 			</jq:paragraph>
-		</jq:paragraph>
-		<!-- END -->
+				</jq:paragraph>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="tooltip"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['tooltip']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>
