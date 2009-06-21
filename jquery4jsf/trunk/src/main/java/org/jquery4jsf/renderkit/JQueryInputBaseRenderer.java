@@ -17,6 +17,8 @@
 package org.jquery4jsf.renderkit;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputText;
@@ -24,6 +26,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import org.jquery4jsf.custom.JQueryHtmlObject;
+import org.jquery4jsf.custom.ajax.AjaxEvent;
 
 public class JQueryInputBaseRenderer extends HtmlBasicInputRenderer {
 
@@ -120,6 +123,11 @@ public class JQueryInputBaseRenderer extends HtmlBasicInputRenderer {
         if(input.getTitle() != null)
             responseWriter.writeAttribute("title", input.getTitle(), null);
         responseWriter.endElement("input");
+       
+	}
+	
+	protected void encodeAjaxEventChild(FacesContext context, UIComponent component) throws IOException {
+		RendererUtilities.encodeAjaxEventChild(context, component);
 	}
 	
 }

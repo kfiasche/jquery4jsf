@@ -37,6 +37,7 @@ public class HTML {
 	public static final String TAG_PRE = 		"pre";
 	public static final String TAG_SCRIPT = 	"script";
 	public static final String TAG_SPAN =	 	"span";
+	public static final String TAG_SELECT = 	"select";
 	public static final String TAG_UL = 		"ul";
 	public static final String TAG_INPUT = 		"input";
 	
@@ -172,6 +173,7 @@ public class HTML {
 	public static final String[] HTML_HEAD_TAG_ATTR = new String[]{
 		PROFILE
 	};
+	
 
 	
 	

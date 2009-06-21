@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIParameter;
 import javax.faces.component.UISelectItem;
 import javax.faces.component.UISelectItems;
 import javax.faces.context.FacesContext;
@@ -136,6 +135,13 @@ public class HtmlBasicRenderer extends Renderer {
 
 						if (subValue instanceof SelectItem)
 							items.add((SelectItem) subValue);
+					}
+				}
+				else if (value instanceof SelectItem[]) {
+					SelectItem[] arraySelectItem = (SelectItem[])value;
+					for (int j = 0; j < arraySelectItem.length; j++) {
+						SelectItem selectItem = arraySelectItem[j];
+						items.add(selectItem);
 					}
 				}
 				else if (value instanceof Map) {

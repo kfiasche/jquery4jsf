@@ -336,6 +336,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>selectManyListbox</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlSelectManyListbox</component-type>
+			<renderer-type>org.jquery4jsf.SelectManyListboxRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>simpyScroll</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlSimplyScroll</component-type>
@@ -389,6 +396,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 			<component-type>org.jquery4jsf.HtmlTooltip</component-type>
 			<renderer-type>org.jquery4jsf.TooltipRenderer</renderer-type>
 			<handler-class>org.jquery4jsf.custom.tooltip.TooltipHandler</handler-class>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>topLink</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlTopLink</component-type>
+			<renderer-type>org.jquery4jsf.HtmlTopLinkRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>

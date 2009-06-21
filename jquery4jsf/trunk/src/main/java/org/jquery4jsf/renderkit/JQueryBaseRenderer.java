@@ -16,7 +16,10 @@
  */
 package org.jquery4jsf.renderkit;
 
+import java.io.IOException;
+
 import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 
 import org.jquery4jsf.custom.JQueryHtmlObject;
 
@@ -52,5 +55,9 @@ public abstract class JQueryBaseRenderer extends HtmlBasicRenderer {
 	
 	protected void encodeResources(JQueryHtmlObject jqcomponent) {
 		RendererUtilities.encodeResources(jqcomponent);
+	}
+	
+	protected void encodeAjaxEventChild(FacesContext context, UIComponent component) throws IOException {
+		RendererUtilities.encodeAjaxEventChild(context, component);
 	}
 }

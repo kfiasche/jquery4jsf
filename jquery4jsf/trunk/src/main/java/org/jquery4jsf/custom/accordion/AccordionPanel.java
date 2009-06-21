@@ -22,8 +22,10 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
 public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -46,9 +48,9 @@ public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtm
 	private String iconsHeader;
 	private String iconsHeaderSelected;
 	private Boolean navigation;
-	private String header;
 	private String navigationFilter;
 	private String onchange;
+	private String onchangestart;
 
 	public AccordionPanel() {
 		setRendererType(DEFAULT_RENDERER);
@@ -208,17 +210,6 @@ public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtm
 		this.navigation = new Boolean(navigation);
 	}
 
-	public String getHeader() {
-		if(header != null )
-			return header;
-
-		String oValue = (String) getLocalOrValueBindingValue(header, "header");
-		return oValue != null ? oValue : null;
-	}
-	public void setHeader(String header) {
-		this.header = header;
-	}
-
 	public String getNavigationFilter() {
 		if(navigationFilter != null )
 			return navigationFilter;
@@ -241,6 +232,17 @@ public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtm
 		this.onchange = onchange;
 	}
 
+	public String getOnchangestart() {
+		if(onchangestart != null )
+			return onchangestart;
+
+		String oValue = (String) getLocalOrValueBindingValue(onchangestart, "onchangestart");
+		return oValue != null ? oValue : null;
+	}
+	public void setOnchangestart(String onchangestart) {
+		this.onchangestart = onchangestart;
+	}
+
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[17];
 		values[0] = super.saveState(context);
@@ -257,10 +259,10 @@ public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtm
 		values[11] = iconsHeader;
 		values[12] = iconsHeaderSelected;
 		values[13] = navigation;
-		values[14] = header;
-		values[15] = navigationFilter;
-		values[16] = onchange;
-		return (values);
+		values[14] = navigationFilter;
+		values[15] = onchange;
+		values[16] = onchangestart;
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
@@ -278,9 +280,9 @@ public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtm
 		this.iconsHeader = (String) values[11];
 		this.iconsHeaderSelected = (String) values[12];
 		this.navigation = (Boolean) values[13];
-		this.header = (String) values[14];
-		this.navigationFilter = (String) values[15];
-		this.onchange = (String) values[16];
+		this.navigationFilter = (String) values[14];
+		this.onchange = (String) values[15];
+		this.onchangestart = (String) values[16];
 	}
 
 	public String[] getResources() {

@@ -25,6 +25,7 @@ import java.io.IOException;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
 public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 
@@ -418,7 +419,7 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 		values[26] = slideLIcon;
 		values[27] = onunfold;
 		values[28] = onfold;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

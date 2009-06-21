@@ -23,8 +23,10 @@ import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.custom.UIInteractions;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
 public class Droppable extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent,UIInteractions {
 
@@ -221,7 +223,7 @@ public class Droppable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		values[11] = ondropover;
 		values[12] = ondropout;
 		values[13] = ondrop;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

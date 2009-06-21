@@ -23,6 +23,25 @@ import javax.faces.context.ResponseWriter;
 
 public class HtmlRendererUtilities {
 
+	public static boolean writeHtmlAttributes(ResponseWriter writer, UIComponent component, String[] attributes, String[] ignored) throws IOException {
+		boolean isWriteAttribute = false;
+		for (int i = 0, len = attributes.length; i < len; i++) {
+			String attrName = attributes[i];
+			for (int j = 0; j < ignored.length; j++) {
+				String attrIgnored = ignored[j];
+				if (!attrIgnored.equalsIgnoreCase(attrName)){
+					if (writeHtmlAttribute(writer, component, attrName, attrName)) {
+						isWriteAttribute = true;
+					}
+				}
+				else{
+					break;
+				}
+			}
+		}
+		return isWriteAttribute;
+	}
+	
 	public static boolean writeHtmlAttributes(ResponseWriter writer, UIComponent component, String[] attributes) throws IOException {
 		boolean isWriteAttribute = false;
 		for (int i = 0, len = attributes.length; i < len; i++) {

@@ -179,7 +179,7 @@
 		<dependency>
 			<groupId>com.yahoo.platform.yui</groupId>
 			<artifactId>yuicompressor</artifactId>
-			<version>2.3.6</version>
+			<version>2.4.2</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
@@ -321,27 +321,30 @@
 				<artifactId>maven-changelog-plugin</artifactId>
 			</plugin>
 
-			<!--
-				<plugin> <groupId>org.codehaus.mojo</groupId>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>1.0.0</version> <configuration> <xmlOutput>true</xmlOutput>
-				<threshold>Low</threshold> <effort>Default</effort>
-				<excludeFilterFile>${basedir}/src/main/etc/findbugs-exclude.xml</excludeFilterFile>
-				<includeFilterFile>${basedir}/src/main/etc/findbugs-include.xml</includeFilterFile>
-				<visitors>FindDeadLocalStores,UnreadFields</visitors>
-				<omitVisitors>FindDeadLocalStores,UnreadFields</omitVisitors>
-				</configuration> </plugin>
-			-->
+				<version>1.0.0</version>
+				<configuration>
+					<xmlOutput>true</xmlOutput>
+					<threshold>Low</threshold>
+					<effort>Default</effort>
+					<excludeFilterFile>${basedir}/src/main/etc/findbugs-exclude.xml</excludeFilterFile>
+					<includeFilterFile>${basedir}/src/main/etc/findbugs-include.xml</includeFilterFile>
+					<visitors>FindDeadLocalStores,UnreadFields</visitors>
+					<omitVisitors>FindDeadLocalStores,UnreadFields</omitVisitors>
+				</configuration>
+			</plugin>
+			
 		</plugins>
 	</reporting>
 
-	<distributionManagement><!--
-
-		<repository>
+	<distributionManagement>
+		<!--<repository>
 			<id>googlecode.svn.jquery4jsf</id>
 			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-repository/</url>
-		</repository>
-		--><snapshotRepository>
+		</repository>-->
+		<snapshotRepository>
 			<id>googlecode.svn.jquery4jsf</id>
 			<url>dav:https://jquery4jsf.googlecode.com/svn/maven-snapshot-repository/</url>
 			<uniqueVersion>false</uniqueVersion>

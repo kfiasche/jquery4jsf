@@ -126,6 +126,7 @@ $.fn.ajaxSubmit = function(options) {
         var oldSuccess = options.success || function(){};
         callbacks.push(function(data) {
             $(options.target).html(data).each(oldSuccess, arguments);
+            $(options.target).show();
         });
     }
     else if (options.success)

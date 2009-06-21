@@ -25,7 +25,12 @@ import java.io.IOException;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Object;
+import java.lang.Integer;
+import org.jquery4jsf.component.tree.NodeSelectEvent;
+import org.jquery4jsf.component.tree.NodeExpandEvent;
+import org.jquery4jsf.component.tree.NodeCollapseEvent;
 
 public class HtmlTreeView extends HtmlBaseDataComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -240,7 +245,7 @@ public class HtmlTreeView extends HtmlBaseDataComponent implements JQueryHtmlObj
 		values[12] = uiscrollspd;
 		values[13] = uithemepath;
 		values[14] = uithemename;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

@@ -35,6 +35,7 @@ import javax.faces.el.ValueBinding;
 import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.custom.UIInteractions;
+import org.jquery4jsf.custom.ajax.AjaxEvent;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.resource.ResourceCostants;
@@ -45,6 +46,20 @@ import org.slf4j.LoggerFactory;
 public class RendererUtilities {
 	
 	private static Logger logger = LoggerFactory.getLogger(RendererUtilities.class);
+	
+	public static void encodeAjaxEventChild(FacesContext context, UIComponent component) throws IOException{
+		List children = component.getChildren();
+		for (Iterator iterator = children.iterator(); iterator.hasNext();) {
+			UIComponent child = (UIComponent) iterator.next();
+			if (child instanceof AjaxEvent) {
+				AjaxEvent ajaxEvent = (AjaxEvent) child;
+				ajaxEvent.encodeBegin(context);
+				ajaxEvent.encodeChildren(context);
+				ajaxEvent.encodeEnd(context);
+			}
+		}
+	}
+	
 	public static String getFormId(FacesContext context, UIComponent component)
 	{
 		while (component != null && !(component instanceof UIForm))

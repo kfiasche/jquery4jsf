@@ -22,8 +22,10 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
 public class SimplyScroll extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
@@ -155,7 +157,7 @@ public class SimplyScroll extends HtmlBaseOutputComponent implements JQueryHtmlO
 		values[6] = pauseOnHover;
 		values[7] = jsonSource;
 		values[8] = customContent;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

@@ -31,7 +31,35 @@ public class AccordionSubPanelRenderer extends JQueryBaseRenderer {
 
 	public static final String RENDERER_TYPE = "org.jquery4jsf.AccordionSubPanelRenderer";
 
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+	protected void encodeHeaderPanel(FacesContext context, AccordionSubPanel accordionSubPanel) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+        responseWriter.startElement(HTML.TAG_H3, accordionSubPanel);
+        if (accordionSubPanel.getHeaderClass() != null)
+        	responseWriter.writeAttribute("class", accordionSubPanel.getHeaderClass(), "headerClass");
+        if (accordionSubPanel.getHeaderStyle() != null)
+        	responseWriter.writeAttribute("style", accordionSubPanel.getHeaderStyle(), "headerStyle");
+        responseWriter.startElement(HTML.TAG_A, accordionSubPanel);
+        responseWriter.writeAttribute(HTML.HREF, "#", null);
+        responseWriter.writeText(accordionSubPanel.getPanelName(), "panelName");
+        responseWriter.endElement(HTML.TAG_A);
+        responseWriter.endElement(HTML.TAG_H3);
+	}
+	
+	protected void encodeContentPanel(FacesContext context, AccordionSubPanel accordionSubPanel) throws IOException{
+        ResponseWriter responseWriter = context.getResponseWriter();
+        responseWriter.startElement(HTML.TAG_DIV, accordionSubPanel);
+        if (accordionSubPanel.getContentClass() != null)
+        	responseWriter.writeAttribute("class", accordionSubPanel.getContentClass(), "contentClass");
+        if (accordionSubPanel.getHeaderStyle() != null)
+        	responseWriter.writeAttribute("style", accordionSubPanel.getContentStyle(), "contentStyle");
+        RendererUtilities.renderChildren(context,accordionSubPanel);
+        responseWriter.endElement(HTML.TAG_DIV);
+	}
+	
+	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {        
+	}
+
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
@@ -43,46 +71,8 @@ public class AccordionSubPanelRenderer extends JQueryBaseRenderer {
         if (accordionSubPanel.getPanelName() == null){
         	throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         }
-        ResponseWriter responseWriter = context.getResponseWriter();
-        //responseWriter.startElement(HTML.TAG_DIV, component);
-        responseWriter.startElement(HTML.TAG_H3, component);
-        if (accordionSubPanel.getHeaderClass() != null)
-        	responseWriter.writeAttribute("class", accordionSubPanel.getHeaderClass(), "headerClass");
-        if (accordionSubPanel.getHeaderStyle() != null)
-        	responseWriter.writeAttribute("style", accordionSubPanel.getHeaderStyle(), "headerStyle");
-        responseWriter.startElement(HTML.TAG_A, component);
-        responseWriter.writeAttribute(HTML.HREF, "#", null);
-        responseWriter.writeText(accordionSubPanel.getPanelName(), "panelName");
-        responseWriter.endElement(HTML.TAG_A);
-        responseWriter.endElement(HTML.TAG_H3);
-	}
-
-	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {        
-		if(context == null || component == null)
-            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-        if(!component.isRendered())
-            return;
-        AccordionSubPanel accordionSubPanel = null;
-        if (component instanceof AccordionSubPanel) {
-			accordionSubPanel = (AccordionSubPanel) component;
-		}
-        ResponseWriter responseWriter = context.getResponseWriter();
-        responseWriter.startElement(HTML.TAG_DIV, component);
-        if (accordionSubPanel.getContentClass() != null)
-        	responseWriter.writeAttribute("class", accordionSubPanel.getContentClass(), "contentClass");
-        if (accordionSubPanel.getHeaderStyle() != null)
-        	responseWriter.writeAttribute("style", accordionSubPanel.getContentStyle(), "contentStyle");
-        RendererUtilities.renderChildren(context,component);
-        responseWriter.endElement(HTML.TAG_DIV);
-	}
-
-	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        if(context == null || component == null)
-            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-        if(!component.isRendered())
-            return;
-        //ResponseWriter responseWriter = context.getResponseWriter();
-        //responseWriter.endElement(HTML.TAG_DIV);
+        encodeHeaderPanel(context, accordionSubPanel);
+        encodeContentPanel(context, accordionSubPanel);
 	}
 
 	public boolean getRendersChildren() {

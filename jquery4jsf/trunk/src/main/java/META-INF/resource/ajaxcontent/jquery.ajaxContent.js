@@ -41,8 +41,8 @@
  							}
  					} 
 					//remove add current class
-					$('a.' + o.currentClass).removeClass(o.currentClass);								
-					$obj.addClass(o.currentClass);
+					//$('a.' + o.currentClass).removeClass(o.currentClass);								
+					//$obj.addClass(o.currentClass);
 					// make the call
 					var data = null;
 					if(o.form != ''){
@@ -56,37 +56,36 @@
   						beforeSend:function(){
   							if(typeof o.beforeSend == 'function'){
   								o.beforeSend($obj,$target,ev);
-  								}
+  							}
   						},
   						success: function(msg){ 
     						$target.html(msg);
-    						if(o.extend == 'true'){
-    							$(o.filter,$target).ajaxContent({
-    								target:o.ex_target,
-									type:o.ex_type,
-									event:o.ex_event,
-									loader:o.ex_loader,
-									loaderType:o.ex_loaderType,
-									loadingMsg:o.ex_loadingMsg,
-									errorMsg:o.ex_errorMsg,
-									currentClass:o.ex_currentClass,
-									success:o.ex_success,
-									beforeSend:o.ex_beforeSend,
-									error:o.ex_error,
-									bind:o.ex_bind
-    							});
-    						}
+    						//if(o.extend == 'true'){
+    						//	$(o.filter,$target).ajaxContent({
+    						//		target:o.ex_target,
+							//		type:o.ex_type,
+							//		event:o.ex_event,
+							//		loader:o.ex_loader,
+							//		loaderType:o.ex_loaderType,
+							//		loadingMsg:o.ex_loadingMsg,
+							//		errorMsg:o.ex_errorMsg,
+							//		currentClass:o.ex_currentClass,
+							//		success:o.ex_success,
+							//		beforeSend:o.ex_beforeSend,
+							//		error:o.ex_error,
+							//		bind:o.ex_bind
+    						//	});
+    						//}
     						//if a callback exist pass arguments ( object,target and receive message)
     						if(typeof o.success == 'function'){
     							o.success($obj,$target,msg);
     							}  						
     						},
 						error: function(){
-							$target.html("<p>" + o.errorMsg + "</p>");
-							if(typeof o.error == 'function'){
-    							o.error($target);
-    							}  						
-    					 
+							//$target.html("<p>" + o.errorMsg + "</p>");
+//							//if(typeof o.error == 'function'){
+    						//	o.error($target);
+    						//	}  						
 						}
 					});
 				return false;
@@ -121,7 +120,7 @@ $.fn.ajaxContent.defaults = {
 		target: '#ajaxContent',
 		url: '',
 		form:'',
-		type:'get',
+		type:'post',
 		event:'click',
 		loader:'true',
 		loaderType:'text',

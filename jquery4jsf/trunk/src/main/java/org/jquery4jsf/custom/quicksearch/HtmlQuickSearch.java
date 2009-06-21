@@ -24,6 +24,7 @@ import javax.faces.render.Renderer;
 import java.io.IOException;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
 public class HtmlQuickSearch extends HtmlBaseInputComponent implements JQueryHtmlObject,AjaxComponent {
@@ -337,7 +338,7 @@ public class HtmlQuickSearch extends HtmlBaseInputComponent implements JQueryHtm
 		values[20] = randomElement;
 		values[21] = isFieldset;
 		values[22] = fixWidths;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

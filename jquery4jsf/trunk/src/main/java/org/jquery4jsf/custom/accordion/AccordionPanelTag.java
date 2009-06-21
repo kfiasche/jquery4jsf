@@ -34,9 +34,9 @@ public class AccordionPanelTag extends UIComponentTagBase {
 	private String iconsHeader;
 	private String iconsHeaderSelected;
 	private String navigation;
-	private String header;
 	private String navigationFilter;
 	private String onchange;
+	private String onchangestart;
 
 	public void release(){
 		super.release();
@@ -53,9 +53,9 @@ public class AccordionPanelTag extends UIComponentTagBase {
 		this.iconsHeader = null;
 		this.iconsHeaderSelected = null;
 		this.navigation = null;
-		this.header = null;
 		this.navigationFilter = null;
 		this.onchange = null;
+		this.onchangestart = null;
 	}
 
 	protected void setProperties(UIComponent comp){
@@ -81,9 +81,9 @@ public class AccordionPanelTag extends UIComponentTagBase {
 		setStringProperty(getFacesContext(), component, "iconsHeader", iconsHeader);
 		setStringProperty(getFacesContext(), component, "iconsHeaderSelected", iconsHeaderSelected);
 		setBooleanProperty(getFacesContext(), component, "navigation", navigation);
-		setStringProperty(getFacesContext(), component, "header", header);
 		setStringProperty(getFacesContext(), component, "navigationFilter", navigationFilter);
 		setStringProperty(getFacesContext(), component, "onchange", onchange);
+		setStringProperty(getFacesContext(), component, "onchangestart", onchangestart);
 	}
 
 	public String getComponentType() {
@@ -146,16 +146,16 @@ public class AccordionPanelTag extends UIComponentTagBase {
 		this.navigation = value;
 	}
 
-	public void setHeader(String value){
-		this.header = value;
-	}
-
 	public void setNavigationFilter(String value){
 		this.navigationFilter = value;
 	}
 
 	public void setOnchange(String value){
 		this.onchange = value;
+	}
+
+	public void setOnchangestart(String value){
+		this.onchangestart = value;
 	}
 
 }

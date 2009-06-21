@@ -24,6 +24,8 @@ import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
 public class SyntaxHighlighting extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
 
@@ -81,7 +83,7 @@ public class SyntaxHighlighting extends UIComponentBase implements JQueryHtmlObj
 		Object values[] = new Object[2];
 		values[0] = super.saveState(context);
 		values[1] = type;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

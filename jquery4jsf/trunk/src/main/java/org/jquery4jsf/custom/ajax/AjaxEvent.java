@@ -22,10 +22,14 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Object;
+import javax.faces.event.ActionListener;
+import javax.faces.el.MethodBinding;
 
 public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxComponent {
 
@@ -35,7 +39,7 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.AjaxEventRenderer";
 
 	private String[] resources;
-	private String reRender;
+	private String target;
 	private String event;
 	private Boolean partialSubmit;
 
@@ -43,7 +47,8 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
-			"ajaxcontent/jquery.ajaxContent.js",
+			"ui/ui.core.js",
+			"ajaxcontent/ui.ajaxcontent.js",
 			"form/jquery.form.js"
 		};
 	}
@@ -52,15 +57,15 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 		return COMPONENT_FAMILY;
 	}
 
-	public String getReRender() {
-		if(reRender != null )
-			return reRender;
+	public String getTarget() {
+		if(target != null )
+			return target;
 
-		String oValue = (String) getLocalOrValueBindingValue(reRender, "reRender");
+		String oValue = (String) getLocalOrValueBindingValue(target, "target");
 		return oValue != null ? oValue : null;
 	}
-	public void setReRender(String reRender) {
-		this.reRender = reRender;
+	public void setTarget(String target) {
+		this.target = target;
 	}
 
 	public String getEvent() {
@@ -88,15 +93,15 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[4];
 		values[0] = super.saveState(context);
-		values[1] = reRender;
+		values[1] = target;
 		values[2] = event;
 		values[3] = partialSubmit;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.reRender = (String) values[1];
+		this.target = (String) values[1];
 		this.event = (String) values[2];
 		this.partialSubmit = (Boolean) values[3];
 	}

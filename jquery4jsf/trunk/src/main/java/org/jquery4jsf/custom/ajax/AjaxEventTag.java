@@ -25,7 +25,7 @@ public class AjaxEventTag extends UIComponentTagBase {
 	private String actionListener;
 	private String action;
 	private String immediate;
-	private String reRender;
+	private String target;
 	private String event;
 	private String partialSubmit;
 
@@ -35,7 +35,7 @@ public class AjaxEventTag extends UIComponentTagBase {
 		this.actionListener = null;
 		this.action = null;
 		this.immediate = null;
-		this.reRender = null;
+		this.target = null;
 		this.event = null;
 		this.partialSubmit = null;
 	}
@@ -54,7 +54,7 @@ public class AjaxEventTag extends UIComponentTagBase {
 		setActionListenerProperty(getFacesContext(), component, "actionListener", actionListener);
 		setActionProperty(getFacesContext(), component, "action", action);
 		setBooleanProperty(getFacesContext(), component, "immediate", immediate);
-		setStringProperty(getFacesContext(), component, "reRender", reRender);
+		setStringProperty(getFacesContext(), component, "target", target);
 		setStringProperty(getFacesContext(), component, "event", event);
 		setBooleanProperty(getFacesContext(), component, "partialSubmit", partialSubmit);
 	}
@@ -83,8 +83,8 @@ public class AjaxEventTag extends UIComponentTagBase {
 		this.immediate = value;
 	}
 
-	public void setReRender(String value){
-		this.reRender = value;
+	public void setTarget(String value){
+		this.target = value;
 	}
 
 	public void setEvent(String value){

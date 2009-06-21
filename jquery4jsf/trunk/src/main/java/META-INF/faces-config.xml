@@ -248,6 +248,11 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlSelectManyListbox</component-type>
+		<component-class>org.jquery4jsf.custom.selectmanylistbox.SelectManyListbox</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlSimplyScroll</component-type>
 		<component-class>org.jquery4jsf.custom.simplyscroll.SimplyScroll</component-class>
 	</component>
@@ -285,6 +290,11 @@
 	<component>
 		<component-type>org.jquery4jsf.HtmlTooltip</component-type>
 		<component-class>org.jquery4jsf.custom.tooltip.Tooltip</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlTopLink</component-type>
+		<component-class>org.jquery4jsf.custom.toplink.HtmlTopLink</component-class>
 	</component>
 
 	<component>
@@ -524,6 +534,11 @@
 			<renderer-class>org.jquery4jsf.custom.selectable.SelectableRenderer</renderer-class>
 		</renderer>
 		<renderer>
+			<component-family>org.jquery4jsf.SelectManyListbox</component-family>
+			<renderer-type>org.jquery4jsf.SelectManyListboxRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.selectmanylistbox.SelectManyListboxRenderer</renderer-class>
+		</renderer>
+		<renderer>
 			<component-family>org.jquery4jsf.SimplyScroll</component-family>
 			<renderer-type>org.jquery4jsf.SimplyScrollRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.simplyscroll.SimplyScrollRenderer</renderer-class>
@@ -557,6 +572,11 @@
 			<component-family>org.jquery4jsf.Tooltip</component-family>
 			<renderer-type>org.jquery4jsf.TooltipRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.tooltip.TooltipRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.HtmlTopLink</component-family>
+			<renderer-type>org.jquery4jsf.HtmlTopLinkRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.toplink.HtmlTopLinkRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.TreeView</component-family>

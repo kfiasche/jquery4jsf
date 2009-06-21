@@ -23,7 +23,7 @@ public class AjaxEventBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, AjaxEvent ajaxEvent , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, ajaxEvent.getReRender(), "reRender", null);
+		encodeOptionComponentByType(options, ajaxEvent.getTarget(), "target", null);
 		encodeOptionComponentByType(options, ajaxEvent.getEvent(), "event", "click");
 		encodeOptionComponentByType(options, ajaxEvent.isPartialSubmit(), "partialSubmit", "true");
 		if (options.toString().endsWith(", \n")){

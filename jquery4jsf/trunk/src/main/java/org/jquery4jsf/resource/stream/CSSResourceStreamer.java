@@ -21,75 +21,53 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.net.URL;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jquery4jsf.resource.ResourceCostants;
+import org.jquery4jsf.resource.ResourceUtils;
+import org.jquery4jsf.resource.stream.processor.CSSProcessor;
+import org.jquery4jsf.resource.stream.processor.YUICSSProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.yahoo.platform.yui.compressor.CssCompressor;
 
-
-/**
- * Streams css resources
- */
 public class CSSResourceStreamer implements ResourceStreamer {
 
 	private static final String PARAM_CSS_MIN = "org.jquery4jsf.CSS_MIN";
+	private Logger logger = LoggerFactory.getLogger(CSSResourceStreamer.class);
 
 	public boolean isAppropriateStreamer(String mimeType) {
 		return (mimeType != null && mimeType.equals("text/css"));
 	}
 
 	public void stream(ServletContext sc, HttpServletRequest request, HttpServletResponse response, InputStream inputStream, URL url) throws IOException {
-		
 		String param = sc.getInitParameter(PARAM_CSS_MIN);
 		if (param != null && Boolean.valueOf(param).booleanValue()){
-			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 			String charset = request.getCharacterEncoding();
-            if (charset == null) {
-                charset = "UTF-8";
-            }
-            OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), charset);
-			String line = null;
-			StringBuffer sb = new StringBuffer();
-			while (null != (line = reader.readLine())) {
-				String parsedLine = replaceRelativeUrl(request.getContextPath(), line);
-				sb.append(parsedLine+"\n");
+	        if (charset == null) {
+	            charset = "UTF-8";
 	        }
-            int yuiCssLineBreak = -1;
-            StringWriter sw = new StringWriter();
-            CssCompressor compressor = new CssCompressor(new StringReader(sb.toString()));
-            compressor.compress(sw, yuiCssLineBreak);
-            writer.write(sw.toString());
-			writer.flush();
-			writer.close();
+	        OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), charset);
+	        CSSProcessor cssProcessor = new YUICSSProcessor();
+	        try {
+				cssProcessor.processor(inputStream, writer, request);
+			} catch (Exception e) {
+				logger.error("Error into css process compressor: "+e.getMessage());
+			}
 		}
 		else{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 			OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), response.getCharacterEncoding());
 			String line = null;
-			
 			while (null != (line = reader.readLine())) {
-				String parsedLine = replaceRelativeUrl(request.getContextPath(), line);
+				String parsedLine = ResourceUtils.replaceRelativeUrl(request.getContextPath(), line);
 				writer.write(parsedLine+"\n");
 	        }
-			
 			writer.flush();
 			writer.close();
 		}
-	}
-	
-	public String replaceRelativeUrl(String contextPath, String input) {
-        String replacement = contextPath;
-        Pattern pattern = Pattern.compile(ResourceCostants.CSS_RESOURCE_PATTERN);
-        Matcher matcher = pattern.matcher(input);
-        return matcher.replaceAll(replacement);
 	}
 }

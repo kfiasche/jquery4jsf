@@ -29,16 +29,7 @@ import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
 public class HtmlDivRenderer extends Renderer {
 
-
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-	}
-
 	public void encodeEnd(FacesContext context,UIComponent component) throws IOException {
-		if(context == null || context == null)
-			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-		if(!component.isRendered())
-			return;
-		
 		if(context == null || context == null)
 			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 		if(!component.isRendered())
@@ -61,10 +52,6 @@ public class HtmlDivRenderer extends Renderer {
 
     public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 	}
-
-	public void decode(FacesContext context, UIComponent component) {
-        return;
-    }
 
 	public boolean getRendersChildren() {
 		return true;

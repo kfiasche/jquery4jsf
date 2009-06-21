@@ -19,17 +19,21 @@ import org.jquery4jsf.component.ext.HtmlBaseCommandComponent;
 import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.utilities.MessageFactory;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
+import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 import java.lang.Object;
-
-import javax.faces.event.ActionEvent;
+import javax.faces.event.ActionListener;
+import javax.faces.el.MethodBinding;
 import java.util.Map;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import org.jquery4jsf.utilities.MessageFactory;
 
 public class MenuItem extends HtmlBaseCommandComponent implements JQueryHtmlObject,AjaxComponent {
 
@@ -117,7 +121,7 @@ public class MenuItem extends HtmlBaseCommandComponent implements JQueryHtmlObje
 		values[3] = disabled;
 		values[4] = disabledClass;
 		values[5] = target;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
@@ -132,8 +136,6 @@ public class MenuItem extends HtmlBaseCommandComponent implements JQueryHtmlObje
 	public String[] getResources() {
 		return resources;
 	}
-
-
 
 	public void decode(FacesContext context) {
 		if(context == null)

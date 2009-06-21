@@ -38,6 +38,7 @@ import org.jquery4jsf.javascript.JSOperationElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
+import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -151,16 +152,20 @@ public class ButtonRenderer extends ButtonBaseRenderer {
 		}
 		AlertDialog alertDialog = getAlertDialog(button);
 		ResponseWriter responseWriter = context.getResponseWriter();
-		
 		responseWriter.startElement("button", button);
 		responseWriter.writeAttribute(HTML.ID, buttonId, "id");
 		String type = button.getType() == null ? "submit" : button.getType();
 		responseWriter.writeAttribute(HTML.TYPE, type, "type");
 		responseWriter.writeAttribute(HTML.NAME, buttonId, "name");
-		
 		if(button.getStyleClass() != null) {
 			responseWriter.writeAttribute("class", button.getStyleClass(), null);
 		}
+		
+		HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_STD_ATTR, new String[]{HTML.STYLE_CLASS, HTML.STYLE});
+		HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_INPUT_COMMAND_TAG_ATTR, new String[]{HTML.TYPE,HTML.NAME});
+		HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_JS_STD_ATTR);
+		HtmlRendererUtilities.writeHtmlAttributes(responseWriter, button, HTML.HTML_JS_ELEMENT_ATTR);
+		
 		if(button.getValue() != null)
 		{	
 			responseWriter.write((String) button.getValue());

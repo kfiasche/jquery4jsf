@@ -26,6 +26,8 @@ import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
+import javax.faces.el.MethodBinding;
 import java.lang.Integer;
 
 public class AlertDialog extends HtmlBaseCommandComponent implements JQueryHtmlObject,AjaxComponent {
@@ -486,7 +488,7 @@ public class AlertDialog extends HtmlBaseCommandComponent implements JQueryHtmlO
 		values[31] = onresize;
 		values[32] = onresizeStop;
 		values[33] = onclose;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

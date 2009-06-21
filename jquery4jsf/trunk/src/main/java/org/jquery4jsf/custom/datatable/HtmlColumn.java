@@ -24,6 +24,8 @@ import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
 public class HtmlColumn extends UIColumn implements JQueryHtmlObject,AjaxComponent {
 
@@ -46,7 +48,7 @@ public class HtmlColumn extends UIColumn implements JQueryHtmlObject,AjaxCompone
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[1];
 		values[0] = super.saveState(context);
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

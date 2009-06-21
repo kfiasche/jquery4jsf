@@ -33,9 +33,9 @@ public class AccordionPanelBaseRenderer extends JQueryBaseRenderer {
 		encodeOptionComponentByType(options, accordionPanel.getIconsHeader(), "header", null);
 		encodeOptionComponentByType(options, accordionPanel.getIconsHeaderSelected(), "headerSelected", null);
 		encodeOptionComponentByType(options, accordionPanel.isNavigation(), "navigation", null);
-		encodeOptionComponentByType(options, accordionPanel.getHeader(), "header", null);
-		encodeOptionComponentByType(options, accordionPanel.getNavigationFilter(), "navigationFilter", null);
+		encodeOptionComponentFunction(options, accordionPanel.getNavigationFilter(), "navigationFilter", "null");
 		encodeOptionComponentFunction(options, accordionPanel.getOnchange(), "onchange", "event,ui");
+		encodeOptionComponentFunction(options, accordionPanel.getOnchangestart(), "onchangestart", "event,ui");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

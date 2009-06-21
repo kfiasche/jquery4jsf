@@ -72,7 +72,7 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
         sb.append("\n");
         JSDocumentElement documentElement = new JSDocumentElement();
         JSElement element = new JSElement(parentId);
-        JSAttribute jsAjaxContent = new JSAttribute("ajaxContent", false);
+        JSAttribute jsAjaxContent = new JSAttribute("ajaxcontent", false);
         StringBuffer sbOption = new StringBuffer();
         jsAjaxContent.addValue(encodeOptionComponent(sbOption, ajaxEvent, context));
         element.addAttribute(jsAjaxContent);
@@ -86,7 +86,7 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
 	
 	protected String encodeOptionComponent(StringBuffer options, AjaxEvent ajaxEvent , FacesContext context) {
 		options.append(" {\n");
-		String target = RendererUtilities.getJQueryIdComponent(ajaxEvent.getReRender(), context, ajaxEvent);
+		String target = RendererUtilities.getJQueryIdComponent(ajaxEvent.getTarget(), context, ajaxEvent);
 		encodeOptionComponentByType(options, target, "target", null);
 		UIForm form = RendererUtilities.getForm(context, ajaxEvent);
 		String formId = RendererUtilities.getJQueryIdComponent(context, form);
@@ -94,7 +94,7 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
 		encodeOptionComponentByType(options, ajaxEvent.getEvent(), "event", "click");
 		String actionURL = getActionURL(context);
 		String clientId = ajaxEvent.getClientId(context);
-		String reRenderedId = RendererUtilities.getClientIdForComponent(ajaxEvent.getReRender(), context, ajaxEvent);
+		String reRenderedId = RendererUtilities.getClientIdForComponent(ajaxEvent.getTarget(), context, ajaxEvent);
 		if(actionURL.indexOf("?") == -1)
 		{
 			actionURL = actionURL + "?ajaxSourceJQuery=" + clientId +"&ajaxUpdate=" + reRenderedId + "&" + clientId+"="+clientId;
@@ -104,7 +104,6 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
 			actionURL = actionURL + "&ajaxSourceJQuery=" + clientId +"&ajaxUpdate=" + reRenderedId + "&" +clientId+"="+clientId;
 		}
 		encodeOptionComponentByType(options, actionURL, "url", null);
-		//encodeOptionComponentByType(options, ajaxEvent.isPartialSubmit(), "partialSubmit", "true");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

@@ -25,6 +25,8 @@ import java.io.IOException;
 import javax.faces.el.ValueBinding;
 import java.lang.String;
 import java.lang.Boolean;
+import javax.faces.component.UIComponent;
+import java.lang.Integer;
 
 public class ColorPicker extends HtmlInputText implements JQueryHtmlObject,AjaxComponent {
 
@@ -182,7 +184,7 @@ public class ColorPicker extends HtmlInputText implements JQueryHtmlObject,AjaxC
 		values[8] = onHide;
 		values[9] = onChange;
 		values[10] = onSubmit;
-		return (values);
+		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;

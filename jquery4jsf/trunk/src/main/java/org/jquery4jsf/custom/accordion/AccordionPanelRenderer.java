@@ -17,6 +17,8 @@
 package org.jquery4jsf.custom.accordion;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -30,48 +32,14 @@ import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AccordionPanelRenderer extends AccordionPanelBaseRenderer {
 
 	public static final String RENDERER_TYPE = "org.jquery4jsf.AccordionPanelRenderer";
-
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-        if(context == null || component == null)
-            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-        if(!component.isRendered())
-            return;
-        AccordionPanel accordionPanel = null;
-        if(component instanceof AccordionPanel)
-        	accordionPanel = (AccordionPanel)component;
-        
-        ResponseWriter responseWriter = context.getResponseWriter();
-        encodeResources(accordionPanel);
-        
-        String jsRender = (String) accordionPanel.getAttributes().get("jsNoRenderer");
-        if (jsRender == null || !jsRender.equalsIgnoreCase("true")){
-	        StringBuffer sb = new StringBuffer();
-	        sb.append("\n");
-	        JSDocumentElement documentElement = new JSDocumentElement();
-	        JSElement element = new JSElement(accordionPanel.getClientId(context));
-	        JSAttribute jsAccordion = new JSAttribute("accordion", false);
-	        StringBuffer sbOption = new StringBuffer();
-	        jsAccordion.addValue(encodeOptionComponent(sbOption, accordionPanel, context));
-	        element.addAttribute(jsAccordion);
+	private Logger logger = LoggerFactory.getLogger(AccordionPanelRenderer.class);
 	
-	        JSFunction function = new JSFunction();
-	        function.addJSElement(element);
-	        documentElement.addFunctionToReady(function);
-	        sb.append(documentElement.toJavaScriptCode());
-	        sb.append("\n");
-	        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb); 
-        }
-        responseWriter.startElement(HTML.TAG_DIV, accordionPanel);
-        writeIdAttributeIfNecessary(context, responseWriter, component);
-        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_STD_ATTR);
-        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, component, HTML.HTML_JS_STD_ATTR);
-	
-	}
-
 	protected String encodeOptionComponent(StringBuffer options, AccordionPanel accordionPanel , FacesContext context) {
 		options.append(" {\n");
 		encodeOptionComponentByType(options, accordionPanel.getActive(), "active", null);
@@ -86,9 +54,9 @@ public class AccordionPanelRenderer extends AccordionPanelBaseRenderer {
 		encodeOptionComponentByType(icons, accordionPanel.getIconsHeaderSelected(), "headerSelected", null);
 		encodeOptionComponentOptionsByType(options, icons.toString(), "icons", null);
 		encodeOptionComponentByType(options, accordionPanel.isNavigation(), "navigation", null);
-		encodeOptionComponentByType(options, accordionPanel.getHeader(), "header", null);
-		encodeOptionComponentByType(options, accordionPanel.getNavigationFilter(), "navigationFilter", null);
+		encodeOptionComponentFunction(options, accordionPanel.getNavigationFilter(), "navigationFilter", null);
 		encodeOptionComponentFunction(options, accordionPanel.getOnchange(), "onchange", "event,ui");
+		encodeOptionComponentFunction(options, accordionPanel.getOnchangestart(), "onchangestart", "event,ui");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);
@@ -115,12 +83,64 @@ public class AccordionPanelRenderer extends AccordionPanelBaseRenderer {
         if(!component.isRendered())
             return;
         
-        ResponseWriter responseWriter = context.getResponseWriter();
+        AccordionPanel accordionPanel = null;
+        if (component instanceof AccordionPanel)
+        	accordionPanel = (AccordionPanel)component;
+        
+        encodeResources(accordionPanel);
+        encodeAjaxEventChild(context, accordionPanel);
+        encodeAccordianScript(context, accordionPanel);
+        encodeAccordianMarkp(context, accordionPanel);
+	}
+	
+	protected void encodeAccordianMarkp(FacesContext context, AccordionPanel accordionPanel) throws IOException{
+		ResponseWriter responseWriter = context.getResponseWriter();
+        responseWriter.startElement(HTML.TAG_DIV, accordionPanel);
+        writeIdAttributeIfNecessary(context, responseWriter, accordionPanel);
+        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, accordionPanel, HTML.HTML_STD_ATTR);
+        HtmlRendererUtilities.writeHtmlAttributes(responseWriter, accordionPanel, HTML.HTML_JS_STD_ATTR);
+        encodeAccordionPanelChild(context, accordionPanel);
         responseWriter.endElement(HTML.TAG_DIV);
 	}
 
+	protected void encodeAccordionPanelChild(FacesContext context, AccordionPanel accordionPanel) throws IOException{
+		List children = accordionPanel.getChildren();
+		for (Iterator iterator = children.iterator(); iterator.hasNext();) {
+			UIComponent child = (UIComponent) iterator.next();
+			if (child instanceof AccordionSubPanel) {
+				AccordionSubPanel panelChild = (AccordionSubPanel) child;
+				RendererUtilities.renderChild(context, panelChild);
+			}
+			else{
+				logger.warn("Questo componente non puo' essere renderizzato: "+child.getClientId(context));
+			}
+		}
+	}
+	
+	protected void encodeAccordianScript(FacesContext context, AccordionPanel accordionPanel) throws IOException{
+		ResponseWriter responseWriter = context.getResponseWriter();
+        String jsRender = (String) accordionPanel.getAttributes().get("jsNoRenderer");
+        if (jsRender == null || !jsRender.equalsIgnoreCase("true")){
+	        StringBuffer sb = new StringBuffer();
+	        sb.append("\n");
+	        JSDocumentElement documentElement = new JSDocumentElement();
+	        JSElement element = new JSElement(accordionPanel.getClientId(context));
+	        JSAttribute jsAccordion = new JSAttribute("accordion", false);
+	        StringBuffer sbOption = new StringBuffer();
+	        jsAccordion.addValue(encodeOptionComponent(sbOption, accordionPanel, context));
+	        element.addAttribute(jsAccordion);
+	
+	        JSFunction function = new JSFunction();
+	        function.addJSElement(element);
+	        documentElement.addFunctionToReady(function);
+	        sb.append(documentElement.toJavaScriptCode());
+	        sb.append("\n");
+	        RendererUtilities.encodeImportJavascripScript(accordionPanel, responseWriter, sb); 
+        }
+	}
+	
 	public boolean getRendersChildren() {
-		return false;
+		return true;
 	}
 
 	
