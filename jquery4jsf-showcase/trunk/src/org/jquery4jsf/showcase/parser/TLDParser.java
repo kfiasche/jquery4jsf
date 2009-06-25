@@ -21,7 +21,7 @@ public class TLDParser {
 	public static TagLib parse(InputStream stream) throws ParserConfigurationException, SAXException, IOException, DocumentException {
 		TagLib res = new TagLib();
 
-		//XPP3Reader reader = new XPP3Reader();
+//		//XPP3Reader reader = new XPP3Reader();
 		SAXReader reader = new SAXReader(false);
 		reader.setIncludeExternalDTDDeclarations(false);
 		reader.setIncludeInternalDTDDeclarations(true);
