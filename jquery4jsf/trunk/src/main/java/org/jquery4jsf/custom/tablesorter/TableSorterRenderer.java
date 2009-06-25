@@ -31,9 +31,11 @@ import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
+import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 import org.jquery4jsf.utilities.TextUtilities;
 public class TableSorterRenderer extends TableSorterBaseRenderer {
+	private static final String THEME_ROLLER_JS = "tablesorter/jquery.tablesorter-theme.js";
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
@@ -45,6 +47,21 @@ public class TableSorterRenderer extends TableSorterBaseRenderer {
         
         encodeResources(tableSorter);
         encodeTableSorterScript(context, tableSorter);
+	}
+	
+	protected void encodeResources(TableSorter tableSorter){
+		String[] resources = tableSorter.getResources();
+		for (int i = 0; i < resources.length; i++) {
+			String resource = resources[i];
+			if (!resource.equalsIgnoreCase(THEME_ROLLER_JS)){
+				ResourceContext.getInstance().addResource(resource);
+			}
+			else{
+				if (tableSorter.isThemeroller()){
+					ResourceContext.getInstance().addResource(resource);
+				}
+			}
+		}
 	}
 	
 	protected void encodeTableSorterScript(FacesContext context, TableSorter tableSorter) throws IOException{

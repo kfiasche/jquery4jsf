@@ -350,8 +350,8 @@
 			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
 		
-			<!--<repository> <id>ftp-repository</id>
-			<url>ftp://www.jquery4jsf.org/repository</url> </repository>-->
+			<repository> <id>ftp-repository</id>
+			<url>ftp://www.jquery4jsf.org/repository</url> </repository>
 		
 	</distributionManagement>
 

@@ -56,21 +56,21 @@ public class AjaxPhaseListener implements javax.faces.event.PhaseListener {
 		if (isAjaxRequest){
 			boolean isPartialSubmit = request.getParameterMap().containsKey(AJAX_PS_ID);
 			if (isPartialSubmit){
-				String[] updateIds = (String[]) request.getParameterMap().get(AJAX_PS_ID);
 				ServletResponse response = (ServletResponse) context.getExternalContext().getResponse();
 				response.setContentType("text/html");
 				printRequestValue(request);
 				try {
-					for (int i = 0; i < updateIds.length; i++) {
-						String id = updateIds[i];
-						if (id != null && id.trim().length() > 0){
-							String values[] = id.split(":");
-							int y = values.length -1;
-							id = values[y];
-							UIComponent component = ComponentUtilities.findComponentInRoot(id);
-							if (component != null)
-								ComponentUtilities.encodeAll(context, component);
-						}
+					//TODO for websphere
+					Object updateIds = request.getParameterMap().get(AJAX_PS_ID);
+					if (updateIds instanceof String) {
+						String updateId = (String) updateIds;
+						String[] updateIdsArray = (String[]) updateId.split(",");	
+						handlerUpdateComponents(updateIdsArray, context);
+					}
+					else if (updateIds instanceof String[])
+					{
+						String[] updateIdsArray = (String[]) updateIds;	
+						handlerUpdateComponents(updateIdsArray, context);
 					}
 				}catch(IOException e) {
 					e.printStackTrace();
@@ -88,6 +88,20 @@ public class AjaxPhaseListener implements javax.faces.event.PhaseListener {
 						((AjaxComponent) component).encodePartially(context);
 					}
 				}
+			}
+		}
+	}
+	
+	private void handlerUpdateComponents(String[] ids, FacesContext context) throws IOException{
+		for (int i = 0; i < ids.length; i++) {
+			String id = ids[i];
+			if (id != null && id.trim().length() > 0){
+				String values[] = id.split(":");
+				int y = values.length -1;
+				id = values[y];
+				UIComponent component = ComponentUtilities.findComponentInRoot(id);
+				if (component != null)
+					ComponentUtilities.encodeAll(context, component);
 			}
 		}
 	}

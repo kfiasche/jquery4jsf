@@ -29,6 +29,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jquery4jsf.resource.stream.jsmin.JSMin;
+import org.jquery4jsf.resource.stream.processor.JSMINProcessor;
+import org.jquery4jsf.resource.stream.processor.JSProcessor;
+import org.jquery4jsf.resource.stream.processor.YUIJSProcessor;
 import org.jquery4jsf.utilities.TextUtilities;
 import org.mozilla.javascript.ErrorReporter;
 import org.mozilla.javascript.EvaluatorException;
@@ -42,8 +45,7 @@ public class JavaScriptResourceStreamer implements ResourceStreamer {
 
 	private static String PARAM_JAVASCRIPT_MIN = "org.jquery4jsf.JAVASCRIPT_MIN";
 	private static String PARAM_JAVASCRIPT_TYPE = "org.jquery4jsf.JAVASCRIPT_TYPE";
-	private final static int LINE_BREAK_POS = 1000;
-	private Logger logger = LoggerFactory.getLogger(JavaScriptResourceStreamer.class);
+	
 	public boolean isAppropriateStreamer(String mimeType) {
 		return (mimeType != null && mimeType.equals("text/js"));
 	}
@@ -54,61 +56,24 @@ public class JavaScriptResourceStreamer implements ResourceStreamer {
 		if (TextUtilities.getBooleanValue(isMin)){
 			if (TextUtilities.isStringVuota(type))
 				throw new FacesException("Inserire il parametro "+ PARAM_JAVASCRIPT_TYPE + " nel file web.xml.");
-
+			
+			String charset = request.getCharacterEncoding();
+			if (charset == null) {
+				charset = "UTF-8";
+			}
+			OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), charset);
 			if (type.equalsIgnoreCase("yuicompressor")){
 				try {
-					String charset = request.getCharacterEncoding();
-					if (charset == null) {
-						charset = "UTF-8";
-					}
-					OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), charset);
-					Reader in = new InputStreamReader(url.openStream());
-					try {
-						JavaScriptCompressor compressor = new JavaScriptCompressor(in, new ErrorReporter() {
-							public void warning(String message, String sourceName,
-									int line, String lineSource, int lineOffset) {
-								logger.warn("[JAVASCRIPT COMPRESSOR WARN] in file : "+sourceName+"\n"+message+"\n"+line+":"+lineOffset);
-							}
-
-							public void error(String message, String sourceName,
-									int line, String lineSource, int lineOffset) {
-								logger.error("[JAVASCRIPT COMPRESSOR ERROR] in file : "+sourceName+"\nLine : "+lineSource+"\n"+message+"\n"+line+":"+lineOffset);
-							}
-
-							public EvaluatorException runtimeError(String message, String sourceName,
-									int line, String lineSource, int lineOffset) {
-								error(message, sourceName, line, lineSource, lineOffset);
-								return new EvaluatorException(message);
-							}
-						});
-
-						compressor.compress(writer, LINE_BREAK_POS, true, true,true, true);
-
-					} catch (EvaluatorException e) {
-						e.printStackTrace();
-					}
-//					writer.write(sw.toString());
-//					writer.flush();
-//					writer.close();
+					JSProcessor jsProcessor = new YUIJSProcessor();
+					jsProcessor.processor(inputStream, writer, request);
 				} catch (Exception e) {
-					logger.error("Error send script to client for resource "+url.getFile(), e);
 				}
 			}
 			else {
-				String charset = request.getCharacterEncoding();
-				if (charset == null) {
-					charset = "UTF-8";
-				}
-				OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), charset);
-				JSMin jsmin = new JSMin(inputStream,writer);
 				try {
-					jsmin.jsmin();
+					JSProcessor jsProcessor = new JSMINProcessor();
+					jsProcessor.processor(inputStream, writer, request);
 				} catch (Exception e) {
-					logger.error("Error send script to client for resource "+url.getFile(), e);
-				} finally {
-					inputStream.close();
-					writer.flush();
-					writer.close();
 				}
 			}
 		}
