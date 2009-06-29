@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - Overlay - #{resource.OVERLAY_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Overlay - #{resource.OVERLAY_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.OVERLAY_DESCR_DEFAULT}
+		</p>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form">
+					<jq:overflow eventStart="ajaxStart" eventStop="ajaxStop"
+						message="Please wait..." />
+					<jq:ajaxStatus>
+						<f:facet name="start">
+							<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
+						</f:facet>
+
+						<f:facet name="complete">
+							<h:outputText value="Ajax Request Completed" />
+						</f:facet>
+					</jq:ajaxStatus>
+					<jq:outputHtmlTag tagName="fieldset">
+						<jq:outputHtmlTag tagName="legend">
+							<h:outputText value="AutoComplete" />
+						</jq:outputHtmlTag>
+						<h:panelGrid columns="2">
+							<h:outputLabel id="label1">
+								<h:outputText value="Autocomplete:" />
+							</h:outputLabel>
+							<jq:autoComplete id="autocomplete"
+								value="#{autoCompleteBean.text}" delay="300"
+								oncomplete="#{autoCompleteBean.completeAlgo}" />
+							<jq:button value="Submit" ajaxSubmit="true" target="update" />
+							<h:outputText id="update" value="#{autoCompleteBean.text}" />
+						</h:panelGrid>
+					</jq:outputHtmlTag>
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="overlay"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['overlay']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>

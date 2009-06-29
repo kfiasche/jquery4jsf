@@ -48,6 +48,36 @@
 								<h:outputText value="#{resource.AUTOCOMPLETE_TITLE_DEFAULT}" />
 							</h:outputLink>
 						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/autocomplete/min-char.jsf">
+								<h:outputText value="#{resource.AUTOCOMPLETE_TITLE_MINCHAR}" />
+							</h:outputLink>
+						</li>
+						<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/autocomplete/max-results.jsf">
+								<h:outputText value="#{resource.AUTOCOMPLETE_TITLE_MAXRESULT}" />
+							</h:outputLink>
+						</li>
+												<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/autocomplete/match-contains.jsf">
+								<h:outputText value="#{resource.AUTOCOMPLETE_TITLE_MATCHCONTAINS}" />
+							</h:outputLink>
+						</li>
+												<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/autocomplete/select-first.jsf">
+								<h:outputText value="#{resource.AUTOCOMPLETE_TITLE_SELECTFIRST}" />
+							</h:outputLink>
+						</li>
+												<li>
+							<h:outputLink
+								value="#{facesContext.externalContext.requestContextPath}/autocomplete/extra-params.jsf">
+								<h:outputText value="#{resource.AUTOCOMPLETE_TITLE_EXTRAPARAMS}" />
+							</h:outputLink>
+						</li>
 					</ul>
 				</div>
 			</div>

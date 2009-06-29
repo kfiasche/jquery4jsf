@@ -18,11 +18,11 @@
 			<jq:tabPanel tabName="Demo">
 				<!-- START -->
 				<h:outputLabel id="label" value="Donation: " for="amount" />
-				<h:inputText value="$100" id="amount"
+				<h:inputText value="jQuery100" id="amount"
 					style="border:0; font-weight:bold;" />
 				<br />
 				<jq:slider sliderValue="100" min="0" max="500" step="50"
-					onslide="$('#amount').val('$' + ui.value);" />
+					onslide="jQuery('#amount').val('jQuery' + ui.value);" />
 				<!-- end -->
 				<ui:include src="../templates/source.xhtml"></ui:include>
 			</jq:tabPanel>

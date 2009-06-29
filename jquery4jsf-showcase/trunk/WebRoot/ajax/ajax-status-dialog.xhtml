@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - Ajax Status - #{resource.AJAXSTATUS_TITLE_DIALOG}" />
+	</ui:define>
+	<ui:define name="themeswitcherwidget">
+		<div></div>
+	</ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+			.ui-dialog-titlebar-close { 
+				display: none;
+			}	
+		</style>
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Ajax Status - #{resource.AJAXSTATUS_TITLE_DIALOG}
+		</h3>
+		<p>
+			#{resource.AJAXSTATUS_TITLE_DIALOG}
+		</p>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<jq:dialog id="dialog" autoOpen="false" closeOnEscape="false"
+					modal="true" resizable="false" draggable="false"
+					title="Ajax Status Script">
+					<jq:paragraph
+						styleClass="ui-state-default ui-corner-all ui-helper-clearfix"
+						style="white-space:nowrap; padding: 4px;">
+						<jq:icon type="info" style="float: left; margin: -2px 5px 0 0;" />
+						<h:outputText value=" Please wait...." />
+					</jq:paragraph>
+				</jq:dialog>
+				<jq:ajaxStatus onajaxStart="jQuery('#dialog').dialog('open');"
+					onajaxStop="jQuery('#dialog').dialog('close');" />
+				<!-- end -->
+				<h:form id="form">
+					<jq:outputHtmlTag tagName="fieldset">
+						<jq:outputHtmlTag tagName="legend">
+							<h:outputText value="Ajax Status" />
+						</jq:outputHtmlTag>
+						<h:panelGrid columns="2" style="margin-bottom:10px">
+							<h:outputLabel for="firstname"
+								value="#{resource.AJAXEVENT_LABEL_FORM_1}" />
+							<h:inputText id="firstname" value="#{ajaxBean.nome}" />
+							<h:outputLabel for="surname"
+								value="#{resource.AJAXEVENT_LABEL_FORM_2}" />
+							<h:inputText id="surname" value="#{ajaxBean.cognome}" />
+							<jq:button id="button1" value="Reset" type="reset" />
+							<jq:button id="button2" value="Ajax Submit" ajaxSubmit="true"
+								actionListener="#{overlayBean.actionListener}" target="display" />
+						</h:panelGrid>
+						<h3>
+							Result
+						</h3>
+						<jq:div id="display">
+							<h:panelGrid columns="2">
+								<h:outputText value="Firstname: " />
+								<h:outputText value="#{ajaxBean.nome}" />
+
+								<h:outputText value="Lastname: " />
+								<h:outputText value="#{ajaxBean.cognome}" />
+							</h:panelGrid>
+						</jq:div>
+					</jq:outputHtmlTag>
+				</h:form>
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="ajaxEvent"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['ajaxEvent']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>

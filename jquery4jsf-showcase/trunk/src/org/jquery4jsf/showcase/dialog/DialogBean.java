@@ -21,18 +21,30 @@ import java.util.ArrayList;
 import javax.faces.context.FacesContext;
 import javax.faces.el.ValueBinding;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ActionListener;
 
 public class DialogBean
 {
-
+	private String textDialogClose;
+	private String textDialogOpen;
+	private String textDialogFocus;
+	private String textDialogDragStart;
+	private String textDialogDrag;
+	private String textDialogDragStop;
+	
     public DialogBean()
     {
+    	textDialogClose = "Text for dialog before close";
+    	textDialogOpen = "Text for dialog open";
+    	textDialogFocus = "Text for dialog focus";
+    	textDialogDragStart = "Text for dialog drag start";
+    	textDialogDrag = "Text for dialog drag";
+    	textDialogDragStop = "Text for dialog drag stop";
     }
 
     public void doButtonDialog(ActionEvent actionEvent)
     {
         System.out.println("sono qui");
-        //return "";
     }
     
     private ArrayList users;
@@ -66,4 +78,73 @@ public class DialogBean
 	private static String getJsfEl(String cleanKey) {
 		return "#{" + cleanKey + "}";
 	}
+	
+	public void onDialogBeforeClose(ActionEvent actionEvent){
+		textDialogClose = "Wait please...";
+	}
+	public void onDialogOpen(ActionEvent actionEvent){
+		textDialogOpen = "Dialog open.";
+	}
+	public void onDialogFocus(ActionEvent actionEvent){
+		textDialogFocus = "Dialog Focus.";
+	}
+	
+	public void onDialogDragStart(ActionEvent actionEvent){
+		textDialogDragStart = "Drag start.";
+	}
+	public void onDialogDrag(ActionEvent actionEvent){
+		textDialogDrag = "Drag.";
+	}
+	public void onDialogDragStop(ActionEvent actionEvent){
+		textDialogDragStop = "Drag stop.";
+	}
+	
+	public String getTextDialogClose() {
+		return textDialogClose;
+	}
+
+	public void setTextDialogClose(String textDialogClose) {
+		this.textDialogClose = textDialogClose;
+	}
+
+	public String getTextDialogOpen() {
+		return textDialogOpen;
+	}
+
+	public void setTextDialogOpen(String textDialogOpen) {
+		this.textDialogOpen = textDialogOpen;
+	}
+
+	public String getTextDialogFocus() {
+		return textDialogFocus;
+	}
+
+	public void setTextDialogFocus(String textDialogFocus) {
+		this.textDialogFocus = textDialogFocus;
+	}
+
+	public String getTextDialogDragStop() {
+		return textDialogDragStop;
+	}
+
+	public void setTextDialogDragStop(String textDialogDragStop) {
+		this.textDialogDragStop = textDialogDragStop;
+	}
+
+	public String getTextDialogDragStart() {
+		return textDialogDragStart;
+	}
+
+	public void setTextDialogDragStart(String textDialogDragStart) {
+		this.textDialogDragStart = textDialogDragStart;
+	}
+
+	public String getTextDialogDrag() {
+		return textDialogDrag;
+	}
+
+	public void setTextDialogDrag(String textDialogDrag) {
+		this.textDialogDrag = textDialogDrag;
+	}
+	
 }

@@ -2,6 +2,16 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
  <context-param>
+  <description>Enable taconite ajax request handler default value is 'true'</description>
+  <param-name>org.jquery4jsf.TACONITE</param-name>
+  <param-value>true</param-value>
+ </context-param>
+  <context-param>
+  <description>Enable jQuery jQuery.noConflict() default value is 'false'</description>
+  <param-name>org.jquery4jsf.JQUERY_NO_CONFLICT</param-name>
+  <param-value>false</param-value>
+ </context-param>
+ <context-param>
   <param-name>org.jquery4jsf.THEME_CSS_ENABLE</param-name>
   <param-value>true</param-value>
  </context-param>
@@ -62,6 +72,22 @@
   <filter-name>JQueryResourceFilter</filter-name>
   <filter-class>org.jquery4jsf.application.filter.JQueryResourceFilter</filter-class>
  </filter>
+ <filter>
+  <description>JSessionFilter</description>
+  <display-name>JSessionFilter</display-name>
+  <filter-name>JSessionFilter</filter-name>
+  <filter-class>org.jquery4jsf.showcase.filters.JSessionStripFilter</filter-class>
+ </filter>
+ <filter>
+  <description>ResponseHeaderFilter</description>
+  <display-name>ResponseHeaderFilter</display-name>
+  <filter-name>ResponseHeaderFilter</filter-name>
+  <filter-class>org.jquery4jsf.showcase.filters.ResponseHeaderFilter</filter-class>
+  <init-param>
+   <param-name>Cache-Control</param-name>
+   <param-value>max-age=3600</param-value>
+  </init-param>
+ </filter>
  <filter-mapping>
   <filter-name>JQueryResourceFilter</filter-name>
   <servlet-name>Faces Servlet</servlet-name>
@@ -69,6 +95,27 @@
   <dispatcher>INCLUDE</dispatcher>
   <dispatcher>REQUEST</dispatcher>
   <dispatcher>ERROR</dispatcher>
+ </filter-mapping>
+
+ <filter-mapping>
+  <filter-name>JSessionFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>ResponseHeaderFilter</filter-name>
+  <url-pattern>*.jpg</url-pattern>
+ </filter-mapping>
+  <filter-mapping>
+  <filter-name>ResponseHeaderFilter</filter-name>
+  <url-pattern>*.gif</url-pattern>
+ </filter-mapping>
+  <filter-mapping>
+  <filter-name>ResponseHeaderFilter</filter-name>
+  <url-pattern>*.png</url-pattern>
+ </filter-mapping>
+  <filter-mapping>
+  <filter-name>ResponseHeaderFilter</filter-name>
+  <url-pattern>*.js</url-pattern>
  </filter-mapping>
  <listener>
   <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>

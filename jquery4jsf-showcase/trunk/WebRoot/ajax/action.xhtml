@@ -16,7 +16,7 @@
 			#{resource.AJAXEVENT_DESCR_ACTION}
 		</p>
 		<!-- START -->
-		<h:form>
+		<h:form id="form">
 			<jq:ajaxStatus>
 				<f:facet name="start">
 					<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
@@ -33,9 +33,9 @@
 					<jq:ajaxEvent event="keyup" target="romaout"
 						actionListener="#{ajaxBean.creaRomaFans}" />
 				</h:inputText>
-				<h:outputText id="romaout" value="#{ajaxBean.fans}" />
 			</h:panelGrid>
 		</h:form>
+		<h:outputText id="romaout" value="#{ajaxBean.fans}" />
 		<!-- END -->
 	</ui:define>
 </ui:composition>

@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - Dialog - #{resource.DIALOG_TITLE_ADDAJAXEVENT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Dialog - #{resource.DIALOG_TITLE_ADDAJAXEVENT}
+		</h3>
+		<p>
+			#{resource.DIALOG_DESCR_ADDAJAXEVENT}
+		</p>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form1">
+
+					<!-- Open -->
+					<jq:dialog id="dialog1" title="Open" autoOpen="false"
+						draggable="false" resizable="false">
+						<jq:ajaxEvent event="dialogopen" target="dialogopen"
+							actionListener="#{dialogBean.onDialogOpen}" />
+						<h:outputText id="dialogopen" value="#{dialogBean.textDialogOpen}" />
+					</jq:dialog>
+
+					<!-- Focus -->
+					<jq:dialog id="dialog2" title="Focus" autoOpen="false"
+						draggable="false" resizable="false">
+						<jq:ajaxEvent event="dialogfocus" target="dialogfocus"
+							actionListener="#{dialogBean.onDialogFocus}" />
+						<h:outputText id="dialogfocus"
+							value="#{dialogBean.textDialogFocus}" />
+					</jq:dialog>
+
+					<jq:dialog id="dialog9" title="Close" autoOpen="false"
+						draggable="false" resizable="false">
+						<jq:ajaxEvent event="dialogclose" target="updateClose"
+							actionListener="#{dialogBean.onDialogBeforeClose}" />
+						<h:outputText value="Text Dialog before close" />
+					</jq:dialog>
+					<br />
+					<h:outputText id="updateClose"
+						value="#{dialogBean.textDialogClose}" />
+					<br />
+					<jq:button value="Open"
+						onclick="jQuery('#form1\\:dialog1').dialog('open');return false;" />
+					<br />
+					<jq:button value="Focus"
+						onclick="jQuery('#form1\\:dialog2').dialog('open');return false;" />
+					<br />
+					<jq:button value="Close"
+						onclick="jQuery('#form1\\:dialog9').dialog('open');return false;" />
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="dialog"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['dialog']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>

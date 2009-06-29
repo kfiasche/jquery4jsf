@@ -37,24 +37,24 @@
 		
 		function startDrag(){
 			counts[0]++;
-			updateCounterStatus($('#event-start'),counts[0]);
+			updateCounterStatus(jQuery('#event-start'),counts[0]);
 		}
 		function dragDrag() {
 			counts[1]++;
-			updateCounterStatus($('#event-drag'),counts[1]);
+			updateCounterStatus(jQuery('#event-drag'),counts[1]);
 		}
 		function stopDrag() {
 			counts[2]++;
-			updateCounterStatus($('#event-stop'),counts[2]);
+			updateCounterStatus(jQuery('#event-stop'),counts[2]);
 		}
-		function updateCounterStatus($event_counter,new_count) {
+		function updateCounterStatus(jQueryevent_counter,new_count) {
 			// first update the status visually...
-			if (!$event_counter.hasClass('ui-state-hover')) {
-				$event_counter.addClass('ui-state-hover')
+			if (!jQueryevent_counter.hasClass('ui-state-hover')) {
+				jQueryevent_counter.addClass('ui-state-hover')
 					.siblings().removeClass('ui-state-hover');
 			}
 			// ...then update the numbers
-			$('span.count',$event_counter).text(new_count);
+			jQuery('span.count',jQueryevent_counter).text(new_count);
 		}
 	</jq:outputScript>
 		<!-- end -->

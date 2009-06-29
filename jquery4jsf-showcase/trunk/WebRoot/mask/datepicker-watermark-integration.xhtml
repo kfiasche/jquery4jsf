@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - Mask - #{resource.MASK_TITLE_DEFAULT}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Mask - #{resource.MASK_TITLE_DEFAULT}
+		</h3>
+		<p>
+			#{resource.MASK_DESCR_DEFAULT}
+		</p>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form">
+					<jq:outputHtmlTag tagName="fieldset">
+						<jq:outputHtmlTag tagName="legend">
+							<h:outputText value="Mask" />
+						</jq:outputHtmlTag>
+						<h:panelGrid columns="2">
+							<h:outputLabel id="label1">
+								<h:outputText value="Mask:" />
+							</h:outputLabel>
+							<jq:datePicker id="datePicker" value="#{maskBean.date}" size="15"
+								showOn="button"
+								buttonImage="#{facesContext.externalContext.requestContextPath}/datepicker/images/calendar.gif"
+								buttonImageOnly="true">
+								<jq:inputMask mask="##/##/####" />
+								<jq:watermark placeholderText="Insert a date" />
+								<f:convertDateTime pattern="MM/dd/yyyy" type="date" />
+							</jq:datePicker>
+							<jq:button value="Submit" ajaxSubmit="true" target="update" />
+							<h:outputText id="update" value="#{maskBean.date}">
+								<f:convertDateTime pattern="MM/dd/yyyy" type="date" />
+							</h:outputText>
+						</h:panelGrid>
+					</jq:outputHtmlTag>
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="inputMask"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['inputMask']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>

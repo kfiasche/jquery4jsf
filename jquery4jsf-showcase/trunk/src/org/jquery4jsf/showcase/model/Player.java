@@ -60,5 +60,7 @@ public class Player {
 		this.nazionalita = nazionalita;
 	}
 	
-	
+	public String toString(){
+		return this.getName() + " " + this.getNazionalita();
+	}
 }

@@ -1,0 +1,103 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - Ajax - #{resource.AJAX_TITLE_VALIDATION}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			AjaxEvent - #{resource.AJAX_TITLE_VALIDATION}
+		</h3>
+		<p>
+			#{resource.AJAX_DESCR_VALIDATION}
+		</p>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<jq:ajaxStatus>
+					<f:facet name="start">
+						<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
+					</f:facet>
+					<f:facet name="complete">
+						<h:outputText value="Ajax Request Completed" />
+					</f:facet>
+				</jq:ajaxStatus>
+				<!-- START -->
+				<h:form id="form">
+					<jq:outputHtmlTag tagName="fieldset">
+						<jq:outputHtmlTag tagName="legend">
+							<h:outputText value="Ajax Validation" />
+						</jq:outputHtmlTag>
+						<jq:panel id="panel" header="Add your information">
+							<h:messages />
+							<h:panelGrid columns="3">
+								<h:outputLabel for="firstname">
+									<h:outputText value="Firstname:" />
+								</h:outputLabel>
+								<h:inputText id="firstname" size="15" required="true"
+									value="#{ajaxBean.nome}">
+									<f:validateLength minimum="3" />
+								</h:inputText>
+								<h:message for="firstname" />
+								<h:outputLabel for="lastname">
+									<h:outputText value="Lastname:" />
+								</h:outputLabel>
+								<h:inputText id="lastname" size="15" required="true"
+									value="#{ajaxBean.cognome}">
+									<f:validateLength minimum="4" />
+								</h:inputText>
+								<h:message for="lastname" />
+								<h:outputLabel for="dateofborn">
+									<h:outputText value="Date of born:" />
+								</h:outputLabel>
+								<jq:datePicker id="dateofborn" value="#{ajaxBean.dataNascita}">
+									<f:convertDateTime pattern="MM/dd/yyyy" type="date" />
+								</jq:datePicker>
+								<h:message for="dateofborn" />
+							</h:panelGrid>
+						</jq:panel>
+						<h:panelGrid columns="2">
+						<jq:button id="button1" value="Reset" type="reset" />
+						<jq:button id="button2" value="Ajax Submit" ajaxSubmit="true"
+							target="panel,display" />
+						</h:panelGrid>
+
+						<h3 class="ui-widget-header">
+							Result
+						</h3>
+						<jq:div id="display">
+							<h:panelGrid columns="2">
+								<h:outputLabel for="textFirstname">
+									<h:outputText value="Firstname:" />
+								</h:outputLabel>
+								<h:outputText id="textFirstname" value="#{ajaxBean.nome}" />
+								<h:outputLabel for="textLastname">
+									<h:outputText value="Lastname:" />
+								</h:outputLabel>
+								<h:outputText id="textLastname" value="#{ajaxBean.cognome}" />
+								<h:outputLabel for="textDateofborn">
+									<h:outputText value="Day of born:" />
+								</h:outputLabel>
+								<h:outputText id="textDateofborn"
+									value="#{ajaxBean.dataNascita}">
+									<f:convertDateTime pattern="MM/dd/yyyy" />
+								</h:outputText>
+							</h:panelGrid>
+						</jq:div>
+					</jq:outputHtmlTag>
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="ajaxEvent"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['ajaxEvent']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>

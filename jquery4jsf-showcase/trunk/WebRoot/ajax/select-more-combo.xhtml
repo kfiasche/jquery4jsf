@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText
+			value=" - Ajax - #{resource.AJAXEVENT_TITLE_SELECTMORECOMBO}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Ajax - #{resource.AJAXEVENT_TITLE_SELECTMORECOMBO}
+		</h3>
+		<p>
+			#{resource.AJAXEVENT_DESCR_SELECTMORECOMBO}
+		</p>
+
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form">
+					<jq:ajaxStatus>
+						<f:facet name="start">
+							<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
+						</f:facet>
+
+						<f:facet name="complete">
+							<h:outputText value="Ajax Request Completed" />
+						</f:facet>
+					</jq:ajaxStatus>
+					<jq:outputHtmlTag tagName="fieldset">
+						<jq:outputHtmlTag tagName="legend">
+							<h:outputText value="Ajax combobox filter" />
+						</jq:outputHtmlTag>
+						<h:panelGrid columns="2">
+							<h:outputLabel for="menuPosition">
+								<h:outputText value="Position:" />
+							</h:outputLabel>
+							<h:selectOneMenu id="menuPosition" value="#{ajaxBean.position}">
+								<f:selectItem itemLabel="Select Position" itemValue="" />
+								<f:selectItem itemValue="P" itemLabel="Goalkeeper" />
+								<f:selectItem itemValue="D" itemLabel="Defender" />
+								<f:selectItem itemValue="C" itemLabel="Midfielder" />
+								<f:selectItem itemValue="A" itemLabel="Forward" />
+								<jq:ajaxEvent actionListener="#{ajaxBean.findPlayersByPosition}"
+									event="change" target="menuPlayers" />
+							</h:selectOneMenu>
+							<h:outputLabel for="menuPlayers">
+								<h:outputText value="Players:" />
+							</h:outputLabel>
+							<h:selectOneMenu id="menuPlayers" value="#{ajaxBean.player}">
+								<f:selectItem itemLabel="Select Players" itemValue="" />
+								<f:selectItems value="#{ajaxBean.players}" />
+							</h:selectOneMenu>
+							<jq:button id="button1" value="Reset" type="reset" />
+							<jq:button id="button2" value="Ajax Submit" ajaxSubmit="true"
+								target="display" />
+						</h:panelGrid>
+						<h3 class="ui-widget-header">
+							Result
+						</h3>
+						<jq:div id="display">
+							<h:panelGrid columns="2">
+								<h:outputLabel for="textPosition">
+									<h:outputText value="Position:" />
+								</h:outputLabel>
+								<h:outputText id="textPosition" value="#{ajaxBean.position}" />
+								<h:outputLabel for="textPlayer">
+									<h:outputText value="Player:" />
+								</h:outputLabel>
+								<h:outputText id="textPlayer" value="#{ajaxBean.player}" />
+							</h:panelGrid>
+						</jq:div>
+					</jq:outputHtmlTag>
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="ajaxEvent"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['ajaxEvent']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>

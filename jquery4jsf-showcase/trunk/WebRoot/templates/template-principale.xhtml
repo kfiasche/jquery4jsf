@@ -14,7 +14,11 @@
 				href="#{facesContext.externalContext.requestContextPath}/css/style.css" />
 			<!--[if IE 6]><link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/style.ie6.css" type="text/css" media="screen" /><![endif]-->
 			<title>jQuery4jsf - jQuery for JavaServer Faces <ui:insert
-					name="title"></ui:insert></title>
+					name="title"></ui:insert>
+			</title>
+			<script type="text/javascript">
+				jQuery.taconite.debug = true;
+			</script>
 			<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 			<ui:insert name="head"></ui:insert>
 		</head>
@@ -89,9 +93,9 @@
 						<script language="javascript"
 							src="#{facesContext.externalContext.requestContextPath}/script/sh/shBrushJScript.js"></script>
 						<script language="javascript">
-							dp.SyntaxHighlighter.ClipboardSwf = '#{facesContext.externalContext.requestContextPath}/script/sh/clipboard.swf';
-							dp.SyntaxHighlighter.HighlightAll('code');
-						</script>
+	dp.SyntaxHighlighter.ClipboardSwf = '#{facesContext.externalContext.requestContextPath}/script/sh/clipboard.swf';
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
 					</div>
 				</div>
 			</div>

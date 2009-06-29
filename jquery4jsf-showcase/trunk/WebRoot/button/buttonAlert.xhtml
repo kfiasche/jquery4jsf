@@ -24,7 +24,7 @@
 							<jq:alertDialog title="Alert" closeOnEscape="false"
 								position="center" draggable="false" resizable="false"
 								autoOpen="false" id="alertDialog"
-								onopen="$('.ui-dialog-titlebar-close:eq(1)').hide();"
+								onopen="jQuery('.ui-dialog-titlebar-close:eq(1)').hide();"
 								dialogClass="ui-widget ui-state-error" modal="false">
 								<jq:paragraph>
 									<jq:icon type="alert" style="float: left; margin-right: 0.3em;" />
@@ -33,7 +33,7 @@
 								<h:commandButton action="#{buttonBean.doButtonAction}"
 									value="Si" />
 								<h:commandButton
-									onclick="$('#form1\\:alertDialog').dialog('close');return false;"
+									onclick="jQuery('#form1\\:alertDialog').dialog('close');return false;"
 									value="No" />
 							</jq:alertDialog>
 						</jq:button>

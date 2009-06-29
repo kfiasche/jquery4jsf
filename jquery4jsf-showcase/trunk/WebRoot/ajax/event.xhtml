@@ -15,33 +15,45 @@
 		<p>
 			#{resource.AJAXEVENT_DESCR_ACTION}
 		</p>
-		<!-- START -->
-		<h:form>
-			<jq:ajaxStatus>
-				<f:facet name="start">
-					<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
-				</f:facet>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form">
+					<jq:ajaxStatus>
+						<f:facet name="start">
+							<h:graphicImage value="/images/ajaxloading.gif"></h:graphicImage>
+						</f:facet>
 
-				<f:facet name="complete">
-					<h:outputText value="Ajax Request Completed" />
-				</f:facet>
-			</jq:ajaxStatus>
+						<f:facet name="complete">
+							<h:outputText value="Ajax Request Completed" />
+						</f:facet>
+					</jq:ajaxStatus>
 
-			<h:panelGrid columns="3">
-				<h:panelGrid columns="3">
-					<h:outputLabel for="firstname" value="KeyUp" id="label1" />
-					<h:inputText id="firstname" value="#{ajaxBean.nome}">
-						<jq:ajaxEvent event="keyup" target="out1" />
-					</h:inputText>
-					<h:outputText id="out1" value="#{ajaxBean.nome}" />
-					<h:outputLabel value="Blur" for="surname" id="label2" />
-					<h:inputText id="surname" value="#{ajaxBean.cognome}">
-						<jq:ajaxEvent event="blur" target="out2" />
-					</h:inputText>
-					<h:outputText id="out2" value="#{ajaxBean.cognome}" />
-				</h:panelGrid>
-			</h:panelGrid>
-		</h:form>
-		<!-- end -->
+					<h:panelGrid columns="3">
+						<h:panelGrid columns="3">
+							<h:outputLabel for="firstname" value="KeyUp" id="label1" />
+							<h:inputText id="firstname" value="#{ajaxBean.nome}">
+								<jq:ajaxEvent event="keyup" target="out1" />
+							</h:inputText>
+							<h:outputText id="out1" value="#{ajaxBean.nome}" />
+							<h:outputLabel value="Blur" for="surname" id="label2" />
+							<h:inputText id="surname" value="#{ajaxBean.cognome}">
+								<jq:ajaxEvent event="blur" target="out2" />
+							</h:inputText>
+							<h:outputText id="out2" value="#{ajaxBean.cognome}" />
+						</h:panelGrid>
+					</h:panelGrid>
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="ajaxEvent"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['ajaxEvent']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
 	</ui:define>
 </ui:composition>

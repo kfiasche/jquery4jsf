@@ -68,7 +68,7 @@
 				</jq:panel>
 				<jq:droppable for="#droppable, #droppable-inner"
 					activeClass="ui-state-hover" hoverClass="ui-state-active"
-					ondrop="$(this).addClass('ui-state-highlight').find('> p').html('Dropped!');return false;" />
+					ondrop="jQuery(this).addClass('ui-state-highlight').find('> p').html('Dropped!');return false;" />
 				<jq:panel header="Droppable Two" id="droppable"
 					styleClass="droppable">
 					<jq:paragraph>
@@ -83,7 +83,7 @@
 				</jq:panel>
 				<jq:droppable for="#droppable2, #droppable2-inner" greedy="true"
 					activeClass="ui-state-hover" hoverClass="ui-state-active"
-					ondrop="$(this).addClass('ui-state-highlight').find('> p').html('Dropped!');" />
+					ondrop="jQuery(this).addClass('ui-state-highlight').find('> p').html('Dropped!');" />
 				<!-- end -->
 				<ui:include src="../templates/source.xhtml"></ui:include>
 			</jq:tabPanel>

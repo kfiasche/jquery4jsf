@@ -77,13 +77,13 @@ div#users-contain table td,div#users-contain table th {
 			<jq:tabPanel tabName="Demo">
 				<!-- START -->
 				<jq:outputScript charset="utf-8" type="text/javascript">
-						$(document).ready(function() { 
-							$('#formUser\\:create-user').click(function() {
-									$('#dialog').dialog('open');
+						jQuery(document).ready(function() { 
+							jQuery('#formUser\\:create-user').click(function() {
+									jQuery('#dialog').dialog('open');
 									return false;
 							});
-							$('#formDialog\\:close-user').click(function() {
-								$('#dialog').dialog('close');
+							jQuery('#formDialog\\:close-user').click(function() {
+								jQuery('#dialog').dialog('close');
 									return false;
 							});
 						});

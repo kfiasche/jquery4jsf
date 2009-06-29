@@ -31,6 +31,10 @@
 							<h:outputText value="Ajax Request Error"></h:outputText>
 						</f:facet>
 					</jq:ajaxStatus>
+					<jq:outputHtmlTag tagName="fieldset">
+					<jq:outputHtmlTag tagName="legend">
+						<h:outputText value="AutoComplete" />
+					</jq:outputHtmlTag>
 					<h:panelGrid columns="2">
 						<h:outputLabel id="label1">
 							<h:outputText value="Autocomplete:" />
@@ -38,7 +42,10 @@
 						<jq:autoComplete id="autocomplete"
 							value="#{autoCompleteBean.text}" delay="300"
 							oncomplete="#{autoCompleteBean.completeAlgo}" />
+						<jq:button value="Submit" ajaxSubmit="true" target="update" />
+						<h:outputText id="update" value="#{autoCompleteBean.text}" />
 					</h:panelGrid>
+					</jq:outputHtmlTag>
 				</h:form>
 				<!-- end -->
 				<ui:include src="../templates/source.xhtml"></ui:include>

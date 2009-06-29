@@ -84,42 +84,42 @@
 
 		<jq:outputScript type="text/javascript">
 	//<![CDATA[
-		$(function() {
+		jQuery(function() {
 				// there's the gallery and the trash
-				var $gallery = $('#gallery'), $trash = $('#trash');
+				var jQuerygallery = jQuery('#gallery'), jQuerytrash = jQuery('#trash');
 
 				// image deletion function
 				var recycle_icon = '<a href="link/to/recycle/script/when/we/have/js/off" title="Recycle this image" class="ui-icon ui-icon-refresh">Recycle image</a>';
-				function deleteImage($item) {
-					$item.fadeOut(function() {
-						var $list = $('ul',$trash).length ? $('ul',$trash) : $('<ul class="gallery ui-helper-reset"/>').appendTo($trash);
+				function deleteImage(jQueryitem) {
+					jQueryitem.fadeOut(function() {
+						var jQuerylist = jQuery('ul',jQuerytrash).length ? jQuery('ul',jQuerytrash) : jQuery('<ul class="gallery ui-helper-reset"/>').appendTo(jQuerytrash);
 
-						$item.find('a.ui-icon-trash').remove();
-						$item.append(recycle_icon).appendTo($list).fadeIn(function() {
-							$item.animate({ width: '48px' }).find('img').animate({ height: '36px' });
+						jQueryitem.find('a.ui-icon-trash').remove();
+						jQueryitem.append(recycle_icon).appendTo(jQuerylist).fadeIn(function() {
+							jQueryitem.animate({ width: '48px' }).find('img').animate({ height: '36px' });
 						});
 					});
 				}
 
 				// image recycle function
 				var trash_icon = '<a href="link/to/trash/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-trash">Delete image</a>';
-				function recycleImage($item) {
-					$item.fadeOut(function() {
-						$item.find('a.ui-icon-refresh').remove();
-						$item.css('width','96px').append(trash_icon).find('img').css('height','72px').end().appendTo($gallery).fadeIn();
+				function recycleImage(jQueryitem) {
+					jQueryitem.fadeOut(function() {
+						jQueryitem.find('a.ui-icon-refresh').remove();
+						jQueryitem.css('width','96px').append(trash_icon).find('img').css('height','72px').end().appendTo(jQuerygallery).fadeIn();
 					});
 				}
 
 				// image preview function, demonstrating the ui.dialog used as a modal window
-				function viewLargerImage($link) {
-					var src = $link.attr('href');
-					var title = $link.siblings('img').attr('alt');
-					var $modal = $('img[src$="'+src+'"]');
+				function viewLargerImage(jQuerylink) {
+					var src = jQuerylink.attr('href');
+					var title = jQuerylink.siblings('img').attr('alt');
+					var jQuerymodal = jQuery('img[srcjQuery="'+src+'"]');
 
-					if ($modal.length) {
-						$modal.dialog('open')
+					if (jQuerymodal.length) {
+						jQuerymodal.dialog('open')
 					} else {
-						var img = $('<img alt="'+title+'" width="384" height="288" style="display:none;padding: 8px;" />')
+						var img = jQuery('<img alt="'+title+'" width="384" height="288" style="display:none;padding: 8px;" />')
 							.attr('src',src).appendTo('body');
 						setTimeout(function() {
 							img.dialog({
@@ -132,16 +132,16 @@
 				}
 				
 			// resolve the icons behavior with event delegation
-			$('ul.gallery > li').click(function(ev) {
-				var $item = $(this);
-				var $target = $(ev.target);
+			jQuery('ul.gallery > li').click(function(ev) {
+				var jQueryitem = jQuery(this);
+				var jQuerytarget = jQuery(ev.target);
 	
-				if ($target.is('a.ui-icon-trash')) {
-					deleteImage($item);
-				} else if ($target.is('a.ui-icon-zoomin')) {
-					viewLargerImage($target);
-				} else if ($target.is('a.ui-icon-refresh')) {
-					recycleImage($item);
+				if (jQuerytarget.is('a.ui-icon-trash')) {
+					deleteImage(jQueryitem);
+				} else if (jQuerytarget.is('a.ui-icon-zoomin')) {
+					viewLargerImage(jQuerytarget);
+				} else if (jQuerytarget.is('a.ui-icon-refresh')) {
+					recycleImage(jQueryitem);
 				}
 				return false;
 			});

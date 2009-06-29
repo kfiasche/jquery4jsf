@@ -58,7 +58,7 @@
 				<jq:panel header="Droppable" styleClass="droppable">
 					<jq:droppable accept="#draggable" activeClass="ui-state-hover"
 						hoverClass="ui-state-active"
-						ondrop="$(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
+						ondrop="jQuery(this).addClass('ui-state-highlight').find('p').html('Dropped!');" />
 					<jq:paragraph>
 				accept: 'Draggable'
 			</jq:paragraph>

@@ -5,7 +5,7 @@
  <managed-bean>
   <managed-bean-name>ajaxBean</managed-bean-name>
   <managed-bean-class>org.jquery4jsf.showcase.ajax.AjaxBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>autoCompleteBean</managed-bean-name>
@@ -100,6 +100,16 @@
  <managed-bean>
   <managed-bean-name>watermarkBean</managed-bean-name>
   <managed-bean-class>org.jquery4jsf.showcase.watermark.WatermarkBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>maskBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.mask.MaskBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>overlayBean</managed-bean-name>
+  <managed-bean-class>org.jquery4jsf.showcase.overlay.OverlayBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <application>

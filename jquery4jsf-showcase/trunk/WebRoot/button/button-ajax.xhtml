@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jq="http://www.jquery4jsf.org/jsf"
+	template="../templates/template-principale.xhtml">
+	<ui:define name="title">
+		<h:outputText value=" - Button - #{resource.BUTTON_TITLE_AJAX}" />
+	</ui:define>
+	<ui:define name="content">
+		<h3>
+			Button - #{resource.BUTTON_TITLE_AJAX}
+		</h3>
+		<p>
+			#{resource.BUTTON_DESCR_AJAX}
+		</p>
+		<jq:tabbedPanel>
+			<jq:tabPanel tabName="Demo">
+				<!-- START -->
+				<h:form id="form1">
+					<h:panelGrid columns="2" style="margin-bottom:10px">
+						<h:outputLabel for="firstname" value="#{resource.AJAXEVENT_LABEL_FORM_1}" />
+						<h:inputText id="firstname" value="#{ajaxBean.nome}" />
+						<h:outputLabel for="surname" value="#{resource.AJAXEVENT_LABEL_FORM_2}" />
+						<h:inputText id="surname" value="#{ajaxBean.cognome}" />
+						<jq:button id="button1" value="Reset" type="reset" />
+						<jq:button id="button2" value="Ajax Submit" ajaxSubmit="true" target="display" />
+					</h:panelGrid>
+
+					<h3 class="ui-widget-header">
+						Result
+					</h3>
+					<jq:div id="display">
+						<h:panelGrid columns="2">
+							<h:outputText value="Firstname: " />
+							<h:outputText value="#{ajaxBean.nome}" />
+							<h:outputText value="Lastname: " />
+							<h:outputText value="#{ajaxBean.cognome}" />
+						</h:panelGrid>
+					</jq:div>
+				</h:form>
+				<!-- end -->
+				<ui:include src="../templates/source.xhtml"></ui:include>
+			</jq:tabPanel>
+			<jq:tabPanel tabName="Tag Information">
+				<ui:include src="../templates/taginformation.xhtml">
+					<ui:param name="tagName" value="button"></ui:param>
+					<ui:param name="tagDefinition"
+						value="#{startupBean.tagLib.tags['button']}"></ui:param>
+				</ui:include>
+			</jq:tabPanel>
+		</jq:tabbedPanel>
+	</ui:define>
+</ui:composition>
