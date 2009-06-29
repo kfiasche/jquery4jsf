@@ -27,9 +27,8 @@ $.widget("ui.ajaxcontent", {
 			if (o.event) {
 				$(this).bind(o.event, function(event){
 					var extraParams = {
-						timestamp: +new Date()
+							timestamp: +new Date()
 					};
-
 					$.each(o.data, function(key, param) {
 						extraParams[key] = typeof param == "function" ? param() : param;
 					});
@@ -39,11 +38,13 @@ $.widget("ui.ajaxcontent", {
 						});
 					}
 					var options = {
-						url: o.url,
-						target: o.target,
-						data: o.data
+							url: o.url,
+							target: o.target,
+							data: o.data,
+							dataType: o.dataType
 					};
 					$(o.form).ajaxSubmit(options);
+					event.preventDefault();
 					return false;
 				});
 			}
@@ -63,6 +64,7 @@ $.extend($.ui.ajaxcontent, {
 		url: '',
 		form:'',
 		data:{},
+		dataType:  '',
 		event:'click'
 	}
 });

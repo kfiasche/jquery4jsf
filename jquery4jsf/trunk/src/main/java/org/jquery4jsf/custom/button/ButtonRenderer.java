@@ -39,6 +39,7 @@ import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
+import org.jquery4jsf.utilities.JQueryUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,15 +57,15 @@ public class ButtonRenderer extends ButtonBaseRenderer {
 				String[] args = (String[])value;
 				for (int i = 0; i < args.length; i++) {
 					String valore = args[i];
-					System.out.println("Nome parametro: "+key+" valore: "+valore);
+					logger.debug("Nome parametro: "+key+" valore: "+valore);
 				}
 			}
 			else if (value instanceof String){
 				String valore = (String)value;
-				System.out.println("Nome parametro: "+key+" valore: "+valore);
+				logger.debug("Nome parametro: "+key+" valore: "+valore);
 			}
 			else{
-				System.out.println("Nome parametro: "+key+" valore: "+value.toString());
+				logger.debug("Nome parametro: "+key+" valore: "+value.toString());
 			}
 		}
 	}
@@ -96,17 +97,17 @@ public class ButtonRenderer extends ButtonBaseRenderer {
 		sb.append("\n");
 		JSDocumentElement documentElement = new JSDocumentElement();
 		JSElement element = new JSElement(button.getClientId(context));
-		JSAttribute jsCarousel = new JSAttribute("button", false);
+		JSAttribute jsButton = new JSAttribute("button", false);
 		StringBuffer optionsButton = new StringBuffer();
-		jsCarousel.addValue(encodeOptionButtonComponent(optionsButton, button, context));
-		element.addAttribute(jsCarousel);
+		jsButton.addValue(encodeOptionButtonComponent(optionsButton, button, context));
+		element.addAttribute(jsButton);
 
 		sb.append("\n");
 
 		JSElement buttonElement = new JSElement(button.getClientId(context));
 		UIForm uiForm = RendererUtilities.getForm(context, button);
 		JSElement formElement = new JSElement(uiForm.getClientId(context));
-		JSAttribute jsButton = new JSAttribute("bind",false);
+		JSAttribute jsBind = new JSAttribute("bind",false);
 		JSFunction jsFnOnClick = new JSFunction();
 		AlertDialog alert = getAlertDialog(button);
 		if(alert == null && button.getType().equalsIgnoreCase("submit") && button.isAjaxSubmit()){
@@ -119,18 +120,18 @@ public class ButtonRenderer extends ButtonBaseRenderer {
 			JSOperationElement jsOperationElement = new JSOperationElement(uiForm.getClientId(context));
 			jsOperationElement.addOperation("return false;");
 			jsFnOnClick.addJSElement(jsOperationElement);
-			jsButton.addValue("'click', "+jsFnOnClick.toJavaScriptCode());
-			buttonElement.addAttribute(jsButton);
+			jsBind.addValue("'click', "+jsFnOnClick.toJavaScriptCode());
+			buttonElement.addAttribute(jsBind);
 		}
 		
 		if (alert != null){
 			JSOperationElement jsOperationElement = new JSOperationElement(uiForm.getClientId(context));
 			String alertId = RendererUtilities.getJQueryId(alert.getClientId(context));
-			jsOperationElement.addOperation("$('"+alertId+"').dialog('open');");
+			jsOperationElement.addOperation(RendererUtilities.getJQueryVarWidget()+"('"+alertId+"').dialog('open');");
 			jsOperationElement.addOperation("return false;");
 			jsFnOnClick.addJSElement(jsOperationElement);
-			jsButton.addValue("'click', "+jsFnOnClick.toJavaScriptCode());
-			buttonElement.addAttribute(jsButton);
+			jsBind.addValue("'click', "+jsFnOnClick.toJavaScriptCode());
+			buttonElement.addAttribute(jsBind);
 		}
 		JSFunction function = new JSFunction();
 		function.addJSElement(element);
@@ -148,7 +149,7 @@ public class ButtonRenderer extends ButtonBaseRenderer {
 		UIForm form = RendererUtilities.getForm(context, button);
 		String buttonId = button.getClientId(context);
 		if (form == null){
-			throw new FacesException("Il tag Button "+ buttonId + " deve all'interno di un tag form.");
+			throw new FacesException("Il tag Button "+ buttonId + " deve essere all'interno di un tag form.");
 		}
 		AlertDialog alertDialog = getAlertDialog(button);
 		ResponseWriter responseWriter = context.getResponseWriter();
@@ -201,7 +202,16 @@ public class ButtonRenderer extends ButtonBaseRenderer {
 		if (target == null || target.trim().length() == 0){
 			target = null;
 		}else{
-			target = RendererUtilities.getClientIdForComponent(target, context, button);
+			String[] updateIds = target.split(",");
+			String targetNew = "";
+			for (int i = 0; i < updateIds.length; i++) {
+				String id = updateIds[i];
+				if (i==0)
+					targetNew = RendererUtilities.getClientIdForComponent(id, context, button);
+				else
+					targetNew = targetNew + "," + RendererUtilities.getClientIdForComponent(id, context, button);
+			}
+			target = targetNew;
 		}
 		if (button.getUrl() != null)
 			encodeOptionComponentByType(options, button.getUrl(), "url", null);
@@ -226,6 +236,7 @@ public class ButtonRenderer extends ButtonBaseRenderer {
 			targetJQ = RendererUtilities.getJQueryId(form.getClientId(context));
 		}
 		encodeOptionComponentByType(options,targetJQ, "target", null);
+		if (JQueryUtilities.isTacconiteEnabled()) encodeOptionComponentByType(options, "xml", "dataType", null);
 		encodeOptionComponentByType(options, clientId , "buttonSubmit", "");
 		encodeOptionComponentFunction(options, button.getOnbeforeSubmit(), "onbeforeSubmit", null);
 		encodeOptionComponentFunction(options, button.getOnsuccess(), "onsuccess", null);

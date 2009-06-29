@@ -84,8 +84,8 @@ public class DatePickerRenderer extends DatePickerBaseRenderer {
         if (datePicker.getLocale() != null){
             JSOperationElement operationElement = new JSOperationElement("");
             String idjq = RendererUtilities.getJQueryId(datePicker.getClientId(context));
-            operationElement.addOperation("\n $('"+idjq.concat("').datepicker($.datepicker.regional['"+datePicker.getLocale()+"']);" ));
-            operationElement.addOperation("\n $('"+idjq.concat("').datepicker('option', $.extend("+options+", \n $.datepicker.regional['"+datePicker.getLocale()+"']));" ));
+            operationElement.addOperation("\n "+RendererUtilities.getJQueryVarWidget()+"('"+idjq.concat("').datepicker("+RendererUtilities.getJQueryVarWidget()+".datepicker.regional['"+datePicker.getLocale()+"']);" ));
+            operationElement.addOperation("\n "+RendererUtilities.getJQueryVarWidget()+"('"+idjq.concat("').datepicker('option', "+RendererUtilities.getJQueryVarWidget()+".extend("+options+", \n "+RendererUtilities.getJQueryVarWidget()+".datepicker.regional['"+datePicker.getLocale()+"']));" ));
             function.addJSElement(operationElement);
         }
         else

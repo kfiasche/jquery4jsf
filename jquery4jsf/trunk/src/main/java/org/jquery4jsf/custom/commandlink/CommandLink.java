@@ -53,7 +53,8 @@ public class CommandLink extends HtmlCommandLink implements JQueryHtmlObject,Aja
 		 resources = new String[]{
 			"jquery/jquery.js",
 			"form/jquery.form.js",
-			"themes/base/all.css"
+			"themes/base/all.css",
+			"taconite/jquery.taconite.js"
 		};
 	}
 

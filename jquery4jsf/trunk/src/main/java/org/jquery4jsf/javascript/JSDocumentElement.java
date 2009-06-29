@@ -16,6 +16,8 @@
  */
 package org.jquery4jsf.javascript;
 
+import org.jquery4jsf.utilities.JQueryUtilities;
+
 public class JSDocumentElement implements JSInterface {
 
     private String id;
@@ -49,6 +51,11 @@ public class JSDocumentElement implements JSInterface {
 	
 	private void generaCodice(){
 		if (id != null && !id.equalsIgnoreCase("")){
+			if (JQueryUtilities.isJQueryNoConflictEnabled()){ 
+				javascriptCode.append("\n");
+				javascriptCode.append("\t\tjQuery.noConflict();");
+				javascriptCode.append("\n");
+			}
 			javascriptCode.append(JSElementConstants.JS_JQUERY_OPEN);
 			javascriptCode.append(id);
 			javascriptCode.append(JSElementConstants.JS_JQUERY_CLOSE);

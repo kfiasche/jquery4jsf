@@ -70,7 +70,8 @@ public class HtmlMenu extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 			"form/jquery.form.js",
 			"menu/fg.menu.js",
 			"menu/fg.menu.css",
-			"themes/base/ui.all.css"
+			"themes/base/ui.all.css",
+			"taconite/jquery.taconite.js"
 		};
 	}
 

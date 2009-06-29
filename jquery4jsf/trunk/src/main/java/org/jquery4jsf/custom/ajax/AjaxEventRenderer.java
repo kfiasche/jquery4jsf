@@ -18,6 +18,7 @@ package org.jquery4jsf.custom.ajax;
 
 import java.io.IOException;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
@@ -30,6 +31,7 @@ import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
+import org.jquery4jsf.utilities.JQueryUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
 
 public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBaseRenderer{
@@ -88,7 +90,11 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
 		options.append(" {\n");
 		String target = RendererUtilities.getJQueryIdComponent(ajaxEvent.getTarget(), context, ajaxEvent);
 		encodeOptionComponentByType(options, target, "target", null);
+		if (JQueryUtilities.isTacconiteEnabled()) encodeOptionComponentByType(options, "xml", "dataType", null);
 		UIForm form = RendererUtilities.getForm(context, ajaxEvent);
+		if (form == null){
+			throw new FacesException("Il tag ajaxEvent "+ ajaxEvent.getId() + " deve essere all'interno di un tag form.");
+		}
 		String formId = RendererUtilities.getJQueryIdComponent(context, form);
 		encodeOptionComponentByType(options,formId, "form", null);
 		encodeOptionComponentByType(options, ajaxEvent.getEvent(), "event", "click");

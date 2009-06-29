@@ -43,7 +43,7 @@ public class YUIJSProcessor implements JSProcessor {
 			compressor.compress(out, LINE_BREAK_POS, true, true,true, true);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error send script to client for resource ", e);
 		}		
 	}
 }

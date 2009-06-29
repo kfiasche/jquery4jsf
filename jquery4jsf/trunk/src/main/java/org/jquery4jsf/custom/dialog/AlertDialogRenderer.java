@@ -91,12 +91,6 @@ public class AlertDialogRenderer extends AlertDialogBaseRenderer {
 		options.append(" {\n");
 		encodeOptionComponentByType(options, alertDialog.isAutoOpen(), "autoOpen", "true");
 		encodeOptionComponentByType(options, alertDialog.isBgiframe(), "bgiframe", "false");
-		//StringBuffer buttons = new StringBuffer();
-		//encodeOptionComponentFunction(buttons, "$(this).dialog('close');",alertDialog.getNoLabel());
-		//encodeOptionComponentFunction(buttons, "$(this).dialog('close');",alertDialog.getOkLabel());
-		//encodeOptionComponentByType(options, alertDialog.getOkAction(), "okAction", null);
-		//encodeOptionComponentByType(options, alertDialog.getNoAction(), "noAction", null);
-		//encodeOptionComponentOptionsByType(options, buttons.toString(), "buttons", null);
 		encodeOptionComponentByType(options, alertDialog.isCloseOnEscape(), "closeOnEscape", "true");
 		encodeOptionComponentByType(options, alertDialog.getDialogClass(), "dialogClass", null);
 		encodeOptionComponentByType(options, alertDialog.isDraggable(), "draggable", "true");

@@ -376,4 +376,8 @@ public class ComponentUtilities {
 		return list;
 	}
 
+	
+	public static boolean isMojarra(FacesContext context) {
+		return context.getExternalContext().getApplicationMap().containsKey("com.sun.faces.ApplicationImpl");
+	}
 }

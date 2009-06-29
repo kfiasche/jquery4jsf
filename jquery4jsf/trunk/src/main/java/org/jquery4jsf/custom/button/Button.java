@@ -62,7 +62,8 @@ public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject
 			"form/jquery.form.js",
 			"button/ui.button.js",
 			"themes/base/ui.all.css",
-			"button/ui.button.css"
+			"button/ui.button.css",
+			"taconite/jquery.taconite.js"
 		};
 	}
 

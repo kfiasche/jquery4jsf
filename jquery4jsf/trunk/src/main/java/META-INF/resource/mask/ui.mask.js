@@ -205,6 +205,10 @@ $.widget("ui.mask", {
 		if (!input.attr("readonly")){
 			input
 				.bind("focus.mask", function() {
+					var label = $('label[for="'+input.attr("id")+'"]');
+					if (label != null && label != undefined){
+						label.hide();
+					}		
 					focusText = input.val();
 					var pos = self._checkVal();
 					self._writeBuffer();
@@ -219,6 +223,12 @@ $.widget("ui.mask", {
 					self._checkVal();
 					if (input.val() != focusText)
 						input.change();
+					if(!input.val()){
+						var label = $('label[for="'+input.attr("id")+'"]');
+						if (label != null && label != undefined){
+							label.show();
+						}
+					}
 				})
 				.bind('apply.mask', function(){ //changing the value of an input without keyboard input requires re-applying the mask.
 					focusText = input.val();
@@ -363,7 +373,11 @@ $.widget("ui.mask", {
 		}
 		
 		this.maskEscaped = literals.join('');
-	}	
+	},
+	
+	_escapeJSFClientId: function(id) {  
+ 		return "#" + id.replace(/:/g,"\\:");  
+ 	}
 	
 });
 

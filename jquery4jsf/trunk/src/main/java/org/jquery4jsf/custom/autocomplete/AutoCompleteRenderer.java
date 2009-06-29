@@ -20,7 +20,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.el.MethodBinding;
@@ -96,14 +98,19 @@ public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements Aj
 	}
     
 	protected String encodeOptionComponent(StringBuffer options, AutoComplete autoComplete , FacesContext context) {
-    	if (autoComplete.getJsonValue() != null)
+		UIForm form = RendererUtilities.getForm(context, autoComplete);
+		String clientId = autoComplete.getClientId(context);
+		if (form == null){
+			throw new FacesException("Il tag autoComplete "+ clientId + " deve essere all'interno di un tag form.");
+		}
+		options.append(" {\n");
+		if (autoComplete.getJsonValue() != null)
     	{
-    		options.append(autoComplete.getJsonValue());
+			encodeOptionComponentByType(options, autoComplete.getJsonValue(), "data", null);
     	}
     	else
     	{
     		String actionURL = getActionURL(context);
-    		String clientId = autoComplete.getClientId(context);;
     		if(actionURL.indexOf("?") == -1)
     		{
     			actionURL = actionURL + "?ajaxSourceJQuery=" + clientId;
@@ -112,11 +119,8 @@ public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements Aj
     		{
     			actionURL = actionURL + "&ajaxSourceJQuery=" + clientId;
     		}
-    		options.append("\"");
-    		options.append(actionURL);
-    		options.append("\"");
+    		encodeOptionComponentByType(options, actionURL, "url", null);
     	}
-    	options.append(", {\n");
 		encodeOptionComponentByType(options, autoComplete.getMinChars(), "minChars", "1");
 		encodeOptionComponentByType(options, autoComplete.getDelay(), "delay", "400");
 		encodeOptionComponentByType(options, autoComplete.getCacheLength(), "cacheLength", null);
@@ -125,9 +129,7 @@ public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements Aj
 		encodeOptionComponentByType(options, autoComplete.isMatchContains(), "matchContains", "false");
 		encodeOptionComponentByType(options, autoComplete.isMustMatch(), "mustMatch", "false");
 		encodeOptionComponentByType(options, autoComplete.isSelectFirst(), "selectFirst", "true");
-		//TODO viewroot serial???
-
-		encodeOptionComponentByType(options, autoComplete.getExtraParams(), "extraParams", null);
+		encodeOptionComponentByType(options, encodeOptionsWithUIParam(autoComplete), "extraParams", null);
 		encodeOptionComponentByType(options, autoComplete.getOnformatItem(), "formatItem", null);
 		encodeOptionComponentByType(options, autoComplete.getOnformatMatch(), "formatMatch", null);
 		encodeOptionComponentByType(options, autoComplete.getOnformatResult(), "formatResult", null);

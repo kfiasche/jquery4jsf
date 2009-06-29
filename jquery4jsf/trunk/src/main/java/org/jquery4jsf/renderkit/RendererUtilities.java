@@ -39,6 +39,7 @@ import org.jquery4jsf.custom.ajax.AjaxEvent;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.resource.ResourceCostants;
+import org.jquery4jsf.utilities.JQueryUtilities;
 import org.jquery4jsf.utilities.TextUtilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -190,7 +191,7 @@ public class RendererUtilities {
 				else if (s.startsWith("{") && s.endsWith("}")){
 					createOptionComponentOptionsByType(sb, s, nameParameter);
 				}
-				else if (s.startsWith("$") && (s.endsWith(")") || s.endsWith(");"))){
+				else if (s.startsWith(RendererUtilities.getJQueryVarWidget()) && (s.endsWith(")") || s.endsWith(");"))){
 					createOptionComponentJQueryByType(sb, s, nameParameter);
 				}
 				else if (s.startsWith("[") && s.endsWith("]")){
@@ -512,4 +513,8 @@ public class RendererUtilities {
 		return converter;
 	}
 
+	public static String getJQueryVarWidget(){
+		return JQueryUtilities.isJQueryNoConflictEnabled() ? JQueryUtilities.JQUERY_FULL : JQueryUtilities.JQUERY_SHORT ;
+	}
+	
 }

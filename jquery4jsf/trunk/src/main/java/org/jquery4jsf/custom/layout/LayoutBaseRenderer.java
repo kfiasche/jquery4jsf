@@ -23,7 +23,6 @@ public class LayoutBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Layout layout , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, true, "applyDefaultStyles", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

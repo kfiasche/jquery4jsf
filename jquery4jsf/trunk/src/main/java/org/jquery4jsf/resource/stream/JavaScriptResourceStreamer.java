@@ -18,9 +18,7 @@ package org.jquery4jsf.resource.stream;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.Reader;
 import java.net.URL;
 
 import javax.faces.FacesException;
@@ -28,21 +26,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jquery4jsf.resource.stream.jsmin.JSMin;
 import org.jquery4jsf.resource.stream.processor.JSMINProcessor;
 import org.jquery4jsf.resource.stream.processor.JSProcessor;
 import org.jquery4jsf.resource.stream.processor.YUIJSProcessor;
 import org.jquery4jsf.utilities.TextUtilities;
-import org.mozilla.javascript.ErrorReporter;
-import org.mozilla.javascript.EvaluatorException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
 
 
 public class JavaScriptResourceStreamer implements ResourceStreamer {
 
+	private static final String YUI_COMPRESSOR = "yuicompressor";
 	private static String PARAM_JAVASCRIPT_MIN = "org.jquery4jsf.JAVASCRIPT_MIN";
 	private static String PARAM_JAVASCRIPT_TYPE = "org.jquery4jsf.JAVASCRIPT_TYPE";
 	
@@ -52,29 +44,17 @@ public class JavaScriptResourceStreamer implements ResourceStreamer {
 
 	public void stream(ServletContext sc, HttpServletRequest request, HttpServletResponse response, InputStream inputStream, URL url) throws IOException {
 		String isMin = sc.getInitParameter(PARAM_JAVASCRIPT_MIN);
-		String type = sc.getInitParameter(PARAM_JAVASCRIPT_TYPE);
+
 		if (TextUtilities.getBooleanValue(isMin)){
-			if (TextUtilities.isStringVuota(type))
-				throw new FacesException("Inserire il parametro "+ PARAM_JAVASCRIPT_TYPE + " nel file web.xml.");
-			
 			String charset = request.getCharacterEncoding();
 			if (charset == null) {
 				charset = "UTF-8";
 			}
 			OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), charset);
-			if (type.equalsIgnoreCase("yuicompressor")){
-				try {
-					JSProcessor jsProcessor = new YUIJSProcessor();
-					jsProcessor.processor(inputStream, writer, request);
-				} catch (Exception e) {
-				}
-			}
-			else {
-				try {
-					JSProcessor jsProcessor = new JSMINProcessor();
-					jsProcessor.processor(inputStream, writer, request);
-				} catch (Exception e) {
-				}
+			JSProcessor jsProcessor = getJSProcessor(sc);
+			try {
+				jsProcessor.processor(inputStream, writer, request);
+			} catch (Exception e) {
 			}
 		}
 		else{
@@ -82,5 +62,16 @@ public class JavaScriptResourceStreamer implements ResourceStreamer {
 		}
 	}
 
-	
+	private JSProcessor getJSProcessor(ServletContext sc){
+		String type = sc.getInitParameter(PARAM_JAVASCRIPT_TYPE);
+		if (TextUtilities.isStringVuota(type))
+			throw new FacesException("Inserire il parametro "+ PARAM_JAVASCRIPT_TYPE + " nel file web.xml.");
+		
+		if (type.equalsIgnoreCase(YUI_COMPRESSOR)){
+			return new YUIJSProcessor();
+		}
+		else{
+			return new JSMINProcessor();
+		}
+	}
 }

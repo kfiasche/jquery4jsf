@@ -19,15 +19,12 @@ package org.jquery4jsf.resource;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.context.FacesContext;
-
-import org.jquery4jsf.utilities.TextUtilities;
+import org.jquery4jsf.utilities.JQueryUtilities;
 
 public class ResourceContextImpl extends ResourceContext {
 
 	private static List listResource;
-	private static String PARAM_THEME_CSS = "org.jquery4jsf.THEME_CSS";
-	private static String PARAM_THEME_CSS_ENABLE = "org.jquery4jsf.THEME_CSS_ENABLE";
+
 	
 	public ResourceContextImpl(){
 		listResource = new ArrayList();
@@ -37,15 +34,14 @@ public class ResourceContextImpl extends ResourceContext {
 		if (resource == null || resource.equals(""))
 			return false;
 		if (resource.endsWith(".css")){
-			String theme   = getParam(PARAM_THEME_CSS);
+			String theme = JQueryUtilities.getThemeName();
 			if (theme != null){
 				resource = resource.replaceAll("base", theme);
 			}
-			
 		}
 		if (!listResource.contains(resource)){
-			if (isCssThemeResource(resource)){
-				if (isThemeEnabled()){
+			if (JQueryUtilities.isCssThemeResource(resource)){
+				if (JQueryUtilities.isThemeEnabled()){
 					return listResource.add(resource);
 				}
 			}
@@ -63,24 +59,7 @@ public class ResourceContextImpl extends ResourceContext {
 		listResource = new ArrayList();	
 	}
 	
-	private String getParam(String paramName){
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		return facesContext.getExternalContext().getInitParameter(paramName);
-	}
-	
-	private boolean isThemeEnabled(){
-		String themeEnable   = getParam(PARAM_THEME_CSS_ENABLE);
-		if (!TextUtilities.isStringVuota(themeEnable)){
-			return (Boolean.valueOf(themeEnable)).booleanValue();
-		}
-		else{
-			return true;
-		}
-	}
-	
-	private boolean isCssThemeResource(String resource){
-		return resource.endsWith(".css") && resource.indexOf("theme") > -1;
-	}
+
 	
 	
 }

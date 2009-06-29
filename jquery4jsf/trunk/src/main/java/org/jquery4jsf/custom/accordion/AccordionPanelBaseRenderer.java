@@ -37,11 +37,13 @@ public class AccordionPanelBaseRenderer extends JQueryBaseRenderer {
 		encodeOptionComponentFunction(options, accordionPanel.getOnchange(), "onchange", "event,ui");
 		encodeOptionComponentFunction(options, accordionPanel.getOnchangestart(), "onchangestart", "event,ui");
 		if (options.toString().endsWith(", \n")){
-			options = options.deleteCharAt(options.length() - 3);
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
 		}
 		boolean noParams = false;
 		if (options.toString().endsWith(" {\n")){
-			options = options.deleteCharAt(options.length() - 3);
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
 			noParams = true;
 		}
 		if (!noParams)

@@ -22,11 +22,20 @@ import org.jquery4jsf.javascript.function.JSFunction;
 public class JSElement implements JSInterface {
 
 	private String id;
+	private boolean ignore = false;
 	private StringBuffer javascriptCode;
 	
 	public JSElement(String id){
 		super();
 		this.id = id;
+		ignore = false;
+		javascriptCode = new StringBuffer();
+	}
+	
+	public JSElement(String id, boolean ignore){
+		super();
+		this.id = id;
+		this.ignore = ignore;
 		javascriptCode = new StringBuffer();
 	}
 	
@@ -106,6 +115,8 @@ public class JSElement implements JSInterface {
 	}
 	
 	private String generaIdForJquery(String id){  
+		if (ignore)
+			return id;
 	    String idNew = id.replaceAll(":", "\\\\\\\\:");
 	    if (idNew.startsWith("#")){
 	    	return "'" + idNew + "'";

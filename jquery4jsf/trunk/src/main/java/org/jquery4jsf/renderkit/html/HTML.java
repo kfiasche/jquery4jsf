@@ -63,7 +63,7 @@ public class HTML {
 	}; 
 	
 	
-	public static final String ONCLICK		=		"onclic";
+	public static final String ONCLICK		=		"onclick";
 	public static final String ONDBLCLICK	=		"ondblclick";
 	public static final String ONKEYDOWN	=		"onkeydown";
 	public static final String ONKEYPRESS	=		"onkeypress";

@@ -1,4 +1,4 @@
-Copyright (c) 2009 John Resig, http://malsup.com/jquery/form
+Copyright (c) 2007-2009 M. Alsup, http://malsup.com/jquery/form
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

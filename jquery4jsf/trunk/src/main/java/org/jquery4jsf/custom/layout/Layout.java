@@ -15,15 +15,17 @@
  */
 package org.jquery4jsf.custom.layout;
 
-import java.io.IOException;
-
-import javax.faces.context.FacesContext;
-import javax.faces.render.Renderer;
-
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
+import javax.faces.context.FacesContext;
 import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.renderkit.AjaxBaseRenderer;
+import org.jquery4jsf.custom.JQueryHtmlObject;
+import javax.faces.render.Renderer;
+import java.io.IOException;
+import javax.faces.el.ValueBinding;
+import java.lang.String;
+import java.lang.Boolean;
+import javax.faces.component.UIComponent;
 
 public class Layout extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
 

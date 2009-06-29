@@ -49,7 +49,8 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 			"jquery/jquery.js",
 			"ui/ui.core.js",
 			"ajaxcontent/ui.ajaxcontent.js",
-			"form/jquery.form.js"
+			"form/jquery.form.js",
+			"taconite/jquery.taconite.js"
 		};
 	}
 

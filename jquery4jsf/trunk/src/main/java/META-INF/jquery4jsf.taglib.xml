@@ -196,6 +196,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
+		<tag-name>inputMask</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlInputMask</component-type>
+			<renderer-type>org.jquery4jsf.InputMaskRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
 		<tag-name>menu</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlMenu</component-type>
@@ -283,6 +290,13 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.OutputText</component-type>
 			<renderer-type>org.jquery4jsf.OutputTextRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>overlay</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlOverflow</component-type>
+			<renderer-type>org.jquery4jsf.OverflowRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>

@@ -51,7 +51,6 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 	private Boolean matchContains;
 	private Boolean mustMatch;
 	private Boolean selectFirst;
-	private String extraParams;
 	private Boolean multiple;
 	private String multipleSeparator;
 	private Integer width;
@@ -69,13 +68,11 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
-			"external/jquery.ajaxQueue.js",
-			"external/jquery.bgiframe.min.js",
-			"external/thickbox-compressed.js",
-			"external/thickbox.css",
+			"ui/ui.core.js",
 			"form/jquery.form.js",
-			"autocomplete/jquery.autocomplete.js",
-			"autocomplete/jquery.autocomplete.css"
+			"autocomplete/ui.autocomplete.js",
+			"autocomplete/ui.autocomplete.css",
+			"taconite/jquery.taconite.js"
 		};
 	}
 
@@ -180,17 +177,6 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 	}
 	public void setSelectFirst(boolean selectFirst) {
 		this.selectFirst = new Boolean(selectFirst);
-	}
-
-	public String getExtraParams() {
-		if(extraParams != null )
-			return extraParams;
-
-		String oValue = (String) getLocalOrValueBindingValue(extraParams, "extraParams");
-		return oValue != null ? oValue : null;
-	}
-	public void setExtraParams(String extraParams) {
-		this.extraParams = extraParams;
 	}
 
 	public boolean isMultiple() {
@@ -326,7 +312,7 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[23];
+		Object values[] = new Object[22];
 		values[0] = super.saveState(context);
 		values[1] = jsonValue;
 		values[2] = minChars;
@@ -337,19 +323,18 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 		values[7] = matchContains;
 		values[8] = mustMatch;
 		values[9] = selectFirst;
-		values[10] = extraParams;
-		values[11] = multiple;
-		values[12] = multipleSeparator;
-		values[13] = width;
-		values[14] = autoFill;
-		values[15] = max;
-		values[16] = highlight;
-		values[17] = scroll;
-		values[18] = scrollHeight;
-		values[19] = onformatItem;
-		values[20] = onformatMatch;
-		values[21] = onformatResult;
-		values[22] = saveAttachedState(context, oncomplete);
+		values[10] = multiple;
+		values[11] = multipleSeparator;
+		values[12] = width;
+		values[13] = autoFill;
+		values[14] = max;
+		values[15] = highlight;
+		values[16] = scroll;
+		values[17] = scrollHeight;
+		values[18] = onformatItem;
+		values[19] = onformatMatch;
+		values[20] = onformatResult;
+		values[21] = saveAttachedState(context, oncomplete);
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -364,19 +349,18 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 		this.matchContains = (Boolean) values[7];
 		this.mustMatch = (Boolean) values[8];
 		this.selectFirst = (Boolean) values[9];
-		this.extraParams = (String) values[10];
-		this.multiple = (Boolean) values[11];
-		this.multipleSeparator = (String) values[12];
-		this.width = (Integer) values[13];
-		this.autoFill = (Boolean) values[14];
-		this.max = (Integer) values[15];
-		this.highlight = (String) values[16];
-		this.scroll = (Boolean) values[17];
-		this.scrollHeight = (Integer) values[18];
-		this.onformatItem = (String) values[19];
-		this.onformatMatch = (String) values[20];
-		this.onformatResult = (String) values[21];
-		this.oncomplete = (MethodBinding) restoreAttachedState(context, values[22]);
+		this.multiple = (Boolean) values[10];
+		this.multipleSeparator = (String) values[11];
+		this.width = (Integer) values[12];
+		this.autoFill = (Boolean) values[13];
+		this.max = (Integer) values[14];
+		this.highlight = (String) values[15];
+		this.scroll = (Boolean) values[16];
+		this.scrollHeight = (Integer) values[17];
+		this.onformatItem = (String) values[18];
+		this.onformatMatch = (String) values[19];
+		this.onformatResult = (String) values[20];
+		this.oncomplete = (MethodBinding) restoreAttachedState(context, values[21]);
 	}
 
 	public String[] getResources() {

@@ -131,6 +131,23 @@ public class AjaxStatus extends UIComponentBase implements JQueryHtmlObject,Ajax
 		return resources;
 	}
 
+
+	public String getScriptValueByEvent(String event){
+		if (event.equals("start")){
+			return this.getOnajaxStart();
+		}else if (event.equals("complete")){
+			return this.getOnajaxComplete();
+		}else if (event.equals("success")){
+			return this.getOnajaxSuccess();
+		}else if (event.equals("error")){
+			return this.getOnajaxError();
+		}else if (event.equals("stop")){
+			return this.getOnajaxStop();
+		}else{
+			return null;
+		}
+	}
+
 	protected Object getLocalOrValueBindingValue(Object localValue, String valueBindingName)
 	{
 		if (localValue != null)

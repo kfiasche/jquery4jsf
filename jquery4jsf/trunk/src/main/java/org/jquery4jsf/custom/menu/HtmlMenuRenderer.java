@@ -165,7 +165,7 @@ public class HtmlMenuRenderer extends HtmlMenuBaseRenderer {
 	private String getAjaxRequest(FacesContext context, MenuItem submenu) {
 		UIForm form = RendererUtilities.getForm(context, submenu);
 		String formId = RendererUtilities.getJQueryId(form.getClientId(context));
-		String ajaxRequest = "$('" + formId +"').ajaxSubmit("+encodeOptionComponent(new StringBuffer(), submenu, context) +"); return false;";
+		String ajaxRequest = RendererUtilities.getJQueryVarWidget()+"('" + formId +"').ajaxSubmit("+encodeOptionComponent(new StringBuffer(), submenu, context) +"); return false;";
 		return ajaxRequest;
 	}
 
@@ -196,7 +196,7 @@ public class HtmlMenuRenderer extends HtmlMenuBaseRenderer {
 	
 	protected String encodeOptionComponent(StringBuffer options, HtmlMenu htmlMenu , FacesContext context) {
 		options.append(" {\n");
-		String content = "$('"+RendererUtilities.getJQueryId(htmlMenu.getClientId(context)) +"').next().html()";
+		String content = RendererUtilities.getJQueryVarWidget()+"('"+RendererUtilities.getJQueryId(htmlMenu.getClientId(context)) +"').next().html()";
 		encodeOptionComponentByType(options,content, "content", null);
 		encodeOptionComponentByType(options, htmlMenu.getWidth(), "width", null);
 		encodeOptionComponentByType(options, htmlMenu.getMaxHeight(), "maxHeight", null);

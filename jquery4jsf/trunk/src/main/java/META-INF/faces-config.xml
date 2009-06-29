@@ -148,6 +148,11 @@
 	</component>
 
 	<component>
+		<component-type>org.jquery4jsf.HtmlInputMask</component-type>
+		<component-class>org.jquery4jsf.custom.inputmask.InputMask</component-class>
+	</component>
+
+	<component>
 		<component-type>org.jquery4jsf.HtmlMenu</component-type>
 		<component-class>org.jquery4jsf.custom.menu.HtmlMenu</component-class>
 	</component>
@@ -210,6 +215,11 @@
 	<component>
 		<component-type>org.jquery4jsf.OutputText</component-type>
 		<component-class>org.jquery4jsf.custom.outputtext.OutputText</component-class>
+	</component>
+
+	<component>
+		<component-type>org.jquery4jsf.HtmlOverflow</component-type>
+		<component-class>org.jquery4jsf.custom.overflow.Overflow</component-class>
 	</component>
 
 	<component>
@@ -444,6 +454,11 @@
 			<renderer-class>org.jquery4jsf.custom.lightbox.LightBoxRenderer</renderer-class>
 		</renderer>
 		<renderer>
+			<component-family>org.jquery4jsf.InputMask</component-family>
+			<renderer-type>org.jquery4jsf.InputMaskRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.inputmask.InputMaskRenderer</renderer-class>
+		</renderer>
+		<renderer>
 			<component-family>org.jquery4jsf.Menu</component-family>
 			<renderer-type>org.jquery4jsf.HtmlMenuRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.menu.HtmlMenuRenderer</renderer-class>
@@ -502,6 +517,11 @@
 			<component-family>org.jquery4jsf.OutputText</component-family>
 			<renderer-type>org.jquery4jsf.OutputTextRenderer</renderer-type>
 			<renderer-class>org.jquery4jsf.custom.outputtext.OutputTextRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>org.jquery4jsf.Overflow</component-family>
+			<renderer-type>org.jquery4jsf.OverflowRenderer</renderer-type>
+			<renderer-class>org.jquery4jsf.custom.overflow.OverflowRenderer</renderer-class>
 		</renderer>
 		<renderer>
 			<component-family>org.jquery4jsf.Panel</component-family>

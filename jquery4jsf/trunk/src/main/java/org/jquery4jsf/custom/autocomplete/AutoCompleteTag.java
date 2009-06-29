@@ -64,7 +64,6 @@ public class AutoCompleteTag extends UIComponentTagBase {
 	private String matchContains;
 	private String mustMatch;
 	private String selectFirst;
-	private String extraParams;
 	private String multiple;
 	private String multipleSeparator;
 	private String width;
@@ -123,7 +122,6 @@ public class AutoCompleteTag extends UIComponentTagBase {
 		this.matchContains = null;
 		this.mustMatch = null;
 		this.selectFirst = null;
-		this.extraParams = null;
 		this.multiple = null;
 		this.multipleSeparator = null;
 		this.width = null;
@@ -191,7 +189,6 @@ public class AutoCompleteTag extends UIComponentTagBase {
 		setBooleanProperty(getFacesContext(), component, "matchContains", matchContains);
 		setBooleanProperty(getFacesContext(), component, "mustMatch", mustMatch);
 		setBooleanProperty(getFacesContext(), component, "selectFirst", selectFirst);
-		setStringProperty(getFacesContext(), component, "extraParams", extraParams);
 		setBooleanProperty(getFacesContext(), component, "multiple", multiple);
 		setStringProperty(getFacesContext(), component, "multipleSeparator", multipleSeparator);
 		setIntegerProperty(getFacesContext(), component, "width", width);
@@ -384,10 +381,6 @@ public class AutoCompleteTag extends UIComponentTagBase {
 
 	public void setSelectFirst(String value){
 		this.selectFirst = value;
-	}
-
-	public void setExtraParams(String value){
-		this.extraParams = value;
 	}
 
 	public void setMultiple(String value){

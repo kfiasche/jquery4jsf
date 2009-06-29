@@ -19,7 +19,7 @@ $.widget("ui.watermark", {
 		var input = this.element;
 		var placeholder = $.isFunction(o.placeholder) ? o.placeholder.apply(this.element[0]) : o.placeholderText;
 		this.element.wrap("<span/>").parent().addClass("ui-watermark-container");
-		var label = (this.label = $('<label for="' + input.attr("id") + '">' + placeholder + '</label>').insertBefore(input));
+		var label = (this.label = $('<label id="'+ input.attr("id")+"_label" +'" for="' + input.attr("id") + '">' + placeholder + '</label>').insertBefore(input));
 		label.addClass("ui-watermark-label");
 		label.css({
 			left: parseInt(input.css("borderLeftWidth")) + parseInt(input.css("paddingLeft")),
@@ -29,14 +29,20 @@ $.widget("ui.watermark", {
 			label.hide();
 		}
 		input.bind("focus." + this.widgetName, function() {
-			if (!o.disabled && !this.value)
+			if (!o.disabled && !this.value){
 				o.animate ? label.fadeOut("fast") : label.hide();
+			}
 		}).bind("blur." + this.widgetName, function() {
-			if (!o.disabled && !this.value)
+			if (!o.disabled && !this.value){
 				o.animate ? label.fadeIn("fast") : label.show();
+			}
 		});
 	},
 	
+    _escapeJSFClientId: function(id) {  
+ 		return "#" + id.replace(/:/g,"\\:");  
+ 	},
+ 	
 	destroy: function() {
 		if (this.element.data("placeholder")) {
 			this.element.attr("placeholder", this.element.data("placeholder"));

@@ -25,8 +25,13 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DefaultResourceStreamer implements ResourceStreamer {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class DefaultResourceStreamer implements ResourceStreamer {
+	
+	private Logger logger = LoggerFactory.getLogger(DefaultResourceStreamer.class);
+	
 	public boolean isAppropriateStreamer(String mimeType) {
 		return (mimeType != null && !mimeType.equals("text/css") && !mimeType.equals("text/js"));
 	}
@@ -50,7 +55,7 @@ public class DefaultResourceStreamer implements ResourceStreamer {
 			outputStream.close();
 		} 
 		catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error send to client for resource: "+url.getFile(), e);
 		}
 	}
 

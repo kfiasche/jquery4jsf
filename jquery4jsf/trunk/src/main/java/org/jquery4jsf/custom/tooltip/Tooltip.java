@@ -92,7 +92,8 @@ public class Tooltip extends HtmlBaseOutputComponent implements JQueryHtmlObject
 			"tooltip/jquery.qtip.min.js",
 			"tooltip/jquery.qtip.themeroller.js",
 			"form/jquery.form.js",
-			"themes/base/ui.all.css"
+			"themes/base/ui.all.css",
+			"taconite/jquery.taconite.js"
 		};
 	}
 

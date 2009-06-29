@@ -32,7 +32,6 @@ public class AutoCompleteBaseRenderer extends JQueryInputBaseRenderer {
 		encodeOptionComponentByType(options, autoComplete.isMatchContains(), "matchContains", null);
 		encodeOptionComponentByType(options, autoComplete.isMustMatch(), "mustMatch", null);
 		encodeOptionComponentByType(options, autoComplete.isSelectFirst(), "selectFirst", "true");
-		encodeOptionComponentByType(options, autoComplete.getExtraParams(), "extraParams", null);
 		encodeOptionComponentByType(options, autoComplete.isMultiple(), "multiple", null);
 		encodeOptionComponentByType(options, autoComplete.getMultipleSeparator(), "multipleSeparator", null);
 		encodeOptionComponentByType(options, autoComplete.getWidth(), "width", null);
