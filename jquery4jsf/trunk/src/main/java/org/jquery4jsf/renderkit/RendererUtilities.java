@@ -135,7 +135,13 @@ public class RendererUtilities {
 			}
 		}
 	}
-	
+	/**
+	 * @deprecated
+	 * @param component
+	 * @param responseWriter
+	 * @param sb
+	 * @throws IOException
+	 */
 	public static void encodeImportJavascripScript(UIComponent component, ResponseWriter responseWriter, StringBuffer sb) throws IOException {
 		responseWriter.startElement(HTML.TAG_SCRIPT, component);
 		responseWriter.writeAttribute(HTML.TYPE, "text/javascript", null);
@@ -167,6 +173,9 @@ public class RendererUtilities {
 		child.encodeEnd(facesContext);
 	}
 	
+	/**
+	 * Code taken, modified from org.primefaces.ui.renderkit.CoreRenderer
+	 */
 	public static String getActionURL(FacesContext facesContext) {
 		String actionURL = facesContext.getApplication().getViewHandler().getActionURL(facesContext, facesContext.getViewRoot().getViewId());
 		String url = facesContext.getExternalContext().encodeResourceURL(actionURL);
@@ -191,7 +200,7 @@ public class RendererUtilities {
 				else if (s.startsWith("{") && s.endsWith("}")){
 					createOptionComponentOptionsByType(sb, s, nameParameter);
 				}
-				else if (s.startsWith(RendererUtilities.getJQueryVarWidget()) && (s.endsWith(")") || s.endsWith(");"))){
+				else if ((s.startsWith(RendererUtilities.getJQueryVarWidget()) || s.startsWith("new ")) && (s.endsWith(")") || s.endsWith(");"))){
 					createOptionComponentJQueryByType(sb, s, nameParameter);
 				}
 				else if (s.startsWith("[") && s.endsWith("]")){
@@ -328,35 +337,13 @@ public class RendererUtilities {
 			else
 			{
 				options.append(nameParameter.concat(": '"));
-				options.append(value);
+				options.append(TextUtilities.addEscapeChar(value));
 				options.append("', \n");
 			}
 		}
 	}
 	
 	public static String getClientIdForComponent(String forAttr,FacesContext facesContext, UIComponent uiComponent) {
-//		if (forAttr == null)
-//			return null;
-//		UIComponent forComponent = uiComponent.findComponent(forAttr);
-//		if (forComponent == null) {
-//			if (forAttr.length() > 0
-//					&& forAttr.charAt(0) == NamingContainer.SEPARATOR_CHAR) {
-//				// absolute id path
-//				return forAttr.substring(1);
-//			} else {
-//				// relative id path, we assume a component on the same level
-//				// as the label component
-//				String labelClientId = uiComponent.getClientId(facesContext);
-//				int colon = labelClientId.lastIndexOf(NamingContainer.SEPARATOR_CHAR);
-//				if (colon == -1) {
-//					return forAttr;
-//				} else {
-//					return labelClientId.substring(0, colon + 1) + forAttr;
-//				}
-//			}
-//		} else {
-//			return forComponent.getClientId(facesContext);
-//		}
 		if (forAttr == null)
 			return null;
 		UIComponent component = ComponentUtilities.findComponentInRoot(forAttr);
@@ -370,16 +357,19 @@ public class RendererUtilities {
 		String idClient = getClientIdForComponent(id, facesContext, component);
 		if (idClient == null)
 			return null;
-		return "#" + idClient.replaceAll(":", "\\\\\\\\:");
+		//return "#" + idClient.replaceAll(":", "\\\\\\\\:");
+		return "jQuery.escapeJSFClientId('"+id+"')";
 	}
 	
 	
 	public static String getJQueryIdComponent(FacesContext facesContext, UIComponent component){
-		return "#" + component.getClientId(facesContext).replaceAll(":", "\\\\\\\\:");
+		//return "#" + component.getClientId(facesContext).replaceAll(":", "\\\\\\\\:");
+		return "jQuery.escapeJSFClientId('"+component.getClientId(facesContext)+"')";
 	}
 	
 	public static String getJQueryId(String id){
-		return "#" + id.replaceAll(":", "\\\\\\\\:");
+		//return "#" + id.replaceAll(":", "\\\\\\\\:");
+		return "jQuery.escapeJSFClientId('"+id+"')";
 	}
 	
 	public static String writeIdAttributeIfNecessary(FacesContext context,ResponseWriter writer, UIComponent component) {
@@ -400,12 +390,38 @@ public class RendererUtilities {
 		return (null != (id = component.getId()) && !id.startsWith(UIViewRoot.UNIQUE_ID_PREFIX));
 	}
 	
+	/**
+	 * Code taken, modified from org.primefaces.ui.resource.ResourceUtils
+	 */
 	public static String getResourceURL(FacesContext facesContext, String resource) {
 		String contextPath = facesContext.getExternalContext().getRequestContextPath();
 		return contextPath + ResourceCostants.RESOURCE_PATTERN + resource;
 	}
 	
 	public static String encodeIdInteractions(UIComponent component, FacesContext context){
+		if (!(component instanceof UIInteractions)){
+			throw new IllegalArgumentException();	
+		}
+		UIInteractions interactions = (UIInteractions)component;
+		String  id = "";
+		UIComponent parent = component.getParent();
+        if (!TextUtilities.isStringVuota(interactions.getFor())){
+        	UIComponent componentFinder = ComponentUtilities.findComponentInRoot(interactions.getFor());
+        	if (componentFinder != null){
+        		id = componentFinder.getId();
+        	}
+        }
+        else if (!isUniqueId(component)
+        			&& !(parent instanceof UIForm || parent instanceof UIViewRoot)){
+        		id = parent.getId();
+        }
+        else{
+        	id = component.getId();
+        }
+        return id;
+	}
+	
+	public static String encodeClientIdInteractions(UIComponent component, FacesContext context){
 		if (!(component instanceof UIInteractions)){
 			throw new IllegalArgumentException();	
 		}
@@ -514,7 +530,7 @@ public class RendererUtilities {
 	}
 
 	public static String getJQueryVarWidget(){
-		return JQueryUtilities.isJQueryNoConflictEnabled() ? JQueryUtilities.JQUERY_FULL : JQueryUtilities.JQUERY_SHORT ;
+		return JQueryUtilities.getInstance().isJQueryNoConflictEnabled() ? JQueryUtilities.JQUERY_FULL : JQueryUtilities.JQUERY_SHORT ;
 	}
 	
 }

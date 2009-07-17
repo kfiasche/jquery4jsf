@@ -17,6 +17,9 @@
 package org.jquery4jsf.javascript.function;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.JSInterface;
@@ -24,30 +27,33 @@ import org.jquery4jsf.javascript.JSInterface;
 
 public class JSFunction implements JSInterface{
 	
-	private JSElement[] elements;
+	private List elements;
 	private String name;
-	private String[] params; 
+	private List params; 
 	private StringBuffer javascriptCode;
 	
 	public JSFunction() {
 		super();
+		elements = new ArrayList();
+		params = new ArrayList();
 		javascriptCode = new StringBuffer();
 	}
 	
-	public JSFunction(JSElement[] elements){
+	public JSFunction(List elements){
 		super();
 		this.elements = elements;
+		params = new ArrayList();
 		javascriptCode = new StringBuffer();
 	}
 	
-	public JSFunction(JSElement elements[], String name){
+	public JSFunction(List elements, String name){
 		super();
 		this.elements = elements;
 		this.name = name;
 		javascriptCode = new StringBuffer();
 	}
 	
-	public JSFunction(JSElement[] elements, String name, String[] params){
+	public JSFunction(List elements, String name, List params){
 		super();
 		this.elements = elements;
 		this.name = name;
@@ -64,56 +70,83 @@ public class JSFunction implements JSInterface{
 	}
 	
 	public String[] getParams() {
-		return params;
+		return (String[]) params.toArray(new String[params.size()]);
 	}
 	
-	public void setParams(String[] params) {
-		this.params = params;
+	public JSElement[] getElements() {
+		return (JSElement[]) elements.toArray(new JSElement[elements.size()]);
+	}
+	
+	public boolean addParam(String param) {
+		if (param != null && !params.contains(param)){
+			return params.add(param);
+		}
+		return false;
 	}
 
-	public void addJSElement(JSElement element){
-	    ArrayList listaElementi = new ArrayList();
-	    if (elements != null){
-		    for (int i = 0; i < elements.length; i++) {
-	            listaElementi.add(elements[i]);
-	        }
-	    }
-	    listaElementi.add(element);
-	    elements = (JSElement[]) listaElementi.toArray(new JSElement[listaElementi.size()]);
+	public boolean addJSElement(JSElement element){
+		if (element != null && !elements.contains(element)){
+			return elements.add(element);
+		}
+		return false;
 	}
 	
 	public String toJavaScriptCode() {
-	    if (name == null && params == null && elements == null){
+	    if (name == null && (params == null || params.isEmpty()) && (elements == null || elements.isEmpty())){
 	        throw new IllegalArgumentException();
 	    }
-	    else if (name == null && params == null){
+	    else if (name == null && (params == null || params.isEmpty())){
 	        javascriptCode.append(JSFunctionConstants.JS_JQUERY_FN_OPEN);
-	        for (int i = 0; i < elements.length; i++) {
-                JSElement element = elements[i];
+	        for (Iterator iterator = elements.iterator(); iterator.hasNext();) {
+				JSElement element = (JSElement) iterator.next();
                 javascriptCode.append(element.toJavaScriptCode());
                 javascriptCode.append("\n");
-            }
+			}
 	        javascriptCode.append(JSFunctionConstants.JS_JQUERY_FN_CLOSE);
 	    }
 	    else if (name == null){
-	        javascriptCode.append(JSFunctionConstants.JS_JQUERY_FN_WHIT_PARAM_OPEN);
-	        for (int i = 0; i < params.length; i++) {
-                String param = params[i];
-                javascriptCode.append(param);
-                if (i != params.length -1){
-                    javascriptCode.append(", ");
-                }
-                else{
-                	javascriptCode.append("){ \n");
-                }
-            }
-	        for (int i = 0; i < elements.length; i++) {
-                JSElement element = elements[i];
+	    	javascriptCode.append(JSFunctionConstants.JS_JQUERY_FN_WHIT_PARAM_OPEN);
+	    	for (Iterator iterator = params.iterator(); iterator.hasNext();) {
+	    		String param = (String) iterator.next();
+	    		javascriptCode.append(param);
+	    		if (iterator.hasNext()){
+	    			javascriptCode.append(", ");
+	    		}
+	    		else{
+	    			javascriptCode.append("){ \n");
+	    		}
+	    	}
+	        for (Iterator iterator = elements.iterator(); iterator.hasNext();) {
+				JSElement element = (JSElement) iterator.next();
                 javascriptCode.append(element.toJavaScriptCode());
-            }
-	        javascriptCode.append(JSFunctionConstants.JS_JQUERY_FN_WHIT_PARAM_CLOSE);
+                javascriptCode.append("\n");
+			}
+	    	javascriptCode.append(JSFunctionConstants.JS_JQUERY_FN_WHIT_PARAM_CLOSE);
+	    }
+	    else{
+	    	String intest = JSFunctionConstants.JS_JQUERY_FN_WHIT_NAME_OPEN;
+	    	intest = intest.replaceAll("#",name);
+	    	javascriptCode.append(intest);
+	    	for (Iterator iterator = params.iterator(); iterator.hasNext();) {
+	    		String param = (String) iterator.next();
+	    		javascriptCode.append(param);
+	    		if (iterator.hasNext()){
+	    			javascriptCode.append(", ");
+	    		}
+	    		else{
+	    			javascriptCode.append("){ \n");
+	    		}
+	    	}
+	        for (Iterator iterator = elements.iterator(); iterator.hasNext();) {
+				JSElement element = (JSElement) iterator.next();
+                javascriptCode.append(element.toJavaScriptCode());
+                javascriptCode.append("\n");
+			}
+	    	javascriptCode.append(JSFunctionConstants.JS_JQUERY_FN_WHIT_PARAM_CLOSE);
 	    }
 	    return javascriptCode != null ? javascriptCode.toString() : null;
 	}
+
+
 
 }

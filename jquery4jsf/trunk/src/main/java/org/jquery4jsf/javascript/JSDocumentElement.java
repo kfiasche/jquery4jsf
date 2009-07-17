@@ -16,46 +16,74 @@
  */
 package org.jquery4jsf.javascript;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.utilities.JQueryUtilities;
+import org.jquery4jsf.utilities.TextUtilities;
 
 public class JSDocumentElement implements JSInterface {
 
     private String id;
     private StringBuffer javascriptCode;
-    public JSDocumentElement(){
+    private static JSDocumentElement instance;
+    private ArrayList elements;
+    private ArrayList functions;
+    
+    private JSDocumentElement(){
         this.id = "document";
         javascriptCode = new StringBuffer();
+        elements = new ArrayList();
+        functions = new ArrayList();
     }
     
-    public void addFunctionToReady(JSInterface function){
-	    if (function != null 
-	            && javascriptCode.toString() != null 
-	            && !javascriptCode.toString().equalsIgnoreCase("")){
-	        javascriptCode.append(JSElementConstants.JS_JQUERY_READY_OPEN);
-			javascriptCode.append(function.toJavaScriptCode());
-			javascriptCode.append(JSElementConstants.JS_JQUERY_READY_CLOSE);
-	    }else if (function != null){
-	        generaCodice();
-	        javascriptCode.append(JSElementConstants.JS_JQUERY_READY_OPEN);
-	        javascriptCode.append(function.toJavaScriptCode());
-	        javascriptCode.append(JSElementConstants.JS_JQUERY_READY_CLOSE);
-	    }
-		else{
-			throw new IllegalArgumentException();
-		}
+    public boolean addFunctionToReady(JSFunction function){
+    	return this.addFunctionToReady(function, false);
+    }
+    public boolean addFunctionToReady(JSFunction function, boolean addFuntion){
+    	if (addFuntion && function != null && !functions.contains(function) && function.getName() != null){
+    		return functions.add(function);
+    	}
+    	else if (function != null && !elements.contains(function)){
+    		return elements.add(function);
+    	}
+    	return false;
     }
 
-	public String toJavaScriptCode(){	
-		return javascriptCode != null ? javascriptCode.toString() : null;
+	public String toJavaScriptCode(){
+		if (functions.isEmpty() && elements.isEmpty())
+			return "";
+		
+		if (JQueryUtilities.getInstance().isJQueryNoConflictEnabled()){ 
+			javascriptCode.append("\n");
+			javascriptCode.append("jQuery.noConflict();");
+			javascriptCode.append("\n");
+		}
+		generaCodice();	
+		javascriptCode.append(JSElementConstants.JS_JQUERY_READY_OPEN);
+		
+		for (Iterator iterator = functions.iterator(); iterator.hasNext();) {
+			javascriptCode.append("\n");
+			JSFunction function = (JSFunction) iterator.next();
+			javascriptCode.append(function.toJavaScriptCode());
+		}
+		
+		for (Iterator iterator = elements.iterator(); iterator.hasNext();) {
+			JSFunction function = (JSFunction) iterator.next();
+			JSElement[] elements = function.getElements();
+			for (int i = 0; i < elements.length; i++) {
+				javascriptCode.append("\n");
+				JSElement element = elements[i];
+				javascriptCode.append(element.toJavaScriptCode());
+			}
+		}
+		javascriptCode.append(JSElementConstants.JS_JQUERY_READY_CLOSE);
+		return javascriptCode != null ? TextUtilities.formatCode(javascriptCode.toString()) : null;
 	}
 	
 	private void generaCodice(){
 		if (id != null && !id.equalsIgnoreCase("")){
-			if (JQueryUtilities.isJQueryNoConflictEnabled()){ 
-				javascriptCode.append("\n");
-				javascriptCode.append("\t\tjQuery.noConflict();");
-				javascriptCode.append("\n");
-			}
 			javascriptCode.append(JSElementConstants.JS_JQUERY_OPEN);
 			javascriptCode.append(id);
 			javascriptCode.append(JSElementConstants.JS_JQUERY_CLOSE);
@@ -64,5 +92,18 @@ public class JSDocumentElement implements JSInterface {
 			throw new IllegalArgumentException();
 		}
 	}
-    
+
+	public synchronized static JSDocumentElement getInstance() {
+		if (instance == null)
+			instance = new JSDocumentElement();
+		return instance;
+	}
+	
+	public static void reset() {
+		instance = null;
+	}
+
+	public ArrayList getFunctions() {
+		return elements;
+	}
 }

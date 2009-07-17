@@ -14,14 +14,13 @@
  *  limitations under the License.
  *
  */
-package org.jquery4jsf.javascript;
+package org.jquery4jsf.event.paginator;
 
-import org.jquery4jsf.renderkit.RendererUtilities;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.FacesListener;
 
-public class JSElementConstants {
-
-	static final String JS_JQUERY_OPEN = RendererUtilities.getJQueryVarWidget()+"(";
-	static final String JS_JQUERY_CLOSE = ")";
-	static final String JS_JQUERY_READY_OPEN = ".ready(function(){\n";
-	static final String JS_JQUERY_READY_CLOSE = "});\n";
+public interface PageChangeListener extends FacesListener {
+	
+	public void processPageChange(PageChangeEvent event) throws AbortProcessingException;
+	
 }

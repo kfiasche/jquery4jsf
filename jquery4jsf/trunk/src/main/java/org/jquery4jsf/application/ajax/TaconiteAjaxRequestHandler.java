@@ -1,3 +1,19 @@
+/*
+ *  Copyright (c) 2009 Giuseppe Trisciuoglio
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
 package org.jquery4jsf.application.ajax;
 
 import java.io.IOException;
@@ -12,6 +28,8 @@ import javax.servlet.ServletResponse;
 
 import org.jquery4jsf.application.AjaxPhaseListener;
 import org.jquery4jsf.application.taconite.TaconiteAction;
+import org.jquery4jsf.application.taconite.TaconiteEvalAction;
+import org.jquery4jsf.application.taconite.TaconiteEvalShowForceAction;
 import org.jquery4jsf.application.taconite.TaconiteReplaceElementAction;
 import org.jquery4jsf.application.taconite.TaconiteResponse;
 import org.jquery4jsf.component.ComponentUtilities;
@@ -63,7 +81,12 @@ public class TaconiteAjaxRequestHandler implements AjaxRequestHandler {
 			String clientId = getComponentId(id).trim();
 			UIComponent component = ComponentUtilities.findComponentInRoot(clientId);
 			TaconiteAction tacconiteAction = new TaconiteReplaceElementAction(id, component);
+			TaconiteAction tacconiteEvalAction = new TaconiteEvalAction(id, component);
 			tacconiteResponse.addAction(tacconiteAction);
+			tacconiteResponse.addAction(tacconiteEvalAction);
+			//TODO force jquery show component
+			TaconiteAction taconiteActionShowForce = new TaconiteEvalShowForceAction(id, component);
+			tacconiteResponse.addAction(taconiteActionShowForce);
 		}
 		tacconiteResponse.writeResponse();
 	}

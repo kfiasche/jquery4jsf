@@ -65,8 +65,8 @@ public abstract class UIComponentTagBase extends UIComponentTag {
 		ComponentUtilities.setActionProperty(context, component, value);
 	}
 	
-	public static void setMethodBindingProperty(FacesContext context,UIComponent component, String propertyName, String value){
-		ComponentUtilities.setMethodBindingProperty(context, component, propertyName, value);
+	public static void setMethodBindingProperty(FacesContext context,UIComponent component, String propertyName, String value, Class[] param){
+		ComponentUtilities.setMethodBindingProperty(context, component, propertyName, value, param);
 	}
 	
 	public static void setValidatorProperty(FacesContext context,UIComponent component, String propertyName, String value){

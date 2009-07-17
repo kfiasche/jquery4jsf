@@ -126,7 +126,7 @@ public class HtmlBasicRenderer extends Renderer {
 				Object value = selectItems.getValue();
 
 				if (value instanceof SelectItem)
-					items.add((SelectItem) value);
+					items.add(value);
 				else if (value instanceof Collection) {
 					Iterator iter = ((Collection) value).iterator();
 
@@ -134,7 +134,7 @@ public class HtmlBasicRenderer extends Renderer {
 						Object subValue = iter.next();
 
 						if (subValue instanceof SelectItem)
-							items.add((SelectItem) subValue);
+							items.add(subValue);
 					}
 				}
 				else if (value instanceof SelectItem[]) {

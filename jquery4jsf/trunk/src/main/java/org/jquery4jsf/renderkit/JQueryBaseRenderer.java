@@ -20,10 +20,22 @@ import java.io.IOException;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
 
 import org.jquery4jsf.custom.JQueryHtmlObject;
+import org.jquery4jsf.javascript.JSElement;
 
-public abstract class JQueryBaseRenderer extends HtmlBasicRenderer {
+public abstract class JQueryBaseRenderer extends HtmlBasicRenderer implements JQueryRenderer {
+	
+	public void encodeScript(FacesContext context, JQueryHtmlObject queryComponent) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+		JSElement element = getJSElement(context, (UIComponent) queryComponent);
+		if (element != null){
+			responseWriter.write("\n");
+			responseWriter.write(element.toJavaScriptCode());
+			responseWriter.write("\n");
+		}
+	}
 	
 	protected void encodeOptionComponentByType(StringBuffer sb, boolean value, String nameParameter, Object defaultValue){
 		RendererUtilities.createOptionComponentByType(sb, value, nameParameter, defaultValue);

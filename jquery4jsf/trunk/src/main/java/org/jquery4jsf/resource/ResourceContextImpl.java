@@ -34,14 +34,14 @@ public class ResourceContextImpl extends ResourceContext {
 		if (resource == null || resource.equals(""))
 			return false;
 		if (resource.endsWith(".css")){
-			String theme = JQueryUtilities.getThemeName();
+			String theme = JQueryUtilities.getInstance().getThemeName();
 			if (theme != null){
 				resource = resource.replaceAll("base", theme);
 			}
 		}
 		if (!listResource.contains(resource)){
-			if (JQueryUtilities.isCssThemeResource(resource)){
-				if (JQueryUtilities.isThemeEnabled()){
+			if (JQueryUtilities.getInstance().isCssThemeResource(resource)){
+				if (JQueryUtilities.getInstance().isThemeEnabled()){
 					return listResource.add(resource);
 				}
 			}

@@ -30,6 +30,7 @@ import javax.servlet.ServletResponse;
 import org.jquery4jsf.application.ajax.AjaxRequestHandler;
 import org.jquery4jsf.application.ajax.DefaultAjaxRequestHandler;
 import org.jquery4jsf.application.ajax.TaconiteAjaxRequestHandler;
+import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.utilities.JQueryUtilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +49,7 @@ public class AjaxPhaseListener implements javax.faces.event.PhaseListener {
 
 	private void handleAjaxRequest(PhaseEvent event) throws IOException {
 		AjaxRequestHandler ajaxRequestHandler = null;
-		if (JQueryUtilities.isTacconiteEnabled()){
+		if (JQueryUtilities.getInstance().isTacconiteEnabled()){
 			ajaxRequestHandler = new TaconiteAjaxRequestHandler();
 		}
 		else{
@@ -69,6 +70,8 @@ public class AjaxPhaseListener implements javax.faces.event.PhaseListener {
 				handleAjaxRequest(phaseEvent);
 			} catch (IOException e) {
 			}
+			// reset jselement fusion
+			JSDocumentElement.reset();
 			facesContext.responseComplete();
 		}
 	}
@@ -77,15 +80,20 @@ public class AjaxPhaseListener implements javax.faces.event.PhaseListener {
 		return PhaseId.RENDER_RESPONSE;
 	}
 
-	public void initPartialResponseWriter(FacesContext facesContext) {
-		if(facesContext.getResponseWriter() != null)
+	/**
+	 *
+	 * Code taken, modified from org.primefaces.ui.application.PrimeFacesPhaseListener
+	 *
+	 */
+	public void initPartialResponseWriter(FacesContext context) {
+		if(context.getResponseWriter() != null)
 			return;
 		try {
-			ServletResponse response = (ServletResponse) facesContext.getExternalContext().getResponse();
-			ServletRequest request = (ServletRequest) facesContext.getExternalContext().getRequest();
-			RenderKit renderKit = facesContext.getRenderKit();
+			ServletResponse response = (ServletResponse) context.getExternalContext().getResponse();
+			ServletRequest request = (ServletRequest) context.getExternalContext().getRequest();
+			RenderKit renderKit = context.getRenderKit();
 			ResponseWriter responseWriter = renderKit.createResponseWriter(response.getWriter(), null, request.getCharacterEncoding());
-			facesContext.setResponseWriter(responseWriter);
+			context.setResponseWriter(responseWriter);
 		}catch(IOException e) {
 			logger.error("ajaxRequest error: "+e.getMessage());
 		}

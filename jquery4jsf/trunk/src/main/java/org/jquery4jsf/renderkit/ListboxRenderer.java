@@ -18,23 +18,19 @@ package org.jquery4jsf.renderkit;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UISelectMany;
-import javax.faces.component.UISelectOne;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
-import javax.faces.model.SelectItem;
-import javax.faces.model.SelectItemGroup;
 
 
-public class ListboxRenderer extends JQueryInputBaseRenderer
+public abstract class ListboxRenderer extends JQueryInputBaseRenderer
 {
 
 	/**
@@ -63,7 +59,7 @@ public class ListboxRenderer extends JQueryInputBaseRenderer
         if (component instanceof UISelectMany) {
             return convertSelectManyValue(context, ((UISelectMany) component), (String[]) submittedValue);
         } else {
-            return super.getConvertedValue(context, (UISelectOne) component, (String) submittedValue);
+            return super.getConvertedValue(context, component, submittedValue);
         }
     }
 

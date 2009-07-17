@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.faces.FacesException;
+import javax.faces.application.Application;
 import javax.faces.component.ActionSource;
 import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIColumn;
@@ -146,20 +148,29 @@ public class ComponentUtilities {
 		}
 	}
 
-	public static void setMethodBindingProperty(FacesContext context,
-			UIComponent component, String attributeName, String mbValue) {
+	/*public static void setMethodBindingProperty(FacesContext context, UIComponent component, String attributeName, String mbValue, Class[] params, Class out) {
 		if (mbValue != null) {
 			if (isValueReference(mbValue)) {
-				Class params[] = { String.class };
-				MethodBinding mb = context.getApplication()
-				.createMethodBinding(mbValue, params);
+				MethodBinding mb = context.getApplication().createMethodBinding(mbValue, params);
 				component.getAttributes().put(attributeName, mb);
 			} else {
-				throw new IllegalArgumentException("Component with id:"
-						+ component.getId() + " has an invalid method binding");
+				throw new IllegalArgumentException("Component with id:" + component.getId() + " has an invalid method binding");
 			}
 		}
+	}*/
+	public static void setMethodBindingProperty(FacesContext context, UIComponent component, String attributeName, String attributeValue, Class[] paramTypes) {
+		if (attributeValue == null) {
+			return;
+		}
+		if (isValueReference(attributeValue)) {
+			Application app = context.getApplication();
+			MethodBinding mb = app.createMethodBinding(attributeValue, paramTypes);
+			component.getAttributes().put(attributeName, mb);
+		}else {
+			throw new IllegalArgumentException("Component with id:" + component.getId() + " has an invalid method binding");
+		}
 	}
+
 
 	public static void setActionListenerProperty(FacesContext context,
 			UIComponent component, String actionListener) {
@@ -380,4 +391,78 @@ public class ComponentUtilities {
 	public static boolean isMojarra(FacesContext context) {
 		return context.getExternalContext().getApplicationMap().containsKey("com.sun.faces.ApplicationImpl");
 	}
+	
+	public static Object getValue(UIComponent component) {
+		if (component instanceof ValueHolder) {
+			Object value = ((ValueHolder) component).getValue();
+			return value;
+		}
+		return null;
+	}
+	
+	public static String getStringValue(FacesContext context, UIComponent component) {
+		try
+		{
+			if (!(component instanceof ValueHolder))
+			{
+				throw new IllegalArgumentException();
+			}
+			if (component instanceof EditableValueHolder)
+			{
+				Object submittedValue = ((EditableValueHolder) component).getSubmittedValue();
+				if (submittedValue != null)
+				{
+					if (submittedValue instanceof String)
+					{
+						return (String) submittedValue;
+					}
+					throw new IllegalArgumentException();
+				}
+			}
+			Object value = null;
+			if (component instanceof EditableValueHolder)
+			{
+				EditableValueHolder holder = (EditableValueHolder) component;
+				if (holder.isLocalValueSet())
+				{
+					value = holder.getLocalValue();
+				}
+				else
+				{
+					value = getValue(component);
+				}
+			}
+			else
+			{
+				value = getValue(component);
+			}
+			Converter converter = ((ValueHolder) component).getConverter();
+			if (converter == null && value != null)
+			{
+				try
+				{
+					converter = context.getApplication().createConverter(value.getClass());
+				}
+				catch (FacesException e)
+				{
+				}
+			}
+
+			if (converter == null)
+			{
+				if (value == null)
+				{
+					return "";
+				}
+				return value.toString();
+			}
+			return converter.getAsString(context, component, value);
+		}
+		catch (Exception ex)
+		{
+			throw new FacesException();
+		}
+	}
+
+
 }

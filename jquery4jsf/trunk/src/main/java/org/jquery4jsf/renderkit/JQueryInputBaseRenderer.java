@@ -17,19 +17,24 @@
 package org.jquery4jsf.renderkit;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.custom.JQueryHtmlObject;
-import org.jquery4jsf.custom.ajax.AjaxEvent;
 
-public class JQueryInputBaseRenderer extends HtmlBasicInputRenderer {
+public abstract class JQueryInputBaseRenderer extends HtmlBasicInputRenderer implements JQueryRenderer {
 
+	public void encodeScript(FacesContext context, JQueryHtmlObject queryComponent) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+		responseWriter.write("\n");
+		responseWriter.write(getJSElement(context, (UIComponent) queryComponent).toJavaScriptCode());
+		responseWriter.write("\n");
+	}
+	
 	protected void encodeOptionComponentByType(StringBuffer sb, boolean value, String nameParameter, Object defaultValue){
 		RendererUtilities.createOptionComponentByType(sb, value, nameParameter, defaultValue);
 	}
@@ -65,11 +70,11 @@ public class JQueryInputBaseRenderer extends HtmlBasicInputRenderer {
 	protected void encodeInputText(HtmlInputText input, FacesContext context) throws IOException{
 		ResponseWriter responseWriter = context.getResponseWriter();
         responseWriter.startElement("input", input);
-        writeIdAttributeIfNecessary(context, responseWriter, input);
         responseWriter.writeAttribute("type", "text", null);
+        responseWriter.writeAttribute("id", input.getClientId(context), "clientId");
         responseWriter.writeAttribute("name", input.getClientId(context), "clientId");
         if(input.getValue() != null)
-            responseWriter.writeAttribute("value", getValue(input), "value");
+            responseWriter.writeAttribute("value", ComponentUtilities.getStringValue(context, input), "value");
         if(input.getStyleClass() != null)
             responseWriter.writeAttribute("class", input.getStyleClass(), "styleClass");
         if(input.getAccesskey() != null)

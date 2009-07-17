@@ -16,11 +16,18 @@
  */
 package org.jquery4jsf.utilities;
 
+import java.io.BufferedReader;
+import java.io.StringReader;
+import java.text.StringCharacterIterator;
+import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class TextUtilities {
-
+	
+	private static final String NEWLINE = "\n";
+	
     public static boolean isNumber(String str)
     {
         boolean isNum = false;
@@ -61,15 +68,78 @@ public final class TextUtilities {
     }
     
     private static final char[] REPLACEMENT_CHARS = new char[] {'\t', '\f', '\r', '\n'};
+    
     public static String cleanString(String statement) {
         String newString = statement.trim();
         for (int i = 0; i < REPLACEMENT_CHARS.length; i++) {
-        	newString = newString.replace(REPLACEMENT_CHARS[i], ' ');
+        	newString = newString.replace(REPLACEMENT_CHARS[i], ' ').trim();
         }
         return newString;
     }
 
-	public static boolean isStringVuota(String value) {
+    public static String addEscapeChar(String value){
+    	final StringBuffer result = new StringBuffer();
+    	final StringCharacterIterator iterator = new StringCharacterIterator(value);
+    	char character =  iterator.current();
+    	while (character != StringCharacterIterator.DONE ){
+    		switch (character) {
+			case '\\':
+				result.append("\\\\");
+				break;
+			case '\'':
+				result.append("\\'");
+				break;
+			case '"':
+				result.append("\\\"");
+				break;
+			case '%':
+				result.append("\\%");
+				break;
+			default:
+				result.append(character);
+				break;
+			}
+    		character = iterator.next();
+    	}
+    	return result.toString();
+    }
+    
+    public static String formatCode(String pCode) {
+    	String code = cleanString(pCode);
+    	StringBuffer out = new StringBuffer( code.length() );
+    	BufferedReader codeReader = new BufferedReader( new StringReader( code ) );
+    	String line;
+    	int    indent = 0;
+    	try {
+    		while( null != ( line = codeReader.readLine() ) ) {
+    			line = line.trim();
+    			if( line.startsWith( "}" ) ) {
+    				indent -= 2;
+    			}
+    			for(int spaceI = 0; spaceI < indent; spaceI++) {
+    				out.append( " " );
+    			}
+    			out.append( line );
+    			out.append( NEWLINE );
+    			if( line.endsWith( "{" ) ) {
+    				indent += 2;
+    			}
+    		}
+    		codeReader.close();
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	return out.toString();
+    }
+
+    public static String cleanHtml(String s) {
+    	s = cleanString(s);
+    	return s.replaceAll("^\\s+", "");
+    }
+
+    
+    public static boolean isStringVuota(String value) {
 		if (value == null 
 				|| value.trim().length() == 0 
 				|| value.trim().equalsIgnoreCase("null"))
@@ -78,7 +148,6 @@ public final class TextUtilities {
 			return false;
 		}
 	}
-	
 	
 	public static boolean getBooleanValue(String value){
 		if (isBoolean(value))
@@ -120,6 +189,17 @@ public final class TextUtilities {
 		}
 		return value;
 	}
-
-
+	
+	public static String toArray(List lista){
+		StringBuffer sb = new StringBuffer();
+		sb.append("[");
+		for (Iterator iterator = lista.iterator(); iterator.hasNext();) {
+			Object object = (Object) iterator.next();
+			sb.append(object.toString());
+			if (iterator.hasNext())
+				sb.append(",");
+		}
+		sb.append("]");
+		return sb.toString();
+	}
 }

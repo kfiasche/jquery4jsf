@@ -115,12 +115,8 @@ public class JSElement implements JSInterface {
 	}
 	
 	private String generaIdForJquery(String id){  
-		if (ignore)
+		if (ignore || id.indexOf("jQuery.escapeJSFClientId") > -1)
 			return id;
-	    String idNew = id.replaceAll(":", "\\\\\\\\:");
-	    if (idNew.startsWith("#")){
-	    	return "'" + idNew + "'";
-	    }
-	    return "'#".concat(idNew).concat("'");
+		return "jQuery.escapeJSFClientId('"+id+"')";
 	}
 }

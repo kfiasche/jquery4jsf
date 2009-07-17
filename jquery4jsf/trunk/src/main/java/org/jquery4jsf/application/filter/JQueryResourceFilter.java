@@ -39,24 +39,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
+import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.resource.ResourceContext;
+import org.jquery4jsf.utilities.JQueryUtilities;
+import org.jquery4jsf.utilities.TextUtilities;
 import org.xml.sax.InputSource;
 
 public final class JQueryResourceFilter implements Filter {
 
 	private static final String HEAD_SEARCH_PATTERN = "<title>";
 	private static final String END_TAG_CHAR_SEARCH_PATTERN = "</title>";
+	private static final String END_BODY_TAG_CHAR_SEARCH_PATTERN = "</body>";
 	private static final Pattern HEAD_PATTERN = Pattern.compile(HEAD_SEARCH_PATTERN, Pattern.CASE_INSENSITIVE);
 	private static final Pattern END_TAG_CHAR_PATTERN = Pattern.compile(END_TAG_CHAR_SEARCH_PATTERN, Pattern.CASE_INSENSITIVE);
-
 	private FilterConfig _filterConfig;
-
+	
 	public void init(FilterConfig filterConfig) throws ServletException {
-		_filterConfig = filterConfig;
+		_filterConfig = filterConfig;;
+		JQueryUtilities.getInstance(_filterConfig.getServletContext());
 	}
 
 	public void destroy() {
 		_filterConfig = null;
+		JQueryUtilities.reset();
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -70,24 +75,38 @@ public final class JQueryResourceFilter implements Filter {
 					&& isValidContentType(jQueryResponseWrapper.getContentType())){
 				String[] requestURISplitted = httpRequest.getRequestURI().split("/");
 				ResourceContext resourceContext = ResourceContext.getInstance();
-				Matcher headMatcher = HEAD_PATTERN.matcher(jQueryResponseWrapper.toString());
+				String responseHtml = jQueryResponseWrapper.toString();
+				Matcher headMatcher = HEAD_PATTERN.matcher(responseHtml);
+				Matcher bodyMatcher = END_TAG_CHAR_PATTERN.matcher(responseHtml);
 				boolean headMatchedBoolean = headMatcher.find();
-				PrintWriter printerWriter = httpResponse.getWriter();
-				if (headMatchedBoolean) {
-					int headMatchIndex = headMatcher.start();
-					String befor = jQueryResponseWrapper.toString().substring(0, headMatchIndex + 7);
-					printerWriter.write(befor);
-					Matcher endTagCharMatcher = END_TAG_CHAR_PATTERN.matcher(jQueryResponseWrapper.toString());
-					endTagCharMatcher.find(headMatchIndex);
-					int endTagCharIndex = endTagCharMatcher.start();
-					String after = jQueryResponseWrapper.toString().substring(headMatchIndex + 7, endTagCharIndex + 8);
-					printerWriter.write(after);
+				boolean bodyMatchedBoolean = bodyMatcher.find();
+				if (headMatchedBoolean && bodyMatchedBoolean) {
+					PrintWriter printerWriter = httpResponse.getWriter();
 					Collection resourceCollection = resourceContext.getResources();
 					String resourceConvertedToScriptElements = constructResourceToScriptTags(resourceCollection, requestURISplitted);
-					printerWriter.write(resourceConvertedToScriptElements);
-					printerWriter.write(jQueryResponseWrapper.toString().substring(endTagCharIndex + 8));
+					StringBuffer htmlResponseBuffer = new StringBuffer(responseHtml);
+					int endTitleTag = responseHtml.toLowerCase().indexOf(END_TAG_CHAR_SEARCH_PATTERN);
+					if (endTitleTag == -1){
+						printerWriter.write(responseHtml);
+						printerWriter.flush();
+						return;
+					}
+					htmlResponseBuffer.insert(endTitleTag+8, resourceConvertedToScriptElements);
+					int endBodyTag = htmlResponseBuffer.toString().toLowerCase().indexOf(END_BODY_TAG_CHAR_SEARCH_PATTERN);
+					if (endBodyTag == -1){
+						printerWriter.write(responseHtml);
+						printerWriter.flush();
+						return;
+					}
+					htmlResponseBuffer.insert(endBodyTag, writeJQueryScript());
+					String html = htmlResponseBuffer.toString();
+					
+					if (JQueryUtilities.getInstance().isHtmlCompressorEnabled()){
+						html = TextUtilities.cleanHtml(html);
+					}
+					printerWriter.write(html);
+					printerWriter.flush();
 				} 
-				printerWriter.flush();
 				resourceContext.release();
 			}
 		}
@@ -146,6 +165,15 @@ public final class JQueryResourceFilter implements Filter {
 		return scriptElements.toString();
 	}
 
+	private String writeJQueryScript(){
+		StringBuffer scriptElements = new StringBuffer();
+		scriptElements.append("<script type=\"text/javascript\">\n");
+		scriptElements.append(JSDocumentElement.getInstance().toJavaScriptCode());
+		scriptElements.append("</script>\n");
+		JSDocumentElement.reset();
+		return scriptElements.toString();
+	}
+	
 	private boolean isValidContentType(String contentType) {
 		return contentType.startsWith("text/html")
 				|| contentType.startsWith("text/xml")
