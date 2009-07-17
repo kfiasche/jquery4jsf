@@ -560,6 +560,17 @@ $.widget("ui.tabs", {
 			span.data('label.tabs', span.html()).html(o.spinner);
 		}
 
+		try{
+	        //Begin jquery4jsf add view state
+	        var form = $.find('form:first'); 
+	        //Add extra data
+	        if (form != null){
+				$.each($(form).formToArray(), function() {
+					o.ajaxOptions.data[this.name] = typeof this.value == "function" ? this.value() : this.value;
+				});
+	        }
+		}catch(e){}
+		
 		this.xhr = $.ajax($.extend({}, o.ajaxOptions, {
 			url: url,
 			success: function(r, s) {

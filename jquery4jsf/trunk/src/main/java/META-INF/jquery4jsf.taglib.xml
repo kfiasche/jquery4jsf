@@ -54,14 +54,7 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 			<renderer-type>org.jquery4jsf.AjaxStatusRenderer</renderer-type>
 		</component>
 	</tag>
-	<tag>
-		<tag-name>alertDialog</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.HtmlAlertDialog</component-type>
-			<renderer-type>org.jquery4jsf.AlertDialogRenderer</renderer-type>
-			<handler-class>org.jquery4jsf.custom.dialog.AlertDialogHandler</handler-class>
-		</component>
-	</tag>
+
 	<tag>
 		<tag-name>autoComplete</tag-name>
 		<component>
@@ -106,23 +99,10 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
-		<tag-name>column</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.HtmlColumn</component-type>
-		</component>
-	</tag>
-	<tag>
 		<tag-name>commandLink</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.CommandLink</component-type>
 			<renderer-type>org.jquery4jsf.CommandLinkRenderer</renderer-type>
-		</component>
-	</tag>
-	<tag>
-		<tag-name>dataTableEx</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.HtmlDataTableEx</component-type>
-			<renderer-type>org.jquery4jsf.HtmlDataTableExRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>
@@ -168,24 +148,10 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
-		<tag-name>fileUploader</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.HtmlFileUploader</component-type>
-			<renderer-type>org.jquery4jsf.FileUploaderRenderer</renderer-type>
-		</component>
-	</tag>
-	<tag>
 		<tag-name>icon</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlIcon</component-type>
 			<renderer-type>org.jquery4jsf.IconRenderer</renderer-type>
-		</component>
-	</tag>
-	<tag>
-		<tag-name>layout</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.Layout</component-type>
-			<renderer-type>org.jquery4jsf.LayoutRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>
@@ -200,26 +166,6 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		<component>
 			<component-type>org.jquery4jsf.HtmlInputMask</component-type>
 			<renderer-type>org.jquery4jsf.InputMaskRenderer</renderer-type>
-		</component>
-	</tag>
-	<tag>
-		<tag-name>menu</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.HtmlMenu</component-type>
-			<renderer-type>org.jquery4jsf.HtmlMenuRenderer</renderer-type>
-		</component>
-	</tag>
-	<tag>
-		<tag-name>menuBar</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.HtmlMenuBar</component-type>
-			<renderer-type>org.jquery4jsf.HtmlMenuBarRenderer</renderer-type>
-		</component>
-	</tag>
-	<tag>
-		<tag-name>menuItem</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.HtmlMenuItem</component-type>
 		</component>
 	</tag>
 	<tag>
@@ -272,13 +218,6 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
-		<tag-name>outputMedia</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.OutputMedia</component-type>
-			<renderer-type>org.jquery4jsf.OutputMediaRenderer</renderer-type>
-		</component>
-	</tag>
-	<tag>
 		<tag-name>outputScript</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.OutputScript</component-type>
@@ -286,17 +225,18 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
-		<tag-name>outputText</tag-name>
+		<tag-name>overlay</tag-name>
 		<component>
-			<component-type>org.jquery4jsf.OutputText</component-type>
-			<renderer-type>org.jquery4jsf.OutputTextRenderer</renderer-type>
+			<component-type>org.jquery4jsf.HtmlOverlay</component-type>
+			<renderer-type>org.jquery4jsf.OverlayRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>
-		<tag-name>overlay</tag-name>
+		<tag-name>paginator</tag-name>
 		<component>
-			<component-type>org.jquery4jsf.HtmlOverflow</component-type>
-			<renderer-type>org.jquery4jsf.OverflowRenderer</renderer-type>
+			<component-type>org.jquery4jsf.Paginator</component-type>
+			<renderer-type>org.jquery4jsf.PaginatorRenderer</renderer-type>
+			<handler-class>org.jquery4jsf.custom.paginator.PaginatorHandler</handler-class>
 		</component>
 	</tag>
 	<tag>
@@ -342,25 +282,17 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 		</component>
 	</tag>
 	<tag>
-		<tag-name>scriptCollector</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.ScriptCollector</component-type>
-			<renderer-type>org.jquery4jsf.ScriptCollectorRenderer</renderer-type>
-			<handler-class>org.jquery4jsf.custom.scriptcollector.ScriptCollectorHandler</handler-class>
-		</component>
-	</tag>
-	<tag>
-		<tag-name>selectable</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.HtmlSelectable</component-type>
-			<renderer-type>org.jquery4jsf.SelectableRenderer</renderer-type>
-		</component>
-	</tag>
-	<tag>
 		<tag-name>selectManyListbox</tag-name>
 		<component>
 			<component-type>org.jquery4jsf.HtmlSelectManyListbox</component-type>
 			<renderer-type>org.jquery4jsf.SelectManyListboxRenderer</renderer-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>selectMenu</tag-name>
+		<component>
+			<component-type>org.jquery4jsf.HtmlSelectMenu</component-type>
+			<renderer-type>org.jquery4jsf.SelectMenuRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>
@@ -417,20 +349,6 @@ Taglib 1.0//EN" "facelet-taglib_1_0.dtd">
 			<component-type>org.jquery4jsf.HtmlTooltip</component-type>
 			<renderer-type>org.jquery4jsf.TooltipRenderer</renderer-type>
 			<handler-class>org.jquery4jsf.custom.tooltip.TooltipHandler</handler-class>
-		</component>
-	</tag>
-	<tag>
-		<tag-name>topLink</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.HtmlTopLink</component-type>
-			<renderer-type>org.jquery4jsf.HtmlTopLinkRenderer</renderer-type>
-		</component>
-	</tag>
-	<tag>
-		<tag-name>treeView</tag-name>
-		<component>
-			<component-type>org.jquery4jsf.HtmlTreeView</component-type>
-			<renderer-type>org.jquery4jsf.HtmlTreeViewRenderer</renderer-type>
 		</component>
 	</tag>
 	<tag>
