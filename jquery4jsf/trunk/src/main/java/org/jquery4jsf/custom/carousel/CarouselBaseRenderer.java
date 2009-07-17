@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class CarouselBaseRenderer extends JQueryBaseRenderer {
+public abstract class CarouselBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Carousel carousel , FacesContext context) {
 		options.append(" {\n");

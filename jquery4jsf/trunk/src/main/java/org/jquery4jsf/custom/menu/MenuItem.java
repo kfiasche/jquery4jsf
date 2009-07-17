@@ -17,9 +17,6 @@ package org.jquery4jsf.custom.menu;
 
 import org.jquery4jsf.component.ext.HtmlBaseCommandComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.MethodBinding;
@@ -35,7 +32,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.jquery4jsf.utilities.MessageFactory;
 
-public class MenuItem extends HtmlBaseCommandComponent implements JQueryHtmlObject,AjaxComponent {
+public class MenuItem extends HtmlBaseCommandComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlMenuItem";
@@ -116,11 +113,11 @@ public class MenuItem extends HtmlBaseCommandComponent implements JQueryHtmlObje
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[6];
 		values[0] = super.saveState(context);
-		values[1] = ajaxSubmit;
-		values[2] = label;
-		values[3] = disabled;
-		values[4] = disabledClass;
-		values[5] = target;
+		values[1] = this.ajaxSubmit;
+		values[2] = this.label;
+		values[3] = this.disabled;
+		values[4] = this.disabledClass;
+		values[5] = this.target;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -156,13 +153,5 @@ public class MenuItem extends HtmlBaseCommandComponent implements JQueryHtmlObje
 			return localValue;
 		ValueBinding vb = getValueBinding(valueBindingName);
 		return vb != null ? vb.getValue(getFacesContext()) : null;
-	}
-
-	public void encodePartially(FacesContext facesContext) throws IOException {
-		Renderer renderer = getRenderer(facesContext);
-
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
-		}
 	}
 }

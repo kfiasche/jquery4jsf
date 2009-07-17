@@ -17,9 +17,6 @@ package org.jquery4jsf.custom.outputbody;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
@@ -27,7 +24,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class OutputBody extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class OutputBody extends HtmlBaseOutputComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.OutputBody";
@@ -193,18 +190,18 @@ public class OutputBody extends HtmlBaseOutputComponent implements JQueryHtmlObj
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[13];
 		values[0] = super.saveState(context);
-		values[1] = onclick;
-		values[2] = ondblclick;
-		values[3] = onload;
-		values[4] = onmousedown;
-		values[5] = onmousemove;
-		values[6] = onmouseout;
-		values[7] = onmouseover;
-		values[8] = onmouseup;
-		values[9] = onkeydown;
-		values[10] = onkeypress;
-		values[11] = onkeyup;
-		values[12] = onunload;
+		values[1] = this.onclick;
+		values[2] = this.ondblclick;
+		values[3] = this.onload;
+		values[4] = this.onmousedown;
+		values[5] = this.onmousemove;
+		values[6] = this.onmouseout;
+		values[7] = this.onmouseover;
+		values[8] = this.onmouseup;
+		values[9] = this.onkeydown;
+		values[10] = this.onkeypress;
+		values[11] = this.onkeyup;
+		values[12] = this.onunload;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -226,13 +223,5 @@ public class OutputBody extends HtmlBaseOutputComponent implements JQueryHtmlObj
 
 	public String[] getResources() {
 		return resources;
-	}
-
-	public void encodePartially(FacesContext facesContext) throws IOException {
-		Renderer renderer = getRenderer(facesContext);
-
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
-		}
 	}
 }

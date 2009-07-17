@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class HtmlQuickSearchBaseRenderer extends JQueryInputBaseRenderer {
+public abstract class HtmlQuickSearchBaseRenderer extends JQueryInputBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, HtmlQuickSearch htmlQuickSearch , FacesContext context) {
 		options.append(" {\n");

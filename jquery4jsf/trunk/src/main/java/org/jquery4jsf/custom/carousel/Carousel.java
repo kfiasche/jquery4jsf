@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.carousel;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -28,7 +26,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class Carousel extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class Carousel extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlCarousel";
@@ -73,6 +71,7 @@ public class Carousel extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"carousel/jquery.jcarousel.js",
 			"carousel/jquery.jcarousel.css",
 			"carousel/skins/"+getSkin()+"/skin.css"
@@ -438,38 +437,38 @@ public class Carousel extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[33];
 		values[0] = super.saveState(context);
-		values[1] = vertical;
-		values[2] = skin;
-		values[3] = skinCss;
-		values[4] = skinStyleClass;
-		values[5] = start;
-		values[6] = offset;
-		values[7] = size;
-		values[8] = scroll;
-		values[9] = visible;
-		values[10] = animation;
-		values[11] = easing;
-		values[12] = auto;
-		values[13] = wrap;
-		values[14] = initCallback;
-		values[15] = itemLoadCallbackBefore;
-		values[16] = itemLoadCallbackAfter;
-		values[17] = itemFirstInCallbackBefore;
-		values[18] = itemFirstInCallbackAfter;
-		values[19] = itemFirstOutCallbackBefore;
-		values[20] = itemFirstOutCallbackAfter;
-		values[21] = itemLastInCallbackBefore;
-		values[22] = itemLastInCallbackAfter;
-		values[23] = itemLastOutCallbackBefore;
-		values[24] = itemLastOutCallbackAfter;
-		values[25] = itemVisibleInCallbackBefore;
-		values[26] = itemVisibleInCallbackAfter;
-		values[27] = itemVisibleOutCallbackBefore;
-		values[28] = itemVisibleOutCallbackAfter;
-		values[29] = buttonNextCallback;
-		values[30] = buttonPrevCallback;
-		values[31] = buttonNextEvent;
-		values[32] = buttonPrevEvent;
+		values[1] = this.vertical;
+		values[2] = this.skin;
+		values[3] = this.skinCss;
+		values[4] = this.skinStyleClass;
+		values[5] = this.start;
+		values[6] = this.offset;
+		values[7] = this.size;
+		values[8] = this.scroll;
+		values[9] = this.visible;
+		values[10] = this.animation;
+		values[11] = this.easing;
+		values[12] = this.auto;
+		values[13] = this.wrap;
+		values[14] = this.initCallback;
+		values[15] = this.itemLoadCallbackBefore;
+		values[16] = this.itemLoadCallbackAfter;
+		values[17] = this.itemFirstInCallbackBefore;
+		values[18] = this.itemFirstInCallbackAfter;
+		values[19] = this.itemFirstOutCallbackBefore;
+		values[20] = this.itemFirstOutCallbackAfter;
+		values[21] = this.itemLastInCallbackBefore;
+		values[22] = this.itemLastInCallbackAfter;
+		values[23] = this.itemLastOutCallbackBefore;
+		values[24] = this.itemLastOutCallbackAfter;
+		values[25] = this.itemVisibleInCallbackBefore;
+		values[26] = this.itemVisibleInCallbackAfter;
+		values[27] = this.itemVisibleOutCallbackBefore;
+		values[28] = this.itemVisibleOutCallbackAfter;
+		values[29] = this.buttonNextCallback;
+		values[30] = this.buttonPrevCallback;
+		values[31] = this.buttonNextEvent;
+		values[32] = this.buttonPrevEvent;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -513,11 +512,11 @@ public class Carousel extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

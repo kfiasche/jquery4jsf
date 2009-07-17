@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class InputMaskBaseRenderer extends JQueryInputBaseRenderer {
+public abstract class InputMaskBaseRenderer extends JQueryInputBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, InputMask inputMask , FacesContext context) {
 		options.append(" {\n");

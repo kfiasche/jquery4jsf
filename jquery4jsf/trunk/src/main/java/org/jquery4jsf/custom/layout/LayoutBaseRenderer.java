@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class LayoutBaseRenderer extends JQueryBaseRenderer {
+public abstract class LayoutBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Layout layout , FacesContext context) {
 		options.append(" {\n");

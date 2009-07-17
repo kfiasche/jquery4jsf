@@ -44,9 +44,13 @@ public class ColorPickerRenderer extends ColorPickerBaseRenderer {
         if(component instanceof ColorPicker)
         	colorPicker = (ColorPicker)component;
         
-        ResponseWriter responseWriter = context.getResponseWriter();
         encodeResources(colorPicker);
-        
+        encodeColorPickerMarkup(context, colorPicker);
+        encodeColorPickerScript(context, colorPicker);
+	}
+	
+	private void encodeColorPickerMarkup(FacesContext context, ColorPicker colorPicker) throws IOException{
+		ResponseWriter responseWriter = context.getResponseWriter();
         UIComponent parent = colorPicker.getParent();
         String clientId = null;
         if (parent instanceof UIInput && !colorPicker.isFlat()){
@@ -61,38 +65,48 @@ public class ColorPickerRenderer extends ColorPickerBaseRenderer {
         else{
         	clientId = colorPicker.getClientId(context);
         	responseWriter.startElement(HTML.TAG_P, colorPicker);
-        	writeIdAttributeIfNecessary(context, responseWriter, component);
+        	writeIdAttributeIfNecessary(context, responseWriter, colorPicker);
         	responseWriter.endElement(HTML.TAG_P);
         	HtmlInputHidden secret = new HtmlInputHidden();
         	String colorPickerId = colorPicker.getId() + "hidden";
         	secret.setId(colorPickerId);
         	String colorPickerhdd = clientId + "hidden";
         	secret.setValue(colorPicker.getColor());
-        	secret.setParent(RendererUtilities.getForm(context, component));
+        	secret.setParent(RendererUtilities.getForm(context, colorPicker));
         	secret.encodeBegin(context);
         	secret.encodeChildren(context);
         	secret.encodeEnd(context);
         	colorPicker.getAttributes().put("target", RendererUtilities.getJQueryId(colorPickerhdd));
         }
+	}
+	
+	private void encodeColorPickerScript(FacesContext context, ColorPicker colorPicker){
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, colorPicker));
+        documentElement.addFunctionToReady(function);
+	}
+	
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+        ColorPicker colorPicker = null;
+        if(component instanceof ColorPicker)
+        	colorPicker = (ColorPicker)component;
         
-        
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
+		String clientId = null;
+		if (colorPicker.getParent() instanceof UIInput && !colorPicker.isFlat()){
+			clientId = colorPicker.getParent().getClientId(context);
+		}
+		else{
+			clientId = colorPicker.getClientId(context);
+		}
         JSElement element = new JSElement(clientId);
         JSAttribute jsColorPicker = new JSAttribute("ColorPicker", false);
         StringBuffer sbOption = new StringBuffer();
         jsColorPicker.addValue(encodeOptionComponent(sbOption, colorPicker, context));
         element.addAttribute(jsColorPicker);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
-        
+        return element;
 	}
-
+	
 	public void decode(FacesContext context, UIComponent component) {
         if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));

@@ -28,53 +28,12 @@ import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 public class DraggableRenderer extends DraggableBaseRenderer {
 
 	public static final String RENDERER_TYPE = Draggable.DEFAULT_RENDERER;
-	
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-	    if(context == null || component == null)
-            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-        if(!component.isRendered())
-            return;
 
-        Draggable draggable = null;
-        if(component instanceof Draggable)
-            draggable = (Draggable)component;
-        ResponseWriter responseWriter = context.getResponseWriter();
-        
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = draggable.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-        
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        String clientId = RendererUtilities.encodeIdInteractions(component, context);
-        
-        JSElement element = new JSElement(clientId);
-        JSAttribute jsDraggable = new JSAttribute("draggable", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsDraggable.addValue(encodeOptionComponent(sbOption, draggable, context));
-        element.addAttribute(jsDraggable);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
-        
-        if (RendererUtilities.isUniqueId(component)){
-        	encodeStartDivWrapper(context, draggable, clientId);
-        }
-	}
-
-	private void encodeStartDivWrapper(FacesContext context, Draggable draggable, String clientId) throws IOException {
+	private void encodeDraggableWrapper(FacesContext context, Draggable draggable, String clientId) throws IOException {
 		ResponseWriter responseWriter = context.getResponseWriter();
 		responseWriter.startElement(HTML.TAG_DIV, draggable);
     	responseWriter.writeAttribute("id", clientId, "id");
@@ -87,11 +46,8 @@ public class DraggableRenderer extends DraggableBaseRenderer {
     	if (draggable.getStyle() != null){
     		responseWriter.writeAttribute("style", draggable.getStyle() , "style");
     	}
-	}
-	
-	private void encodeEndDivWrapper(FacesContext context) throws IOException{
-        ResponseWriter responseWriter = context.getResponseWriter();
-        responseWriter.endElement(HTML.TAG_DIV);
+    	RendererUtilities.renderChildren(context, draggable);
+    	responseWriter.endElement(HTML.TAG_DIV);
 	}
 	
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
@@ -99,10 +55,51 @@ public class DraggableRenderer extends DraggableBaseRenderer {
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
             return;
+
+        Draggable draggable = null;
+        if(component instanceof Draggable)
+            draggable = (Draggable)component;
         
-        if (RendererUtilities.isUniqueId(component)){
-        	encodeEndDivWrapper(context);
+        encodeResources(draggable);
+        encodeDraggableScript(context, draggable);
+        encodeDraggableMarkup(context, draggable);
+	}
+
+	private void encodeDraggableScript(FacesContext context, Draggable draggable) {
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, draggable));
+        documentElement.addFunctionToReady(function);
+	}
+
+	private void encodeDraggableMarkup(FacesContext context, Draggable draggable) throws IOException {
+        if (RendererUtilities.isUniqueId(draggable)){
+        	String clientId = RendererUtilities.encodeClientIdInteractions(draggable, context);
+        	encodeDraggableWrapper(context, draggable, clientId);
         }
+        else{
+        	RendererUtilities.renderChildren(context, draggable);
+        }
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        Draggable draggable = null;
+        if(component instanceof Draggable)
+            draggable = (Draggable)component;
+        String clientId = RendererUtilities.encodeClientIdInteractions(draggable, context);   
+        JSElement element = new JSElement(clientId);
+        JSAttribute jsDraggable = new JSAttribute("draggable", false);
+        StringBuffer sbOption = new StringBuffer();
+        jsDraggable.addValue(encodeOptionComponent(sbOption, draggable, context));
+        element.addAttribute(jsDraggable);
+        return element;
+	}
+
+	public boolean getRendersChildren() {
+		return true;
+	}
+	
+	public void encodeChildren(FacesContext arg0, UIComponent arg1) throws IOException {
 	}
 	
 }

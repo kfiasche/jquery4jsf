@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.ajax;
 
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -27,7 +25,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class AjaxStatus extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
+public class AjaxStatus extends UIComponentBase implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlAjaxStatus";
@@ -44,7 +42,8 @@ public class AjaxStatus extends UIComponentBase implements JQueryHtmlObject,Ajax
 	public AjaxStatus() {
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
-			"jquery/jquery.js"
+			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js"
 		};
 	}
 
@@ -110,11 +109,11 @@ public class AjaxStatus extends UIComponentBase implements JQueryHtmlObject,Ajax
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[6];
 		values[0] = super.saveState(context);
-		values[1] = onajaxStart;
-		values[2] = onajaxSuccess;
-		values[3] = onajaxError;
-		values[4] = onajaxComplete;
-		values[5] = onajaxStop;
+		values[1] = this.onajaxStart;
+		values[2] = this.onajaxSuccess;
+		values[3] = this.onajaxError;
+		values[4] = this.onajaxComplete;
+		values[5] = this.onajaxStop;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -156,11 +155,11 @@ public class AjaxStatus extends UIComponentBase implements JQueryHtmlObject,Ajax
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

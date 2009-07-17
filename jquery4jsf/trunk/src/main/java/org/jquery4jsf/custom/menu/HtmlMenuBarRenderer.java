@@ -22,6 +22,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.utilities.MessageFactory;
@@ -61,6 +62,10 @@ public class HtmlMenuBarRenderer extends HtmlMenuBarBaseRenderer {
 	}
 
 	public void encodeChildren(FacesContext arg0, UIComponent arg1) throws IOException {
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+		return null;
 	}
 	
 }

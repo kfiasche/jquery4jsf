@@ -22,6 +22,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
@@ -105,4 +106,10 @@ public class PanelRenderer extends JQueryBaseRenderer {
 	public boolean getRendersChildren() {
 		return true;
 	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+		return null;
+	}
+
+
 }

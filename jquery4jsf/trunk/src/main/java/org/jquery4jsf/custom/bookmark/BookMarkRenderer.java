@@ -97,21 +97,21 @@ public class BookMarkRenderer extends BookMarkBaseRenderer {
 	}
 
 	protected void encodeBookMarkScript(FacesContext context, BookMark bookMark) throws IOException{
-		ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, bookMark));
+        documentElement.addFunctionToReady(function);
+	}
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+        BookMark bookMark = null;
+        if(component instanceof BookMark)
+            bookMark = (BookMark)component;
         JSElement element = new JSElement(bookMark.getClientId(context));
         JSAttribute jsBookMark = new JSAttribute("bookmark", false);
         StringBuffer sbOption = new StringBuffer();
         jsBookMark.addValue(encodeOptionComponent(sbOption, bookMark, context));
         element.addAttribute(jsBookMark);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(bookMark, responseWriter, sb);
+        return element;
 	}
 	
 	

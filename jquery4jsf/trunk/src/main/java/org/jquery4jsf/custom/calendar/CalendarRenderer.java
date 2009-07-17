@@ -27,6 +27,7 @@ import org.jquery4jsf.custom.datepicker.DatePickerRenderer;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
+import org.jquery4jsf.javascript.JSOperationElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
@@ -43,7 +44,7 @@ public class CalendarRenderer extends DatePickerRenderer {
 		return RendererUtilities.getActionURL(context);
 	}
 
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
@@ -53,33 +54,53 @@ public class CalendarRenderer extends DatePickerRenderer {
         if(component instanceof Calendar)
         	calendar = (Calendar)component;
         
-        ResponseWriter responseWriter = context.getResponseWriter();
-        
         encodeResources(calendar);
         encodeLocale(context, calendar);
-        
-        String clientId = component.getClientId(context);
-        responseWriter.startElement(HTML.TAG_DIV, component);
-        responseWriter.writeAttribute("id", clientId , "id");
+        encodeCalendarMarkup(context, calendar);
+        encodeCalendarScript(context, calendar);
+	}
+	
+	private void encodeCalendarScript(FacesContext context, Calendar calendar) {
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, calendar));
+        documentElement.addFunctionToReady(function);
+	}
+
+	private void encodeCalendarMarkup(FacesContext context, Calendar calendar) throws IOException{
+		ResponseWriter responseWriter = context.getResponseWriter();
+		String clientId = calendar.getClientId(context);
+        responseWriter.startElement(HTML.TAG_DIV, calendar);
+        responseWriter.writeAttribute("id", calendar.getClientId(context) , "id");
         responseWriter.endElement(HTML.TAG_DIV);
         encodeHiddenInput(context, clientId.concat("_input"));
         calendar.setAltField(clientId.concat("_input"));
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(calendar.getClientId(context));
-        JSAttribute jsDatePicker = new JSAttribute("datepicker", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsDatePicker.addValue(encodeOptionComponent(sbOption, calendar, context));
-        element.addAttribute(jsDatePicker);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
 	}
 	
+	private JSElement getJSElementLocale(FacesContext context, DatePicker datePicker){
+		JSOperationElement operationElement = new JSOperationElement("");
+		String jQueryId = RendererUtilities.getJQueryId(datePicker.getClientId(context));
+		operationElement.addOperation("\n "+RendererUtilities.getJQueryVarWidget()+"("+jQueryId.concat(").datepicker("+RendererUtilities.getJQueryVarWidget()+".datepicker.regional['"+datePicker.getLocale()+"']);" ));
+		operationElement.addOperation("\n "+RendererUtilities.getJQueryVarWidget()+"("+jQueryId.concat(").datepicker('option', "+RendererUtilities.getJQueryVarWidget()+".extend("+encodeOptionComponent(new StringBuffer(), datePicker, context)+", \n "+RendererUtilities.getJQueryVarWidget()+".datepicker.regional['"+datePicker.getLocale()+"']));" ));
+		return operationElement;
+	}
+	
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+		Calendar calendar = null;
+        if(component instanceof Calendar)
+        	calendar = (Calendar)component;
+        
+        if (calendar.getLocale() != null){
+        	return  getJSElementLocale(context, calendar);
+        }
+		JSElement element = new JSElement(calendar.getClientId(context));
+		JSAttribute jsDatePicker = new JSAttribute("datepicker", false);
+		StringBuffer sbOption = new StringBuffer();
+		String options = encodeOptionComponent(sbOption, calendar, context);
+		jsDatePicker.addValue(options);
+		element.addAttribute(jsDatePicker);
+		return element;
+	}
 	public void decode(FacesContext context, UIComponent component) {
 		DatePicker datePicker = (DatePicker) component;
 		String clientId = datePicker.getClientId(context);

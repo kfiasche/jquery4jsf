@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.panel;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -27,7 +25,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class Panel extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class Panel extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlPanel";
@@ -86,9 +84,9 @@ public class Panel extends HtmlBaseOutputComponent implements JQueryHtmlObject,A
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[4];
 		values[0] = super.saveState(context);
-		values[1] = header;
-		values[2] = headerClass;
-		values[3] = contentClass;
+		values[1] = this.header;
+		values[2] = this.headerClass;
+		values[3] = this.contentClass;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -103,11 +101,11 @@ public class Panel extends HtmlBaseOutputComponent implements JQueryHtmlObject,A
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

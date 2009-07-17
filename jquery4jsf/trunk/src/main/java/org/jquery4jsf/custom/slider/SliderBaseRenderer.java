@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class SliderBaseRenderer extends JQueryBaseRenderer {
+public abstract class SliderBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Slider slider , FacesContext context) {
 		options.append(" {\n");

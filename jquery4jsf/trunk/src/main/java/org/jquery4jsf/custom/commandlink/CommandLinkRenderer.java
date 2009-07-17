@@ -65,10 +65,17 @@ public class CommandLinkRenderer extends CommandLinkBaseRenderer {
 	}
 
 	protected void encodeCommandLinkScript(FacesContext context, CommandLink commandLink) throws IOException {
-		ResponseWriter responseWriter = context.getResponseWriter();
-		StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, commandLink));
+        documentElement.addFunctionToReady(function);
+	}
+	
+	
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+		CommandLink commandLink = null;
+        if (component instanceof CommandLink)
+        	commandLink = (CommandLink)component;
         JSElement buttonElement = new JSElement(commandLink.getClientId(context));
         UIForm uiForm = RendererUtilities.getForm(context, commandLink);
         if (uiForm == null){
@@ -88,19 +95,22 @@ public class CommandLinkRenderer extends CommandLinkBaseRenderer {
         jsFnOnClick.addJSElement(jsOperationElement);
         jsButton.addValue(jsFnOnClick.toJavaScriptCode());
         buttonElement.addAttribute(jsButton);
-        JSFunction function = new JSFunction();
-        function.addJSElement(buttonElement);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(commandLink, responseWriter, sb); 
+        return buttonElement;
 	}
-	
 	
 	protected String encodeOptionComponent(StringBuffer options, CommandLink commandLink , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, commandLink.getTarget(), "target", null);
-		if (JQueryUtilities.isTacconiteEnabled()) encodeOptionComponentByType(options, "xml", "dataType", null);
+		String targetJQ = null;
+		String target = commandLink.getTarget();
+		if(target != null){
+			targetJQ = RendererUtilities.getJQueryId(target);
+		}
+		else{
+			UIForm form = RendererUtilities.getForm(context, commandLink);
+			targetJQ = RendererUtilities.getJQueryId(form.getClientId(context));
+		}
+		encodeOptionComponentByType(options,targetJQ, "target", null);
+		if (JQueryUtilities.getInstance().isTacconiteEnabled()) encodeOptionComponentByType(options, "xml", "dataType", null);
 		encodeOptionComponentByType(options, commandLink.getCharset(), "charset", null);
 		encodeOptionComponentByType(options, commandLink.getCoords(), "coords", null);
 		encodeOptionComponentByType(options, commandLink.getHreflang(), "hreflang", null);

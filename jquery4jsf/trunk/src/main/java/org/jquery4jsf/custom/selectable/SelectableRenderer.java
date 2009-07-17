@@ -16,6 +16,16 @@
  */
 package org.jquery4jsf.custom.selectable;
 
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+
+import org.jquery4jsf.javascript.JSElement;
+
 public class SelectableRenderer extends SelectableBaseRenderer {
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

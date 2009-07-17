@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class LightBoxBaseRenderer extends JQueryBaseRenderer {
+public abstract class LightBoxBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, LightBox lightBox , FacesContext context) {
 		options.append(" {\n");

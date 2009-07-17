@@ -56,21 +56,22 @@ public class AutoCompleteRenderer extends AutoCompleteBaseRenderer implements Aj
 	}
 	
 	protected void encodeAutoCompleteScript(FacesContext context, AutoComplete autoComplete) throws IOException{
-		ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, autoComplete));
+        documentElement.addFunctionToReady(function);
+	}
+	
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+        AutoComplete autoComplete = null;
+        if(component instanceof AutoComplete)
+            autoComplete = (AutoComplete)component;
         JSElement element = new JSElement(autoComplete.getClientId(context));
         JSAttribute jsAutocomplete = new JSAttribute("autocomplete", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsAutocomplete.addValue(encodeOptionComponent(sbOption, autoComplete, context));
+        StringBuffer options = new StringBuffer();
+        jsAutocomplete.addValue(encodeOptionComponent(options, autoComplete, context));
         element.addAttribute(jsAutocomplete);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(autoComplete, responseWriter, sb);
+        return element;
 	}
 	
 	public void encodeChildren(FacesContext context, UIComponent component) {

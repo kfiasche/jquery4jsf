@@ -200,7 +200,7 @@ public class AutoCompleteTag extends UIComponentTagBase {
 		setStringProperty(getFacesContext(), component, "onformatItem", onformatItem);
 		setStringProperty(getFacesContext(), component, "onformatMatch", onformatMatch);
 		setStringProperty(getFacesContext(), component, "onformatResult", onformatResult);
-		setMethodBindingProperty(getFacesContext(), component, "oncomplete", oncomplete);
+		setMethodBindingProperty(getFacesContext(), component, "oncomplete", oncomplete,new Class[]{javax.faces.context.FacesContext.class} );
 	}
 
 	public String getComponentType() {

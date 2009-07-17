@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class SimplyScrollBaseRenderer extends JQueryBaseRenderer {
+public abstract class SimplyScrollBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, SimplyScroll simplyScroll , FacesContext context) {
 		options.append(" {\n");

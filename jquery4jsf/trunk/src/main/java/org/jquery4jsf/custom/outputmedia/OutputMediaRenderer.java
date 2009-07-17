@@ -15,34 +15,7 @@
  */
 package org.jquery4jsf.custom.outputmedia;
 
-import javax.faces.context.FacesContext;
+import org.jquery4jsf.renderkit.HtmlBasicRenderer;
 
-import org.jquery4jsf.renderkit.JQueryBaseRenderer;
-
-public class OutputMediaRenderer extends JQueryBaseRenderer {
-
-	protected String encodeOptionComponent(StringBuffer options, OutputMedia outputMedia , FacesContext context) {
-		options.append(" {\n");
-		encodeOptionComponentByType(options, outputMedia.getStyle(), "style", null);
-		encodeOptionComponentByType(options, outputMedia.getStyleClass(), "styleClass", null);
-		encodeOptionComponentByType(options, outputMedia.isNospan(), "nospan", null);
-		encodeOptionComponentByType(options, outputMedia.isEscape(), "escape", null);
-		encodeOptionComponentByType(options, outputMedia.getEffect(), "effect", null);
-		encodeOptionComponentByType(options, outputMedia.getEventEffect(), "eventEffect", null);
-		if (options.toString().endsWith(", \n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-		}
-		boolean noParams = false;
-		if (options.toString().endsWith(" {\n")){
-			String stringa = options.substring(0, options.length()-3);
-			options = new StringBuffer(stringa);
-			noParams = true;
-		}
-		if (!noParams)
-		{
-			options.append(" }");
-		}
-		return options.toString();
-	}
+public class OutputMediaRenderer extends HtmlBasicRenderer {
 }

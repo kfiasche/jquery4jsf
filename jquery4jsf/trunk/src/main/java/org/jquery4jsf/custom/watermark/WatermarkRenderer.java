@@ -18,19 +18,15 @@ package org.jquery4jsf.custom.watermark;
 import java.io.IOException;
 import java.lang.String;
 
-import org.jquery4jsf.custom.datepicker.DatePicker;
-import org.jquery4jsf.custom.spinner.Spinner;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
-import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
 
 public class WatermarkRenderer extends WatermarkBaseRenderer {
 
@@ -63,22 +59,23 @@ public class WatermarkRenderer extends WatermarkBaseRenderer {
 	}
 
 	private void encodeWatermarkScript(FacesContext context, Watermark watermark) throws IOException {
-        ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        String clientId = RendererUtilities.encodeIdInteractions(watermark, context);
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, watermark));
+        documentElement.addFunctionToReady(function);
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        Watermark watermark = null;
+        if(component instanceof Watermark)
+        	watermark = (Watermark)component;
+        String clientId = RendererUtilities.encodeClientIdInteractions(watermark, context);
         JSElement element = new JSElement(clientId);
         JSAttribute jsWatermark = new JSAttribute("watermark", false);
         StringBuffer sbOption = new StringBuffer();
         jsWatermark.addValue(encodeOptionComponent(sbOption, watermark, context));
         element.addAttribute(jsWatermark);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(watermark, responseWriter, sb);
+		return element;
 	}
 	
 }

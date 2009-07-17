@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.calendar;
 
 import org.jquery4jsf.custom.datepicker.DatePicker;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -32,7 +30,7 @@ import javax.faces.validator.Validator;
 import javax.faces.event.ValueChangeListener;
 import java.lang.Integer;
 
-public class Calendar extends DatePicker implements JQueryHtmlObject,AjaxComponent {
+public class Calendar extends DatePicker implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlCalendar";
@@ -89,6 +87,7 @@ public class Calendar extends DatePicker implements JQueryHtmlObject,AjaxCompone
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"datepicker/ui.datepicker.js",
 			"themes/base/ui.all.css"
@@ -586,50 +585,50 @@ public class Calendar extends DatePicker implements JQueryHtmlObject,AjaxCompone
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[45];
 		values[0] = super.saveState(context);
-		values[1] = locale;
-		values[2] = altField;
-		values[3] = altFormat;
-		values[4] = appendText;
-		values[5] = buttonImage;
-		values[6] = buttonImageOnly;
-		values[7] = buttonText;
-		values[8] = changeMonth;
-		values[9] = changeYear;
-		values[10] = closeText;
-		values[11] = constrainInput;
-		values[12] = currentText;
-		values[13] = dateFormat;
-		values[14] = dayNames;
-		values[15] = dayNamesMin;
-		values[16] = dayNamesShort;
-		values[17] = defaultDate;
-		values[18] = duration;
-		values[19] = firstDay;
-		values[20] = gotoCurrent;
-		values[21] = hideIfNoPrevNext;
-		values[22] = maxDate;
-		values[23] = minDate;
-		values[24] = monthNames;
-		values[25] = monthNamesShort;
-		values[26] = navigationAsDateFormat;
-		values[27] = nextText;
-		values[28] = numberOfMonths;
-		values[29] = prevText;
-		values[30] = shortYearCutoff;
-		values[31] = showAnim;
-		values[32] = showButtonPanel;
-		values[33] = showCurrentAtPos;
-		values[34] = showMonthAfterYear;
-		values[35] = showOn;
-		values[36] = showOptions;
-		values[37] = showOtherMonths;
-		values[38] = stepMonths;
-		values[39] = yearRange;
-		values[40] = onbeforeShow;
-		values[41] = onbeforeShowDay;
-		values[42] = onchangeMonthYear;
-		values[43] = onclose;
-		values[44] = onselect;
+		values[1] = this.locale;
+		values[2] = this.altField;
+		values[3] = this.altFormat;
+		values[4] = this.appendText;
+		values[5] = this.buttonImage;
+		values[6] = this.buttonImageOnly;
+		values[7] = this.buttonText;
+		values[8] = this.changeMonth;
+		values[9] = this.changeYear;
+		values[10] = this.closeText;
+		values[11] = this.constrainInput;
+		values[12] = this.currentText;
+		values[13] = this.dateFormat;
+		values[14] = this.dayNames;
+		values[15] = this.dayNamesMin;
+		values[16] = this.dayNamesShort;
+		values[17] = this.defaultDate;
+		values[18] = this.duration;
+		values[19] = this.firstDay;
+		values[20] = this.gotoCurrent;
+		values[21] = this.hideIfNoPrevNext;
+		values[22] = this.maxDate;
+		values[23] = this.minDate;
+		values[24] = this.monthNames;
+		values[25] = this.monthNamesShort;
+		values[26] = this.navigationAsDateFormat;
+		values[27] = this.nextText;
+		values[28] = this.numberOfMonths;
+		values[29] = this.prevText;
+		values[30] = this.shortYearCutoff;
+		values[31] = this.showAnim;
+		values[32] = this.showButtonPanel;
+		values[33] = this.showCurrentAtPos;
+		values[34] = this.showMonthAfterYear;
+		values[35] = this.showOn;
+		values[36] = this.showOptions;
+		values[37] = this.showOtherMonths;
+		values[38] = this.stepMonths;
+		values[39] = this.yearRange;
+		values[40] = this.onbeforeShow;
+		values[41] = this.onbeforeShowDay;
+		values[42] = this.onchangeMonthYear;
+		values[43] = this.onclose;
+		values[44] = this.onselect;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -693,11 +692,11 @@ public class Calendar extends DatePicker implements JQueryHtmlObject,AjaxCompone
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

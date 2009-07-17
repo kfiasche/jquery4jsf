@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.menu;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -28,7 +26,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class HtmlMenu extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class HtmlMenu extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlMenu";
@@ -67,6 +65,7 @@ public class HtmlMenu extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"form/jquery.form.js",
 			"menu/fg.menu.js",
 			"menu/fg.menu.css",
@@ -368,32 +367,32 @@ public class HtmlMenu extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[27];
 		values[0] = super.saveState(context);
-		values[1] = label;
-		values[2] = width;
-		values[3] = maxHeight;
-		values[4] = positionOptsPosX;
-		values[5] = positionOptsPosY;
-		values[6] = positionOptsOffsetX;
-		values[7] = positionOptsOffsetY;
-		values[8] = positionOptsDirectionH;
-		values[9] = positionOptsDirectionV;
-		values[10] = positionOptsDetectH;
-		values[11] = positionOptsDetectV;
-		values[12] = positionOptsLinkToFront;
-		values[13] = showSpeed;
-		values[14] = callerOnStateClass;
-		values[15] = loadingStateClass;
-		values[16] = linkHoverClass;
-		values[17] = linkHoverSecondaryClass;
-		values[18] = crossSpeed;
-		values[19] = crumbDefaultText;
-		values[20] = backLink;
-		values[21] = backLinkText;
-		values[22] = flyOut;
-		values[23] = flyOutOnStateClass;
-		values[24] = nextMenuLinkClass;
-		values[25] = topLinkText;
-		values[26] = nextCrumbLinkClass;
+		values[1] = this.label;
+		values[2] = this.width;
+		values[3] = this.maxHeight;
+		values[4] = this.positionOptsPosX;
+		values[5] = this.positionOptsPosY;
+		values[6] = this.positionOptsOffsetX;
+		values[7] = this.positionOptsOffsetY;
+		values[8] = this.positionOptsDirectionH;
+		values[9] = this.positionOptsDirectionV;
+		values[10] = this.positionOptsDetectH;
+		values[11] = this.positionOptsDetectV;
+		values[12] = this.positionOptsLinkToFront;
+		values[13] = this.showSpeed;
+		values[14] = this.callerOnStateClass;
+		values[15] = this.loadingStateClass;
+		values[16] = this.linkHoverClass;
+		values[17] = this.linkHoverSecondaryClass;
+		values[18] = this.crossSpeed;
+		values[19] = this.crumbDefaultText;
+		values[20] = this.backLink;
+		values[21] = this.backLinkText;
+		values[22] = this.flyOut;
+		values[23] = this.flyOutOnStateClass;
+		values[24] = this.nextMenuLinkClass;
+		values[25] = this.topLinkText;
+		values[26] = this.nextCrumbLinkClass;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -431,11 +430,11 @@ public class HtmlMenu extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

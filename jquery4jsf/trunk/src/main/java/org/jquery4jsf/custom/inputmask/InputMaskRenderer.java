@@ -18,9 +18,10 @@ package org.jquery4jsf.custom.inputmask;
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -53,28 +54,36 @@ public class InputMaskRenderer extends InputMaskBaseRenderer {
 	}
 
 	private void encodeInputMaskMarkup(FacesContext context, InputMask inputMask) throws IOException {
-		ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        String clientId = RendererUtilities.encodeIdInteractions(inputMask, context);
+		String clientId = RendererUtilities.encodeIdInteractions(inputMask, context);
+		UIComponent component = ComponentUtilities.findComponentInRoot(clientId);
+        if (!(component instanceof UIInput)){
+        	encodeInputText(inputMask, context);
+        }
+	}
+
+	private void encodeInputMaskScript(FacesContext context, InputMask inputMask) throws IOException {
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, inputMask));
+        documentElement.addFunctionToReady(function);
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        InputMask inputMask = null;
+        if(component instanceof InputMask)
+            inputMask = (InputMask)component;
+		String id = RendererUtilities.encodeIdInteractions(inputMask, context);
+		String clientId = RendererUtilities.encodeClientIdInteractions(inputMask, context);
+		UIComponent componentFind = ComponentUtilities.findComponentInRoot(id);
+		if (!(componentFind instanceof UIInput)){
+			clientId = inputMask.getClientId(context);
+		}
         JSElement element = new JSElement(clientId);
         JSAttribute jsMask = new JSAttribute("mask", false);
         StringBuffer sbOption = new StringBuffer();
         jsMask.addValue(encodeOptionComponent(sbOption, inputMask, context));
         element.addAttribute(jsMask);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(inputMask, responseWriter, sb);
-	}
-
-	private void encodeInputMaskScript(FacesContext context, InputMask inputMask) throws IOException {
-        if (RendererUtilities.isUniqueId(inputMask)){
-        	encodeInputText(inputMask, context);
-        }
+		return element;
 	}
 
 }

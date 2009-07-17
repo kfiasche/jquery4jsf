@@ -128,7 +128,7 @@ public class TooltipTag extends UIComponentTagBase {
 			throw new IllegalStateException("Component " + component.toString() + " not expected type.");
 		}
 
-		setMethodBindingProperty(getFacesContext(), component, "oncomplete", oncomplete);
+		setMethodBindingProperty(getFacesContext(), component, "oncomplete", oncomplete,new Class[]{} );
 		setBooleanProperty(getFacesContext(), component, "prerender", prerender);
 		setStringProperty(getFacesContext(), component, "url", url);
 		setStringProperty(getFacesContext(), component, "text", text);

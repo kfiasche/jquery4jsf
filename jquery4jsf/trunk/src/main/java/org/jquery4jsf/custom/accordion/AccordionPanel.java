@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.accordion;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -27,7 +25,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlAccordionPanel";
@@ -56,6 +54,7 @@ public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtm
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"accordion/ui.accordion.js",
 			"external/jquery.cookie.js",
@@ -246,22 +245,22 @@ public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtm
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[17];
 		values[0] = super.saveState(context);
-		values[1] = styleClass;
-		values[2] = style;
-		values[3] = cookie;
-		values[4] = active;
-		values[5] = animated;
-		values[6] = autoHeight;
-		values[7] = clearStyle;
-		values[8] = collapsible;
-		values[9] = event;
-		values[10] = fillSpace;
-		values[11] = iconsHeader;
-		values[12] = iconsHeaderSelected;
-		values[13] = navigation;
-		values[14] = navigationFilter;
-		values[15] = onchange;
-		values[16] = onchangestart;
+		values[1] = this.styleClass;
+		values[2] = this.style;
+		values[3] = this.cookie;
+		values[4] = this.active;
+		values[5] = this.animated;
+		values[6] = this.autoHeight;
+		values[7] = this.clearStyle;
+		values[8] = this.collapsible;
+		values[9] = this.event;
+		values[10] = this.fillSpace;
+		values[11] = this.iconsHeader;
+		values[12] = this.iconsHeaderSelected;
+		values[13] = this.navigation;
+		values[14] = this.navigationFilter;
+		values[15] = this.onchange;
+		values[16] = this.onchangestart;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -289,11 +288,11 @@ public class AccordionPanel extends HtmlBaseOutputComponent implements JQueryHtm
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

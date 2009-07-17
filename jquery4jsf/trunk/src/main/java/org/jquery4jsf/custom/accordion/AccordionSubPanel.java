@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.accordion;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -27,7 +25,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class AccordionSubPanel extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class AccordionSubPanel extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlAccordionSubPanel";
@@ -109,11 +107,11 @@ public class AccordionSubPanel extends HtmlBaseOutputComponent implements JQuery
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[6];
 		values[0] = super.saveState(context);
-		values[1] = headerClass;
-		values[2] = headerStyle;
-		values[3] = contentClass;
-		values[4] = contentStyle;
-		values[5] = panelName;
+		values[1] = this.headerClass;
+		values[2] = this.headerStyle;
+		values[3] = this.contentClass;
+		values[4] = this.contentStyle;
+		values[5] = this.panelName;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -130,11 +128,11 @@ public class AccordionSubPanel extends HtmlBaseOutputComponent implements JQuery
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

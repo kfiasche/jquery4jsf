@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.commandlink;
 
 import javax.faces.component.html.HtmlCommandLink;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -31,7 +29,7 @@ import java.lang.Object;
 import javax.faces.event.ActionListener;
 import javax.faces.el.MethodBinding;
 
-public class CommandLink extends HtmlCommandLink implements JQueryHtmlObject,AjaxComponent {
+public class CommandLink extends HtmlCommandLink implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.CommandLink";
@@ -52,6 +50,7 @@ public class CommandLink extends HtmlCommandLink implements JQueryHtmlObject,Aja
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"form/jquery.form.js",
 			"themes/base/all.css",
 			"taconite/jquery.taconite.js"
@@ -153,14 +152,14 @@ public class CommandLink extends HtmlCommandLink implements JQueryHtmlObject,Aja
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[9];
 		values[0] = super.saveState(context);
-		values[1] = target;
-		values[2] = charset;
-		values[3] = coords;
-		values[4] = hreflang;
-		values[5] = name;
-		values[6] = rel;
-		values[7] = rev;
-		values[8] = shape;
+		values[1] = this.target;
+		values[2] = this.charset;
+		values[3] = this.coords;
+		values[4] = this.hreflang;
+		values[5] = this.name;
+		values[6] = this.rel;
+		values[7] = this.rev;
+		values[8] = this.shape;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -188,11 +187,11 @@ public class CommandLink extends HtmlCommandLink implements JQueryHtmlObject,Aja
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

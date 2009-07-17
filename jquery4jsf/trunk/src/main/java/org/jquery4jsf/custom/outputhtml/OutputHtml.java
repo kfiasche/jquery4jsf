@@ -17,9 +17,6 @@ package org.jquery4jsf.custom.outputhtml;
 
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
@@ -27,7 +24,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class OutputHtml extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
+public class OutputHtml extends UIComponentBase {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.OutputHtml";
@@ -66,13 +63,5 @@ public class OutputHtml extends UIComponentBase implements JQueryHtmlObject,Ajax
 			return localValue;
 		ValueBinding vb = getValueBinding(valueBindingName);
 		return vb != null ? vb.getValue(getFacesContext()) : null;
-	}
-
-	public void encodePartially(FacesContext facesContext) throws IOException {
-		Renderer renderer = getRenderer(facesContext);
-
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
-		}
 	}
 }

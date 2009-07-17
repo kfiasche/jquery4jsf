@@ -33,7 +33,6 @@ import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 
 public class CarouselRenderer extends JQueryBaseRenderer implements AjaxBaseRenderer {
@@ -51,45 +50,19 @@ public class CarouselRenderer extends JQueryBaseRenderer implements AjaxBaseRend
         if(!component.isRendered())
             return;
 
-        
-        ResponseWriter responseWriter = context.getResponseWriter();
-        responseWriter.endElement(HTML.TAG_UL);
-	}
-
-	public void encodeBegin(FacesContext context, UIComponent component)throws IOException {
-        if(context == null || component == null)
-            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-        if(!component.isRendered())
-            return;
         Carousel carousel = null;
         if(component instanceof Carousel)
         	carousel = (Carousel)component;
         
-        ResponseWriter responseWriter = context.getResponseWriter();
+        encodeResources(carousel);
+        encodeScriptCarousel(context, carousel);
+        encodeMarkupCarousel(context, carousel);
         
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = carousel.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-        
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(carousel.getClientId(context));
-        JSAttribute jsCarousel = new JSAttribute("jcarousel", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsCarousel.addValue(encodeOptionComponent(sbOption, carousel, context));
-        element.addAttribute(jsCarousel);
 
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb); 
-        
+	}
+
+	private void encodeMarkupCarousel(FacesContext context, Carousel carousel) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
         responseWriter.startElement(HTML.TAG_UL, carousel);
         responseWriter.writeAttribute(HTML.ID, carousel.getClientId(context), "id");
         if (carousel.getSkinStyleClass() != null){
@@ -100,6 +73,26 @@ public class CarouselRenderer extends JQueryBaseRenderer implements AjaxBaseRend
         	responseWriter.writeAttribute("class",styleClass, null);
         }
         encodeCarouselContent(context,responseWriter, carousel);
+        responseWriter.endElement(HTML.TAG_UL);
+	}
+
+	private void encodeScriptCarousel(FacesContext context, Carousel carousel) {
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, carousel));
+        documentElement.addFunctionToReady(function);
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+        Carousel carousel = null;
+        if(component instanceof Carousel)
+        	carousel = (Carousel)component;
+        JSElement element = new JSElement(carousel.getClientId(context));
+        JSAttribute jsCarousel = new JSAttribute("jcarousel", false);
+        StringBuffer sbOption = new StringBuffer();
+        jsCarousel.addValue(encodeOptionComponent(sbOption, carousel, context));
+        element.addAttribute(jsCarousel);
+        return element;
 	}
 
 	private void encodeCarouselContent(FacesContext context,ResponseWriter responseWriter, Carousel carousel) throws IOException {

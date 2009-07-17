@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class HtmlMenuBaseRenderer extends JQueryBaseRenderer {
+public abstract class HtmlMenuBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, HtmlMenu htmlMenu , FacesContext context) {
 		options.append(" {\n");

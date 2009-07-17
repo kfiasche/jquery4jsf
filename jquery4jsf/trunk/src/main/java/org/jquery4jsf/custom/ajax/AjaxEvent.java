@@ -17,9 +17,8 @@ package org.jquery4jsf.custom.ajax;
 
 import javax.faces.component.UICommand;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
+import org.jquery4jsf.custom.UIInteractions;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.MethodBinding;
@@ -31,7 +30,7 @@ import java.lang.Object;
 import javax.faces.event.ActionListener;
 import javax.faces.el.MethodBinding;
 
-public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxComponent {
+public class AjaxEvent extends UICommand implements JQueryHtmlObject,UIInteractions {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlAjaxEvent";
@@ -39,6 +38,7 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 	public static final String DEFAULT_RENDERER = "org.jquery4jsf.AjaxEventRenderer";
 
 	private String[] resources;
+	private String _for;
 	private String target;
 	private String event;
 	private Boolean partialSubmit;
@@ -47,6 +47,7 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"ajaxcontent/ui.ajaxcontent.js",
 			"form/jquery.form.js",
@@ -56,6 +57,17 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+
+	public String getFor() {
+		if( _for != null )
+			return _for;
+
+		String oValue = (String) getLocalOrValueBindingValue( _for, "for");
+		return oValue != null ? oValue : null;
+	}
+	public void setFor(String _for) {
+		this._for = _for;
 	}
 
 	public String getTarget() {
@@ -92,19 +104,21 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 	}
 
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[4];
+		Object values[] = new Object[5];
 		values[0] = super.saveState(context);
-		values[1] = target;
-		values[2] = event;
-		values[3] = partialSubmit;
+		values[1] = this._for;
+		values[2] = this.target;
+		values[3] = this.event;
+		values[4] = this.partialSubmit;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[]) state;
 		super.restoreState(context, values[0]);
-		this.target = (String) values[1];
-		this.event = (String) values[2];
-		this.partialSubmit = (Boolean) values[3];
+		this._for = (String) values[1];
+		this.target = (String) values[2];
+		this.event = (String) values[3];
+		this.partialSubmit = (Boolean) values[4];
 	}
 
 	public String[] getResources() {
@@ -119,11 +133,11 @@ public class AjaxEvent extends UICommand implements JQueryHtmlObject,AjaxCompone
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

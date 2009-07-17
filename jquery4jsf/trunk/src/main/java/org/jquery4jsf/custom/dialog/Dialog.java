@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.dialog;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -28,7 +26,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class Dialog extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class Dialog extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlDialog";
@@ -71,6 +69,7 @@ public class Dialog extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"dialog/ui.dialog.js",
 			"ui/ui.draggable.js",
@@ -417,36 +416,36 @@ public class Dialog extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[31];
 		values[0] = super.saveState(context);
-		values[1] = autoOpen;
-		values[2] = bgiframe;
-		values[3] = buttons;
-		values[4] = closeOnEscape;
-		values[5] = dialogClass;
-		values[6] = draggable;
-		values[7] = height;
-		values[8] = hide;
-		values[9] = maxHeight;
-		values[10] = maxWidth;
-		values[11] = minHeight;
-		values[12] = minWidth;
-		values[13] = modal;
-		values[14] = position;
-		values[15] = resizable;
-		values[16] = show;
-		values[17] = stack;
-		values[18] = title;
-		values[19] = width;
-		values[20] = zindex;
-		values[21] = onbeforeclose;
-		values[22] = onopen;
-		values[23] = onfocus;
-		values[24] = ondragStart;
-		values[25] = ondrag;
-		values[26] = ondragStop;
-		values[27] = onresizeStart;
-		values[28] = onresize;
-		values[29] = onresizeStop;
-		values[30] = onclose;
+		values[1] = this.autoOpen;
+		values[2] = this.bgiframe;
+		values[3] = this.buttons;
+		values[4] = this.closeOnEscape;
+		values[5] = this.dialogClass;
+		values[6] = this.draggable;
+		values[7] = this.height;
+		values[8] = this.hide;
+		values[9] = this.maxHeight;
+		values[10] = this.maxWidth;
+		values[11] = this.minHeight;
+		values[12] = this.minWidth;
+		values[13] = this.modal;
+		values[14] = this.position;
+		values[15] = this.resizable;
+		values[16] = this.show;
+		values[17] = this.stack;
+		values[18] = this.title;
+		values[19] = this.width;
+		values[20] = this.zindex;
+		values[21] = this.onbeforeclose;
+		values[22] = this.onopen;
+		values[23] = this.onfocus;
+		values[24] = this.ondragStart;
+		values[25] = this.ondrag;
+		values[26] = this.ondragStop;
+		values[27] = this.onresizeStart;
+		values[28] = this.onresize;
+		values[29] = this.onresizeStop;
+		values[30] = this.onclose;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -488,11 +487,11 @@ public class Dialog extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

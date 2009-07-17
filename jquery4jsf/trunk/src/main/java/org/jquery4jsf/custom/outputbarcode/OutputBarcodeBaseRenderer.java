@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class OutputBarcodeBaseRenderer extends JQueryBaseRenderer {
+public abstract class OutputBarcodeBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, OutputBarcode outputBarcode , FacesContext context) {
 		options.append(" {\n");

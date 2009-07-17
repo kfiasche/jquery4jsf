@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class BookMarkBaseRenderer extends JQueryBaseRenderer {
+public abstract class BookMarkBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, BookMark bookMark , FacesContext context) {
 		options.append(" {\n");

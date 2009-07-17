@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.slider;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -28,7 +26,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class Slider extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class Slider extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlSlider";
@@ -53,6 +51,7 @@ public class Slider extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"slider/ui.slider.js",
 			"themes/base/ui.all.css"
@@ -198,18 +197,18 @@ public class Slider extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[13];
 		values[0] = super.saveState(context);
-		values[1] = animate;
-		values[2] = max;
-		values[3] = min;
-		values[4] = orientation;
-		values[5] = range;
-		values[6] = step;
-		values[7] = sliderValue;
-		values[8] = values;
-		values[9] = onstart;
-		values[10] = onslide;
-		values[11] = onchange;
-		values[12] = onstop;
+		values[1] = this.animate;
+		values[2] = this.max;
+		values[3] = this.min;
+		values[4] = this.orientation;
+		values[5] = this.range;
+		values[6] = this.step;
+		values[7] = this.sliderValue;
+		values[8] = this.values;
+		values[9] = this.onstart;
+		values[10] = this.onslide;
+		values[11] = this.onchange;
+		values[12] = this.onstop;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -233,11 +232,11 @@ public class Slider extends HtmlBaseOutputComponent implements JQueryHtmlObject,
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

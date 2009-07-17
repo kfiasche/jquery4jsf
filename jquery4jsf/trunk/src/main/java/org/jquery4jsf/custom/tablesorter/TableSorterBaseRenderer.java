@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class TableSorterBaseRenderer extends JQueryBaseRenderer {
+public abstract class TableSorterBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, TableSorter tableSorter , FacesContext context) {
 		options.append(" {\n");

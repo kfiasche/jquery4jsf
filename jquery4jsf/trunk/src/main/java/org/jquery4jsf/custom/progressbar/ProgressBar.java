@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.progressbar;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -28,7 +26,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class ProgressBar extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class ProgressBar extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlProgressBar";
@@ -44,6 +42,7 @@ public class ProgressBar extends HtmlBaseOutputComponent implements JQueryHtmlOb
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"progressbar/ui.progressbar.js",
 			"ui/ui.resizable.js",
@@ -91,9 +90,9 @@ public class ProgressBar extends HtmlBaseOutputComponent implements JQueryHtmlOb
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[4];
 		values[0] = super.saveState(context);
-		values[1] = progressBarValue;
-		values[2] = resizable;
-		values[3] = onchange;
+		values[1] = this.progressBarValue;
+		values[2] = this.resizable;
+		values[3] = this.onchange;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -108,11 +107,11 @@ public class ProgressBar extends HtmlBaseOutputComponent implements JQueryHtmlOb
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

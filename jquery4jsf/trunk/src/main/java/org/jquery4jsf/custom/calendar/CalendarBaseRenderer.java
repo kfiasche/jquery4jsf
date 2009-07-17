@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class CalendarBaseRenderer extends JQueryBaseRenderer {
+public abstract class CalendarBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Calendar calendar , FacesContext context) {
 		options.append(" {\n");

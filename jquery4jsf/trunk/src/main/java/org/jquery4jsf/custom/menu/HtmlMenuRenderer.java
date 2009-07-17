@@ -78,21 +78,10 @@ public class HtmlMenuRenderer extends HtmlMenuBaseRenderer {
 	}
 	
 	protected void encodeHtmlMenuScript(FacesContext context, HtmlMenu htmlMenu) throws IOException{
-		ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(htmlMenu.getClientId(context));
-        JSAttribute jsMenuBar = new JSAttribute("menu", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsMenuBar.addValue(encodeOptionComponent(sbOption, htmlMenu, context));
-        element.addAttribute(jsMenuBar);
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
         JSFunction function = new JSFunction();
-        function.addJSElement(element);
+        function.addJSElement(getJSElement(context, htmlMenu));
         documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(htmlMenu, responseWriter, sb);
 	}
 	
 	private void encodeSubMenu(FacesContext context, UIComponent component) throws IOException{
@@ -305,5 +294,17 @@ public class HtmlMenuRenderer extends HtmlMenuBaseRenderer {
 		menu.queueEvent(new ActionEvent(component));
 		return;
 
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        HtmlMenu htmlMenu = null;
+        if(component instanceof HtmlMenu)
+        	htmlMenu = (HtmlMenu)component;
+        JSElement element = new JSElement(htmlMenu.getClientId(context));
+        JSAttribute jsMenuBar = new JSAttribute("menu", false);
+        StringBuffer sbOption = new StringBuffer();
+        jsMenuBar.addValue(encodeOptionComponent(sbOption, htmlMenu, context));
+        element.addAttribute(jsMenuBar);
+		return element;
 	}
 }

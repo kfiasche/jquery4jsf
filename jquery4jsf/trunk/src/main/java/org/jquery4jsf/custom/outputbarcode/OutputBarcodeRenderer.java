@@ -25,9 +25,7 @@ import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
-import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 import org.jquery4jsf.utilities.TextUtilities;
 
@@ -48,40 +46,31 @@ public class OutputBarcodeRenderer extends OutputBarcodeBaseRenderer {
 			throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if (outputBarcode.getValue() == null)
         	throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-		
-		// TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = outputBarcode.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
         
-        ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        String clientId = outputBarcode.getClientId(context);
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(clientId);
-        JSAttribute jsBarcode = new JSAttribute("barcode", false);
-        
-        StringBuffer sbOptions = new StringBuffer();
-        jsBarcode.addValue(encodeOptionComponent(sbOptions, outputBarcode, context));
-        element.addAttribute(jsBarcode);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
-        
+        encodeResources(outputBarcode);
+        encodeBarcodeScript(context, outputBarcode);
+        encodeBarcodeMarkup(context, outputBarcode);
+	}
+	
+	
+	private void encodeBarcodeMarkup(FacesContext context, OutputBarcode outputBarcode) throws IOException {
+		String clientId = outputBarcode.getClientId(context);
+		ResponseWriter responseWriter = context.getResponseWriter();
         responseWriter.startElement(HTML.TAG_DIV, outputBarcode);
         responseWriter.writeAttribute("id", clientId, "id");
         responseWriter.endElement(HTML.TAG_DIV);
 	}
-	
-	
+
+
+	private void encodeBarcodeScript(FacesContext context, OutputBarcode outputBarcode) {
+		JSDocumentElement documentElement = JSDocumentElement.getInstance();
+		JSFunction function = new JSFunction();
+		function.addJSElement(getJSElement(context, outputBarcode));
+		documentElement.addFunctionToReady(function);
+	}
+
+
 	protected String encodeOptionComponent(StringBuffer options, OutputBarcode outputBarcode , FacesContext context) {
-		
 		options.append("\"");
 		String value = (String) outputBarcode.getValue();
 		options.append(value);
@@ -112,5 +101,20 @@ public class OutputBarcodeRenderer extends OutputBarcodeBaseRenderer {
 			options.append(" }");
 		}
 		return options.toString();
+	}
+
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+		OutputBarcode outputBarcode = null;
+		if (component instanceof OutputBarcode){
+			outputBarcode = (OutputBarcode)component;
+		}
+		String clientId = outputBarcode.getClientId(context);
+		JSElement element = new JSElement(clientId);
+		JSAttribute jsBarcode = new JSAttribute("barcode", false);
+		StringBuffer sbOptions = new StringBuffer();
+		jsBarcode.addValue(encodeOptionComponent(sbOptions, outputBarcode, context));
+		element.addAttribute(jsBarcode);
+		return element;
 	}
 }

@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class AccordionSubPanelBaseRenderer extends JQueryBaseRenderer {
+public abstract class AccordionSubPanelBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, AccordionSubPanel accordionSubPanel , FacesContext context) {
 		options.append(" {\n");

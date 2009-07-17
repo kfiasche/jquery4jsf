@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class SpinnerBaseRenderer extends JQueryInputBaseRenderer {
+public abstract class SpinnerBaseRenderer extends JQueryInputBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Spinner spinner , FacesContext context) {
 		options.append(" {\n");

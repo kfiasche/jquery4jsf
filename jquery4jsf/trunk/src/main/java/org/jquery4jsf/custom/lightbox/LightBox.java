@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.lightbox;
 
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -28,7 +26,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class LightBox extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
+public class LightBox extends UIComponentBase implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlLightBox";
@@ -60,6 +58,7 @@ public class LightBox extends UIComponentBase implements JQueryHtmlObject,AjaxCo
 		 resources = new String[]{
 			"lightbox/lightbox.css",
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"lightbox/lightbox.js"
 		};
 	}
@@ -269,24 +268,24 @@ public class LightBox extends UIComponentBase implements JQueryHtmlObject,AjaxCo
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[19];
 		values[0] = super.saveState(context);
-		values[1] = style;
-		values[2] = styleClass;
-		values[3] = activeImage;
-		values[4] = fixedNavigation;
-		values[5] = overlayBgColor;
-		values[6] = overlayOpacity;
-		values[7] = imageLoading;
-		values[8] = imageBtnClose;
-		values[9] = imageBtnPrev;
-		values[10] = imageBtnNext;
-		values[11] = containerBorderSize;
-		values[12] = containerResizeSpeed;
-		values[13] = txtImage;
-		values[14] = txtOf;
-		values[15] = imageBlank;
-		values[16] = keyToClose;
-		values[17] = keyToPrev;
-		values[18] = keyToNext;
+		values[1] = this.style;
+		values[2] = this.styleClass;
+		values[3] = this.activeImage;
+		values[4] = this.fixedNavigation;
+		values[5] = this.overlayBgColor;
+		values[6] = this.overlayOpacity;
+		values[7] = this.imageLoading;
+		values[8] = this.imageBtnClose;
+		values[9] = this.imageBtnPrev;
+		values[10] = this.imageBtnNext;
+		values[11] = this.containerBorderSize;
+		values[12] = this.containerResizeSpeed;
+		values[13] = this.txtImage;
+		values[14] = this.txtOf;
+		values[15] = this.imageBlank;
+		values[16] = this.keyToClose;
+		values[17] = this.keyToPrev;
+		values[18] = this.keyToNext;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -324,11 +323,11 @@ public class LightBox extends UIComponentBase implements JQueryHtmlObject,AjaxCo
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

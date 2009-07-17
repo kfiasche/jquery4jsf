@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class IconBaseRenderer extends JQueryBaseRenderer {
+public abstract class IconBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Icon icon , FacesContext context) {
 		options.append(" {\n");

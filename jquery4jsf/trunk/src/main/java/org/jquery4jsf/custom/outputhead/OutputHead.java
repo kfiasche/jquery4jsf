@@ -17,9 +17,6 @@ package org.jquery4jsf.custom.outputhead;
 
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
@@ -27,7 +24,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class OutputHead extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
+public class OutputHead extends UIComponentBase {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.OutputHead";
@@ -97,10 +94,10 @@ public class OutputHead extends UIComponentBase implements JQueryHtmlObject,Ajax
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[5];
 		values[0] = super.saveState(context);
-		values[1] = profile;
-		values[2] = dir;
-		values[3] = lang;
-		values[4] = langXml;
+		values[1] = this.profile;
+		values[2] = this.dir;
+		values[3] = this.lang;
+		values[4] = this.langXml;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -122,13 +119,5 @@ public class OutputHead extends UIComponentBase implements JQueryHtmlObject,Ajax
 			return localValue;
 		ValueBinding vb = getValueBinding(valueBindingName);
 		return vb != null ? vb.getValue(getFacesContext()) : null;
-	}
-
-	public void encodePartially(FacesContext facesContext) throws IOException {
-		Renderer renderer = getRenderer(facesContext);
-
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
-		}
 	}
 }

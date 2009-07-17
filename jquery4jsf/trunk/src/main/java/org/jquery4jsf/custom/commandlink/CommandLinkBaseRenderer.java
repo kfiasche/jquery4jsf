@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class CommandLinkBaseRenderer extends JQueryBaseRenderer {
+public abstract class CommandLinkBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, CommandLink commandLink , FacesContext context) {
 		options.append(" {\n");

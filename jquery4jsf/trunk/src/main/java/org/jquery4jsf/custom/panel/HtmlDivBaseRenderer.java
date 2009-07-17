@@ -16,10 +16,11 @@
 package org.jquery4jsf.custom.panel;
 
 import java.lang.String;
-import org.jquery4jsf.renderkit.JQueryBaseRenderer;
+
+import org.jquery4jsf.renderkit.HtmlBasicRenderer;
 import javax.faces.context.FacesContext;
 
-public class HtmlDivBaseRenderer extends JQueryBaseRenderer {
+public class HtmlDivBaseRenderer extends HtmlBasicRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, HtmlDiv htmlDiv , FacesContext context) {
 		options.append(" {\n");

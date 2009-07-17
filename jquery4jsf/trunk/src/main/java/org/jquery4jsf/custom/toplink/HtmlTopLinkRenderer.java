@@ -25,7 +25,6 @@ import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
-import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
@@ -57,22 +56,23 @@ public class HtmlTopLinkRenderer extends HtmlTopLinkBaseRenderer {
 	}
 
 	protected void encodeScriptTopLink(FacesContext context, HtmlTopLink topLink) throws IOException {
-		ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        String clientId = topLink.getClientId(context);
-        JSElement element = new JSElement(clientId);
-        JSAttribute jsTooltip = new JSAttribute("toplink", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsTooltip.addValue(encodeOptionComponent(sbOption, topLink, context));
-        element.addAttribute(jsTooltip);
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
         JSFunction function = new JSFunction();
-        function.addJSElement(element);
+        function.addJSElement(getJSElement(context, topLink));
         documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(topLink, responseWriter, sb); 
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+		HtmlTopLink topLink = null;
+		if(component instanceof HtmlTopLink)
+			topLink = (HtmlTopLink)component;
+		String clientId = topLink.getClientId(context);
+		JSElement element = new JSElement(clientId);
+		JSAttribute jsTooltip = new JSAttribute("toplink", false);
+		StringBuffer sbOption = new StringBuffer();
+		jsTooltip.addValue(encodeOptionComponent(sbOption, topLink, context));
+		element.addAttribute(jsTooltip);
+		return element;
 	}
 
 	

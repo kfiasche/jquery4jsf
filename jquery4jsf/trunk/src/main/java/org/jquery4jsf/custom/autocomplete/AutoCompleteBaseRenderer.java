@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class AutoCompleteBaseRenderer extends JQueryInputBaseRenderer {
+public abstract class AutoCompleteBaseRenderer extends JQueryInputBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, AutoComplete autoComplete , FacesContext context) {
 		options.append(" {\n");

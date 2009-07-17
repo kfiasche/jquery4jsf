@@ -22,11 +22,11 @@ import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import org.jquery4jsf.renderkit.JQueryBaseRenderer;
+import org.jquery4jsf.renderkit.HtmlBasicRenderer;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 
-public class HtmlOutputLinkRenderer extends JQueryBaseRenderer {
+public class HtmlOutputLinkRenderer extends HtmlBasicRenderer {
 
     protected Object getValue(UIComponent uicomponent)
     {

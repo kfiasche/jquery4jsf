@@ -17,9 +17,6 @@ package org.jquery4jsf.custom.outputmedia;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
@@ -28,7 +25,7 @@ import javax.faces.convert.Converter;
 import java.lang.String;
 import java.lang.Boolean;
 
-public class OutputMedia extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class OutputMedia extends HtmlBaseOutputComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.OutputMedia";
@@ -98,10 +95,10 @@ public class OutputMedia extends HtmlBaseOutputComponent implements JQueryHtmlOb
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[5];
 		values[0] = super.saveState(context);
-		values[1] = nospan;
-		values[2] = escape;
-		values[3] = effect;
-		values[4] = eventEffect;
+		values[1] = this.nospan;
+		values[2] = this.escape;
+		values[3] = this.effect;
+		values[4] = this.eventEffect;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -115,13 +112,5 @@ public class OutputMedia extends HtmlBaseOutputComponent implements JQueryHtmlOb
 
 	public String[] getResources() {
 		return resources;
-	}
-
-	public void encodePartially(FacesContext facesContext) throws IOException {
-		Renderer renderer = getRenderer(facesContext);
-
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
-		}
 	}
 }

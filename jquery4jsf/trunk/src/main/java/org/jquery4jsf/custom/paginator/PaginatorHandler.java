@@ -14,7 +14,9 @@
  *  limitations under the License.
  *
  */
-package org.jquery4jsf.custom.dialog;
+package org.jquery4jsf.custom.paginator;
+
+import org.jquery4jsf.event.paginator.PageChangeEvent;
 
 import com.sun.facelets.tag.MetaRule;
 import com.sun.facelets.tag.MetaRuleset;
@@ -22,18 +24,19 @@ import com.sun.facelets.tag.MethodRule;
 import com.sun.facelets.tag.jsf.ComponentConfig;
 import com.sun.facelets.tag.jsf.ComponentHandler;
 
-public class AlertDialogHandler extends ComponentHandler{
+public class PaginatorHandler extends ComponentHandler{
 
-	public AlertDialogHandler(ComponentConfig config) {
+	public PaginatorHandler(ComponentConfig config) {
 		super(config);
 	}
 	
 	protected MetaRuleset createMetaRuleset(Class type) { 
 		MetaRuleset metaRuleset = super.createMetaRuleset(type); 
-		MetaRule metaRule = new MethodRule("okAction", null, new Class[]{}); 
+		Class[] paramList = new Class[]{PageChangeEvent.class}; 
+		
+		MetaRule metaRule = new MethodRule("pageChangeListener", null, paramList); 
 		metaRuleset.addRule(metaRule);
-		MetaRule metaRule1 = new MethodRule("noAction", null, new Class[]{}); 
-		metaRuleset.addRule(metaRule1);
+		
 		return metaRuleset; 
 	} 
 }

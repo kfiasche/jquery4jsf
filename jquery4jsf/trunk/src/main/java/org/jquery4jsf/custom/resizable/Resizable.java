@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.resizable;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.custom.UIInteractions;
 import javax.faces.render.Renderer;
@@ -29,7 +27,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent,UIInteractions {
+public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObject,UIInteractions {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlResizable";
@@ -64,6 +62,7 @@ public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"ui/ui.resizable.js",
 			"themes/base/ui.all.css"
@@ -319,28 +318,28 @@ public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[23];
 		values[0] = super.saveState(context);
-		values[1] = _for;
-		values[2] = alsoResize;
-		values[3] = animate;
-		values[4] = animateDuration;
-		values[5] = animateEasing;
-		values[6] = aspectRatio;
-		values[7] = autoHide;
-		values[8] = cancel;
-		values[9] = containment;
-		values[10] = delay;
-		values[11] = distance;
-		values[12] = ghost;
-		values[13] = grid;
-		values[14] = handles;
-		values[15] = helper;
-		values[16] = maxHeight;
-		values[17] = maxWidth;
-		values[18] = minWidth;
-		values[19] = minHeight;
-		values[20] = onstart;
-		values[21] = onresize;
-		values[22] = onstop;
+		values[1] = this._for;
+		values[2] = this.alsoResize;
+		values[3] = this.animate;
+		values[4] = this.animateDuration;
+		values[5] = this.animateEasing;
+		values[6] = this.aspectRatio;
+		values[7] = this.autoHide;
+		values[8] = this.cancel;
+		values[9] = this.containment;
+		values[10] = this.delay;
+		values[11] = this.distance;
+		values[12] = this.ghost;
+		values[13] = this.grid;
+		values[14] = this.handles;
+		values[15] = this.helper;
+		values[16] = this.maxHeight;
+		values[17] = this.maxWidth;
+		values[18] = this.minWidth;
+		values[19] = this.minHeight;
+		values[20] = this.onstart;
+		values[21] = this.onresize;
+		values[22] = this.onstop;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -374,11 +373,11 @@ public class Resizable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

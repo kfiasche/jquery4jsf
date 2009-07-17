@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.draggable;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.custom.UIInteractions;
 import javax.faces.render.Renderer;
@@ -30,7 +28,7 @@ import javax.faces.component.UIComponent;
 import java.lang.Integer;
 import java.lang.Float;
 
-public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent,UIInteractions {
+public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObject,UIInteractions {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlDraggable";
@@ -74,6 +72,7 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"ui/ui.draggable.js",
 			"themes/base/ui.all.css"
@@ -428,37 +427,37 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[32];
 		values[0] = super.saveState(context);
-		values[1] = _for;
-		values[2] = addClasses;
-		values[3] = appendTo;
-		values[4] = axis;
-		values[5] = cancel;
-		values[6] = connectToSortable;
-		values[7] = containment;
-		values[8] = cursor;
-		values[9] = cursorAt;
-		values[10] = delay;
-		values[11] = distance;
-		values[12] = grid;
-		values[13] = handle;
-		values[14] = helper;
-		values[15] = iframeFix;
-		values[16] = opacity;
-		values[17] = refreshPositions;
-		values[18] = revert;
-		values[19] = revertDuration;
-		values[20] = scope;
-		values[21] = scroll;
-		values[22] = scrollSensitivity;
-		values[23] = scrollSpeed;
-		values[24] = snap;
-		values[25] = snapMode;
-		values[26] = snapTolerance;
-		values[27] = stack;
-		values[28] = zindex;
-		values[29] = onstart;
-		values[30] = ondrag;
-		values[31] = onstop;
+		values[1] = this._for;
+		values[2] = this.addClasses;
+		values[3] = this.appendTo;
+		values[4] = this.axis;
+		values[5] = this.cancel;
+		values[6] = this.connectToSortable;
+		values[7] = this.containment;
+		values[8] = this.cursor;
+		values[9] = this.cursorAt;
+		values[10] = this.delay;
+		values[11] = this.distance;
+		values[12] = this.grid;
+		values[13] = this.handle;
+		values[14] = this.helper;
+		values[15] = this.iframeFix;
+		values[16] = this.opacity;
+		values[17] = this.refreshPositions;
+		values[18] = this.revert;
+		values[19] = this.revertDuration;
+		values[20] = this.scope;
+		values[21] = this.scroll;
+		values[22] = this.scrollSensitivity;
+		values[23] = this.scrollSpeed;
+		values[24] = this.snap;
+		values[25] = this.snapMode;
+		values[26] = this.snapTolerance;
+		values[27] = this.stack;
+		values[28] = this.zindex;
+		values[29] = this.onstart;
+		values[30] = this.ondrag;
+		values[31] = this.onstop;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -501,11 +500,11 @@ public class Draggable extends HtmlBaseOutputComponent implements JQueryHtmlObje
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

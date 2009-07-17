@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.selectable;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -28,7 +26,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class Selectable extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class Selectable extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlSelectable";
@@ -54,6 +52,7 @@ public class Selectable extends HtmlBaseOutputComponent implements JQueryHtmlObj
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"ui/ui.selectable.js",
 			"themes/base/ui.all.css"
@@ -210,19 +209,19 @@ public class Selectable extends HtmlBaseOutputComponent implements JQueryHtmlObj
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[14];
 		values[0] = super.saveState(context);
-		values[1] = _for;
-		values[2] = autoRefresh;
-		values[3] = cancel;
-		values[4] = delay;
-		values[5] = distance;
-		values[6] = filter;
-		values[7] = tolerance;
-		values[8] = onselected;
-		values[9] = onselecting;
-		values[10] = onstart;
-		values[11] = stop;
-		values[12] = onunselected;
-		values[13] = onunselecting;
+		values[1] = this._for;
+		values[2] = this.autoRefresh;
+		values[3] = this.cancel;
+		values[4] = this.delay;
+		values[5] = this.distance;
+		values[6] = this.filter;
+		values[7] = this.tolerance;
+		values[8] = this.onselected;
+		values[9] = this.onselecting;
+		values[10] = this.onstart;
+		values[11] = this.stop;
+		values[12] = this.onunselected;
+		values[13] = this.onunselecting;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -247,11 +246,11 @@ public class Selectable extends HtmlBaseOutputComponent implements JQueryHtmlObj
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

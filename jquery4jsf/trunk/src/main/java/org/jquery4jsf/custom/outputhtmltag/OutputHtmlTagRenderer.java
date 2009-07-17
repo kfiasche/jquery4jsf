@@ -21,14 +21,14 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import org.jquery4jsf.renderkit.JQueryBaseRenderer;
+import org.jquery4jsf.renderkit.HtmlBasicRenderer;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
 import org.jquery4jsf.utilities.TextUtilities;
 
-public class OutputHtmlTagRenderer extends JQueryBaseRenderer {
+public class OutputHtmlTagRenderer extends HtmlBasicRenderer {
 
 
 

@@ -40,18 +40,27 @@ public class HtmlQuickSearchRenderer extends HtmlQuickSearchBaseRenderer {
         if(component instanceof HtmlQuickSearch)
             quickSearch = (HtmlQuickSearch)component;
         
-        ResponseWriter responseWriter = context.getResponseWriter();
-        
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = quickSearch.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-        
+        encodeResources(quickSearch);
+        encodeQuickSearchScript(context, quickSearch);
+        encodeQuickSearchMarkup(context, quickSearch);
+	}
+
+	private void encodeQuickSearchMarkup(FacesContext context, HtmlQuickSearch quickSearch) {
+	}
+
+	private void encodeQuickSearchScript(FacesContext context, HtmlQuickSearch quickSearch) {
+		JSDocumentElement documentElement = JSDocumentElement.getInstance();
+		JSFunction function = new JSFunction();
+		function.addJSElement(getJSElement(context, quickSearch));
+		documentElement.addFunctionToReady(function);
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        HtmlQuickSearch quickSearch = null;
+        if(component instanceof HtmlQuickSearch)
+            quickSearch = (HtmlQuickSearch)component;
 		String parentClientId = quickSearch.getParent().getClientId(context);
 		String quickSearchClientId = null;
-		
 		if(quickSearch.getTarget() != null) {
 			quickSearchClientId = RendererUtilities.getClientIdForComponent(quickSearch.getTarget(), context, quickSearch);
 			if (quickSearchClientId == null){
@@ -60,21 +69,12 @@ public class HtmlQuickSearchRenderer extends HtmlQuickSearchBaseRenderer {
 		} else {
 			quickSearchClientId = parentClientId;
 		}
-        
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(quickSearchClientId);
-        JSAttribute jsResizable = new JSAttribute("quicksearch", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsResizable.addValue(encodeOptionComponent(sbOption, quickSearch, context));
-        element.addAttribute(jsResizable);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
+		JSElement element = new JSElement(quickSearchClientId);
+		JSAttribute jsResizable = new JSAttribute("quicksearch", false);
+		StringBuffer sbOption = new StringBuffer();
+		jsResizable.addValue(encodeOptionComponent(sbOption, quickSearch, context));
+		element.addAttribute(jsResizable);
+		return element;
 	}
 
 	

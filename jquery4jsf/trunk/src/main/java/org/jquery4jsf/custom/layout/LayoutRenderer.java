@@ -124,25 +124,26 @@ public class LayoutRenderer extends LayoutBaseRenderer {
 	}
 
 	protected void encodeScriptLayout(FacesContext context, Layout layout) throws IOException {
-		ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, layout));
+        documentElement.addFunctionToReady(function);
+	}
+
+	public boolean getRendersChildren() {
+		return true;
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        Layout layout = null;
+        if(component instanceof Layout)
+            layout = (Layout)component;
         JSElement element = new JSElement(layout.getClientId(context));
         JSAttribute jsLayout = new JSAttribute("layout", false);
         StringBuffer sbOption = new StringBuffer();
         jsLayout.addValue(encodeOptionComponent(sbOption, layout, context));
         element.addAttribute(jsLayout);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(layout, responseWriter, sb);
-	}
-
-	public boolean getRendersChildren() {
-		return true;
+		return element;
 	}
 
 	

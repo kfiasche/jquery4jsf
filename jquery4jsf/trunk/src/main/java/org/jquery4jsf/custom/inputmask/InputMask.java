@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.inputmask;
 
 import org.jquery4jsf.component.ext.HtmlInputText;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.custom.UIInteractions;
 import javax.faces.render.Renderer;
@@ -33,7 +31,7 @@ import javax.faces.validator.Validator;
 import javax.faces.event.ValueChangeListener;
 import java.lang.Integer;
 
-public class InputMask extends HtmlInputText implements JQueryHtmlObject,AjaxComponent,UIInteractions {
+public class InputMask extends HtmlInputText implements JQueryHtmlObject,UIInteractions {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlInputMask";
@@ -51,6 +49,7 @@ public class InputMask extends HtmlInputText implements JQueryHtmlObject,AjaxCom
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"mask/ui.mask.js",
 			"themes/base/ui.all.css"
@@ -119,11 +118,11 @@ public class InputMask extends HtmlInputText implements JQueryHtmlObject,AjaxCom
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[6];
 		values[0] = super.saveState(context);
-		values[1] = _for;
-		values[2] = mask;
-		values[3] = placeholder;
-		values[4] = allowPartials;
-		values[5] = oncompleted;
+		values[1] = this._for;
+		values[2] = this.mask;
+		values[3] = this.placeholder;
+		values[4] = this.allowPartials;
+		values[5] = this.oncompleted;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -148,11 +147,11 @@ public class InputMask extends HtmlInputText implements JQueryHtmlObject,AjaxCom
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

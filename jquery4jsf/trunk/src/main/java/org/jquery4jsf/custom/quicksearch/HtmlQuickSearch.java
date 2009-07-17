@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.quicksearch;
 
 import org.jquery4jsf.component.ext.HtmlBaseInputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -27,7 +25,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class HtmlQuickSearch extends HtmlBaseInputComponent implements JQueryHtmlObject,AjaxComponent {
+public class HtmlQuickSearch extends HtmlBaseInputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlQuickSearch";
@@ -62,6 +60,7 @@ public class HtmlQuickSearch extends HtmlBaseInputComponent implements JQueryHtm
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"quicksearch/jquery.quicksearch.js",
 			"themes/base/ui.all.css"
 		};
@@ -316,28 +315,28 @@ public class HtmlQuickSearch extends HtmlBaseInputComponent implements JQueryHtm
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[23];
 		values[0] = super.saveState(context);
-		values[1] = target;
-		values[2] = position;
-		values[3] = attached;
-		values[4] = formId;
-		values[5] = labelText;
-		values[6] = labelClass;
-		values[7] = inputText;
-		values[8] = inputClass;
-		values[9] = loaderId;
-		values[10] = loaderClass;
-		values[11] = loaderImg;
-		values[12] = loaderText;
-		values[13] = stripeRowClass;
-		values[14] = delay;
-		values[15] = focusOnLoad;
-		values[16] = hideElement;
-		values[17] = onBefore;
-		values[18] = onAfter;
-		values[19] = filter;
-		values[20] = randomElement;
-		values[21] = isFieldset;
-		values[22] = fixWidths;
+		values[1] = this.target;
+		values[2] = this.position;
+		values[3] = this.attached;
+		values[4] = this.formId;
+		values[5] = this.labelText;
+		values[6] = this.labelClass;
+		values[7] = this.inputText;
+		values[8] = this.inputClass;
+		values[9] = this.loaderId;
+		values[10] = this.loaderClass;
+		values[11] = this.loaderImg;
+		values[12] = this.loaderText;
+		values[13] = this.stripeRowClass;
+		values[14] = this.delay;
+		values[15] = this.focusOnLoad;
+		values[16] = this.hideElement;
+		values[17] = this.onBefore;
+		values[18] = this.onAfter;
+		values[19] = this.filter;
+		values[20] = this.randomElement;
+		values[21] = this.isFieldset;
+		values[22] = this.fixWidths;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -371,11 +370,11 @@ public class HtmlQuickSearch extends HtmlBaseInputComponent implements JQueryHtm
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

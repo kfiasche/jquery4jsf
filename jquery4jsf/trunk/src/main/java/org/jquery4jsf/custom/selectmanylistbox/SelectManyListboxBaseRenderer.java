@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class SelectManyListboxBaseRenderer extends JQueryBaseRenderer {
+public abstract class SelectManyListboxBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, SelectManyListbox selectManyListbox , FacesContext context) {
 		options.append(" {\n");

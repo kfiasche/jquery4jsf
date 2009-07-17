@@ -29,7 +29,6 @@ import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 
 public class SimplyScrollRenderer extends SimplyScrollBaseRenderer {
@@ -43,30 +42,15 @@ public class SimplyScrollRenderer extends SimplyScrollBaseRenderer {
         if(component instanceof SimplyScroll)
         	simplyScroll = (SimplyScroll)component;
         
-        ResponseWriter responseWriter = context.getResponseWriter();
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = simplyScroll.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-        
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(simplyScroll.getClientId(context));
-        JSAttribute jsSimplyScroll = new JSAttribute("simplyScroll", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsSimplyScroll.addValue(encodeOptionComponent(sbOption, simplyScroll, context));
-        element.addAttribute(jsSimplyScroll);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
-        responseWriter.startElement(HTML.TAG_DIV, component);
-        responseWriter.writeAttribute("id", component.getClientId(context) +"Wrapper", null);
+        encodeResources(simplyScroll);
+        encodeSimplyScrollScript(context, simplyScroll);
+        encodeSimplyScrollMarkup(context, simplyScroll);
+	}
+
+	private void encodeSimplyScrollMarkup(FacesContext context, SimplyScroll simplyScroll) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+        responseWriter.startElement(HTML.TAG_DIV, simplyScroll);
+        responseWriter.writeAttribute("id", simplyScroll.getClientId(context) +"Wrapper", null);
         responseWriter.writeAttribute("class", "ui-simplyscroll-w", null);
 		responseWriter.write("\n");
 		if (simplyScroll.isCustomContent()){
@@ -76,6 +60,13 @@ public class SimplyScrollRenderer extends SimplyScrollBaseRenderer {
 			encodeContentClassic(context, simplyScroll);
 		}
 		responseWriter.endElement(HTML.TAG_DIV);
+	}
+
+	private void encodeSimplyScrollScript(FacesContext context, SimplyScroll simplyScroll) {
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, simplyScroll));
+        documentElement.addFunctionToReady(function);
 	}
 
 	private void encodeCustomContent(FacesContext context, SimplyScroll simplyScroll) throws IOException {
@@ -137,6 +128,18 @@ public class SimplyScrollRenderer extends SimplyScrollBaseRenderer {
 	}
 
 	public void encodeChildren(FacesContext arg0, UIComponent arg1)throws IOException {
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        SimplyScroll simplyScroll = null;
+        if(component instanceof SimplyScroll)
+        	simplyScroll = (SimplyScroll)component;
+		JSElement element = new JSElement(simplyScroll.getClientId(context));
+        JSAttribute jsSimplyScroll = new JSAttribute("simplyScroll", false);
+        StringBuffer sbOption = new StringBuffer();
+        jsSimplyScroll.addValue(encodeOptionComponent(sbOption, simplyScroll, context));
+        element.addAttribute(jsSimplyScroll);
+		return element;
 	}
 
 	

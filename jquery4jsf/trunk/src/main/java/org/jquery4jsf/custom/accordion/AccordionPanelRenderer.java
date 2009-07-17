@@ -118,31 +118,28 @@ public class AccordionPanelRenderer extends AccordionPanelBaseRenderer {
 	}
 	
 	protected void encodeAccordianScript(FacesContext context, AccordionPanel accordionPanel) throws IOException{
-		ResponseWriter responseWriter = context.getResponseWriter();
-        String jsRender = (String) accordionPanel.getAttributes().get("jsNoRenderer");
-        if (jsRender == null || !jsRender.equalsIgnoreCase("true")){
-	        StringBuffer sb = new StringBuffer();
-	        sb.append("\n");
-	        JSDocumentElement documentElement = new JSDocumentElement();
-	        JSElement element = new JSElement(accordionPanel.getClientId(context));
-	        JSAttribute jsAccordion = new JSAttribute("accordion", false);
-	        StringBuffer sbOption = new StringBuffer();
-	        jsAccordion.addValue(encodeOptionComponent(sbOption, accordionPanel, context));
-	        element.addAttribute(jsAccordion);
-	
-	        JSFunction function = new JSFunction();
-	        function.addJSElement(element);
-	        documentElement.addFunctionToReady(function);
-	        sb.append(documentElement.toJavaScriptCode());
-	        sb.append("\n");
-	        RendererUtilities.encodeImportJavascripScript(accordionPanel, responseWriter, sb); 
-        }
+		JSDocumentElement documentElement = JSDocumentElement.getInstance();
+		JSFunction function = new JSFunction();
+		JSElement element = getJSElement(context, accordionPanel);
+		function.addJSElement(element);
+		documentElement.addFunctionToReady(function);
 	}
+	
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+        AccordionPanel accordionPanel = null;
+        if (component instanceof AccordionPanel)
+        	accordionPanel = (AccordionPanel)component;
+		JSElement element = new JSElement(accordionPanel.getClientId(context));
+        JSAttribute jsAccordion = new JSAttribute("accordion", false);
+        StringBuffer options = new StringBuffer();
+        jsAccordion.addValue(encodeOptionComponent(options, accordionPanel, context));
+        element.addAttribute(jsAccordion);
+        return element;
+	}	
 	
 	public boolean getRendersChildren() {
 		return true;
 	}
 
-	
-	
+
 }

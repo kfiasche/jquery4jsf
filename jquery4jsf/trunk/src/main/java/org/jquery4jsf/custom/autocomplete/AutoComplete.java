@@ -69,6 +69,7 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 		 resources = new String[]{
 			"jquery/jquery.js",
 			"ui/ui.core.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"form/jquery.form.js",
 			"autocomplete/ui.autocomplete.js",
 			"autocomplete/ui.autocomplete.css",
@@ -314,26 +315,26 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[22];
 		values[0] = super.saveState(context);
-		values[1] = jsonValue;
-		values[2] = minChars;
-		values[3] = delay;
-		values[4] = cacheLength;
-		values[5] = matchSubset;
-		values[6] = matchCase;
-		values[7] = matchContains;
-		values[8] = mustMatch;
-		values[9] = selectFirst;
-		values[10] = multiple;
-		values[11] = multipleSeparator;
-		values[12] = width;
-		values[13] = autoFill;
-		values[14] = max;
-		values[15] = highlight;
-		values[16] = scroll;
-		values[17] = scrollHeight;
-		values[18] = onformatItem;
-		values[19] = onformatMatch;
-		values[20] = onformatResult;
+		values[1] = this.jsonValue;
+		values[2] = this.minChars;
+		values[3] = this.delay;
+		values[4] = this.cacheLength;
+		values[5] = this.matchSubset;
+		values[6] = this.matchCase;
+		values[7] = this.matchContains;
+		values[8] = this.mustMatch;
+		values[9] = this.selectFirst;
+		values[10] = this.multiple;
+		values[11] = this.multipleSeparator;
+		values[12] = this.width;
+		values[13] = this.autoFill;
+		values[14] = this.max;
+		values[15] = this.highlight;
+		values[16] = this.scroll;
+		values[17] = this.scrollHeight;
+		values[18] = this.onformatItem;
+		values[19] = this.onformatMatch;
+		values[20] = this.onformatResult;
 		values[21] = saveAttachedState(context, oncomplete);
 		return ((Object) values);
 	}
@@ -375,11 +376,23 @@ public class AutoComplete extends HtmlInputText implements JQueryHtmlObject,Ajax
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
+	/**
+	 * Code taken, modified from Ajax Partial Page Renderer 
+	 * Prime Faces 
+	 */
 	public void encodePartially(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
 		if(renderer instanceof AjaxBaseRenderer) {
 			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		}
+	}
+
+	public void encodeScript(FacesContext facesContext) throws IOException {
+		Renderer renderer = getRenderer(facesContext);
+
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

@@ -16,10 +16,12 @@
 package org.jquery4jsf.custom.paragraph;
 
 import java.lang.String;
+
+import org.jquery4jsf.renderkit.HtmlBasicRenderer;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class ParagraphBaseRenderer extends JQueryBaseRenderer {
+public class ParagraphBaseRenderer extends HtmlBasicRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Paragraph paragraph , FacesContext context) {
 		options.append(" {\n");

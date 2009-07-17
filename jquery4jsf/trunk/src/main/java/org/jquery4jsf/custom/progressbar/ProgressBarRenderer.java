@@ -22,6 +22,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -45,52 +46,32 @@ public class ProgressBarRenderer extends JQueryBaseRenderer {
 		if(component instanceof ProgressBar)
 			progressBar = (ProgressBar)component;
 
-		ResponseWriter responseWriter = context.getResponseWriter();
-		// TODO devo trovare il modo per scrivere i script nell'head
-		String[] list = progressBar.getResources();
-		for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-		
-		StringBuffer sb = new StringBuffer();
-		sb.append("\n");
-		JSDocumentElement documentElement = new JSDocumentElement();
-		JSElement element = new JSElement(progressBar.getClientId(context));
-		JSAttribute jsProgressbar = new JSAttribute("progressbar", false);
-		StringBuffer sbOption = new StringBuffer();
-		jsProgressbar.addValue(encodeOptionComponent(sbOption, progressBar, context));
-		element.addAttribute(jsProgressbar);
+		encodeResources(progressBar);
+		encodeProgressBarScript(context, progressBar);
+		encodeProgressBarMarkup(context, progressBar);
+	}
 
-		JSFunction function = new JSFunction();
-		function.addJSElement(element);
-		if (progressBar.isResizable()){
-			JSElement elementWrapper = new JSElement(progressBar.getClientId(context).concat("Wrapper"));
-			JSAttribute jsWrapperRes = new JSAttribute("resizable", false);
-			jsWrapperRes.addValue("");
-			elementWrapper.addAttribute(jsWrapperRes);
-			function.addJSElement(elementWrapper);
-		}
-		
-		documentElement.addFunctionToReady(function);
-		sb.append(documentElement.toJavaScriptCode());
-		sb.append("\n");
-		
-		RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb); 
-		//if (progressBar.isResizable()){
-			responseWriter.startElement(HTML.TAG_DIV, progressBar);
-			responseWriter.writeAttribute(HTML.ID, progressBar.getClientId(context).concat("Wrapper"), null);
-			responseWriter.writeAttribute(HTML.STYLE, "height:25px; ", null);
-			responseWriter.writeAttribute("class", "ui-widget-default", null);
-		//}
+	private void encodeProgressBarMarkup(FacesContext context, ProgressBar progressBar) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+		responseWriter.startElement(HTML.TAG_DIV, progressBar);
+		responseWriter.writeAttribute(HTML.ID, progressBar.getClientId(context).concat("Wrapper"), null);
+		responseWriter.writeAttribute(HTML.STYLE, "height:25px; ", null);
+		responseWriter.writeAttribute("class", "ui-widget-default", null);
 		responseWriter.startElement(HTML.TAG_DIV, progressBar);
 		responseWriter.writeAttribute(HTML.ID, progressBar.getClientId(context), null);
 		responseWriter.writeAttribute(HTML.STYLE, "height:100%;", null);
 		responseWriter.endElement(HTML.TAG_DIV);
-		//if (progressBar.isResizable()){
-			responseWriter.endElement(HTML.TAG_DIV);
-		//}
+		responseWriter.endElement(HTML.TAG_DIV);
+	}
 
+	private void encodeProgressBarScript(FacesContext context, ProgressBar progressBar) {
+		JSDocumentElement documentElement = JSDocumentElement.getInstance();
+		JSFunction function = new JSFunction();
+		function.addJSElement(getJSElement(context, progressBar));
+		if (progressBar.isResizable()){
+			function.addJSElement(getJSElementResize(context, progressBar));
+		}
+		documentElement.addFunctionToReady(function);
 	}
 
 	private String encodeOptionComponent(StringBuffer options, ProgressBar progressBar, FacesContext context) {
@@ -113,6 +94,38 @@ public class ProgressBarRenderer extends JQueryBaseRenderer {
 		return options.toString();
 	}
 
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+		//progressbar
+		ProgressBar progressBar = null;
+		if(component instanceof ProgressBar)
+			progressBar = (ProgressBar)component;
+		JSElement element = new JSElement(progressBar.getClientId(context));
+		JSAttribute jsProgressbar = new JSAttribute("progressbar", false);
+		StringBuffer sbOption = new StringBuffer();
+		jsProgressbar.addValue(encodeOptionComponent(sbOption, progressBar, context));
+		element.addAttribute(jsProgressbar);
+		return element;
+	}
+	private JSElement getJSElementResize(FacesContext context, UIComponent component) {
+		//resize
+		ProgressBar progressBar = null;
+		if(component instanceof ProgressBar)
+			progressBar = (ProgressBar)component;
+		JSElement elementWrapper = new JSElement(progressBar.getClientId(context).concat("Wrapper"));
+		JSAttribute jsWrapperRes = new JSAttribute("resizable", false);
+		jsWrapperRes.addValue("");
+		elementWrapper.addAttribute(jsWrapperRes);
+		return elementWrapper;
+	}
+
+	public void encodeScript(FacesContext context, JQueryHtmlObject queryComponent) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+		responseWriter.write("\n");
+		responseWriter.write(getJSElement(context, (UIComponent) queryComponent).toJavaScriptCode());
+		responseWriter.write("\n");
+		responseWriter.write(getJSElementResize(context, (UIComponent) queryComponent).toJavaScriptCode());
+		responseWriter.write("\n");
+	}
 
 
 }

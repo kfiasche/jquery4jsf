@@ -58,21 +58,10 @@ public class DialogRenderer extends DialogBaseRenderer {
 	}
 
 	private void encodeScriptDialog(FacesContext context, Dialog dialog) throws IOException {
-        ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(dialog.getClientId(context));
-        JSAttribute jsDialog = new JSAttribute("dialog", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsDialog.addValue(encodeOptionComponent(sbOption, dialog, context));
-        element.addAttribute(jsDialog);
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
         JSFunction function = new JSFunction();
-        function.addJSElement(element);
+        function.addJSElement(getJSElement(context, dialog));
         documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(dialog, responseWriter, sb);
 	}
 
 	public boolean getRendersChildren() {
@@ -80,6 +69,18 @@ public class DialogRenderer extends DialogBaseRenderer {
 	}
 
 	public void encodeChildren(FacesContext context, UIComponent component)throws IOException {
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        Dialog dialog = null;
+        if(component instanceof Dialog)
+            dialog = (Dialog)component;
+        JSElement element = new JSElement(dialog.getClientId(context));
+        JSAttribute jsDialog = new JSAttribute("dialog", false);
+        StringBuffer sbOption = new StringBuffer();
+        jsDialog.addValue(encodeOptionComponent(sbOption, dialog, context));
+        element.addAttribute(jsDialog);
+		return element;
 	}
 
 	

@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.colorpicker;
 
 import org.jquery4jsf.component.ext.HtmlInputText;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -28,7 +26,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class ColorPicker extends HtmlInputText implements JQueryHtmlObject,AjaxComponent {
+public class ColorPicker extends HtmlInputText implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlColorPicker";
@@ -51,6 +49,7 @@ public class ColorPicker extends HtmlInputText implements JQueryHtmlObject,AjaxC
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"colorpicker/ui.colorpicker.js",
 			"colorpicker/ui.colorpicker.css",
 			"themes/base/ui.all.css"
@@ -174,16 +173,16 @@ public class ColorPicker extends HtmlInputText implements JQueryHtmlObject,AjaxC
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[11];
 		values[0] = super.saveState(context);
-		values[1] = eventName;
-		values[2] = target;
-		values[3] = color;
-		values[4] = flat;
-		values[5] = livePreview;
-		values[6] = onShow;
-		values[7] = onBeforeShow;
-		values[8] = onHide;
-		values[9] = onChange;
-		values[10] = onSubmit;
+		values[1] = this.eventName;
+		values[2] = this.target;
+		values[3] = this.color;
+		values[4] = this.flat;
+		values[5] = this.livePreview;
+		values[6] = this.onShow;
+		values[7] = this.onBeforeShow;
+		values[8] = this.onHide;
+		values[9] = this.onChange;
+		values[10] = this.onSubmit;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -228,11 +227,11 @@ public class ColorPicker extends HtmlInputText implements JQueryHtmlObject,AjaxC
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

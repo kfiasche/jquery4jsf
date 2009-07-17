@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class ResizableBaseRenderer extends JQueryBaseRenderer {
+public abstract class ResizableBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Resizable resizable , FacesContext context) {
 		options.append(" {\n");

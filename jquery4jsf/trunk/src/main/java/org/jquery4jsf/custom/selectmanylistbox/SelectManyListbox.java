@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.selectmanylistbox;
 
 import org.jquery4jsf.component.ext.HtmlBaseSelectManyComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.custom.UIInteractions;
 import javax.faces.render.Renderer;
@@ -33,7 +31,7 @@ import javax.faces.validator.Validator;
 import javax.faces.event.ValueChangeListener;
 import java.lang.Integer;
 
-public class SelectManyListbox extends HtmlBaseSelectManyComponent implements JQueryHtmlObject,AjaxComponent,UIInteractions {
+public class SelectManyListbox extends HtmlBaseSelectManyComponent implements JQueryHtmlObject,UIInteractions {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlSelectManyListbox";
@@ -49,6 +47,7 @@ public class SelectManyListbox extends HtmlBaseSelectManyComponent implements JQ
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"ui/ui.sortable.js",
 			"ui/ui.draggable.js",
@@ -99,9 +98,9 @@ public class SelectManyListbox extends HtmlBaseSelectManyComponent implements JQ
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[4];
 		values[0] = super.saveState(context);
-		values[1] = _for;
-		values[2] = sortable;
-		values[3] = searchable;
+		values[1] = this._for;
+		values[2] = this.sortable;
+		values[3] = this.searchable;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -124,11 +123,11 @@ public class SelectManyListbox extends HtmlBaseSelectManyComponent implements JQ
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

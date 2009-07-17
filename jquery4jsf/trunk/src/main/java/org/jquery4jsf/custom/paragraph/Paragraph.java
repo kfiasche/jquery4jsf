@@ -17,9 +17,6 @@ package org.jquery4jsf.custom.paragraph;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
@@ -29,7 +26,7 @@ import javax.faces.component.UIComponent;
 import java.lang.Object;
 import javax.faces.convert.Converter;
 
-public class Paragraph extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class Paragraph extends HtmlBaseOutputComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlParagraph";
@@ -60,13 +57,5 @@ public class Paragraph extends HtmlBaseOutputComponent implements JQueryHtmlObje
 
 	public String[] getResources() {
 		return resources;
-	}
-
-	public void encodePartially(FacesContext facesContext) throws IOException {
-		Renderer renderer = getRenderer(facesContext);
-
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
-		}
 	}
 }

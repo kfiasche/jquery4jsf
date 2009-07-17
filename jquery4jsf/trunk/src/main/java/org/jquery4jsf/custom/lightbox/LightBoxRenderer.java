@@ -28,15 +28,11 @@ import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.javascript.function.JSFunction;
 import org.jquery4jsf.renderkit.RendererUtilities;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 
 public class LightBoxRenderer extends LightBoxBaseRenderer {
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-	}
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-		
 	    if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
@@ -46,31 +42,14 @@ public class LightBoxRenderer extends LightBoxBaseRenderer {
         if(component instanceof LightBox)
             lightBox = (LightBox)component;
         
-        ResponseWriter responseWriter = context.getResponseWriter();
-        
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = lightBox.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
-        
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(lightBox.getClientId(context)+" a");
-        JSAttribute jslightBox = new JSAttribute("lightBox", false);
-        StringBuffer sbOption = new StringBuffer();
-        jslightBox.addValue(encodeOptionComponent(sbOption, lightBox, context));
-        element.addAttribute(jslightBox);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
-        
+        encodeResources(lightBox);
+        encodeLightBoxScript(context, lightBox);
+        encodeLightBoxMarkup(context, lightBox);
+	}
+
+	private void encodeLightBoxMarkup(FacesContext context, LightBox lightBox) throws IOException {
 		String clientId = lightBox.getClientId(context);
+		ResponseWriter responseWriter = context.getResponseWriter();
         responseWriter.startElement(HTML.TAG_DIV, lightBox);
         responseWriter.writeAttribute("id", clientId, "id");
 		if(lightBox.getStyleClass() == null)
@@ -99,6 +78,13 @@ public class LightBoxRenderer extends LightBoxBaseRenderer {
 		responseWriter.write("\n");
 		responseWriter.endElement(HTML.TAG_UL);
 		responseWriter.endElement(HTML.TAG_DIV);
+	}
+
+	private void encodeLightBoxScript(FacesContext context, LightBox lightBox) {
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, lightBox));
+        documentElement.addFunctionToReady(function);
 	}
 
 	public void encodeChildren(FacesContext facesContext, UIComponent component) throws IOException {
@@ -143,5 +129,17 @@ public class LightBoxRenderer extends LightBoxBaseRenderer {
 			options.append(" }");
 		}
 		return options.toString();
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        LightBox lightBox = null;
+        if(component instanceof LightBox)
+            lightBox = (LightBox)component;
+        JSElement element = new JSElement(lightBox.getClientId(context)+" a");
+        JSAttribute jslightBox = new JSAttribute("lightBox", false);
+        StringBuffer sbOption = new StringBuffer();
+        jslightBox.addValue(encodeOptionComponent(sbOption, lightBox, context));
+        element.addAttribute(jslightBox);
+        return element;
 	}
 }

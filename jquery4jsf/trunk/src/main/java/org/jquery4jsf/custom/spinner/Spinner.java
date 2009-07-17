@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.spinner;
 
 import org.jquery4jsf.component.ext.HtmlInputText;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import org.jquery4jsf.custom.UIInteractions;
 import javax.faces.render.Renderer;
@@ -33,7 +31,7 @@ import javax.faces.validator.Validator;
 import javax.faces.event.ValueChangeListener;
 import java.lang.Integer;
 
-public class Spinner extends HtmlInputText implements JQueryHtmlObject,AjaxComponent,UIInteractions {
+public class Spinner extends HtmlInputText implements JQueryHtmlObject,UIInteractions {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlSpinner";
@@ -65,6 +63,7 @@ public class Spinner extends HtmlInputText implements JQueryHtmlObject,AjaxCompo
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"spinner/ui.spinner.js",
 			"spinner/ui.spinner.sync.js",
@@ -290,25 +289,25 @@ public class Spinner extends HtmlInputText implements JQueryHtmlObject,AjaxCompo
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[20];
 		values[0] = super.saveState(context);
-		values[1] = _for;
-		values[2] = syncWith;
-		values[3] = step;
-		values[4] = currency;
-		values[5] = format;
-		values[6] = groupSeparator;
-		values[7] = hide;
-		values[8] = incremental;
-		values[9] = max;
-		values[10] = min;
-		values[11] = mouseWheel;
-		values[12] = padLength;
-		values[13] = page;
-		values[14] = precision;
-		values[15] = radix;
-		values[16] = radixPoint;
-		values[17] = readOnly;
-		values[18] = spinnerClass;
-		values[19] = width;
+		values[1] = this._for;
+		values[2] = this.syncWith;
+		values[3] = this.step;
+		values[4] = this.currency;
+		values[5] = this.format;
+		values[6] = this.groupSeparator;
+		values[7] = this.hide;
+		values[8] = this.incremental;
+		values[9] = this.max;
+		values[10] = this.min;
+		values[11] = this.mouseWheel;
+		values[12] = this.padLength;
+		values[13] = this.page;
+		values[14] = this.precision;
+		values[15] = this.radix;
+		values[16] = this.radixPoint;
+		values[17] = this.readOnly;
+		values[18] = this.spinnerClass;
+		values[19] = this.width;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -347,11 +346,11 @@ public class Spinner extends HtmlInputText implements JQueryHtmlObject,AjaxCompo
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

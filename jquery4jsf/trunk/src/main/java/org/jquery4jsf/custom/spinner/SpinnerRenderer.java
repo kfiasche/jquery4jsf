@@ -19,10 +19,12 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.model.SelectItem;
 
+import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
 import org.jquery4jsf.javascript.JSElement;
@@ -49,11 +51,12 @@ public class SpinnerRenderer extends SpinnerBaseRenderer {
 	}
 
 	private void encodeSpinnerMarkup(FacesContext context, Spinner spinner) throws IOException {
-		boolean isUnique = RendererUtilities.isUniqueId(spinner);
+		String id = RendererUtilities.encodeIdInteractions(spinner, context);
+		UIComponent component = ComponentUtilities.findComponentInRoot(id);
 		List selectItems = getSelectItems(spinner);
-		if (isUnique && selectItems == null){
+		if (!(component instanceof UIInput)){
 			encodeInputText(spinner, context);
-		}
+		}	
 		else if (spinner.getFor() == null && selectItems != null){
 			SelectItem[] arrays = (SelectItem[]) selectItems.toArray(new SelectItem[selectItems.size()]);
 			encodeSpinnerItems(context, arrays);
@@ -78,22 +81,10 @@ public class SpinnerRenderer extends SpinnerBaseRenderer {
 	}
 	
 	private void encodeSpinnerScript(FacesContext context, Spinner spinner) throws IOException {
-		ResponseWriter responseWriter = context.getResponseWriter();
-        String clientId = RendererUtilities.encodeIdInteractions(spinner, context);
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(clientId);
-        JSAttribute jsResizable = new JSAttribute("spinner", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsResizable.addValue(encodeOptionComponent(sbOption, spinner, context));
-        element.addAttribute(jsResizable);
+		JSDocumentElement documentElement = JSDocumentElement.getInstance();
         JSFunction function = new JSFunction();
-        function.addJSElement(element);
+        function.addJSElement(getJSElement(context, spinner));
         documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(spinner, responseWriter, sb);
 	}
 	
 	public void decode(FacesContext context, UIComponent component) {
@@ -101,5 +92,56 @@ public class SpinnerRenderer extends SpinnerBaseRenderer {
 		String clientId = spinner.getClientId(context);
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 		spinner.setSubmittedValue(submittedValue);
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        Spinner spinner = null;
+        if(component instanceof Spinner)
+            spinner = (Spinner)component;
+		String clientId = RendererUtilities.encodeClientIdInteractions(spinner, context);
+        JSElement element = new JSElement(clientId);
+        JSAttribute jsSpinner = new JSAttribute("spinner", false);
+        StringBuffer sbOption = new StringBuffer();
+        jsSpinner.addValue(encodeOptionComponent(sbOption, spinner, context));
+        element.addAttribute(jsSpinner);
+		return element;
+	}
+	
+	protected String encodeOptionComponent(StringBuffer options, Spinner spinner , FacesContext context) {
+		options.append(" {\n");
+		encodeOptionComponentByType(options, spinner.getDir(), "dir", null);
+		encodeOptionComponentByType(options, spinner.getSyncWith(), "syncWith", null);
+		encodeOptionComponentByType(options, spinner.getStep(), "step", null);
+		encodeOptionComponentByType(options, spinner.isCurrency(), "currency", null);
+		encodeOptionComponentByType(options, spinner.getFormat(), "format", null);
+		encodeOptionComponentByType(options, spinner.getGroupSeparator(), "groupSeparator", null);
+		encodeOptionComponentByType(options, spinner.getHide(), "hide", null);
+		encodeOptionComponentByType(options, spinner.isIncremental(), "incremental", "true");
+		encodeOptionComponentByType(options, spinner.getMax(), "max", null);
+		encodeOptionComponentByType(options, spinner.getMin(), "min", null);
+		encodeOptionComponentByType(options, spinner.isMouseWheel(), "mouseWheel", "true");
+		encodeOptionComponentByType(options, spinner.getPadLength(), "padLength", "0");
+		encodeOptionComponentByType(options, spinner.getPage(), "page", null);
+		encodeOptionComponentByType(options, spinner.getPrecision(), "precision", null);
+		encodeOptionComponentByType(options, spinner.getRadix(), "radix", null);
+		encodeOptionComponentByType(options, spinner.getRadixPoint(), "radixPoint", null);
+		encodeOptionComponentByType(options, spinner.getReadOnly(), "readOnly", null);
+		encodeOptionComponentByType(options, spinner.getSpinnerClass(), "spinnerClass", null);
+		encodeOptionComponentByType(options, spinner.getWidth(), "width", null);
+		if (options.toString().endsWith(", \n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+		}
+		boolean noParams = false;
+		if (options.toString().endsWith(" {\n")){
+			String stringa = options.substring(0, options.length()-3);
+			options = new StringBuffer(stringa);
+			noParams = true;
+		}
+		if (!noParams)
+		{
+			options.append(" }");
+		}
+		return options.toString();
 	}
 }

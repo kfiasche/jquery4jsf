@@ -89,6 +89,7 @@ public class Tooltip extends HtmlBaseOutputComponent implements JQueryHtmlObject
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"tooltip/jquery.qtip.min.js",
 			"tooltip/jquery.qtip.themeroller.js",
 			"form/jquery.form.js",
@@ -611,51 +612,51 @@ public class Tooltip extends HtmlBaseOutputComponent implements JQueryHtmlObject
 		Object values[] = new Object[47];
 		values[0] = super.saveState(context);
 		values[1] = saveAttachedState(context, oncomplete);
-		values[2] = prerender;
-		values[3] = url;
-		values[4] = text;
-		values[5] = titleText;
-		values[6] = titleButton;
-		values[7] = positionTarget;
-		values[8] = positionType;
-		values[9] = positionContainer;
-		values[10] = cornerTarget;
-		values[11] = cornerTooltip;
-		values[12] = adjustX;
-		values[13] = adjustY;
-		values[14] = adjustMouse;
-		values[15] = adjustScreen;
-		values[16] = adjustScroll;
-		values[17] = adjustResize;
-		values[18] = showDelay;
-		values[19] = showSolo;
-		values[20] = showReady;
-		values[21] = showWhenTarget;
-		values[22] = showWhenEvent;
-		values[23] = showEffectLength;
-		values[24] = showEffectType;
-		values[25] = hideDelay;
-		values[26] = hideFixed;
-		values[27] = hideWhenTarget;
-		values[28] = hideWhenEvent;
-		values[29] = hideEffectLength;
-		values[30] = hideEffectType;
-		values[31] = styleName;
-		values[32] = styleWidthMin;
-		values[33] = styleWidthMax;
-		values[34] = styleBorderWidth;
-		values[35] = styleBorderRadius;
-		values[36] = styleBorderColor;
-		values[37] = styleTipColor;
-		values[38] = styleTipCorner;
-		values[39] = styleTipSizeX;
-		values[40] = styleTipSizeY;
-		values[41] = styleTargetClass;
-		values[42] = styleTooltipClass;
-		values[43] = styleTipClass;
-		values[44] = styleTitleClass;
-		values[45] = styleContentClass;
-		values[46] = styleActiveClass;
+		values[2] = this.prerender;
+		values[3] = this.url;
+		values[4] = this.text;
+		values[5] = this.titleText;
+		values[6] = this.titleButton;
+		values[7] = this.positionTarget;
+		values[8] = this.positionType;
+		values[9] = this.positionContainer;
+		values[10] = this.cornerTarget;
+		values[11] = this.cornerTooltip;
+		values[12] = this.adjustX;
+		values[13] = this.adjustY;
+		values[14] = this.adjustMouse;
+		values[15] = this.adjustScreen;
+		values[16] = this.adjustScroll;
+		values[17] = this.adjustResize;
+		values[18] = this.showDelay;
+		values[19] = this.showSolo;
+		values[20] = this.showReady;
+		values[21] = this.showWhenTarget;
+		values[22] = this.showWhenEvent;
+		values[23] = this.showEffectLength;
+		values[24] = this.showEffectType;
+		values[25] = this.hideDelay;
+		values[26] = this.hideFixed;
+		values[27] = this.hideWhenTarget;
+		values[28] = this.hideWhenEvent;
+		values[29] = this.hideEffectLength;
+		values[30] = this.hideEffectType;
+		values[31] = this.styleName;
+		values[32] = this.styleWidthMin;
+		values[33] = this.styleWidthMax;
+		values[34] = this.styleBorderWidth;
+		values[35] = this.styleBorderRadius;
+		values[36] = this.styleBorderColor;
+		values[37] = this.styleTipColor;
+		values[38] = this.styleTipCorner;
+		values[39] = this.styleTipSizeX;
+		values[40] = this.styleTipSizeY;
+		values[41] = this.styleTargetClass;
+		values[42] = this.styleTooltipClass;
+		values[43] = this.styleTipClass;
+		values[44] = this.styleTitleClass;
+		values[45] = this.styleContentClass;
+		values[46] = this.styleActiveClass;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -713,11 +714,24 @@ public class Tooltip extends HtmlBaseOutputComponent implements JQueryHtmlObject
 		return resources;
 	}
 
+	
+	/**
+	 * Code taken, modified from Ajax Partial Page Renderer 
+	 * Prime Faces 
+	 */
 	public void encodePartially(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
 		if(renderer instanceof AjaxBaseRenderer) {
 			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		}
+	}
+
+	public void encodeScript(FacesContext facesContext) throws IOException {
+		Renderer renderer = getRenderer(facesContext);
+
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

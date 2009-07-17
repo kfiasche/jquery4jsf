@@ -59,22 +59,10 @@ public class SelectManyListboxRenderer extends ListboxRenderer {
 	}
 
 	private void encodeScriptSelectManyListbox(FacesContext context, SelectManyListbox selectManyListbox) throws IOException {
-        String clientId = RendererUtilities.encodeIdInteractions(selectManyListbox, context);
-        ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(clientId);
-        JSAttribute jsMultiselect = new JSAttribute("multiselect", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsMultiselect.addValue(encodeOptionComponent(sbOption, selectManyListbox, context));
-        element.addAttribute(jsMultiselect);
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
         JSFunction function = new JSFunction();
-        function.addJSElement(element);
+        function.addJSElement(getJSElement(context, selectManyListbox));
         documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(selectManyListbox, responseWriter, sb);
 	}
 
 	private void encodeMarkupSelectManyListbox(FacesContext context, SelectManyListbox selectManyListbox) throws IOException {	
@@ -149,5 +137,18 @@ public class SelectManyListboxRenderer extends ListboxRenderer {
 			options.append(" }");
 		}
 		return options.toString();
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        SelectManyListbox selectManyListbox = null;
+        if(component instanceof SelectManyListbox)
+        	selectManyListbox = (SelectManyListbox)component;
+		String clientId = RendererUtilities.encodeClientIdInteractions(selectManyListbox, context);
+        JSElement element = new JSElement(clientId);
+        JSAttribute jsMultiselect = new JSAttribute("multiselect", false);
+        StringBuffer sbOption = new StringBuffer();
+        jsMultiselect.addValue(encodeOptionComponent(sbOption, selectManyListbox, context));
+        element.addAttribute(jsMultiselect);
+		return element;
 	}
 }

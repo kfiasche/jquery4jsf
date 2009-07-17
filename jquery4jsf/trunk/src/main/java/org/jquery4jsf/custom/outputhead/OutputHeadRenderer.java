@@ -22,11 +22,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import org.jquery4jsf.custom.outputbody.OutputBody;
-import org.jquery4jsf.renderkit.JQueryBaseRenderer;
+import org.jquery4jsf.renderkit.HtmlBasicRenderer;
 import org.jquery4jsf.renderkit.html.HTML;
 import org.jquery4jsf.renderkit.html.HtmlRendererUtilities;
 import org.jquery4jsf.utilities.MessageFactory;
-public class OutputHeadRenderer extends JQueryBaseRenderer {
+public class OutputHeadRenderer extends HtmlBasicRenderer {
 
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		if(context == null || context == null)

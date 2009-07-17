@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.tablesorter;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -27,7 +25,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class TableSorter extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class TableSorter extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlTableSorter";
@@ -47,6 +45,7 @@ public class TableSorter extends HtmlBaseOutputComponent implements JQueryHtmlOb
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"tablesorter/jquery.tablesorter.js",
 			"tablesorter/jquery.tablesorter-theme.js",
 			"themes/base/ui.all.css"
@@ -137,13 +136,13 @@ public class TableSorter extends HtmlBaseOutputComponent implements JQueryHtmlOb
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[8];
 		values[0] = super.saveState(context);
-		values[1] = themeroller;
-		values[2] = target;
-		values[3] = ascStyleClass;
-		values[4] = descStyleClass;
-		values[5] = headerStyleClass;
-		values[6] = sortedColumns;
-		values[7] = sortMultiSortKey;
+		values[1] = this.themeroller;
+		values[2] = this.target;
+		values[3] = this.ascStyleClass;
+		values[4] = this.descStyleClass;
+		values[5] = this.headerStyleClass;
+		values[6] = this.sortedColumns;
+		values[7] = this.sortMultiSortKey;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -162,11 +161,11 @@ public class TableSorter extends HtmlBaseOutputComponent implements JQueryHtmlOb
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

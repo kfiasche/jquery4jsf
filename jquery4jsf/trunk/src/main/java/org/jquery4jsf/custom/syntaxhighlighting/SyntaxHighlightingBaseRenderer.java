@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class SyntaxHighlightingBaseRenderer extends JQueryBaseRenderer {
+public abstract class SyntaxHighlightingBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, SyntaxHighlighting syntaxHighlighting , FacesContext context) {
 		options.append(" {\n");

@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class TooltipBaseRenderer extends JQueryBaseRenderer {
+public abstract class TooltipBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Tooltip tooltip , FacesContext context) {
 		options.append(" {\n");

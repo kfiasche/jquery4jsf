@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class ProgressBarBaseRenderer extends JQueryBaseRenderer {
+public abstract class ProgressBarBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, ProgressBar progressBar , FacesContext context) {
 		options.append(" {\n");

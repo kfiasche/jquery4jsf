@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.bookmark;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -28,7 +26,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class BookMark extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class BookMark extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlBookMark";
@@ -61,6 +59,7 @@ public class BookMark extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"bookmaker/jquery.bookmark.js",
 			"bookmaker/jquery.bookmark.css"
 		};
@@ -293,26 +292,26 @@ public class BookMark extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[21];
 		values[0] = super.saveState(context);
-		values[1] = url;
-		values[2] = title;
-		values[3] = sites;
-		values[4] = icons;
-		values[5] = iconSize;
-		values[6] = iconCols;
-		values[7] = target;
-		values[8] = compact;
-		values[9] = hint;
-		values[10] = popup;
-		values[11] = popupText;
-		values[12] = addFavorite;
-		values[13] = favoriteText;
-		values[14] = favoriteIcon;
-		values[15] = addEmail;
-		values[16] = emailText;
-		values[17] = emailIcon;
-		values[18] = emailSubject;
-		values[19] = emailBody;
-		values[20] = manualBookmark;
+		values[1] = this.url;
+		values[2] = this.title;
+		values[3] = this.sites;
+		values[4] = this.icons;
+		values[5] = this.iconSize;
+		values[6] = this.iconCols;
+		values[7] = this.target;
+		values[8] = this.compact;
+		values[9] = this.hint;
+		values[10] = this.popup;
+		values[11] = this.popupText;
+		values[12] = this.addFavorite;
+		values[13] = this.favoriteText;
+		values[14] = this.favoriteIcon;
+		values[15] = this.addEmail;
+		values[16] = this.emailText;
+		values[17] = this.emailIcon;
+		values[18] = this.emailSubject;
+		values[19] = this.emailBody;
+		values[20] = this.manualBookmark;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -344,11 +343,11 @@ public class BookMark extends HtmlBaseOutputComponent implements JQueryHtmlObjec
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

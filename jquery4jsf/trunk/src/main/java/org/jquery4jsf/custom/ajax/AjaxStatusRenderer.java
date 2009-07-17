@@ -125,12 +125,17 @@ public class AjaxStatusRenderer extends AjaxStatusBaseRenderer {
 	}
 	
 	private void encodeAjaxStatusScript(FacesContext context, AjaxStatus ajaxStatus) throws IOException {
-		ResponseWriter responseWriter = context.getResponseWriter();
+		JSDocumentElement documentElement = JSDocumentElement.getInstance();
+		JSFunction function = new JSFunction();
+		function.addJSElement(getJSElement(context, ajaxStatus));
+		documentElement.addFunctionToReady(function);
+	}
+	
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+        AjaxStatus ajaxStatus = null;
+        if(component instanceof AjaxStatus)
+            ajaxStatus = (AjaxStatus)component;
 		String clientId = ajaxStatus.getClientId(context);
-		StringBuffer sb = new StringBuffer();
-		sb.append("\n");
-		JSDocumentElement documentElement = new JSDocumentElement();
-		JSFunction jsFunction = new JSFunction();
 		JSElement element = new JSElement(clientId);
 		for (int i = 0; i < FACETS.length; i++) {
 			String facetName = FACETS[i];
@@ -139,18 +144,13 @@ public class AjaxStatusRenderer extends AjaxStatusBaseRenderer {
 				element.addAttribute(start);
 			}
 		}
-		jsFunction.addJSElement(element);
-		documentElement.addFunctionToReady(jsFunction);
-		sb.append(documentElement.toJavaScriptCode());
-		sb.append("\n");
-		RendererUtilities.encodeImportJavascripScript(ajaxStatus, responseWriter, sb);
+		return element;
 	}
 	
 	private String getAjaxEvent(String facet){
 		return "ajax".concat(facet.substring(0,1).toUpperCase()).concat(facet.substring(1));
 	}
-	
-	
+		
 	private boolean isHandlerEvent(AjaxStatus ajaxStatus, String event){
 		UIComponent facet = ajaxStatus.getFacet(event);
 		if (facet == null && ajaxStatus.getScriptValueByEvent(event) == null)

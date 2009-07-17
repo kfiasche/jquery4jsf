@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class WatermarkBaseRenderer extends JQueryInputBaseRenderer {
+public abstract class WatermarkBaseRenderer extends JQueryInputBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Watermark watermark , FacesContext context) {
 		options.append(" {\n");

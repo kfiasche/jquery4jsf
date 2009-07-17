@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.panel;
 
 import org.jquery4jsf.custom.panel.Panel;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -27,7 +25,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
+public class PanelEx extends Panel implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlPanelEx";
@@ -68,6 +66,7 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"panel/ui.panel.js",
 			"external/jquery.cookie.js",
@@ -391,34 +390,34 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[29];
 		values[0] = super.saveState(context);
-		values[1] = trueVerticalText;
-		values[2] = cookie;
-		values[3] = accordion;
-		values[4] = header;
-		values[5] = event;
-		values[6] = collapsible;
-		values[7] = collapseType;
-		values[8] = collapsed;
-		values[9] = collapseSpeed;
-		values[10] = controls;
-		values[11] = widgetClass;
-		values[12] = headerClass;
-		values[13] = contentClass;
-		values[14] = rightboxClass;
-		values[15] = controlsClass;
-		values[16] = titleClass;
-		values[17] = titleTextClass;
-		values[18] = iconClass;
-		values[19] = hoverClass;
-		values[20] = collapsePnlClass;
-		values[21] = headerIconClpsd;
-		values[22] = headerIcon;
-		values[23] = slideRIconClpsd;
-		values[24] = slideRIcon;
-		values[25] = slideLIconClpsd;
-		values[26] = slideLIcon;
-		values[27] = onunfold;
-		values[28] = onfold;
+		values[1] = this.trueVerticalText;
+		values[2] = this.cookie;
+		values[3] = this.accordion;
+		values[4] = this.header;
+		values[5] = this.event;
+		values[6] = this.collapsible;
+		values[7] = this.collapseType;
+		values[8] = this.collapsed;
+		values[9] = this.collapseSpeed;
+		values[10] = this.controls;
+		values[11] = this.widgetClass;
+		values[12] = this.headerClass;
+		values[13] = this.contentClass;
+		values[14] = this.rightboxClass;
+		values[15] = this.controlsClass;
+		values[16] = this.titleClass;
+		values[17] = this.titleTextClass;
+		values[18] = this.iconClass;
+		values[19] = this.hoverClass;
+		values[20] = this.collapsePnlClass;
+		values[21] = this.headerIconClpsd;
+		values[22] = this.headerIcon;
+		values[23] = this.slideRIconClpsd;
+		values[24] = this.slideRIcon;
+		values[25] = this.slideLIconClpsd;
+		values[26] = this.slideLIcon;
+		values[27] = this.onunfold;
+		values[28] = this.onfold;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -466,11 +465,11 @@ public class PanelEx extends Panel implements JQueryHtmlObject,AjaxComponent {
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

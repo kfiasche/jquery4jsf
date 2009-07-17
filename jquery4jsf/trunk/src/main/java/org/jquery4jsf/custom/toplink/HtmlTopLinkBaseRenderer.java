@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class HtmlTopLinkBaseRenderer extends JQueryBaseRenderer {
+public abstract class HtmlTopLinkBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, HtmlTopLink htmlTopLink , FacesContext context) {
 		options.append(" {\n");

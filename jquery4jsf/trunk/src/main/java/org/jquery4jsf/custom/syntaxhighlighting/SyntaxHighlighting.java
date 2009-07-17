@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.syntaxhighlighting;
 
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -27,7 +25,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class SyntaxHighlighting extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
+public class SyntaxHighlighting extends UIComponentBase implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlSyntaxHighlighting";
@@ -41,6 +39,7 @@ public class SyntaxHighlighting extends UIComponentBase implements JQueryHtmlObj
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"syntaxhighlighter/shCore.js",
 			"syntaxhighlighter/shBrushBash.js",
 			"syntaxhighlighter/shBrushCpp.js",
@@ -82,7 +81,7 @@ public class SyntaxHighlighting extends UIComponentBase implements JQueryHtmlObj
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[2];
 		values[0] = super.saveState(context);
-		values[1] = type;
+		values[1] = this.type;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -103,11 +102,11 @@ public class SyntaxHighlighting extends UIComponentBase implements JQueryHtmlObj
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

@@ -36,9 +36,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import org.jquery4jsf.javascript.JSElement;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import org.jquery4jsf.renderkit.html.HTML;
-import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 public class IconRenderer extends JQueryBaseRenderer {
 
@@ -52,14 +52,12 @@ public class IconRenderer extends JQueryBaseRenderer {
         if(component instanceof Icon)
         	icon = (Icon)component;
         
+        encodeResources(icon);
+        encodeIconMarkup(context, icon);
+	}
+
+	private void encodeIconMarkup(FacesContext context, Icon icon) throws IOException {
         ResponseWriter responseWriter = context.getResponseWriter();
-        
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = icon.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
-		}
         if(icon.getType() == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
 		
@@ -72,6 +70,10 @@ public class IconRenderer extends JQueryBaseRenderer {
         if (icon.getStyle() != null)
         	responseWriter.writeAttribute("style",icon.getStyle(), "style");
         responseWriter.endElement(HTML.TAG_SPAN);
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+		return null;
 	}
 	
 }

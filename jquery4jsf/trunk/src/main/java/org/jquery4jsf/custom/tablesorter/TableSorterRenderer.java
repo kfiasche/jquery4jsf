@@ -23,8 +23,6 @@ import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIData;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-
 import org.jquery4jsf.component.ComponentUtilities;
 import org.jquery4jsf.javascript.JSAttribute;
 import org.jquery4jsf.javascript.JSDocumentElement;
@@ -65,22 +63,10 @@ public class TableSorterRenderer extends TableSorterBaseRenderer {
 	}
 	
 	protected void encodeTableSorterScript(FacesContext context, TableSorter tableSorter) throws IOException{
-        ResponseWriter responseWriter = context.getResponseWriter();
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        String id = RendererUtilities.getJQueryIdComponent(tableSorter.getTarget(), context, tableSorter);
-        JSElement element = new JSElement(id);
-        JSAttribute jsTableSorter = new JSAttribute("tablesorter", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsTableSorter.addValue(encodeOptionComponent(sbOption, tableSorter, context));
-        element.addAttribute(jsTableSorter);
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
         JSFunction function = new JSFunction();
-        function.addJSElement(element);
+        function.addJSElement(getJSElement(context, tableSorter));
         documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(tableSorter, responseWriter, sb);
 	}
 	
 	protected String encodeOptionComponent(StringBuffer options, TableSorter tableSorter , FacesContext context) {
@@ -117,7 +103,6 @@ public class TableSorterRenderer extends TableSorterBaseRenderer {
 			}
 		}
 		encodeOptionComponentByType(options, tableSorter.getSortMultiSortKey(), "sortMultiSortKey", null);
-		//encodeOptionComponentByType(options, "[zebra]", "widgets", null);
 		encodeOptionComponentByType(options, true, "widthFixed", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
@@ -134,5 +119,18 @@ public class TableSorterRenderer extends TableSorterBaseRenderer {
 			options.append(" }");
 		}
 		return options.toString();
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        TableSorter tableSorter = null;
+        if(component instanceof TableSorter)
+        	tableSorter = (TableSorter)component;
+        String id = RendererUtilities.getJQueryIdComponent(tableSorter.getTarget(), context, tableSorter);
+        JSElement element = new JSElement(id);
+        JSAttribute jsTableSorter = new JSAttribute("tablesorter", false);
+        StringBuffer sbOption = new StringBuffer();
+        jsTableSorter.addValue(encodeOptionComponent(sbOption, tableSorter, context));
+        element.addAttribute(jsTableSorter);
+		return element;
 	}
 }

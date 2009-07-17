@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class ColorPickerBaseRenderer extends JQueryInputBaseRenderer {
+public abstract class ColorPickerBaseRenderer extends JQueryInputBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, ColorPicker colorPicker , FacesContext context) {
 		options.append(" {\n");

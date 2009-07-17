@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.simplyscroll;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -28,7 +26,7 @@ import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 import java.lang.Integer;
 
-public class SimplyScroll extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class SimplyScroll extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlSimplyScroll";
@@ -50,6 +48,7 @@ public class SimplyScroll extends HtmlBaseOutputComponent implements JQueryHtmlO
 		 resources = new String[]{
 			"simplyscroll/jquery.simplyscroll.css",
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"simplyscroll/jquery.simplyscroll.js"
 		};
 	}
@@ -149,14 +148,14 @@ public class SimplyScroll extends HtmlBaseOutputComponent implements JQueryHtmlO
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[9];
 		values[0] = super.saveState(context);
-		values[1] = className;
-		values[2] = frameRate;
-		values[3] = speed;
-		values[4] = horizontal;
-		values[5] = autoMode;
-		values[6] = pauseOnHover;
-		values[7] = jsonSource;
-		values[8] = customContent;
+		values[1] = this.className;
+		values[2] = this.frameRate;
+		values[3] = this.speed;
+		values[4] = this.horizontal;
+		values[5] = this.autoMode;
+		values[6] = this.pauseOnHover;
+		values[7] = this.jsonSource;
+		values[8] = this.customContent;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -176,11 +175,11 @@ public class SimplyScroll extends HtmlBaseOutputComponent implements JQueryHtmlO
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

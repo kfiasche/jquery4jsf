@@ -13,17 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.fileuploader;
+package org.jquery4jsf.custom.paginator;
 
 import java.lang.String;
-import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
+import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class FileUploaderBaseRenderer extends JQueryInputBaseRenderer {
+public abstract class PaginatorBaseRenderer extends JQueryBaseRenderer {
 
-	protected String encodeOptionComponent(StringBuffer options, FileUploader fileUploader , FacesContext context) {
+	protected String encodeOptionComponent(StringBuffer options, Paginator paginator , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, fileUploader.getScrollHeight(), "scrollHeight", null);
+		encodeOptionComponentByType(options, paginator.getTotalItems(), "maxentries", null);
+		encodeOptionComponentByType(options, paginator.getItemsForPage(), "items_per_page", null);
+		encodeOptionComponentByType(options, paginator.getCurrentPage(), "current_page", null);
+		encodeOptionComponentByType(options, paginator.getNumDispalyEntries(), "num_display_entries", null);
+		encodeOptionComponentByType(options, paginator.getTextNext(), "next_text", null);
+		encodeOptionComponentByType(options, paginator.getTextPrevious(), "prev_text", null);
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

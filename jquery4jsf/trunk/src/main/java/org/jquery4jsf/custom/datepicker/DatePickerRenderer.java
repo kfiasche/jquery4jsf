@@ -17,10 +17,12 @@
 package org.jquery4jsf.custom.datepicker;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
 import javax.faces.convert.ConverterException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -57,7 +59,7 @@ public class DatePickerRenderer extends DatePickerBaseRenderer {
 
 	}
 	
-	public void encodeBegin(FacesContext context, UIComponent component)throws IOException {
+	public void encodeEnd(FacesContext context, UIComponent component)throws IOException {
         if(context == null || component == null)
             throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
         if(!component.isRendered())
@@ -66,37 +68,50 @@ public class DatePickerRenderer extends DatePickerBaseRenderer {
         if(component instanceof DatePicker)
         	datePicker = (DatePicker)component;
         
-        ResponseWriter responseWriter = context.getResponseWriter();
         encodeResources(datePicker);
         encodeLocale(context, datePicker);
         encodeInputText(datePicker, context);
-        
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(datePicker.getClientId(context));
-        JSAttribute jsDatePicker = new JSAttribute("datepicker", false);
-        StringBuffer sbOption = new StringBuffer();
-        String options = encodeOptionComponent(sbOption, datePicker, context);
-        jsDatePicker.addValue(options);
-        element.addAttribute(jsDatePicker);
-        JSFunction function = new JSFunction();
-        if (datePicker.getLocale() != null){
-            JSOperationElement operationElement = new JSOperationElement("");
-            String idjq = RendererUtilities.getJQueryId(datePicker.getClientId(context));
-            operationElement.addOperation("\n "+RendererUtilities.getJQueryVarWidget()+"('"+idjq.concat("').datepicker("+RendererUtilities.getJQueryVarWidget()+".datepicker.regional['"+datePicker.getLocale()+"']);" ));
-            operationElement.addOperation("\n "+RendererUtilities.getJQueryVarWidget()+"('"+idjq.concat("').datepicker('option', "+RendererUtilities.getJQueryVarWidget()+".extend("+options+", \n "+RendererUtilities.getJQueryVarWidget()+".datepicker.regional['"+datePicker.getLocale()+"']));" ));
-            function.addJSElement(operationElement);
-        }
-        else
-        	function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
-        
+        encodeDatePickerScript(context, datePicker);
 	}
 	
+	
+	
+	private void encodeDatePickerScript(FacesContext context, DatePicker datePicker) {
+		JSDocumentElement documentElement = JSDocumentElement.getInstance();
+		JSFunction function = new JSFunction();
+		if (datePicker.getLocale() != null){
+			function.addJSElement(getJSElementLocale(context, datePicker));
+		}
+		else
+			function.addJSElement(getJSElement(context, datePicker));
+		documentElement.addFunctionToReady(function);
+	}
+
+	private JSElement getJSElementLocale(FacesContext context, DatePicker datePicker){
+		JSOperationElement operationElement = new JSOperationElement("");
+		String jQueryId = RendererUtilities.getJQueryId(datePicker.getClientId(context));
+		operationElement.addOperation("\n "+RendererUtilities.getJQueryVarWidget()+"("+jQueryId.concat(").datepicker("+RendererUtilities.getJQueryVarWidget()+".datepicker.regional['"+datePicker.getLocale()+"']);" ));
+		operationElement.addOperation("\n "+RendererUtilities.getJQueryVarWidget()+"("+jQueryId.concat(").datepicker('option', "+RendererUtilities.getJQueryVarWidget()+".extend("+encodeOptionComponent(new StringBuffer(), datePicker, context)+", \n "+RendererUtilities.getJQueryVarWidget()+".datepicker.regional['"+datePicker.getLocale()+"']));" ));
+		return operationElement;
+	}
+	
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+        DatePicker datePicker = null;
+        if(component instanceof DatePicker)
+        	datePicker = (DatePicker)component;
+        
+        if (datePicker.getLocale() != null){
+        	return  getJSElementLocale(context, datePicker);
+        }
+		JSElement element = new JSElement(datePicker.getClientId(context));
+		JSAttribute jsDatePicker = new JSAttribute("datepicker", false);
+		StringBuffer sbOption = new StringBuffer();
+		String options = encodeOptionComponent(sbOption, datePicker, context);
+		jsDatePicker.addValue(options);
+		element.addAttribute(jsDatePicker);
+		return element;
+	}
+
 	protected String encodeOptionComponent(StringBuffer options, DatePicker datePicker , FacesContext context) {
 		options.append(" {\n");
 		String id = null;
@@ -123,7 +138,16 @@ public class DatePickerRenderer extends DatePickerBaseRenderer {
 		encodeOptionComponentByType(options, datePicker.getDayNames(), "dayNames", null);
 		encodeOptionComponentByType(options, datePicker.getDayNamesMin(), "dayNamesMin", null);
 		encodeOptionComponentByType(options, datePicker.getDayNamesShort(), "dayNamesShort", null);
-		encodeOptionComponentByType(options, datePicker.getDefaultDate(), "defaultDate", null);
+		if (datePicker.getDefaultDate() == null && datePicker.getValue() != null){
+			GregorianCalendar gregorianCalendar = new GregorianCalendar();
+			gregorianCalendar.setTime((Date) datePicker.getValue());
+			int year = gregorianCalendar.get(GregorianCalendar.YEAR);
+			int mount = gregorianCalendar.get(GregorianCalendar.MONTH);
+			int day = gregorianCalendar.get(GregorianCalendar.DAY_OF_MONTH);
+			encodeOptionComponentByType(options,"new Date("+year+","+mount+","+day+")", "defaultDate", null);
+		}
+		else
+			encodeOptionComponentByType(options, datePicker.getDefaultDate(), "defaultDate", null);
 		encodeOptionComponentByType(options, datePicker.getDuration(), "duration", null);
 		encodeOptionComponentByType(options, datePicker.getFirstDay(), "firstDay", null);
 		encodeOptionComponentByType(options, datePicker.isGotoCurrent(), "gotoCurrent", null);

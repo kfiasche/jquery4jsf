@@ -25,6 +25,7 @@ public class AjaxEventTag extends UIComponentTagBase {
 	private String actionListener;
 	private String action;
 	private String immediate;
+	private String _for;
 	private String target;
 	private String event;
 	private String partialSubmit;
@@ -35,6 +36,7 @@ public class AjaxEventTag extends UIComponentTagBase {
 		this.actionListener = null;
 		this.action = null;
 		this.immediate = null;
+		this._for = null;
 		this.target = null;
 		this.event = null;
 		this.partialSubmit = null;
@@ -54,6 +56,7 @@ public class AjaxEventTag extends UIComponentTagBase {
 		setActionListenerProperty(getFacesContext(), component, "actionListener", actionListener);
 		setActionProperty(getFacesContext(), component, "action", action);
 		setBooleanProperty(getFacesContext(), component, "immediate", immediate);
+		setStringProperty(getFacesContext(), component, "for", _for);
 		setStringProperty(getFacesContext(), component, "target", target);
 		setStringProperty(getFacesContext(), component, "event", event);
 		setBooleanProperty(getFacesContext(), component, "partialSubmit", partialSubmit);
@@ -81,6 +84,10 @@ public class AjaxEventTag extends UIComponentTagBase {
 
 	public void setImmediate(String value){
 		this.immediate = value;
+	}
+
+	public void setFor(String value){
+		this._for = value;
 	}
 
 	public void setTarget(String value){

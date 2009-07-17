@@ -22,7 +22,6 @@ import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
 
 import org.jquery4jsf.javascript.JSAttribute;
@@ -68,29 +67,38 @@ public class AjaxEventRenderer extends AjaxEventBaseRenderer implements AjaxBase
 	}
 	
 	protected void encodeAjaxEventScript(FacesContext context, AjaxEvent ajaxEvent) throws IOException{
-        ResponseWriter responseWriter = context.getResponseWriter();
-        String parentId = ajaxEvent.getParent().getClientId(context);
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
+		JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, ajaxEvent));
+        documentElement.addFunctionToReady(function);
+	}
+	
+	public JSElement getJSElement(FacesContext context, UIComponent component){
+        AjaxEvent ajaxEvent = null;
+        if(component instanceof AjaxEvent)
+            ajaxEvent = (AjaxEvent)component;
+		String parentId = null;
+        if(ajaxEvent.getFor() != null) {
+        	parentId = RendererUtilities.getClientIdForComponent(ajaxEvent.getFor(), context, ajaxEvent);
+        	if (parentId == null){
+        		throw new FacesException("Component 'ajaxEvent' attribute 'for' is invalid: "+ajaxEvent.getFor());
+        	}
+		} else {
+			parentId = ajaxEvent.getParent().getClientId(context);;
+		}
         JSElement element = new JSElement(parentId);
         JSAttribute jsAjaxContent = new JSAttribute("ajaxcontent", false);
         StringBuffer sbOption = new StringBuffer();
         jsAjaxContent.addValue(encodeOptionComponent(sbOption, ajaxEvent, context));
         element.addAttribute(jsAjaxContent);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(ajaxEvent, responseWriter, sb);
+        return element;
 	}
 	
 	protected String encodeOptionComponent(StringBuffer options, AjaxEvent ajaxEvent , FacesContext context) {
 		options.append(" {\n");
 		String target = RendererUtilities.getJQueryIdComponent(ajaxEvent.getTarget(), context, ajaxEvent);
 		encodeOptionComponentByType(options, target, "target", null);
-		if (JQueryUtilities.isTacconiteEnabled()) encodeOptionComponentByType(options, "xml", "dataType", null);
+		if (JQueryUtilities.getInstance().isTacconiteEnabled()) encodeOptionComponentByType(options, "xml", "dataType", null);
 		UIForm form = RendererUtilities.getForm(context, ajaxEvent);
 		if (form == null){
 			throw new FacesException("Il tag ajaxEvent "+ ajaxEvent.getId() + " deve essere all'interno di un tag form.");

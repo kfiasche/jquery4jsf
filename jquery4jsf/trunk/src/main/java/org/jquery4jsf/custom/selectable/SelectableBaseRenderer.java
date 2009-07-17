@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class SelectableBaseRenderer extends JQueryBaseRenderer {
+public abstract class SelectableBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Selectable selectable , FacesContext context) {
 		options.append(" {\n");

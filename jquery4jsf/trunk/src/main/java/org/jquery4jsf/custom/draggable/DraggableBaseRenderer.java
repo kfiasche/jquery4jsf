@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class DraggableBaseRenderer extends JQueryBaseRenderer {
+public abstract class DraggableBaseRenderer extends JQueryBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, Draggable draggable , FacesContext context) {
 		options.append(" {\n");

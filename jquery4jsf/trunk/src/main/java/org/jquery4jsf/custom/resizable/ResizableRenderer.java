@@ -32,48 +32,24 @@ import org.jquery4jsf.resource.ResourceContext;
 import org.jquery4jsf.utilities.MessageFactory;
 public class ResizableRenderer extends ResizableBaseRenderer {
 
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-	    if(context == null || component == null)
-            throw new NullPointerException(MessageFactory.getMessage("com.sun.faces.NULL_PARAMETERS_ERROR"));
-        if(!component.isRendered())
-            return;
-
-        Resizable resizable = null;
-        if(component instanceof Resizable)
-            resizable = (Resizable)component;
-        
-        ResponseWriter responseWriter = context.getResponseWriter();
-        
-        // TODO devo trovare il modo per scrivere i script nell'head
-        String[] list = resizable.getResources();
-        for (int i = 0; i < list.length; i++) {
-			String resource = list[i];
-			ResourceContext.getInstance().addResource(resource);
+	private void encodeResizableMarkup(FacesContext context, Resizable resizable) throws IOException {
+		String clientId = RendererUtilities.encodeClientIdInteractions(resizable, context);
+		if (RendererUtilities.isUniqueId(resizable)){
+			encodeResizableWrapper(context, resizable, clientId);
 		}
-        
-        String clientId = RendererUtilities.encodeIdInteractions(component, context);
-        
-        StringBuffer sb = new StringBuffer();
-        sb.append("\n");
-        JSDocumentElement documentElement = new JSDocumentElement();
-        JSElement element = new JSElement(clientId);
-        JSAttribute jsResizable = new JSAttribute("resizable", false);
-        StringBuffer sbOption = new StringBuffer();
-        jsResizable.addValue(encodeOptionComponent(sbOption, resizable, context));
-        element.addAttribute(jsResizable);
-        JSFunction function = new JSFunction();
-        function.addJSElement(element);
-        documentElement.addFunctionToReady(function);
-        sb.append(documentElement.toJavaScriptCode());
-        sb.append("\n");
-        RendererUtilities.encodeImportJavascripScript(component, responseWriter, sb);
-        
-        if (RendererUtilities.isUniqueId(component)){
-        	encodeStartDivWrapper(context, resizable, clientId);
-        }
+		else{
+			RendererUtilities.renderChildren(context, resizable);
+		}
 	}
 
-	private void encodeStartDivWrapper(FacesContext context, Resizable resizable, String clientId) throws IOException {
+	private void encodeResizableScript(FacesContext context, Resizable resizable) {
+        JSDocumentElement documentElement = JSDocumentElement.getInstance();
+        JSFunction function = new JSFunction();
+        function.addJSElement(getJSElement(context, resizable));
+        documentElement.addFunctionToReady(function);
+	}
+
+	private void encodeResizableWrapper(FacesContext context, Resizable resizable, String clientId) throws IOException {
 		ResponseWriter responseWriter = context.getResponseWriter();
 		responseWriter.startElement(HTML.TAG_DIV, resizable);
     	responseWriter.writeAttribute("id", clientId, "id");
@@ -86,11 +62,8 @@ public class ResizableRenderer extends ResizableBaseRenderer {
     	if (resizable.getStyle() != null){
     		responseWriter.writeAttribute("style", resizable.getStyle() , "style");
     	}
-	}
-	
-	private void encodeEndDivWrapper(FacesContext context) throws IOException {
-        ResponseWriter responseWriter = context.getResponseWriter();
-        responseWriter.endElement(HTML.TAG_DIV);
+    	RendererUtilities.renderChildren(context, resizable);
+    	responseWriter.endElement(HTML.TAG_DIV);
 	}
 	
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
@@ -99,8 +72,25 @@ public class ResizableRenderer extends ResizableBaseRenderer {
         if(!component.isRendered())
             return;
         
-        if (RendererUtilities.isUniqueId(component)){
-        	encodeEndDivWrapper(context);
-        }
+        Resizable resizable = null;
+        if(component instanceof Resizable)
+            resizable = (Resizable)component;
+        
+        encodeResources(resizable);
+        encodeResizableScript(context, resizable);
+        encodeResizableMarkup(context, resizable);
+	}
+
+	public JSElement getJSElement(FacesContext context, UIComponent component) {
+        Resizable resizable = null;
+        if(component instanceof Resizable)
+            resizable = (Resizable)component;
+        String clientId = RendererUtilities.encodeClientIdInteractions(resizable, context);
+        JSElement element = new JSElement(clientId);
+        JSAttribute jsResizable = new JSAttribute("resizable", false);
+        StringBuffer sbOption = new StringBuffer();
+        jsResizable.addValue(encodeOptionComponent(sbOption, resizable, context));
+        element.addAttribute(jsResizable);
+		return element;
 	}
 }

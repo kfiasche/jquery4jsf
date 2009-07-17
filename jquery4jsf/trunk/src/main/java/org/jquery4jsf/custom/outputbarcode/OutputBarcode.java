@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.outputbarcode;
 
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -29,7 +27,7 @@ import javax.faces.component.UIComponent;
 import java.lang.Integer;
 import java.lang.Object;
 
-public class OutputBarcode extends UIComponentBase implements JQueryHtmlObject,AjaxComponent {
+public class OutputBarcode extends UIComponentBase implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.OutputBarcode";
@@ -50,6 +48,7 @@ public class OutputBarcode extends UIComponentBase implements JQueryHtmlObject,A
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"barcode/jquery-barcode-1.1.js"
 		};
 	}
@@ -149,14 +148,14 @@ public class OutputBarcode extends UIComponentBase implements JQueryHtmlObject,A
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[9];
 		values[0] = super.saveState(context);
-		values[1] = barWidth;
-		values[2] = barHeight;
-		values[3] = showHRI;
-		values[4] = bgColor;
-		values[5] = color;
-		values[6] = fontSize;
-		values[7] = type;
-		values[8] = value;
+		values[1] = this.barWidth;
+		values[2] = this.barHeight;
+		values[3] = this.showHRI;
+		values[4] = this.bgColor;
+		values[5] = this.color;
+		values[6] = this.fontSize;
+		values[7] = this.type;
+		values[8] = this.value;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -184,11 +183,11 @@ public class OutputBarcode extends UIComponentBase implements JQueryHtmlObject,A
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

@@ -13,20 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jquery4jsf.custom.outputscript;
+package org.jquery4jsf.custom.selectmenu;
 
 import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class OutputScriptBaseRenderer extends JQueryBaseRenderer {
+public abstract class SelectMenuBaseRenderer extends JQueryBaseRenderer {
 
-	protected String encodeOptionComponent(StringBuffer options, OutputScript outputScript , FacesContext context) {
+	protected String encodeOptionComponent(StringBuffer options, SelectMenu selectMenu , FacesContext context) {
 		options.append(" {\n");
-		encodeOptionComponentByType(options, outputScript.getSrc(), "src", null);
-		encodeOptionComponentByType(options, outputScript.getType(), "type", null);
-		encodeOptionComponentByType(options, outputScript.getDefer(), "defer", null);
-		encodeOptionComponentByType(options, outputScript.getCharset(), "charset", null);
+		encodeOptionComponentByType(options, selectMenu.getTransferClasses(), "transferClasses", null);
+		encodeOptionComponentByType(options, selectMenu.getStyleType(), "style", null);
+		encodeOptionComponentByType(options, selectMenu.getWidth(), "width", null);
+		encodeOptionComponentByType(options, selectMenu.getMenuWidth(), "menuWidth", null);
+		encodeOptionComponentByType(options, selectMenu.getHandleWidth(), "handleWidth", null);
+		encodeOptionComponentByType(options, selectMenu.getIcons(), "icons", null);
+		encodeOptionComponentByType(options, selectMenu.getFormat(), "format", null);
+		encodeOptionComponentFunction(options, selectMenu.getOnopen(), "onopen", "event,ui");
+		encodeOptionComponentFunction(options, selectMenu.getOnclose(), "onclose", "event,ui");
+		encodeOptionComponentFunction(options, selectMenu.getOnchange(), "onchange", "event,ui");
+		encodeOptionComponentFunction(options, selectMenu.getOnselect(), "onselect", "event,ui");
 		if (options.toString().endsWith(", \n")){
 			String stringa = options.substring(0, options.length()-3);
 			options = new StringBuffer(stringa);

@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.toplink;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -30,7 +28,7 @@ import java.lang.Object;
 import javax.faces.convert.Converter;
 import java.lang.Integer;
 
-public class HtmlTopLink extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class HtmlTopLink extends HtmlBaseOutputComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlTopLink";
@@ -47,6 +45,7 @@ public class HtmlTopLink extends HtmlBaseOutputComponent implements JQueryHtmlOb
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"toplink/ui.toplink.js",
 			"external/jquery.scrollTo.js",
@@ -105,10 +104,10 @@ public class HtmlTopLink extends HtmlBaseOutputComponent implements JQueryHtmlOb
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[5];
 		values[0] = super.saveState(context);
-		values[1] = min;
-		values[2] = fadeSpeed;
-		values[3] = ieOffset;
-		values[4] = target;
+		values[1] = this.min;
+		values[2] = this.fadeSpeed;
+		values[3] = this.ieOffset;
+		values[4] = this.target;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -124,11 +123,11 @@ public class HtmlTopLink extends HtmlBaseOutputComponent implements JQueryHtmlOb
 		return resources;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

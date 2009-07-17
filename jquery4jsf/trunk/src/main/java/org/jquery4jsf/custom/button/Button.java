@@ -17,8 +17,6 @@ package org.jquery4jsf.custom.button;
 
 import org.jquery4jsf.component.ext.HtmlBaseCommandComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
 import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
@@ -31,7 +29,7 @@ import java.lang.Object;
 import javax.faces.event.ActionListener;
 import javax.faces.el.MethodBinding;
 
-public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject,AjaxComponent {
+public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlButton";
@@ -58,6 +56,7 @@ public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject
 		setRendererType(DEFAULT_RENDERER);
 		 resources = new String[]{
 			"jquery/jquery.js",
+			"jquery4jsf/ui.jquery4jsf.js",
 			"ui/ui.core.js",
 			"form/jquery.form.js",
 			"button/ui.button.js",
@@ -228,20 +227,20 @@ public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[15];
 		values[0] = super.saveState(context);
-		values[1] = ajaxSubmit;
-		values[2] = icon;
-		values[3] = active;
-		values[4] = toggle;
-		values[5] = checkButtonset;
-		values[6] = ontoggle;
-		values[7] = target;
-		values[8] = url;
-		values[9] = semantic;
-		values[10] = resetForm;
-		values[11] = clearForm;
-		values[12] = iframe;
-		values[13] = onbeforeSubmit;
-		values[14] = onsuccess;
+		values[1] = this.ajaxSubmit;
+		values[2] = this.icon;
+		values[3] = this.active;
+		values[4] = this.toggle;
+		values[5] = this.checkButtonset;
+		values[6] = this.ontoggle;
+		values[7] = this.target;
+		values[8] = this.url;
+		values[9] = this.semantic;
+		values[10] = this.resetForm;
+		values[11] = this.clearForm;
+		values[12] = this.iframe;
+		values[13] = this.onbeforeSubmit;
+		values[14] = this.onsuccess;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -275,11 +274,11 @@ public class Button extends HtmlBaseCommandComponent implements JQueryHtmlObject
 		return vb != null ? vb.getValue(getFacesContext()) : null;
 	}
 
-	public void encodePartially(FacesContext facesContext) throws IOException {
+	public void encodeScript(FacesContext facesContext) throws IOException {
 		Renderer renderer = getRenderer(facesContext);
 
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
+		if(renderer instanceof org.jquery4jsf.renderkit.JQueryRenderer) {
+			((org.jquery4jsf.renderkit.JQueryRenderer)renderer).encodeScript(facesContext, this);
 		}
 	}
 }

@@ -19,7 +19,7 @@ import java.lang.String;
 import org.jquery4jsf.renderkit.JQueryInputBaseRenderer;
 import javax.faces.context.FacesContext;
 
-public class DatePickerBaseRenderer extends JQueryInputBaseRenderer {
+public abstract class DatePickerBaseRenderer extends JQueryInputBaseRenderer {
 
 	protected String encodeOptionComponent(StringBuffer options, DatePicker datePicker , FacesContext context) {
 		options.append(" {\n");

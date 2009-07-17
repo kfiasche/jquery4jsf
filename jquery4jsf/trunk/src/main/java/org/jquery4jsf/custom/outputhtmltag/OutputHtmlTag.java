@@ -17,9 +17,6 @@ package org.jquery4jsf.custom.outputhtmltag;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
@@ -27,7 +24,7 @@ import java.lang.String;
 import java.lang.Boolean;
 import javax.faces.component.UIComponent;
 
-public class OutputHtmlTag extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class OutputHtmlTag extends HtmlBaseOutputComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.OutputHtmlTag";
@@ -61,7 +58,7 @@ public class OutputHtmlTag extends HtmlBaseOutputComponent implements JQueryHtml
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[2];
 		values[0] = super.saveState(context);
-		values[1] = tagName;
+		values[1] = this.tagName;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -72,13 +69,5 @@ public class OutputHtmlTag extends HtmlBaseOutputComponent implements JQueryHtml
 
 	public String[] getResources() {
 		return resources;
-	}
-
-	public void encodePartially(FacesContext facesContext) throws IOException {
-		Renderer renderer = getRenderer(facesContext);
-
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
-		}
 	}
 }

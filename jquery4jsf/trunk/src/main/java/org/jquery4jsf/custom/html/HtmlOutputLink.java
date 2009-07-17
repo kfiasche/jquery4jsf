@@ -17,9 +17,6 @@ package org.jquery4jsf.custom.html;
 
 import org.jquery4jsf.component.ext.HtmlBaseOutputComponent;
 import javax.faces.context.FacesContext;
-import org.jquery4jsf.custom.AjaxComponent;
-import org.jquery4jsf.renderkit.AjaxBaseRenderer;
-import org.jquery4jsf.custom.JQueryHtmlObject;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 import javax.faces.el.ValueBinding;
@@ -27,7 +24,7 @@ import java.lang.Object;
 import javax.faces.convert.Converter;
 import java.lang.String;
 
-public class HtmlOutputLink extends HtmlBaseOutputComponent implements JQueryHtmlObject,AjaxComponent {
+public class HtmlOutputLink extends HtmlBaseOutputComponent {
 
 
 	public static final String COMPONENT_TYPE = "org.jquery4jsf.HtmlOutputLink";
@@ -145,14 +142,14 @@ public class HtmlOutputLink extends HtmlBaseOutputComponent implements JQueryHtm
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[9];
 		values[0] = super.saveState(context);
-		values[1] = charset;
-		values[2] = coords;
-		values[3] = hreflang;
-		values[4] = name;
-		values[5] = rel;
-		values[6] = rev;
-		values[7] = shape;
-		values[8] = target;
+		values[1] = this.charset;
+		values[2] = this.coords;
+		values[3] = this.hreflang;
+		values[4] = this.name;
+		values[5] = this.rel;
+		values[6] = this.rev;
+		values[7] = this.shape;
+		values[8] = this.target;
 		return ((Object) values);
 	}
 	public void restoreState(FacesContext context, Object state) {
@@ -170,13 +167,5 @@ public class HtmlOutputLink extends HtmlBaseOutputComponent implements JQueryHtm
 
 	public String[] getResources() {
 		return resources;
-	}
-
-	public void encodePartially(FacesContext facesContext) throws IOException {
-		Renderer renderer = getRenderer(facesContext);
-
-		if(renderer instanceof AjaxBaseRenderer) {
-			((AjaxBaseRenderer)renderer).encodePartially(facesContext, this);
-		}
 	}
 }
